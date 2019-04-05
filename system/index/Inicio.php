@@ -68,11 +68,13 @@ class Inicio{
         $encrypt = new Encrypt;
         $fechas = new Fechas;
 
+
             if($_SESSION['tipo_cuenta'] != 1){
 
                 $key1 = $encrypt->Decrypt($r["expira"],$_SESSION['secret_key']);
                 $key2 = $encrypt->Decrypt($r["expiracion"],$_SESSION['secret_key']);
                 $key1 = $fechas->Format($key1);
+
 
                     if($key1 == $key2){ // si son iguales verifico que no esten vencidas
                             $ahora = $fechas->Format(date("d-m-Y"));
@@ -94,7 +96,12 @@ class Inicio{
             } else {
                 $_SESSION["caduca"] = 0;
             }
-       
+  
+$_SESSION['root_tipo_sistema'] = $encrypt->Decrypt(
+  	$_SESSION['root_tipo_sistema'],$_SESSION['secret_key']);
+
+$_SESSION['root_plataforma'] = $encrypt->Decrypt(
+	$_SESSION['root_plataforma'],$_SESSION['secret_key']);     
 
             unset($r);  
        }

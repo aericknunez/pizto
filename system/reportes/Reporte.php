@@ -106,7 +106,7 @@ class Reporte{
 				     </tr>';
 
 // aqui busco los productos que lleva ese bolado
-				$ax = $db->query("select * from ticket where fecha = '$fecha' and cod != 8889 and num_fac = ".$b["num_fac"]." and edo = 1 and td = ".$_SESSION['td']."");
+				$ax = $db->query("select * from ticket where fecha = '$fecha' and cod != 8889 and num_fac = ".$b["num_fac"]." and edo = 1 and tx = ".$b["tx"]." and td = ".$_SESSION['td']."");
 				 foreach ($ax as $bx) {
 				 	    
 				 	    if ($r = $db->select("nombre", "producto", "WHERE cod = ".$bx["cod"]." and td = ".$_SESSION['td']."")) { 

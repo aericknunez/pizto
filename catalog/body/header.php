@@ -50,7 +50,7 @@
 
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
                 
-            <?php if($_SESSION["tipo_cuenta"] == 5 or $_SESSION["tipo_cuenta"] == 4) { ?>
+            <?php if($_SESSION["tipo_cuenta"] == 4) { ?>
                 <li class="nav-item">
                     <a class="nav-link"><i class="<?php if($_SESSION["tipo_inicio"] == 1) echo "fa fa-tv"; else { echo "fa fa-coffee"; } ?>"></i></a>
                 </li>
