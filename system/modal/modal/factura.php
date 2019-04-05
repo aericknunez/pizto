@@ -67,7 +67,6 @@ echo '<div class="display-4 text-center font-weight-bold">'. Helpers::Dinero($ca
 
 
 //////////////// para facturar //////////////
-if($_SESSION["noimprimir"] == NULL){
 ///
 $user = $_SESSION["user"];
     $a = $db->query("SELECT * FROM facturar_users WHERE user = '$user' and td = ".$_SESSION["td"]."");
@@ -91,9 +90,6 @@ $user = $_SESSION["user"];
 
     } $a->close();
 
-} else {
-  unset($_SESSION["noimprimir"]);
-}// No imprimir
  ?> 
 
 

@@ -16,6 +16,7 @@
             <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-pie-chart"></i> Historial<i class="fa fa-angle-down rotate-icon"></i></a>
                 <div class="collapsible-body">
                     <ul class="list-unstyled">
+                        <li><a href="?reportediario" class="waves-effect"> Reporte Diario</a></li>
                         <li><a href="?diario" class="waves-effect"> Historial Diario</a></li>
                         <li><a href="?mensual" class="waves-effect"> Historial Mensual</a></li>
                         <li><a href="?cortes" class="waves-effect"> Historial de Cortes</a></li>

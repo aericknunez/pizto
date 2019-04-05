@@ -195,8 +195,6 @@ $iconos->UpdateReordenar($idArray);
 
 if($_REQUEST["op"]=="20"){ //venta normal
 
-if($_SESSION["timex"] != 0){
-$_SESSION["timex"] = 1;
 		include_once '../../system/ventas/Venta.php';
 		$ventas = new Venta;
 		if($_REQUEST["cliente"] == NULL) { $clientes = 1; }
@@ -218,8 +216,7 @@ $_SESSION["timex"] = 1;
 		$pantalla->AgregarControl($identificador, $_SESSION["mesa"],$clientes,$option,$_REQUEST["panel"]);
 		}
 		$pantalla->Cambia(1);
-}
-$_SESSION["timex"] = 2;
+
 } 
 
 
@@ -868,7 +865,7 @@ if($_REQUEST["op"]=="86"){ // imprimir factura
 	    }
 
 	    if($_REQUEST["tipo"] == 2 and $_SESSION["tx"] == 1){ // para factura
-	    include_once 'system/facturar/Factura.php';
+	    include_once '../../system/facturar/Factura.php';
 	    $imprimir = new Factura;  // la mesa aqui es solo si es op 3 en el 1er para
 	        $imprimir->$clase(2,$_REQUEST["iden"],$_REQUEST["efectivo"],$b["impresora"],$_REQUEST["mesa"],$b["ticket"]);
 	    Alerts::Alerta("success","Imprimiendo","Imprimiendo Factura");
@@ -1014,6 +1011,12 @@ $configuracion->CambiarEspecial($_REQUEST["cod"]);
 $configuracion->VerProductosEspecial($_REQUEST["iden"]);
 } 
 
+if($_REQUEST["op"]=="102"){ // cambia para mostrarlo en el reporte
+include_once '../../system/config_especial/Config.php';
+$configuracion = new Config;
+$configuracion->CambiarReporte($_REQUEST["cod"]);
+$configuracion->VerProductosEspecial($_REQUEST["iden"]);
+} 
 
 if($_REQUEST["op"]=="110"){ // agregar producto averias
 include_once '../../system/productos/Product.php';
@@ -1236,6 +1239,24 @@ $user = $_SESSION["user"];
 
 
 
+
+
+
+
+
+
+
+if($_REQUEST["op"]=="160"){ // agragarUsuarios
+include_once '../../system/reportes/Reporte.php';
+include_once '../../system/historial/Historial.php';
+	$reporte = new Reporte; 
+	if($_POST["fecha_submit"] == NULL){ 
+		$fecha = date("d-m-Y"); 
+	} else { 
+		$fecha = $_POST["fecha_submit"];
+	}
+	$reporte->Contenido($fecha);
+}
 
 
 

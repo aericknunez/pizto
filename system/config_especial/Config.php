@@ -6,6 +6,45 @@ class Config{
 
 
 
+
+
+	public function CambiarReporte($cod){
+    	$db = new dbConn();
+
+    	$a = $db->query("SELECT * FROM alter_producto_reporte WHERE producto = '$cod' and td = ".$_SESSION["td"]."");
+		if($a->num_rows == 0){
+
+		    $datos = array();
+		    $datos["producto"] = $cod;
+		    $datos["td"] = $_SESSION["td"];
+		    if ($db->insert("alter_producto_reporte", $datos)) {
+		      Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido cambiado correctamente");
+		    } else {
+			        Alerts::Alerta("error","Error","Ha ocurrido un error desconocido"); 
+			    }
+
+		} else {
+
+			    if ( $db->delete("alter_producto_reporte", "WHERE producto=" . $cod)) {
+			        Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido eliminado correctamente"); 
+			    } else {
+			        Alerts::Alerta("error","Error","Ha ocurrido un error desconocido"); 
+			    } 
+
+		}
+		$a->close();
+
+
+    }
+
+
+
+    
+
+
+
+
+
 	public function CambiarEspecial($cod){
     	$db = new dbConn();
 
@@ -66,24 +105,34 @@ class Config{
 		       <th>Codigo</th>
 		       <th>Nombre</th>
 		       <th>Categoria</th>
-		       <th>Especial</th>
-		     </tr>
+		       <th>Especial</th>';
+		     if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5) {
+		     	echo '<th>Reporte</th>';
+		     }
+		     echo '</tr>
 		   </thead>
 		   <tbody>';
 	    foreach ($a as $b) {
 	    		$r = $db->select("categoria", "categorias", "WHERE cod = ". $b["categoria"] ." and td =  ". $_SESSION['td'] ."");
 
 	    		$az = $db->query("SELECT * FROM productos_venta_especial WHERE producto = ". $b["cod"] ." and td =  ". $_SESSION['td'] ."");
-	    		if($az->num_rows != 0){ $colore = "blue"; $act = "Activo"; } else { $colore = "red"; $act = "Inactivo"; } 				 
+	    		if($az->num_rows != 0){ $colore = "blue"; $act = "Activo"; } else { $colore = "red"; $act = "Inactivo"; } $az->close();			 
 			    echo '<tr>
 				       <th scope="row">'. $b["cod"] . '</th>
 				       <td>'. $b["nombre"] . '</td>
 				       <td>'. $r["categoria"] . '</td>
 				       <td><a id="cambiar-especial" op="101" cod="'. $b["cod"] .'" iden="'.$npagina.'"><span class="badge badge-pill '.$colore.'">'.$act.'</span></a>';
 
-		       echo '</td>
-		      </tr>';
-		$az->close();
+				       echo '</td>';
+				    if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5) {
+				     
+				     $az = $db->query("SELECT * FROM alter_producto_reporte WHERE producto = ". $b["cod"] ." and td =  ". $_SESSION['td'] ."");
+	    		if($az->num_rows != 0){ $colore = "green"; $act = "Activo"; } else { $colore = "red"; $act = "Inactivo"; } $az->close();	
+
+				     	echo '<td><a id="cambiar-especial" op="102" cod="'. $b["cod"] .'" iden="'.$npagina.'"><span class="badge badge-pill '.$colore.'">'.$act.'</span></a></td>';
+				     }
+				     echo '</tr>';
+		
 		unset($r);
 	        
 	    } echo '</tbody>

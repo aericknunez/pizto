@@ -6,22 +6,8 @@ include_once 'application/common/Encrypt.php';
 include_once 'application/common/Mysqli.php';
 $db = new dbConn();
 
-
-
-if($_REQUEST["op"] == "1" and $_POST["precio"] != null){
-
-$iden=$_REQUEST["iden"];
-
-    $cambio = array();
-    $cambio["precio"] = $_POST["precio"];
-    if ($db->update("precios", $cambio, "WHERE id='$iden'")) {
-        
-    } 
-
-}
-
 ?>
-<h1>Configuraci&oacuten venta especial</h1>
+<h1>Configuraci&oacuten Especial</h1>
 <?php 
 echo '<div id="productos">';
 Config::VerProductosEspecial($_REQUEST["page"]);

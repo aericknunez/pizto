@@ -114,6 +114,9 @@ echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$nume
 elseif(isset($_GET["inout"])) {
 echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';
 }
+elseif(isset($_GET["reportediario"])) {
+echo '<script type="text/javascript" src="assets/js/query/reportes.js?v='.$numero.'"></script>';
+}
 elseif(isset($_GET["search"])) {
 echo '<script type="text/javascript" src="assets/js/query/search.js?v='.$numero.'"></script>';
 }

@@ -89,8 +89,8 @@ printer_draw_text($handle, "Fecha limite CAI: $fecha_limite", 0, $oi);
 ///
 
 
-if($_SESSION["rtn"] != null) /// si hay cliente con rtne
-{
+if($_SESSION["rtn"] != NULL){
+
 $oi=$oi+$n3;
 printer_draw_text($handle, "Cliente: " . $_SESSION["cliente"], 0, $oi); 
 $oi=$oi+$n1;
@@ -104,14 +104,14 @@ printer_draw_text($handle, "RTN: " . $_SESSION["rtn"], 0, $oi);
     $datos["td"] = $_SESSION["td"];
     $db->insert("facturar_rtn_cliente", $datos); 
 /////////////////////////////////////////
-@unset($_SESSION["cliente"]);
-@unset($_SESSION["rtn"]);
+// @unset($_SESSION["cliente"]);
+// @unset($_SESSION["rtn"]);
 }
 /// nuevos datos exonerados
 $oi=$oi+$n1;
 printer_draw_text($handle, "Datos del Adquiriente Exonerado:", 0, $oi);
 $oi=$oi+$n1;
-printer_draw_text($handle, "NxvfO. OCE:", 0, $oi);
+printer_draw_text($handle, "NO. OCE:", 0, $oi);
 printer_draw_text($handle, $_SESSION["nooce"], 232, $oi);
 $oi=$oi+$n1;
 printer_draw_text($handle, "NO. REG EXON:", 0, $oi);
@@ -254,8 +254,8 @@ printer_draw_text($handle, "G=Articulo Gravado  E= Artculo Exento", 0, $oi);
 
 
 $oi=$oi+$n1;
-printer_draw_text($handle, $fecha, 0, $oi);
-printer_draw_text($handle, $hora, 232, $oi);
+printer_draw_text($handle, date("d-m-Y"), 0, $oi);
+printer_draw_text($handle, date("H:i:s"), 232, $oi);
 
 
 

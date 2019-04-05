@@ -97,7 +97,7 @@ class Historial{
 	public function HistorialMensual($fechax) {
 		$db = new dbConn();
 
-					$a = $db->query("select cod, cant, producto, pv, fecha 
+		$a = $db->query("select cod, cant, producto, pv, fecha 
 					                  from ticket 
 					                  where cod != 8888 and edo = 1 and fecha like '%$fechax' and td = ".$_SESSION['td']." GROUP BY cod");
 					    
@@ -186,7 +186,7 @@ class Historial{
 		$segundo = Fechas::Format($fin);
 					$pro=0;
 				//busqueda de usuarios
-				$a = $db->query("select * from corte_diario where fecha_format BETWEEN '$primero' AND '$segundo' and td = ".$_SESSION['td']."");
+				$a = $db->query("select * from corte_diario where fecha_format BETWEEN '$primero' AND '$segundo' and td = ".$_SESSION['td']." order by fecha_format desc");
 
 					    
 					echo '<h1>Productos vendidos</h1>
@@ -332,10 +332,8 @@ class Historial{
 			    </tbody>
 		    </table>';
 			echo "El numero de registros es: ". $a->num_rows . "<br>";
-			}
-  			$a->close();
 
-  			$ag = $db->query("SELECT sum(cantidad) FROM gastos where tipo != 5 and edo = 1 and  fecha = '$fecha' and td = ".$_SESSION['td']."");
+			$ag = $db->query("SELECT sum(cantidad) FROM gastos where tipo != 5 and edo = 1 and  fecha = '$fecha' and td = ".$_SESSION['td']."");
 		    foreach ($ag as $bg) {
 		        echo "Efectivo afectado: ". Helpers::Dinero($bg["sum(cantidad)"]) . "<br>";
 		    } $ag->close();
@@ -344,6 +342,12 @@ class Historial{
 		    foreach ($as as $bs) {
 		        echo "Cheques emitidos: ". Helpers::Dinero($bs["sum(cantidad)"]) . "<br>";
 		    } $as->close();
+
+
+			} // num rows
+			$a->close();
+
+
 
 
 			
@@ -413,10 +417,8 @@ class Historial{
 			    </tbody>
 		    </table>';
 			echo "El numero de registros es: ". $a->num_rows . "<br>";
-			}
-  			$a->close();
-
-  			$ag = $db->query("SELECT sum(cantidad) FROM gastos where tipo != 5 and edo = 1 and  fecha like '%$fechax' and td = ".$_SESSION['td']."");
+			
+			$ag = $db->query("SELECT sum(cantidad) FROM gastos where tipo != 5 and edo = 1 and  fecha like '%$fechax' and td = ".$_SESSION['td']."");
 		    foreach ($ag as $bg) {
 		        echo "Efectivo afectado: ". Helpers::Dinero($bg["sum(cantidad)"]) . "<br>";
 		    } $ag->close();
@@ -425,6 +427,12 @@ class Historial{
 		    foreach ($as as $bs) {
 		        echo "Cheques emitidos: ". Helpers::Dinero($bs["sum(cantidad)"]) . "<br>";
 		    } $as->close();
+
+
+			}
+  			$a->close();
+
+
 	}
 
 

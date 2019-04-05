@@ -1,6 +1,7 @@
 $(document).ready(function()
 {
 
+setTimeout(function () {
 	$("body").on("click","#venta",function(){
 	var op = $(this).attr('op');
 	var cod = $(this).attr('cod');
@@ -13,7 +14,7 @@ $(document).ready(function()
 		//$("#lateral").html(htmlexterno);
    	 	});
 	});
-
+}, 1000);
 
 	$("body").on("click","#ventaopcion",function(){
 	var op = $(this).attr('op');
