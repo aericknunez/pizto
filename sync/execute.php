@@ -6,6 +6,10 @@ include_once '../application/common/Fechas.php';
 include_once '../application/common/Mysqli.php';
 $db = new dbConn();
 
+if($_SESSION["hash_counter"] == NULL or $_SESSION["hash_counter"] > 5){
+	$_SESSION["hash_counter"] = 0;
+}
+
 $type = $_REQUEST["type"]; // 1 = tablas diarias, 2 = tablas estaticas, 3 ambas
 
     if ($r = $db->select("td", "config_root", "WHERE id = 1")) { 
@@ -67,7 +71,9 @@ if($hash == NULL){
 				} else {
 					echo "No hay nada que sincronizar";
 				}
-	} else { header("location: execute.php?op=4&hash=$hash&action=1"); } // cantidad
+	} else { 
+		header("location: execute.php?op=4&hash=$hash&action=1"); 
+	} // cantidad
 
 
 
@@ -160,9 +166,6 @@ $_SESSION["ultima"] =  date("H:i:s");
 					    } $a->close();
     			} 
 
-    			
-
-
 
 	    	echo "Ejecutado: " . $_REQUEST["hash"];
 	    	@unlink($_REQUEST["hash"].".sql");
@@ -191,7 +194,19 @@ $type = $_REQUEST["type"];
 						"C:/AppServ/www/pizto/sync/". $sync. ".sql") == TRUE){
 			header("location: https://pizto.com/admin/sync/import.php?hash=$sync&action=$action&type=$type&td=".$_SESSION["temporal_td"]."");
 		} else {
+
+			$_SESSION["hash_counter"] = $_SESSION["hash_counter"] + 1;
+
+				if($_SESSION["hash_counter"] == 3){
+						$archx = $sync . ".sql";
+						if (!file_exists($archx)) {
+		   					$db->delete("sync_status", "WHERE hash = '$sync'  and td = ".$_SESSION["temporal_td"]."");
+		   					header("location: redirect.php?op=1");
+						}
+				} 
+
 			echo "No se puede conectar al servidor: " .  $sync;
+			echo "<br>Counter :" . $_SESSION["hash_counter"];
 		}
 
 
@@ -202,14 +217,14 @@ $type = $_REQUEST["type"];
 unset($_SESSION["temporal_td"]);
 $db->close();
 
-echo "<br>Ultima actualizacion: " .  $_SESSION["ultima"];
+echo "<br>Ultima actualizaci&oacuten: " .  $_SESSION["ultima"];
  
 
 if($_REQUEST["action"] == 1 or $_REQUEST["op"] == 1){
 ?>
 <!-- el intervalo cada segundo es igual a 1000 .  minuto 60,000 -->
  <script type="text/javascript">
-	var int=self.setInterval("refresh()",600000);
+	var int=self.setInterval("refresh()",300000);
 	function refresh(){
 		window.location.href="redirect.php?op=1";
 	}
