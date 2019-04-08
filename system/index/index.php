@@ -13,6 +13,7 @@ unset($_SESSION['client-asign']);
 unset($_SESSION['clientselect']);
 unset($_SESSION['view']);
 
+
 if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5) {
 		
 if($_SESSION["muestra_vender"] == NULL){
@@ -48,12 +49,13 @@ if($_SESSION["muestra_vender"] == NULL){
 } elseif ($_SESSION["tipo_cuenta"] == 2) {
 		
 	if($_SESSION["muestra_vender"] == NULL){
+		
 		// aqui va el panel de control
 		Inicio::Admin();
 
 	} else {
-			// verificamos primero el tipo cuenta
 
+		// verificamos primero el tipo cuenta
 		if(Corte::UltimaFecha() == date("d-m-Y")){
 			Alerts::CorteEcho("ventas");
 		} else {
@@ -63,11 +65,9 @@ if($_SESSION["muestra_vender"] == NULL){
 			} else {
 			include_once 'system/mesas/mesas.php';
 			}
-		}
+		}			
 			
 	} // muestra vender
-
-
 
 
 }  elseif ($_SESSION["tipo_cuenta"] == 4) {

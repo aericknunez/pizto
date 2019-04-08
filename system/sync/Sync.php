@@ -86,7 +86,7 @@ class Sync{
 
 	public function UrlRespaldo($fecha, $url){
 		if($url == FALSE){
-			echo '<a href="javascript:window.open(\'http://localhost/pizto/sync/execute.php?op=2&fecha='.$fecha.'\', \'_blank\', \'width=1,height=1,center=yes,help=no\')" class="btn btn-danger waves-effect waves-light">
+			echo '<a href="javascript:window.open(\'http://localhost/pizto/sync/redirect.php?op=2&type=1&fecha='.$fecha.'\', \'_blank\', \'width=1,height=1,center=yes,help=no\')" class="btn btn-danger waves-effect waves-light">
 			    Respaldar Ahora
 			</a>';
 		} else {
@@ -161,10 +161,10 @@ class Sync{
 
 			if($this->GetStatus($fecha) >= 1){
 					if($this->RevisarRespaldo($fecha) == 1){
-						Alerts::RealizarRespaldo("Respaldo realizado pero no se ha subido a la Web correctamente");
+						Alerts::RealizarRespaldo("Respaldo realizado pero aun no ha subido a la Web");
 					}
 					if($this->RevisarRespaldo($fecha) == 2){
-						Alerts::RealizarRespaldo("Respaldo esperando a ser sincronizado...");
+						Alerts::RealizarRespaldo("Esperando a ser sincronizado...");
 					}
 					if($this->RevisarRespaldo($fecha) == 3){
 						Alerts::RealizadoRespaldo("Respaldo realizado correctamente");

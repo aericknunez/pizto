@@ -6,10 +6,17 @@ sec_session_start();
 include_once '../common/Encrypt.php';
 include_once '../common/Mysqli.php';
 include_once '../common/Helpers.php';
+include_once '../common/Alerts.php';
 include_once '../common/Fechas.php';
 include_once '../../system/corte/Corte.php';
 include_once '../../system/sync/Sync.php';
 include_once '../../system/index/Inicio.php';
+include_once '../../system/config_configuraciones/Config.php';
+
+if($_SESSION['username'] == NULL){
+header("location: logout.php");
+exit();
+}
 
 $user=sha1($_SESSION['username']);
 
@@ -28,14 +35,26 @@ $user=sha1($_SESSION['username']);
 
             } unset($r);
 
-        include_once '../../system/config_configuraciones/Config.php';
-        $configuracion = new Config;
-        $configuracion->CrearVariables();
         
+        Config::CrearVariables(); // creo el resto de variables del sistema
+        Inicio::CompruebaIconos("../iconos/"); // creo iconos si no exite el archivo
         
-       Inicio::Caduca();
-       BuscaRespaldo();
-	       if($_SERVER["SERVER_NAME"] == "pizto.com"){
+        // reviso si hay una BD que actualizar
+        $archx = "../../sync/" . $_SESSION['td'] . ".sql";
+
+        if (file_exists($archx)) {
+            $sql = explode(";",file_get_contents($archx));//
+            foreach($sql as $query){
+            $arr = $db->query($query);
+            }
+            unlink($archx);
+        }
+        //////////////
+    
+       Inicio::Caduca(); // revisa si ha caducado
+       BuscaRespaldo(); // revisa sy hay respaldos imcompletos
+
+	       if($_SERVER["SERVER_NAME"] == "pizto.com"){ // registro entrada en web
 	       	@Inicio::RegisterInOut(1);
 	       }   
        }

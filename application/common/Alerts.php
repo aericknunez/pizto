@@ -142,7 +142,7 @@ Existe un corte realizado este dia, ya no se puede seguir agregando '.$tipo.' a 
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       '.$texto.'
       <br>
-      <a href="javascript:window.open(\'http://localhost/pizto/sync/execute.php?op=2\', \'_blank\', \'width=1,height=1,center=yes,help=no\')" class="btn btn-danger waves-effect waves-light">
+      <a href="javascript:window.open(\'http://localhost/pizto/sync/redirect.php?op=2&type=1\', \'_blank\', \'width=300,height=70,center=yes,help=no\')" class="btn btn-danger waves-effect waves-light">
     REALIZAR RESPALDO
 </a>
       </div>';

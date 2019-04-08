@@ -6,6 +6,42 @@ class Inicio{
 	}
 
 
+	public function CompruebaIconos($url){
+		$db = new dbConn();
+
+		$nombre_fichero = $url . 'iconos_'.$_SESSION["td"] . '.php';
+		
+		if (file_exists($nombre_fichero)) {
+		    
+		    $size = filesize($nombre_fichero);
+
+			if ($r = $db->select("icono_tipo", "alter_opciones", "WHERE td = ".$_SESSION["td"]."")) { 
+			    $icono = $r["icono_tipo"];
+			} unset($r); 
+
+			    if($size != $icono){
+			    	Config::CrearIconos($url);
+
+	    	    $cambio = array();
+			    $cambio["icono_tipo"] = $size;
+			    $db->update("alter_opciones", $cambio, "WHERE td = ".$_SESSION["td"]."");
+			} 
+
+		} else {
+			Config::CrearIconos($url);
+			
+			$size = filesize($nombre_fichero);
+				$cambio = array();
+			    $cambio["icono_tipo"] = $size;
+			    $db->update("alter_opciones", $cambio, "WHERE td = ".$_SESSION["td"]."");
+			} 
+
+		      
+	}
+
+
+
+
 	public function CreaCodigos($fecha){
 		$db = new dbConn();
 

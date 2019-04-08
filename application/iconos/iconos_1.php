@@ -1,7 +1,6 @@
 <div class="row text-center portfolio"> 
    <ul class="gallery"> 
 
-<li><a data-target="#a9910" data-toggle="modal"><em>Combos</em><img src="assets/img/ico/6666.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
 <li><a data-target="#a9901" data-toggle="modal"><em>Aves</em><img src="assets/img/ico/5777.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
 <li><a data-target="#a9902" data-toggle="modal"><em>Carnes</em><img src="assets/img/ico/carne.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
 <li><a data-target="#a9903" data-toggle="modal"><em>Mariscos</em><img src="assets/img/ico/4534.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
@@ -264,7 +263,6 @@
 <li><em>Jugo de Naranja</em><input type="image" id="venta" op="20" cod="1057" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/jugodenaranja.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Licuado Natural</em><input type="image" id="venta" op="20" cod="1058" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/pinacolada.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Licuado con Leche</em><input type="image" id="venta" op="20" cod="1059" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/licuado.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
-<li><em>Balde Golden de 8</em><input type="image" id="venta" op="20" cod="1125" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/golden.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Agua Mineral</em><input type="image" id="venta" op="20" cod="1126" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/35.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Mineral con Limon</em><input type="image" id="venta" op="20" cod="1127" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/limonada.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 
@@ -344,33 +342,6 @@
 <li><em>1800 D</em><input type="image" id="venta" op="20" cod="1118" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/1800.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>1800 M</em><input type="image" id="venta" op="20" cod="1119" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/1800.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>1800 B</em><input type="image" id="venta" op="20" cod="1120" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/1800.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
-
-  
-</ul> 
- </div> </div>
-      <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div><!-- POPUP CON EL CODIGO 9910 Combos --> 
- 
- 
-<div class="modal" id="a9910" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Combos</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
- <div class="row text-center portfolio"> 
-   <ul class="gallery"> 
-
-<li><em>Combo 1 c/ Pierna</em><input type="image" id="venta" op="20" cod="1128" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/501.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
-<li><em>Combo dos</em><input type="image" id="venta" op="20" cod="1129" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/502.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 
   
 </ul> 

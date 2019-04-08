@@ -6,7 +6,7 @@ class Upload{
 	}
 
 
-	public function  Sync($fecha){ // verifica si se actualiza todo o solo hoy
+	public function  Sync($fecha,$tipox){ // verifica si se actualiza todo o solo hoy
 	    $db = new dbConn();
 
 	    if($this->CompruebaSync($fecha) == 0) {
@@ -16,11 +16,25 @@ class Upload{
 
 		       $resultado.= "\n # " . $b["tabla"] ." \n\n";
 
-		       if($b["edo"] == 0){ // si hay que actualizar todo
-		       		$resultado.=$this->ExtraerTodo($b["tabla"]);
-		       } else { // si ahy que actualizar solo lo de hoy
+		       
+		       if($tipox == 1 and $b["edo"] == 1){
 		       		$resultado.=$this->ExtraerFecha($b["tabla"],$fecha);
 		       }
+		       if($tipox == 2 and $b["edo"] == 0){
+		       		$resultado.=$this->ExtraerTodo($b["tabla"]);
+		       }
+		       if($tipox == 3){
+		       		if($b["edo"] == 0){ // si hay que actualizar todo
+		       			$resultado.=$this->ExtraerTodo($b["tabla"]);
+			       } else { // si ahy que actualizar solo lo de hoy
+			       		$resultado.=$this->ExtraerFecha($b["tabla"],$fecha);
+			       }
+		       }
+		       // if($b["edo"] == 0){ // si hay que actualizar todo
+		       // 		$resultado.=$this->ExtraerTodo($b["tabla"]);
+		       // } else { // si ahy que actualizar solo lo de hoy
+		       // 		$resultado.=$this->ExtraerFecha($b["tabla"],$fecha);
+		       // }
 		        
 		    } $a->close();
 	    
@@ -57,7 +71,7 @@ class Upload{
 	    $resultado.= 'DELETE FROM '.$tabla.' WHERE td = "' . $_SESSION["temporal_td"] .'"'; $resultado.= ";\n";
 	
 
-	    $s = $db->query("SELECT * FROM $tabla");
+	    $s = $db->query("SELECT * FROM $tabla WHERE td = ".$_SESSION["temporal_td"]."");
 			foreach ($s as $y) {
 
 	    $resultado.= "INSERT INTO $tabla VALUES(";
@@ -87,7 +101,7 @@ class Upload{
 	    
 	    $resultado.= 'DELETE FROM '.$tabla.' WHERE fecha = "'.$fecha.'" and td = "' . $_SESSION["temporal_td"] .'"'; $resultado.= ";\n";
 
-	    $s = $db->query("SELECT * FROM $tabla WHERE fecha = '$fecha'");
+	    $s = $db->query("SELECT * FROM $tabla WHERE fecha = '$fecha' and td = ".$_SESSION["temporal_td"]."");
 			foreach ($s as $y){ 
 	    $resultado.= "INSERT INTO $tabla VALUES(";
 	    	// especifico los campos

@@ -6,7 +6,7 @@ CREATE TABLE `alter_opciones` (
   `td` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO alter_opciones (id, icono_tipo, td) VALUES ("", "0", "2");
+INSERT INTO alter_opciones (id, icono_tipo, td) VALUES ("", "0", "5");
 
 CREATE TABLE `alter_producto_reporte` (
   `id` int(6) NOT NULL,

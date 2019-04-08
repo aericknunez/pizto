@@ -11,7 +11,9 @@ include_once 'system/sync/Sync.php';
 $sync = new Sync();
 ?>
 <h1>RESPALDOS PENDIENTES <?php 
-echo '<a href="javascript:window.open(\'http://localhost/pizto/sync/execute.php?op=1\', \'_blank\', \'width=1,height=1,center=yes,help=no\')" class="btn-floating btn-sm blue-gradient"><i class="fa fa-download"></i></a>';
+echo '<a href="javascript:window.open(\'http://localhost/pizto/sync/redirect.php?op=1\', \'_blank\', \'width=300,height=70,center=yes,help=no\')" class="btn-floating btn-sm blue-gradient"><i class="fa fa-download"></i></a>';
+
+echo '<a href="javascript:window.open(\'http://localhost/pizto/sync/redirect.php?op=2&type=2\', \'_blank\', \'width=300,height=70,center=yes,help=no\')" class="btn-floating btn-sm red"><i class="fa fa-download"></i></a> Configuraciones';
  ?></h1>
 
 <?php if(isset($_REQUEST["msj"])){

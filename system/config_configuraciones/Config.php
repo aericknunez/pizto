@@ -67,7 +67,7 @@ class Config{
 	
 
 
-	public function CrearIconos(){
+	public function CrearIconos($url){
 		$db = new dbConn();
 //ESTE ARCHIVO CREA ICONOS CADA VES QUE ES NECESARIO AL INICIO DE SESION
 // CONSULTA TODOS LOS ICONOS Y LOS GUARDA EN UN ARCHIVO LLAMADO iconos.php 
@@ -377,7 +377,7 @@ unset($panel);
 
     ///
 //save
-   if($handle = fopen("../iconos/iconos_".$_SESSION["td"].".php",'w+')){
+   if($handle = fopen($url . "iconos_".$_SESSION["td"].".php",'w+')){
    	Alerts::Alerta("success","Echo!","Iconos creados correctamente");
    }
    fwrite($handle,$return);

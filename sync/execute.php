@@ -6,6 +6,8 @@ include_once '../application/common/Fechas.php';
 include_once '../application/common/Mysqli.php';
 $db = new dbConn();
 
+$type = $_REQUEST["type"]; // 1 = tablas diarias, 2 = tablas estaticas, 3 ambas
+
     if ($r = $db->select("td", "config_root", "WHERE id = 1")) { 
         $_SESSION["temporal_td"] = $r["td"];
     } unset($r);  
@@ -16,9 +18,9 @@ $archx = $_SESSION["temporal_td"] . ".sql";
 if (file_exists($archx)) {
     $sql = explode(";",file_get_contents($archx));//
 	foreach($sql as $query){
-	$arr = $db->query($query);
+	@$db->query($query);
 	}
-	unlink($archx);
+	@unlink($archx);
 }
 
 
@@ -81,7 +83,7 @@ if($_REQUEST["op"]=="2"){ // sincroniza las tablas cambiantes (al corte)
 
 if ($o = $db->select("hash", "sync_status", "WHERE tipo = 2 and creado = 1 and subido = 1 and ejecutado = 0 and td = ".$_SESSION["temporal_td"]."")) { 
     $hash = $o["hash"];
-    header("location: https://pizto.com/admin/sync/import.php?hash=$hash&action=2&td=".$_SESSION["temporal_td"]."");
+    header("location: https://pizto.com/admin/sync/import.php?hash=$hash&type=$type&action=2&td=".$_SESSION["temporal_td"]."");
 } unset($o); 
 
 
@@ -98,7 +100,7 @@ if($_REQUEST["fecha"] == NULL){
 if($hash == NULL){
 			include_once '../system/sync/Upload.php';
 			$sincro =  new Upload;
-					$sync = $sincro->Sync($fecha);
+					$sync = $sincro->Sync($fecha,$type);
 					if($sync != NULL){
 
 					include_once '../system/sync/Ftp.php';
@@ -109,14 +111,14 @@ if($hash == NULL){
 									$sync . ".sql",
 									"/admin/sync/",
 									"C:/AppServ/www/pizto/sync/". $sync. ".sql") == TRUE){
-						header("location: https://pizto.com/admin/sync/import.php?hash=$sync&action=2&td=".$_SESSION["temporal_td"]."");
+						header("location: https://pizto.com/admin/sync/import.php?hash=$sync&type=$type&action=2&td=".$_SESSION["temporal_td"]."");
 					} else {
 						echo "No se puede conectar al servidor: " .  $sync;
 					}
 
 				}
 
-	} else { header("location: execute.php?op=4&hash=$hash&action=2"); } // cantidad
+	} else { header("location: execute.php?op=4&hash=$hash&action=2&type=$type"); } // cantidad
 
 
 }
@@ -124,6 +126,17 @@ if($hash == NULL){
 
 if($_REQUEST["op"]=="3"){ // termina
 
+if($_REQUEST["type"] == 2){
+
+$hash = $_REQUEST["hash"];
+$db->delete("sync_status", "WHERE tipo = 2 and hash = '$hash' and td = ".$_SESSION["temporal_td"]."");
+
+echo "Ejecutado: " . $_REQUEST["hash"];
+@unlink($_REQUEST["hash"].".sql");
+
+$_SESSION["ultima"] =  date("H:i:s");
+
+} else {
     	$cambio = array();
 	    $cambio["ejecutado"] = $_REQUEST["edo"];
 	    if($db->update("sync_status", $cambio, "WHERE creado = 1 and subido = 1 and ejecutado = 0 and td = ".$_SESSION["temporal_td"]." limit 1")) {
@@ -157,12 +170,15 @@ if($_REQUEST["op"]=="3"){ // termina
 	    	$_SESSION["ultima"] =  date("H:i:s");
 	    }  
 
-
+	}
 }
+
+
 
 if($_REQUEST["op"]=="4"){ // cuando se ja creado un archivo pero no se ha subido
 
 $action=$_REQUEST["action"];
+$type = $_REQUEST["type"];
 
 		$sync = $_REQUEST["hash"];
 		include_once '../system/sync/Ftp.php';
@@ -173,13 +189,15 @@ $action=$_REQUEST["action"];
 						$sync . ".sql",
 						"/admin/sync/",
 						"C:/AppServ/www/pizto/sync/". $sync. ".sql") == TRUE){
-			header("location: https://pizto.com/admin/sync/import.php?hash=$sync&action=$action&td=".$_SESSION["temporal_td"]."");
+			header("location: https://pizto.com/admin/sync/import.php?hash=$sync&action=$action&type=$type&td=".$_SESSION["temporal_td"]."");
 		} else {
 			echo "No se puede conectar al servidor: " .  $sync;
 		}
 
 
 }
+
+
 
 unset($_SESSION["temporal_td"]);
 $db->close();
@@ -193,7 +211,7 @@ if($_REQUEST["action"] == 1 or $_REQUEST["op"] == 1){
  <script type="text/javascript">
 	var int=self.setInterval("refresh()",600000);
 	function refresh(){
-		window.location.href="execute.php?op=1";
+		window.location.href="redirect.php?op=1";
 	}
 </script>
 <?
