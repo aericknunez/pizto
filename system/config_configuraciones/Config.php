@@ -1,5 +1,5 @@
 <?php 
-class Config{
+class Config {
 
 	public function __construct() { 
      } 
@@ -378,7 +378,8 @@ unset($panel);
     ///
 //save
    if($handle = fopen($url . "iconos_".$_SESSION["td"].".php",'w+')){
-   	Alerts::Alerta("success","Echo!","Iconos creados correctamente");
+   	$alert = new Alerts;
+   	$alert->Alerta("success","Echo!","Iconos creados correctamente");
    }
    fwrite($handle,$return);
    fclose($handle);
@@ -388,7 +389,7 @@ unset($panel);
 
 
 
-	public function CrearVariables(){
+	public static function CrearVariables(){
 		$db = new dbConn();
 
 		if ($r = $db->select("*", "config_master", "WHERE td = ".$_SESSION['td']."")) { 

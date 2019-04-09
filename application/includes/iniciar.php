@@ -13,6 +13,7 @@ include_once '../../system/sync/Sync.php';
 include_once '../../system/index/Inicio.php';
 include_once '../../system/config_configuraciones/Config.php';
 
+
 if($_SESSION['username'] == NULL){
 header("location: logout.php");
 exit();
@@ -35,9 +36,11 @@ $user=sha1($_SESSION['username']);
 
             } unset($r);
 
-        
+        $ini = new Inicio;
+        $alert = new Alerts;
+
         Config::CrearVariables(); // creo el resto de variables del sistema
-        Inicio::CompruebaIconos("../iconos/"); // creo iconos si no exite el archivo
+        $ini->CompruebaIconos("../iconos/"); // creo iconos si no exite el archivo
         
         // reviso si hay una BD que actualizar
         $archx = "../../sync/" . $_SESSION['td'] . ".sql";
@@ -51,11 +54,11 @@ $user=sha1($_SESSION['username']);
         }
         //////////////
     
-       Inicio::Caduca(); // revisa si ha caducado
+       $ini->Caduca(); // revisa si ha caducado
        BuscaRespaldo(); // revisa sy hay respaldos imcompletos
 
 	       if($_SERVER["SERVER_NAME"] == "pizto.com"){ // registro entrada en web
-	       	@Inicio::RegisterInOut(1);
+	       	@$ini->RegisterInOut(1);
 	       }   
        }
 
