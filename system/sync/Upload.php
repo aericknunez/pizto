@@ -11,7 +11,7 @@ class Upload{
 
 	    if($this->CompruebaSync($fecha) == 0) {
 
-		   $a = $db->query("SELECT * FROM sync_up WHERE td = ".$_SESSION["temporal_td"]."");
+		  $a = $db->query("SELECT * FROM sync_up WHERE td = ".$_SESSION["temporal_td"]."");
 		    foreach ($a as $b) {
 
 		       $resultado.= "\n # " . $b["tabla"] ." \n\n";

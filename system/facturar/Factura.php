@@ -142,16 +142,19 @@ printer_draw_text($handle, "____________________________________", 0, $oi);
 $subtotalf = 0;
 ///
  if($tipo==1){
-$a = $db->query("select cod, cant, producto, pv, total from ticket where mesa = ".$numero." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." group by cod");
+$a = $db->query("select cod, cant, producto, pv, total, fecha, hora from ticket where mesa = ".$numero." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." group by cod");
  }
  if($tipo==2) {
-$a = $db->query("select cod, cant, producto, pv, total from ticket where num_fac = ".$numero."  and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." group by cod");
+$a = $db->query("select cod, cant, producto, pv, total, fecha, hora from ticket where num_fac = ".$numero."  and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." group by cod");
  }
 if($tipo==3) {
-$a = $db->query("select cod, cant, producto, pv, total from ticket where cancela = ".$numero." and mesa='$dato' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." group by cod");
+$a = $db->query("select cod, cant, producto, pv, total, fecha, hora from ticket where cancela = ".$numero." and mesa='$dato' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." group by cod");
  }   
     foreach ($a as $b) {
  
+ $fechaf=$b["fecha"];
+ $horaf=$b["hora"];
+
  if($tipo==1){
 /// para hacer las sumas
 if ($s = $db->select("sum(cant), sum(total)", "ticket", "WHERE cod = ".$b["cod"]." and mesa = '$numero' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) { 
@@ -254,8 +257,8 @@ printer_draw_text($handle, "G=Articulo Gravado  E= Artculo Exento", 0, $oi);
 
 
 $oi=$oi+$n1;
-printer_draw_text($handle, date("d-m-Y"), 0, $oi);
-printer_draw_text($handle, date("H:i:s"), 232, $oi);
+printer_draw_text($handle, $fechaf, 0, $oi);
+printer_draw_text($handle, $horaf, 232, $oi);
 
 
 

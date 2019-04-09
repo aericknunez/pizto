@@ -1,5 +1,6 @@
 <?php
-ini_set('max_execution_time', 600); //100 seconds = 1 minutes
+//ini_set('max_execution_time', 600); //100 seconds = 1 minutes
+set_time_limit(600);
 require_once("../application/includes/variables_db.php");
 require_once("../application/common/Mysqli.php");
 $db = new dbConn();
@@ -17,7 +18,7 @@ $arch = "$hash.sql";
 
 if (file_exists($arch)) {
     $sql = explode(";",file_get_contents($arch));//
-	foreach($sql as $query){
+	foreach($sql as $query){ 
 	@$arr = $db->query($query);
 	}
 	@unlink($arch);

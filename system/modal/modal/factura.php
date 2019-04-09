@@ -65,7 +65,7 @@ echo '<p class="text-center font-weight-bold">CAMBIO:</p>';
 echo '<div class="display-4 text-center font-weight-bold">'. Helpers::Dinero($cambio) . '</div>'; 
 
 
-
+if($_SESSION["noimprimir"] == NULL){
 //////////////// para facturar //////////////
 ///
 $user = $_SESSION["user"];
@@ -90,6 +90,8 @@ $user = $_SESSION["user"];
 
     } $a->close();
 
+
+}
  ?> 
 
 

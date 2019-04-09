@@ -186,7 +186,7 @@ class Historial{
 		$segundo = Fechas::Format($fin);
 					$pro=0;
 				//busqueda de usuarios
-				$a = $db->query("select * from corte_diario where fecha_format BETWEEN '$primero' AND '$segundo' and td = ".$_SESSION['td']." order by fecha_format desc");
+				$a = $db->query("select * from corte_diario where fecha_format BETWEEN '$primero' AND '$segundo' and td = ".$_SESSION['td']." order by fecha_format asc");
 
 					    
 					echo '<h1>Productos vendidos</h1>
