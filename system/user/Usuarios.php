@@ -159,6 +159,11 @@ class Usuarios{
        	$nombre = $r["nombre"]; $tipo = $r["tipo"];
     	} unset($r); 
 
+
+
+
+    	if(($tipo == 5 and $_SESSION["user"] == $user) or ($_SESSION["tipo_cuenta"]!= 5)){
+
     	echo '<tr>
 		      <th scope="row">'.$nombre.'</th>
 		      <td>'.$b["email"].'</td>
@@ -184,6 +189,9 @@ class Usuarios{
 		    </tr>';
 		}
        
+}
+
+
     } $a->close();
     echo '</tbody>
 		</table>';

@@ -89,6 +89,17 @@ class Pantallas{
 			    } unset($r);
 		echo '<h4>'.$producto.'</h4>';
 
+				// busco las opciones del producto
+		$x = $db->query("SELECT opcion FROM opciones_ticket WHERE identificador = ".$b["identificador"]." and cod = ".$b["cod"]." and td = ".$_SESSION['td']."");
+	    foreach ($x as $y) {
+	    	
+	    	if ($s = $db->select("nombre", "opciones_name", "WHERE cod = ".$y["opcion"]." and td = ".$_SESSION['td']."")) { 
+		        echo '<h6 class="card-title warning-color">'. $s["nombre"].'</h6>';
+		    } unset($s);
+
+	    } $x->close();
+	    //
+
 		//echo '<h6 class="card-title warning-color">Opciones</h6>';
 		// para tener la cantidad
 		$a = $db->query("SELECT * FROM control_cocina WHERE mesa = ".$b["mesa"]." and producto = ".$b["producto"]." and opciones = 0 and edo = 1 and td = ".$_SESSION["td"]."");
@@ -125,14 +136,17 @@ class Pantallas{
 		}
 	// pantallas
 	
-		echo '<audio id="audioplayer" autoplay=true>
-			  <source src="assets/sound/Bing_1.mp3" type="audio/mpeg">
-			  <source src="assets/sound/Bing_1.ogg" type="audio/ogg">
-			</audio>';
+		$this->Sonar();
 
 
 	}
 
+		public function Sonar(){
+			echo '<audio id="audioplayer" autoplay=true>
+					  <source src="assets/sound/Bing_1.mp3" type="audio/mpeg">
+					  <source src="assets/sound/Bing_1.ogg" type="audio/ogg">
+					</audio>';
+		}
 
 		public function MostarLateral() {
 		$db = new dbConn();

@@ -25,6 +25,7 @@
 <li><em>Orden de Tortillas</em><input type="image" id="venta" op="20" cod="1022" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/71.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Agua en Bolsa</em><input type="image" id="venta" op="20" cod="1023" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/73.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Bano</em><input type="image" id="venta" op="20" cod="1024" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/633.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>Pepsi 1/2 Lt</em><input type="image" id="venta" op="20" cod="1043" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/pepsil.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
  
  
 <li><a href="?modal=otras_ventas&mesa=<? echo $_SESSION["mesa"]; ?>&cliente=<? echo $_SESSION["clientselect"] ?>&view=<? echo $_SESSION["view"]; ?>"><em>Otras Ventas</em><img src="assets/img/ico/dfs.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li> 
