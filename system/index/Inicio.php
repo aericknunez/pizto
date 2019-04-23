@@ -6,9 +6,8 @@ class Inicio{
 	}
 
 
-	public function CompruebaIconos($url){
+	public function CompruebaIconos($url, $msj){
 		$db = new dbConn();
-		$conf = new Config; 
 
 		$nombre_fichero = $url . 'iconos_'.$_SESSION["td"] . '.php';
 		
@@ -21,7 +20,8 @@ class Inicio{
 			} unset($r); 
 
 			    if($size != $icono){
-			    	$conf->CrearIconos($url);
+			    	$configuracion = new Config;
+        			$configuracion->CrearIconos($url, $msj);
 
 	    	    $cambio = array();
 			    $cambio["icono_tipo"] = $size;
@@ -29,7 +29,8 @@ class Inicio{
 			} 
 
 		} else {
-			$conf->CrearIconos($url);
+			$configuracion = new Config;
+        	$configuracion->CrearIconos($url, $msj);
 			
 			$size = filesize($nombre_fichero);
 				$cambio = array();

@@ -79,7 +79,7 @@ $iconos->AddCategoria($_REQUEST["nombre"], $_REQUEST["imagen"]);
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 if($_REQUEST["op"]=="5"){
@@ -89,7 +89,7 @@ $iconos->AddProducto($_REQUEST["nombre"],$_REQUEST["imagen"],$_REQUEST["popup"],
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 if($_REQUEST["op"]=="6"){
@@ -99,7 +99,7 @@ $iconos->ModProducto($_REQUEST["cod"],$_REQUEST["nombre"],$_REQUEST["popup"],$_R
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 if($_REQUEST["op"]=="7"){
@@ -109,7 +109,7 @@ $iconos->ModCategoria($_REQUEST["cod"],$_REQUEST["nombre"],$_REQUEST["imagen"]);
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 if($_REQUEST["op"]=="8"){
@@ -119,7 +119,7 @@ $iconos->DelProducto($_REQUEST["cod"]);
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 
@@ -130,7 +130,7 @@ $iconos->DelCategoria($_REQUEST["cod"]);
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 if($_REQUEST["op"]=="10"){
@@ -146,7 +146,7 @@ if($_REQUEST["nombre"] != NULL){
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 
@@ -157,7 +157,7 @@ $iconos->AddOpcionName($_REQUEST["cod"],$_REQUEST["nombre"],$_REQUEST["imagen"])
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 if($_REQUEST["op"]=="12"){
@@ -167,7 +167,7 @@ $iconos->DelOpciones($_REQUEST["cod"]);
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 if($_REQUEST["op"]=="13"){
@@ -177,7 +177,7 @@ $iconos->DelOpcionesName($_REQUEST["cod"]);
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 } 
 
 
@@ -489,7 +489,7 @@ $productos->VerPlatillos($_REQUEST["pagina"]);
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 } 
 /////////////////////////////////// mesa
 if($_REQUEST["op"]=="40"){ // sumar numero de clientes
@@ -959,7 +959,7 @@ include_once '../../system/config_configuraciones/Config.php';
 if($_REQUEST["op"]=="92"){  // crear iconos para venta
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
-	$configuracion->CrearIconos("../iconos/");
+	$configuracion->CrearIconos("../iconos/", 1);
 }
 
 

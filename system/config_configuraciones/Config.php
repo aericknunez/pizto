@@ -1,5 +1,5 @@
 <?php 
-class Config {
+class Config{
 
 	public function __construct() { 
      } 
@@ -67,7 +67,7 @@ class Config {
 	
 
 
-	public function CrearIconos($url){
+	public function CrearIconos($url, $msj){
 		$db = new dbConn();
 //ESTE ARCHIVO CREA ICONOS CADA VES QUE ES NECESARIO AL INICIO DE SESION
 // CONSULTA TODOS LOS ICONOS Y LOS GUARDA EN UN ARCHIVO LLAMADO iconos.php 
@@ -378,8 +378,12 @@ unset($panel);
     ///
 //save
    if($handle = fopen($url . "iconos_".$_SESSION["td"].".php",'w+')){
-   	$alert = new Alerts;
-   	$alert->Alerta("success","Echo!","Iconos creados correctamente");
+
+   		if($msj != NULL){
+   			$alert = new Alerts;
+    		$alert->Alerta("success","Echo!","Iconos creados correctamente");
+   		}
+   	
    }
    fwrite($handle,$return);
    fclose($handle);
@@ -389,7 +393,7 @@ unset($panel);
 
 
 
-	public static function CrearVariables(){
+	public function CrearVariables(){
 		$db = new dbConn();
 
 		if ($r = $db->select("*", "config_master", "WHERE td = ".$_SESSION['td']."")) { 
