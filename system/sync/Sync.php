@@ -9,7 +9,7 @@ class Sync{
 
 	public function ListaRespaldos(){
 		//
-		$dia=10;
+		$dia=30;
 		echo '<table class="table table-sm table-striped">
 			  <thead>
 			    <tr>
@@ -48,7 +48,7 @@ class Sync{
 
 	public function ListaCortes(){
 		//
-		$dia=10;
+		$dia=30;
 		echo '<table class="table table-sm table-striped">
 			  <thead>
 			    <tr>

@@ -224,7 +224,7 @@ if($_REQUEST["action"] == 1 or $_REQUEST["op"] == 1){
 ?>
 <!-- el intervalo cada segundo es igual a 1000 .  minuto 60,000 -->
  <script type="text/javascript">
-	var int=self.setInterval("refresh()",300000);
+	var int=self.setInterval("refresh()",60000);
 	function refresh(){
 		window.location.href="redirect.php?op=1";
 	}

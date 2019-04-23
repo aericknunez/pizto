@@ -150,7 +150,7 @@ class Sincronizar{
 	public function SaveSync($resultado,$fecha){ // guardo el archivo a sincronizar creado
 
 		   	 	$hora = date("H:i:s");
-		   	 	$hash = $fecha."-".$hora;
+		   	 	$hash = $fecha."-".$hora ."-" . $_SESSION["temporal_td"];
 		   	 	$hash = md5($hash);
 
 		   $handle = fopen($hash . ".sql",'w+');
