@@ -109,6 +109,12 @@ class Helpers{
     } 
 
 
+    public function NFactura($numero){ 
+        $numero1=str_pad($numero, 8, "0", STR_PAD_LEFT);
+        $format="000-001-01-$numero1";
+        return $format;
+     } 
+
 
 
 

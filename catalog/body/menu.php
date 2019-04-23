@@ -81,6 +81,8 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 <?php if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 2 or $_SESSION["tipo_cuenta"] == 5) { ?>
 <li><a href="?cai" class="waves-effect"> Nuevo CAI</a></li>
 <?php } ?>
+<li><a href="?rango" class="waves-effect"> Imprimir Facturas</a></li>
+<li><a href="?contadora" class="waves-effect"> Imprimir Reporte</a></li>
 </ul>
 </div>
 </li>

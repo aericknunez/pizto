@@ -69,6 +69,10 @@ elseif(isset($_GET["facturasopciones"])) include_once 'system/facturar/opciones.
 
 elseif(isset($_GET["reportediario"])) include_once 'system/reportes/reporteespecial.php';
 
+elseif(isset($_GET["rango"])) include_once 'system/reportes/rango.php';
+
+elseif(isset($_GET["contadora"])) include_once 'system/reportes/contadora.php';
+
 // para cambiar el tipo de cuenta (solo rrot)
 elseif(isset($_GET["ctc"])) include_once 'system/config_configuraciones/cambio_tipo_cuenta.php';
 

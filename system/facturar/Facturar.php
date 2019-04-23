@@ -224,7 +224,9 @@ class Facturar{
 	    echo '<tr>
 	      <td>'. $b["impresora"] .'</td>
 	      <td>'. $b["comentarios"] .'</th>
-	      <td></td>
+	      <td><a id="eliminari" op="144" iden="'.$b["id"].'">
+				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      </a></td>
 	    </tr>';
 	    }
 	    echo '</tbody>
@@ -268,7 +270,9 @@ class Facturar{
 	      <td>'. $nombre .'</th>
 	      <td>'. $b["clase"] .'</td>
 	      <td>'. $impresora .'</td>
-	      <td></td>
+	      <td><a id="eliminaru" op="145" iden="'.$b["id"].'">
+				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      </a></td>
 	    </tr>';
 	    }
 	    echo '</tbody>
@@ -305,7 +309,9 @@ class Facturar{
 	      <td>'. $b["img"] .'</td>
 	      <td>'. $b["txt1"] .' | '. $b["txt2"] .' | '. $b["txt3"] .' | '. $b["txt4"] .' | </td>
 	      <td>'. $b["n1"] .' | '. $b["n2"] .' | '. $b["n3"] .' | '. $b["n4"] .' | </td>
-	      <td></td>
+	      <td><a id="eliminarf" op="143" iden="'.$b["id"].'">
+				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      </a></td>
 	    </tr>';
 	    }
 	    echo '</tbody>
@@ -382,6 +388,50 @@ class Facturar{
 			
 			$this->VerUsuarios();
 		}
+
+
+
+
+	public function EliminarFact($iden){
+			$db = new dbConn();
+
+		    if ( $db->delete("facturar_ticket", "WHERE id = '$iden' and td = ".$_SESSION["td"]."")) {
+		        Alerts::Alerta("success","Realizado!","Ticket Eliminado correctamente!");
+		    } else {
+		        Alerts::Alerta("error","Error!","El Ticket no ha sido eliminado!");
+		    } 
+
+		  $this->VerTickets();
+		      
+	}
+
+
+	public function EliminarPrint($iden){
+			$db = new dbConn();
+
+		    if ( $db->delete("facturar_impresora", "WHERE id = '$iden' and td = ".$_SESSION["td"]."")) {
+		        Alerts::Alerta("success","Realizado!","Impresora Eliminado correctamente!");
+		    } else {
+		        Alerts::Alerta("error","Error!","La Impresora no ha sido eliminado!");
+		    } 
+
+		  $this->VerImpresoras();
+		      
+	}
+
+
+	public function EliminarUser($iden){
+			$db = new dbConn();
+
+		    if ( $db->delete("facturar_users", "WHERE id = '$iden' and td = ".$_SESSION["td"]."")) {
+		        Alerts::Alerta("success","Realizado!","Usuario Eliminado correctamente!");
+		    } else {
+		        Alerts::Alerta("error","Error!","El Usuario no ha sido eliminado!");
+		    } 
+
+		  $this->VerUsuarios();
+		      
+	}
 
 
 

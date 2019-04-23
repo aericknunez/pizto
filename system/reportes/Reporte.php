@@ -271,6 +271,122 @@ class Reporte{
 
 
 
+	public function Contadora($mes, $ano){
+			$db = new dbConn();
+			$fechax = "-". $mes .  "-". $ano;
+
+  		$a = $db->query("select * from corte_diario where fecha like '%$fechax' and td = ".$_SESSION['td']." and edo = 1 order by fecha_format asc");
+
+				if($a->num_rows > 0){  
+					echo '<br><hr>
+					<table class="table table-striped table-sm">
+
+						<thead>
+					     <tr>
+					       <th>Fecha</th>
+					       <th>Facturas</th>
+					       <th>Fact Inicial - Fact Final</th>
+					       <th>Exento</th>
+					        <th>Gravado</th>
+					        <th>Sub Total</th>
+					        <th>ISV 15 %</th>
+					        <th>ISV 18 %</th>
+					        <th>Total</th>
+					     </tr>
+					   </thead>
+
+					   <tbody>';
+
+			    foreach ($a as $b) {
+			    	$fecha = $b["fecha"];
+			    // inicial y final
+			        $ax = $db->query("SELECT max(num_fac), min(num_fac), count(num_fac)  FROM ticket_num WHERE fecha = '$fecha' and tx = 1 and td = ".$_SESSION["td"]."");
+				    foreach ($ax as $bx) {
+				        $max=$bx["max(num_fac)"]; $min=$bx["min(num_fac)"]; $count=$bx["count(num_fac)"];
+				    } $ax->close();
+			    // total
+			    $ay = $db->query("SELECT sum(total) FROM ticket WHERE fecha = '$fecha' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
+				    foreach ($ay as $by) {
+				        $total=$by["sum(total)"];
+				    } $ay->close();
+				
+				// si hay facturas muestro
+				if($count > 0){
+			  echo '<tr>
+				       <th scope="row">'. $fecha . '</th>
+				       <td>'. $count . '</td>
+				       <td>'. Helpers::NFactura($min) . ' <br> '. Helpers::NFactura($max) .'</td>
+				       <td>'. Helpers::Dinero(0) . '</td>
+				       <td>'. Helpers::Dinero(Helpers::STotal($total, $_SESSION['config_imp'])) . '</td>
+				       <td>'. Helpers::Dinero(Helpers::STotal($total, $_SESSION['config_imp'])) . '</td>
+				       <td>'. Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']), $_SESSION['config_imp'])) .'</td>
+				       <td>'. Helpers::Dinero(0) . '</td>
+				       <td>'. Helpers::Dinero($total) . '</td>
+				     </tr>';
+					} /// del count
+				    } // del foreach
+				   $a->close();
+
+			echo '</tbody>
+				</table>';
+
+				$fechas = "-" . $mes . "-" .$ano;
+			    // inicial y final
+			        $ax = $db->query("SELECT max(num_fac), min(num_fac), count(num_fac)  FROM ticket_num WHERE fecha like '%$fechas' and tx = 1 and td = ".$_SESSION["td"]."");
+				    foreach ($ax as $bx) {
+				        $max=$bx["max(num_fac)"]; $min=$bx["min(num_fac)"]; $count=$bx["count(num_fac)"];
+				    } $ax->close();
+			    // total
+			    $ay = $db->query("SELECT sum(total) FROM ticket WHERE fecha like '%$fechas' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
+				    foreach ($ay as $by) {
+				        $total=$by["sum(total)"];
+				    } $ay->close();
+
+			// aqui hacemos la tabla para los totales
+			echo '<hr>
+					<table class="table table-striped table-sm">
+
+						<thead>
+					     <tr>
+					       <th>Facturas</th>
+					       <th>Fact Inicial - Fact Final</th>
+					       <th>Exento</th>
+					        <th>Gravado</th>
+					        <th>Sub Total</th>
+					        <th>ISV 15 %</th>
+					        <th>ISV 18 %</th>
+					        <th>Total</th>
+					     </tr>
+					   </thead>
+
+					   <tbody>';
+
+				echo '<tr>
+				       <td>'. $count . '</td>
+				       <td>'. Helpers::NFactura($min) . ' <br> '. Helpers::NFactura($max) .'</td>
+				       <td>'. Helpers::Dinero(0) . '</td>
+				       <td>'. Helpers::Dinero(Helpers::STotal($total, $_SESSION['config_imp'])) . '</td>
+				       <td>'. Helpers::Dinero(Helpers::STotal($total, $_SESSION['config_imp'])) . '</td>
+				       <td>'. Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']), $_SESSION['config_imp'])) .'</td>
+				       <td>'. Helpers::Dinero(0) . '</td>
+				       <td>'. Helpers::Dinero($total) . '</td>
+				     </tr>';
+
+				
+				echo '</tbody>
+				</table>';     
+				// 
+
+			} // num rows
+	}
+
+
+
+
+
+
+
+
 
 
 

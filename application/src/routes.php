@@ -1215,6 +1215,29 @@ include_once '../../system/facturar/Facturar.php';
 }
 
 
+//// eliminar factura (ticket)
+if($_REQUEST["op"]=="143"){ 
+include_once '../../system/facturar/Facturar.php';
+	$facturar = new Facturar; 
+	$facturar->EliminarFact($_REQUEST["iden"]);
+}
+/// eliminar impresora
+if($_REQUEST["op"]=="144"){ 
+include_once '../../system/facturar/Facturar.php';
+	$facturar = new Facturar; 
+	$facturar->EliminarPrint($_REQUEST["iden"]);
+}
+/// Usuarios
+if($_REQUEST["op"]=="145"){ 
+include_once '../../system/facturar/Facturar.php';
+	$facturar = new Facturar; 
+	$facturar->EliminarUser($_REQUEST["iden"]);
+}
+
+
+
+
+
 
 if($_REQUEST["op"]=="150"){ // Imprimir Ticket
 // busco que facura voy a ocupar
@@ -1257,6 +1280,65 @@ include_once '../../system/historial/Historial.php';
 	}
 	$reporte->Contenido($fecha);
 }
+
+
+
+if($_REQUEST["op"]=="161"){ // ImprimirRanfo
+$user = $_SESSION["user"];
+
+	if($_REQUEST["inicio"] >= $_REQUEST["final"]){
+		Alerts::Alerta("error","Error!","El numero inicial de factura debe ser menor a el numero final!");
+	} else {
+		
+		if ($r = $db->select("ticket, impresora, clase", "facturar_users", 
+			"WHERE tipo = 2 and user = '$user' and td = ".$_SESSION["td"]."")) {
+			$impresora = $r["impresora"]; $clase = $r["clase"]; $ticket = $r["ticket"]; 
+		} unset($r);  
+
+
+			include_once '../../system/facturar/Factura.php';
+			$imprimir = new Factura;  // la mesa aqui es solo si es op 3 en el 1er para
+
+		$counter = 0;
+
+		for ($x = $_REQUEST["inicio"]; $x <= $_REQUEST["final"]; $x++) {
+			$counter = $counter + 1;
+			$imprimir->$clase(2,$x,NULL,$impresora,NULL,$ticket);//(tipo,numero,cambio,imp)
+		}
+
+	$texto = "<br>Se estan imprimiendo las facturas desde la factura ".$_REQUEST["inicio"]." hasta la factura ".$_REQUEST["final"]." con un total de facturas de " . $counter . ". Por favor espere hasta que se hayan impreso todas las facturas.";
+	Alerts::Mensaje($texto,"warning",NULL,NULL);
+  }
+
+} 
+
+
+
+
+
+if($_REQUEST["op"]=="162"){ // Imprimir contadora
+	include_once '../../system/reportes/Reporte.php';
+	include_once '../../system/historial/Historial.php';
+
+	if($_POST["mes"] != NULL and $_POST["ano"] != NULL){
+		$mes = $_POST["mes"];
+		$ano = $_POST["ano"]; 	
+	} else {
+		$mes = date("m");
+		$ano = date("Y");	
+	}	
+
+	$reporte = new Reporte; 
+	$reporte->Contadora($mes, $ano);
+}
+
+
+
+
+
+
+
+
 
 
 

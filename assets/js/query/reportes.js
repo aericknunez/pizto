@@ -49,6 +49,47 @@ $(document).ready(function()
 
 
 
+	$('#btn-rango').click(function(e){ /// para el formulario
+		$("#form-rango").hide();
+		MuestraLoader();
+		e.preventDefault();
+		$.ajax({
+			url: "application/src/routes.php?op=161",
+			method: "POST",
+			data: $("#form-rango").serialize(),
+			success: function(data){
+				$("#contenido").html(data);
+				$("#form-rango").trigger("reset");
+				$("#form-rango").show();
+				EscondeLoader();
+			}
+		})
+	})
+
+
+
+
+
+	$('#btn-contadora').click(function(e){ /// para el formulario
+		$("#form-contadora").hide();
+		MuestraLoader();
+		e.preventDefault();
+		$.ajax({
+			url: "application/src/routes.php?op=162",
+			method: "POST",
+			data: $("#form-contadora").serialize(),
+			success: function(data){
+				$("#contenido").html(data);
+				$("#form-contadora").trigger("reset");
+				$("#form-contadora").show();
+				EscondeLoader();
+			}
+		})
+	})
+
+
+
+
 
 
 

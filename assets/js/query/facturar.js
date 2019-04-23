@@ -181,4 +181,37 @@ return false;
 
 
 
+	$("body").on("click","#eliminarf",function(){ // elimina
+	var op = $(this).attr('op');
+	var iden = $(this).attr('iden');
+    	$.post("application/src/routes.php", {op:op,iden:iden}, 
+    	function(htmlexterno){
+		$("#facturas").html(htmlexterno);
+   	 	});
+	});
+
+
+
+	$("body").on("click","#eliminari",function(){ // elimina
+	var op = $(this).attr('op');
+	var iden = $(this).attr('iden');
+    	$.post("application/src/routes.php", {op:op,iden:iden}, 
+    	function(htmlexterno){
+		$("#impresoras").html(htmlexterno);
+   	 	});
+	});
+
+		$("body").on("click","#eliminaru",function(){ // elimina
+	var op = $(this).attr('op');
+	var iden = $(this).attr('iden');
+    	$.post("application/src/routes.php", {op:op,iden:iden}, 
+    	function(htmlexterno){
+		$("#usuarios").html(htmlexterno);
+   	 	});
+	});
+
+
+
+
+
 });
