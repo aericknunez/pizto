@@ -1340,6 +1340,28 @@ if($_REQUEST["op"]=="162"){ // Imprimir contadora
 
 
 
+if($_REQUEST["op"]=="163"){ // Subir Avatar
+		
+	if($_FILES['archivo']['name'] != NULL){
+
+		require_once '../common/Imagenes.php';
+		$resizer = new Imagenes();
+		$n_width = ( $_POST['ancho'] <= 0 ) ? 700 : $_POST['ancho'];
+		$n_height = ( $_POST['alto'] <= 0 ) ? 700 : $_POST['alto'];
+
+		$imagen = $resizer->Resize( $_FILES['archivo']['name'], $_FILES['archivo']['tmp_name'], "../../assets/img/logo", $n_width, $n_height);
+		if($imagen != FALSE){
+			include_once '../../system/upimages/Upimages.php';
+			$Up = new Upimages;
+			$Up->SaveImgNegocio($imagen);
+			echo '<img src="assets/img/logo/'.$imagen.'" alt="">';
+		}
+	}
+
+}
+
+
+
 
 
 

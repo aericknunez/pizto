@@ -65,10 +65,14 @@ echo '
 	}
 	if($_GET["modal"] == "imageup"){
 	echo '<script type="text/javascript" src="assets/js/query/imageup.js?v='.$numero.'"></script>';
-	} 
+	}
+	if($_GET["modal"] == "img_negocio"){
+	echo '<script type="text/javascript" src="assets/js/query/img_negocio.js?v='.$numero.'"></script>';
+	}  
 	if($_GET["modal"] == "img_gasto"){
 	echo '<script type="text/javascript" src="assets/js/query/imageup.js?v='.$numero.'"></script>';
 	}
+
 
 }
 

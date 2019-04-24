@@ -109,6 +109,27 @@ function resizeThumbnailImage($thumb_image_name, $image, $width, $height, $start
 
     }
 
+
+
+
+    public function VerImgNegocio(){
+          $db = new dbConn();
+
+        if ($r = $db->select("imagen", "config_master", "WHERE td = ".$_SESSION["td"]."")) { return $r["imagen"]; } unset($r); 
+    }
+
+
+   public function SaveImgNegocio($img){
+          $db = new dbConn();
+
+            $cambio = array();
+            $cambio["imagen"] = $img;
+            $db->update("config_master", $cambio, "WHERE td = ".$_SESSION["td"]."");
+    }
+
+
+
+
 } // class
 
 

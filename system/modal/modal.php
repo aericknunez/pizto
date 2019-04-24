@@ -58,5 +58,7 @@ if($_REQUEST["modal"]=="imageup") include_once 'system/modal/modal/subir_gastos_
 
 if($_REQUEST["modal"]=="img_gasto") include_once 'system/modal/modal/imagenes_gastos.php';
 
+if($_REQUEST["modal"]=="img_negocio") include_once 'system/modal/modal/imagen_negocio.php';
+
 
 if($_REQUEST["modal"]=="newcut") include_once 'system/modal/modal/newcut.php';
