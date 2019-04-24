@@ -61,7 +61,11 @@ class Pantallas{
 
 	    } $x->close();
 	    //
-		echo '<p class="card-text">Orden de: Erick Nunez</p>
+	    if ($r = $db->select("cajero", "ticket", "WHERE id = ".$b["identificador"]."")) { 
+        $nombre_mesero = $r["cajero"];
+    	} unset($r); 
+
+		echo '<p class="card-text">Orden de: '. $nombre_mesero .'</p>
 		     <p class="card-text blue-text">Mesa: '.$b["mesa"].' || Cliente: '.$b["cliente"].' <br> Hora: '.$b["hora"].'</p>
 			  </div>
 			</div>
@@ -99,7 +103,9 @@ class Pantallas{
 
 	    } $x->close();
 	    //
-
+	    if ($r = $db->select("cajero", "ticket", "WHERE id = ".$b["identificador"]."")) { 
+        $nombre_mesero = $r["cajero"];
+    	} unset($r); 
 		//echo '<h6 class="card-title warning-color">Opciones</h6>';
 		// para tener la cantidad
 		$a = $db->query("SELECT * FROM control_cocina WHERE mesa = ".$b["mesa"]." and producto = ".$b["producto"]." and opciones = 0 and edo = 1 and td = ".$_SESSION["td"]."");
@@ -108,7 +114,7 @@ class Pantallas{
 
 		echo '<h6><span class="badge badge-pill badge-primary"> '.$pendientes.' </span> Pendientes</h6>';
 
-		echo '<p class="card-text">Orden de: Erick Nunez</p>
+		echo '<p class="card-text">Orden de: '.$nombre_mesero.'</p>
 		     <p class="card-text blue-text">Mesa: '.$b["mesa"].' || Cliente: '.$b["cliente"].' <br> Hora: '.$b["hora"].'</p>
 			  </div>
 			</div>

@@ -605,6 +605,7 @@ include_once '../../system/tv/Pantallas.php';
 	$pantalla->Cambia(1);
 }
 
+
 if($_REQUEST["op"]=="57"){ // modificar opciones
 	include_once '../../system/mesas/Mesa.php';
 	$mesas = new Mesa;
@@ -620,6 +621,7 @@ include_once '../../system/tv/Pantallas.php';
 	$pantalla->Cambia(1);
 }
 
+
 if($_REQUEST["op"]=="58"){ // eliminar opciones
 	include_once '../../system/ventas/Venta.php';
 	$ventas = new Venta;
@@ -628,11 +630,13 @@ if($_REQUEST["op"]=="58"){ // eliminar opciones
 	include_once '../../system/mesas/Mesa.php';
 	$mesas = new Mesa;
 	$mesas->OpcionesActivas($_REQUEST["mesa"],$_REQUEST["iden"],$_REQUEST["cod"]); 
+	$mesas->VerificaOpcionesActivas($_REQUEST["mesa"],$_REQUEST["iden"],$_REQUEST["cod"]);
 
 include_once '../../system/tv/Pantallas.php';
 	$pantalla = new Pantallas;
 	$pantalla->Cambia(1);
 }
+
 
 if($_REQUEST["op"]=="59"){ // agregar opciones (listar opciones para agregar)
 	include_once '../../system/mesas/Mesa.php';
@@ -640,12 +644,12 @@ if($_REQUEST["op"]=="59"){ // agregar opciones (listar opciones para agregar)
 	$mesas->ListarOpciones($_REQUEST["cod"], $_REQUEST["iden"], $_REQUEST["cliente"]);
 }
 
+
 if($_REQUEST["op"]=="60"){ // cambiar o eliminar
 include_once '../../system/ventas/Venta.php';
 $ventas = new Venta;
 	
 	if($_REQUEST["opcion"] == 1){ // eliminar
-		print_r($_REQUEST);
 		$ventas->BorrarOpcion($_REQUEST["cod"], $_REQUEST["iden"], $_REQUEST["activo"]);
 	} else { //modificar
 		$ventas->ActualizarOpcion($_REQUEST["cod"], $_REQUEST["iden"], $_REQUEST["cambio"], $_REQUEST["activo"]);
@@ -685,6 +689,7 @@ Alerts::Alerta("success","Exito!","Opcion agregada corectamente!");
 include_once '../../system/mesas/Mesa.php';
 $mesas = new Mesa;
 $mesas->OpcionesActivas($_REQUEST["mesa"],$_REQUEST["iden"],$_REQUEST["cod"]);
+$mesas->VerificaOpcionesActivas($_REQUEST["mesa"],$_REQUEST["iden"],$_REQUEST["cod"]);
 
 include_once '../../system/tv/Pantallas.php';
 	$pantalla = new Pantallas;
