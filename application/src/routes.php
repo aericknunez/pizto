@@ -195,13 +195,15 @@ $iconos->UpdateReordenar($idArray);
 
 if($_REQUEST["op"]=="20"){ //venta normal
 
+
 		include_once '../../system/ventas/Venta.php';
 		$ventas = new Venta;
 		if($_REQUEST["cliente"] == NULL) { $clientes = 1; }
 		else { $clientes = $_REQUEST["cliente"]; } 
+			
 			if($_SESSION["mesa"] == NULL){
-			$ventas->CrearMesa($clientes);
-			}
+			$ventas->CrearMesa($clientes); }
+
 		$ventas->Execute($_REQUEST["cod"], $_SESSION["mesa"], $clientes, $_SESSION['config_imp']);
 
 		if($_REQUEST["opcion"] != NULL){

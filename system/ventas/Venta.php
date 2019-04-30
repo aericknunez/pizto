@@ -21,7 +21,7 @@ class Venta{
 	public function CrearMesa($clientes) {
 		$db = new dbConn();
 
-	    if ($r = $db->select("mesa", "mesa", "WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." order by id desc limit 1")) { 
+	    if ($r = $db->select("mesa", "mesa", "WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." order by mesa desc limit 1")) { 
 	        $ultimamesa = $r["mesa"];
 	    } unset($r);  
 
@@ -436,7 +436,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		$db = new dbConn();
 
 		/// buscar ultima factura para aplicarla
-		$r = $db->select("num_fac", "ticket_num", "WHERE edo = 1 and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." order by id desc limit 1");
+		$r = $db->select("num_fac", "ticket_num", "WHERE edo = 1 and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." order by num_fac desc limit 1");
 			if($r["num_fac"] == 0){ $ultimon = "1"; } 
 	       	else {$ultimon = $r["num_fac"] + 1; } unset($r); 
 	    // actualizar ticket
@@ -472,7 +472,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		$db = new dbConn();
 
 		/// buscar ultima factura para aplicarla
-		$r = $db->select("num_fac", "ticket_num", "WHERE edo = 1 and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." order by id desc limit 1");
+		$r = $db->select("num_fac", "ticket_num", "WHERE edo = 1 and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." order by num_fac desc limit 1");
 			if($r["num_fac"] == 0){ $ultimon = "1"; } 
 	       	else {$ultimon = $r["num_fac"] + 1; } unset($r); 
 	    // actualizar ticket
