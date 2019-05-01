@@ -300,7 +300,7 @@ class Reporte{
 			    foreach ($a as $b) {
 			    	$fecha = $b["fecha"];
 			    // inicial y final
-			        $ax = $db->query("SELECT max(num_fac), min(num_fac), count(num_fac)  FROM ticket_num WHERE fecha = '$fecha' and tx = 1 and td = ".$_SESSION["td"]."");
+			        $ax = $db->query("SELECT max(num_fac), min(num_fac), count(num_fac)  FROM ticket_num WHERE fecha = '$fecha' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
 				    foreach ($ax as $bx) {
 				        $max=$bx["max(num_fac)"]; $min=$bx["min(num_fac)"]; $count=$bx["count(num_fac)"];
 				    } $ax->close();
@@ -332,7 +332,7 @@ class Reporte{
 
 				$fechas = "-" . $mes . "-" .$ano;
 			    // inicial y final
-			        $ax = $db->query("SELECT max(num_fac), min(num_fac), count(num_fac)  FROM ticket_num WHERE fecha like '%$fechas' and tx = 1 and td = ".$_SESSION["td"]."");
+			        $ax = $db->query("SELECT max(num_fac), min(num_fac), count(num_fac)  FROM ticket_num WHERE fecha like '%$fechas' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
 				    foreach ($ax as $bx) {
 				        $max=$bx["max(num_fac)"]; $min=$bx["min(num_fac)"]; $count=$bx["count(num_fac)"];
 				    } $ax->close();
@@ -376,8 +376,66 @@ class Reporte{
 				echo '</tbody>
 				</table>';     
 				// 
+				
 
+
+
+
+				/* aqui ira la parte de las facturas eliminadas*/
+
+				$ar = $db->query("select * from ticket_num where fecha like '%$fechax' and td = ".$_SESSION['td']." and edo = 2 and tx = 1 order by id asc");
+			if($ar->num_rows > 0){ 
+
+					echo "<h2>Facturas Eliminadas</h2>";
+
+				echo '<hr>
+					<table class="table table-striped table-sm">
+
+						<thead>
+					     <tr>
+					       <th>Fecha</th>
+					       <th>Factura</th>
+					       <th>Exento</th>
+					        <th>Gravado</th>
+					        <th>Sub Total</th>
+					        <th>ISV 15 %</th>
+					        <th>ISV 18 %</th>
+					        <th>Total</th>
+					     </tr>
+					   </thead>
+
+					   <tbody>';
+
+				foreach ($ar as $br) {
+					$fechar = $br["fecha"];
+					$num_fact = $br["num_fac"];
+
+				$aq = $db->query("SELECT sum(total) FROM ticket WHERE num_fac = '$num_fact' and tx = 1 and edo = 2 and td = ".$_SESSION["td"]."");
+				    foreach ($aq as $bq) {
+				        $tol = $bq["sum(total)"];
+				    } $aq->close();
+
+			  	echo '<tr>
+				       <th scope="row">'. $fechar . '</th>
+				       <td>'. Helpers::NFactura($num_fact) . '</td>
+				       <td>'. Helpers::Dinero(0) . '</td>
+				       <td>'. Helpers::Dinero(Helpers::STotal($tol, $_SESSION['config_imp'])) . '</td>
+				       <td>'. Helpers::Dinero(Helpers::STotal($tol, $_SESSION['config_imp'])) . '</td>
+				       <td>'. Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($tol, $_SESSION['config_imp']), $_SESSION['config_imp'])) .'</td>
+				       <td>'. Helpers::Dinero(0) . '</td>
+				       <td>'. Helpers::Dinero($tol) . '</td>
+				     </tr>';				
+
+				} // del foreach
+				echo '</tbody>
+				</table>';
+				echo "Total de facturas eliminadas " . $ar->num_rows ;
+				$ar->close();
+
+				} // num rows de las facturas eliminadas
+				
 			} // num rows
+			//else { echo "No hay datos que mostrar"; }
 	}
 
 
