@@ -7,6 +7,8 @@ class Factura{
 
  public function Imprimir($tipo,$numero,$efectivo,$imp,$dato,$ticket){
   $db = new dbConn();
+//(tipo,numero,cambio,impresor,mesa,factura_o_tiket)
+// el tipo es 1 =  mesa, 2 = factura, 3 = cancela un cliente
 
 if ($r = $db->select("*", "facturar_ticket", "WHERE id = '$ticket' and td = ".$_SESSION["td"]."")) { 
 $img = $r["img"];
@@ -305,6 +307,91 @@ printer_close($handle);
 
 
 
+
+   public function ReporteDiario($fecha,$imp,$ticket){
+    $db = new dbConn();
+
+    if ($r = $db->select("*", "facturar_ticket", "WHERE id = '$ticket' and td = ".$_SESSION["td"]."")) { 
+    $img = $r["img"];
+    $txt1=$r["txt1"]; 
+    $txt2=$r["txt2"];
+    $txt3=$r["txt3"];
+    $txt4=$r["txt4"];
+    $n1=$r["n1"];
+    $n2=$r["n2"];
+    $n3=$r["n3"];
+    $n4=$r["n4"];
+    } unset($r);  
+
+    if ($r = $db->select("*", "facturar_impresora", "WHERE id = '$imp'")) { 
+    $print = $r["impresora"];
+    } unset($r); 
+
+    $handle = printer_open($print);
+    printer_set_option($handle, PRINTER_MODE, "RAW");
+
+    printer_start_doc($handle, "Mi Documento");
+    printer_start_page($handle);
+
+    $font = printer_create_font("Arial", $txt1, $txt2, PRINTER_FW_NORMAL, false, false, false, 0);
+    printer_select_font($handle, $font);
+
+    printer_draw_text($handle, "$xscliente", 110, 5);
+    printer_draw_text($handle, $xpdire, 10, 30);
+    printer_draw_text($handle, "$xplugar", 10, 60);
+    printer_draw_text($handle, "RTN: $xprtn", 10, 90);
+    printer_draw_text($handle, "Tel: $xpcel", 10, 120);
+    $pri1=str_pad($pri, 8, "0", STR_PAD_LEFT);
+    $pri1="000-001-01-$pri1";
+    printer_draw_text($handle, "Fact. Inicial: $pri1", 10, 150);
+
+    $ult1=str_pad($ult, 8, "0", STR_PAD_LEFT);
+    $ult1="000-001-01-$ult1";
+    printer_draw_text($handle, "Fact. Final:  $ult1", 10, 170);
+    printer_draw_text($handle, "FACTURAS:  $ord", 10, 190);
+
+
+    printer_draw_text($handle, "____________________________________", 0, 220);
+    //consulta cuantos productos imprimir
+    $oi=250;
+    printer_draw_text($handle, $dia, 15, $oi);
+
+    $oi=$oi+30;
+    printer_draw_text($handle, "EXENTO:  $exe", 10, $oi);
+
+    $oi=$oi+30;
+    printer_draw_text($handle, "GRAVADO:  $gra", 10, $oi);
+
+    $oi=$oi+30;
+    printer_draw_text($handle, "SUBTOTAL:  $sub", 10, $oi);
+
+    $oi=$oi+30;
+    printer_draw_text($handle, "ISV:  $isv", 10, $oi);
+
+    $oi=$oi+30;
+    printer_draw_text($handle, "____________________________________", 0, $oi);
+    $oi=$oi+30;
+    printer_draw_text($handle, "TOTAL:  $tot", 10, $oi);
+    printer_delete_font($font);
+
+
+    //////////////////
+    $cajero=$_SESSION['nombre'];
+    $oi=$oi+30;
+    printer_draw_text($handle, "Cajero: $cajero", 20, $oi);
+
+    $oi=$oi+30;
+    printer_draw_text($handle, "Total Eliminadas: $to", 20, $oi);
+      
+
+    printer_end_page($handle);
+    printer_end_doc($handle, 20);
+    printer_close($handle);
+
+
+
+
+  }   /// termina reporte diario
 
 
 

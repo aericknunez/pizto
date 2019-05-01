@@ -79,13 +79,13 @@ $user = $_SESSION["user"];
     $imprimir = new Ticket; 
         $imprimir->$clase(2,$factura,$_REQUEST["efectivo"],$b["impresora"],$_REQUEST["mesa"],$b["ticket"]);
     
-    } //(tipo,numero,cambio,impresor,mesa)
-    // el tipo es 1 =  mesa, 2 = factura, 3 = cancela
+    } //(tipo,numero,cambio,impresor,mesa,factura_o_tiket)
+    // el tipo es 1 =  mesa, 2 = factura, 3 = cancela un cliente
     if($b["tipo"] == 2 and $_SESSION["tx"] == 1){ // para factura
     include_once 'system/facturar/Factura.php';
     $imprimir = new Factura;  // la mesa aqui es solo si es op 3 en el 1er para
         $imprimir->$clase(2,$factura,$_REQUEST["efectivo"],$b["impresora"],$_REQUEST["mesa"],$b["ticket"]);
-    //(tipo,numero,cambio,imp,mesa)
+    //(tipo,numero,cambio,imp,mesa,factura_o_tiket)
     }
 
     } $a->close();
