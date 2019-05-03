@@ -39,11 +39,7 @@ class Mesas{
 		    }
 		     
 		   
-		   if($b["estado"] == 1) { 
-		   	$totalz='<span class="badge badge-danger">Pendiente</span>';
-		    $propz='<span class="badge badge-danger">Pendiente</span>';
-		    $totalesz='<span class="badge badge-danger">Pendiente</span>';
-		   } else { 
+		    
 		   $ax = $db->query("SELECT cod, sum(total) FROM ticket WHERE edo = 1 and fecha = '$fecha' and mesa = ".$b["mesa"]." and td = ".$_SESSION['td']."");
 		    foreach ($ax as $bx) {
 		      $total=$bx["sum(total)"];
@@ -79,7 +75,13 @@ class Mesas{
 		      $totalesz = Helpers::Dinero($totales);
 		    } $az->close();
 
-		    }
+		   
+		    // si no esta cobrada
+		   if($b["estado"] == 1) { 
+		   	//$totalz='<span class="badge badge-danger">Pendiente</span>';
+		   	$propz='<span class="badge badge-danger">Pendiente</span>';
+		    $totalesz='<span class="badge badge-danger">Pendiente</span>';
+		   } ///////
 		   	
 		  echo '<tr>
 		       <th scope="row">'. $b["mesa"] . '</th>';
