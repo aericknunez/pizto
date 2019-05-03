@@ -39,8 +39,6 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 <li><a href="?gsemanal" class="waves-effect"> Grafico Semanal</a></li>
 <?php if($_SESSION["tipo_cuenta"] == 1) { ?>
 <li><a href="?mesasfecha" class="waves-effect"> Mesas Fecha</a></li>
-<li><a href="?inout" class="waves-effect"> Entradas y Salidas</a></li>
-<li><a href="?contadora" class="waves-effect"> Imprimir Reporte</a></li>
 <?php } ?>
 <!-- <li><a href="?propinas" class="waves-effect"> Calcular Propinas</a></li> -->
 </ul>
@@ -64,6 +62,21 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 
 
 
+
+<?php if($_SESSION["tipo_cuenta"] == 1) { ?>
+<li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-user"></i> Reportes Root<i class="fa fa-angle-down rotate-icon"></i></a>
+<div class="collapsible-body">
+<ul class="list-unstyled">
+
+<li><a href="?syncstatus" class="waves-effect"> Estado Sincronizaci&oacuten</a></li>
+<li><a href="?inout" class="waves-effect"> Entradas y Salidas</a></li>
+<li><a href="?contadora" class="waves-effect"> Imprimir Reporte</a></li>
+
+<!-- <li><a href="?propinas" class="waves-effect"> Calcular Propinas</a></li> -->
+</ul>
+</div>
+</li>
+<?php } ?>
 
 
 
