@@ -55,7 +55,7 @@ $user=sha1($_SESSION['username']);
        $inicia->Caduca(); // revisa si ha caducado
        BuscaRespaldo(); // revisa sy hay respaldos imcompletos
 
-	       if($_SERVER["SERVER_NAME"] == "pizto.com"){ // registro entrada en web
+	       if($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION['tipo_cuenta'] != 1){ // registro entrada en web
 	       	@$inicia->RegisterInOut(1);
 	       }   
        }

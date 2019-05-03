@@ -462,7 +462,7 @@ unset($panel);
 		$db = new dbConn();
 	
 	if($_SESSION["tipo_cuenta"] == 1){ 
-	 $a = $db->query("SELECT * FROM login_sucursales");
+	 $a = $db->query("SELECT * FROM login_sucursales order by user desc");
 	} else {
 		$a = $db->query("SELECT * FROM login_sucursales WHERE user = '$user'");
 	}
@@ -487,7 +487,7 @@ unset($panel);
 		    echo '<tr>
 		    	  <th scope="col">'.$x["nombre"].'</th>
 			      <th scope="col">'.$r["cliente"].'</th>
-			      <th scope="col">'.$r["pais"].'</th>
+			      <th scope="col">'.Helpers::Pais($r["pais"]).'</th>
 			      <th scope="col">';
 				if($b["sucursal"] == $_SESSION['td']){
 					echo '<a id="predeterminar" op="131" iden="'.$b["sucursal"].'" class="btn-sm">Predeterminar  <i class="fa fa-play red-text"></i></a>';

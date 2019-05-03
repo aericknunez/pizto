@@ -1,6 +1,6 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+include_once 'application/common/Helpers.php';
 include_once 'application/common/Mysqli.php';
 $db = new dbConn();
 
@@ -10,7 +10,7 @@ $configuracion = new Config;
 ?>
 
 <div class="row d-flex justify-content-center text-center">
-	  <div class="col-sm-6">
+	  <div class="col-sm-8">
 	
 	<div id="cuentas">
 		<?php 

@@ -9,7 +9,7 @@ include_once '../common/Helpers.php';
 include_once '../common/Fechas.php';
 include_once '../../system/index/Inicio.php';
 
-	if($_SERVER["SERVER_NAME"] == "pizto.com"){
+	if($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION['tipo_cuenta'] != 1){
 	@Inicio::RegisterInOut(2); // registra la salida
 	}
 	
