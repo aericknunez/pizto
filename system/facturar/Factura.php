@@ -327,6 +327,21 @@ printer_close($handle);
     $print = $r["impresora"];
     } unset($r); 
 
+
+
+      // // inicial y final
+      //     $ax = $db->query("SELECT max(num_fac), min(num_fac), count(num_fac)  FROM ticket_num WHERE fecha = '$fecha' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
+      //   foreach ($ax as $bx) {
+      //       $max=$bx["max(num_fac)"]; $min=$bx["min(num_fac)"]; $count=$bx["count(num_fac)"];
+      //   } $ax->close();
+      // // total
+      // $ay = $db->query("SELECT sum(total) FROM ticket WHERE fecha = '$fecha' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
+      //   foreach ($ay as $by) {
+      //       $total=$by["sum(total)"];
+      //   } $ay->close();
+
+
+
     $handle = printer_open($print);
     printer_set_option($handle, PRINTER_MODE, "RAW");
 
@@ -336,21 +351,43 @@ printer_close($handle);
     $font = printer_create_font("Arial", $txt1, $txt2, PRINTER_FW_NORMAL, false, false, false, 0);
     printer_select_font($handle, $font);
 
-    printer_draw_text($handle, "$xscliente", 110, 5);
-    printer_draw_text($handle, $xpdire, 10, 30);
-    printer_draw_text($handle, "$xplugar", 10, 60);
-    printer_draw_text($handle, "RTN: $xprtn", 10, 90);
-    printer_draw_text($handle, "Tel: $xpcel", 10, 120);
-    $pri1=str_pad($pri, 8, "0", STR_PAD_LEFT);
-    $pri1="000-001-01-$pri1";
-    printer_draw_text($handle, "Fact. Inicial: $pri1", 10, 150);
+//// comienza la factura
+printer_draw_text($handle, $_SESSION['config_cliente'], 110, $oi);
+if($_SESSION["td"] == 4){
+$oi=$oi+$n1;
+printer_draw_text($handle, "Mercado Concepcion, 1/2 al sur de", 0, $oi);
+$oi=$oi+$n1;
+printer_draw_text($handle, "Farmacia san Jose, Choluteca.", 0, $oi);
+} if($_SESSION["td"] == 3){
+$oi=$oi+$n1;
+printer_draw_text($handle, "Bo. El centro 1/2 Cdra al Este", 0, $oi);
+$oi=$oi+$n1;
+printer_draw_text($handle, "del Elektra, Choluteca, Honduras.", 0, $oi);
+} 
 
-    $ult1=str_pad($ult, 8, "0", STR_PAD_LEFT);
-    $ult1="000-001-01-$ult1";
-    printer_draw_text($handle, "Fact. Final:  $ult1", 10, 170);
-    printer_draw_text($handle, "FACTURAS:  $ord", 10, 190);
+$oi=$oi+$n1;
+printer_draw_text($handle, "Email: " . $_SESSION['config_email'], 0, $oi);
+$oi=$oi+$n1;
+printer_draw_text($handle, $_SESSION['config_nombre_documento'] . ": " . $_SESSION['config_nit'], 0, $oi);
+$oi=$oi+$n1;
+printer_draw_text($handle, "Tel: " . $_SESSION['config_telefono'], 0, $oi);
+
+$oi=$oi+$n1;
+$numero1=str_pad($numero, 8, "0", STR_PAD_LEFT);
+$numero1="000-001-01-$numero1";
+printer_draw_text($handle, "Fact. Inicial: $numero1", 0, $oi);
+
+$oi=$oi+$n1;
+$numero1=str_pad($numero, 8, "0", STR_PAD_LEFT);
+$numero1="000-001-01-$numero1";
+printer_draw_text($handle, "Fact. Final: $numero1", 0, $oi);
+
+$oi=$oi+$n1;
+printer_draw_text($handle, "FACTURAS: $cantidadF", 0, $oi);
 
 
+
+$oi=$oi+$n2;
     printer_draw_text($handle, "____________________________________", 0, 220);
     //consulta cuantos productos imprimir
     $oi=250;
@@ -387,7 +424,6 @@ printer_close($handle);
     printer_end_page($handle);
     printer_end_doc($handle, 20);
     printer_close($handle);
-
 
 
 

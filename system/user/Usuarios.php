@@ -162,34 +162,34 @@ class Usuarios{
 
 
 
-    	if(($tipo == 5 and $_SESSION["user"] == $user) or ($_SESSION["tipo_cuenta"]!= 5)){
+    	if(($_SESSION["user"] == $user) or ($_SESSION["tipo_cuenta"]!= 5)){
 
-    	echo '<tr>
-		      <th scope="row">'.$nombre.'</th>
+    	echo '<tr>';
+		
+		echo '<th scope="row">'.$nombre.'</th>
 		      <td>'.$b["email"].'</td>
 		      <td>'.Helpers::UserName($tipo).'</td>';
 
-		if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
-			echo '<td><a id="deluser" op="2" iden="'.$b["id"].'" username="'.$user.'" class="btn-floating btn-sm"><i class="fa fa-trash red-text"></i></a></td>';
-		} else {
-			echo '<td><a class="btn-floating btn-sm"><i class="fa fa-trash grey-text"></i></a></td>';
-		}
+			if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
+				echo '<td><a id="deluser" op="2" iden="'.$b["id"].'" username="'.$user.'" class="btn-floating btn-sm"><i class="fa fa-trash red-text"></i></a></td>';
+			} else {
+				echo '<td><a class="btn-floating btn-sm"><i class="fa fa-trash grey-text"></i></a></td>';
+			}
 
-		if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
-			echo '<td><a href="?modal=register_success&user='.$b["username"].'&op=actualizar" class="btn-floating btn-sm"><i class="fa fa-edit red-text"></i></a></td>';
-		} else {
-			echo '<td><a class="btn-floating btn-sm"><i class="fa fa-edit grey-text"></i></a></td>';
-		}
+			if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
+				echo '<td><a href="?modal=register_success&user='.$b["username"].'&op=actualizar" class="btn-floating btn-sm"><i class="fa fa-edit red-text"></i></a></td>';
+			} else {
+				echo '<td><a class="btn-floating btn-sm"><i class="fa fa-edit grey-text"></i></a></td>';
+			}
 
-		if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
-			echo '<td><a href="?modal=avatar&user='.$b["username"].'" class="btn-floating btn-sm"><i class="fa fa-user red-text"></i></a></td>
-		    </tr>';
-		} else {
-			echo '<td><a class="btn-floating btn-sm"><i class="fa fa-user grey-text"></i></a></td>
-		    </tr>';
-		}
-       
-}
+			if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
+				echo '<td><a href="?modal=avatar&user='.$b["username"].'" class="btn-floating btn-sm"><i class="fa fa-user red-text"></i></a></td>';
+			} else {
+				echo '<td><a class="btn-floating btn-sm"><i class="fa fa-user grey-text"></i></a></td>';
+			}
+
+		echo '</tr>';  
+	}
 
 
     } $a->close();
