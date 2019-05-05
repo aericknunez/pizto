@@ -16,17 +16,24 @@ $arch = "$hash.sql";
 
 if (file_exists($arch)) {
 
-		    $datos = array();
-		    $datos["hash"] = $hash;
-		    $datos["edo"] = 0;
-            $datos["fecha"] = date("d-m-Y");
-            $datos["hora"] = date("H:i:s");
-            $datos["td"] = $td;
-            $db->insert("login_sync", $datos); 
+            // compruebo si ya hay registro del sync
+            $a = $db->query("SELECT * FROM login_sync WHERE hash = '$hash' and edo = 0");
+            if($a->num_rows == 0){
 
-	header("location: http://localhost/pizto/sync/execute.php?op=3&edo=1&hash=$hash&type=$type&action=$action&td=$td");
+                  $datos = array();
+                  $datos["hash"] = $hash;
+                  $datos["edo"] = 0;
+                  $datos["fecha"] = date("d-m-Y");
+                  $datos["hora"] = date("H:i:s");
+                  $datos["td"] = $td;
+                  $db->insert("login_sync", $datos);
+            }
+            $a->close();
+            header("location: http://localhost/pizto/sync/execute.php?op=3&edo=1&hash=$hash&type=$type&action=$action&td=$td");
+            exit();
+
+	
 } else {
 	header("location: http://localhost/pizto/sync/execute.php?op=3&edo=0&hash=$hash&type=$type&action=$action");
+	exit();
 }
-
-exit();

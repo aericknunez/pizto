@@ -480,19 +480,19 @@ unset($panel);
 			    </tr>
 			  </thead>
 			  <tbody>';
-	    foreach ($a as $b) {  
-		    $r = $db->select("cliente, pais", "config_master", "WHERE td = ".$b["sucursal"]."");
+	    foreach ($a as $b) {
+	    			    	
+	    	$r = $db->select("cliente, pais", "config_master", "WHERE td = ".$b["sucursal"]."");
 
-		    // ultima actualizacion
-	    		if ($rx = $db->select("*", "login_sync", "WHERE td = ".$b["sucursal"]." and edo = 1 order by id desc")) {
-		    		$update = $rx["fecha"] . " | " . $rx["hora"];		        
-		    	} unset($rx);
+	    	// ultima actualizacion
+	    		if ($r = $db->select("*", "login_sync", "WHERE td = ".$b["sucursal"]." and edo = 1 order by id desc")) {
+		    		$upate = $r["fecha"] . " | " . $r["hora"];		        
+		    	} unset($r);
 
 		    	// total venta por sucursal
-		    	$fechax = date("d-m-Y");
-		    $ax = $db->query("SELECT sum(total) FROM ticket WHERE edo = 1 and td = ".$b["sucursal"]." and fecha = '$fechax'");
+		    $ax = $db->query("SELECT sum(total) FROM ticket WHERE edo = 1 and td = ".$b["sucursal"]." and fecha like '%$fecha'");
 		    foreach ($ax as $bx) {
-		     $totalventa=$bx["sum(total)"]; } $ax->close();  
+		     $totalventa=$bx["sum(total)"]; } $ax->close(); 
 
 	    	$userx = $b["user"];
 	    	$x = $db->select("nombre", "login_userdata", "WHERE user = '$userx'");
