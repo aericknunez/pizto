@@ -31,9 +31,10 @@ Delete("control_cocina", "mesa", $fecha);
     $db = new dbConn();
 
         $a = $db->query("SELECT * FROM $tabla WHERE fecha = '$fecha'");
-    
-    foreach ($a as $b) { //$b["id"]
+
+
         $contador = 0;
+    foreach ($a as $b) { //$b["id"]
         $hora=$b["hora"];
         $codigo = $b[$cod];
                 
