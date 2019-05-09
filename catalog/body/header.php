@@ -5,7 +5,7 @@
 <!--Double navigation-->
 <header>
 <!-- Sidebar navigation -->
-<div id="slide-out" class="side-nav sn-bg-4 fixed">
+<div id="slide-out" class="side-nav sn-bg-4 custom-scrollbar">
 <ul class="custom-scrollbar">
     <!-- Logo -->
     <li>
