@@ -341,6 +341,7 @@ $n4=$r["n4"];
     $font = printer_create_font("Arial", $txt1, $txt2, PRINTER_FW_NORMAL, false, false, false, 0);
     printer_select_font($handle, $font);
 
+$oi=0;
 //// comienza la factura
 printer_draw_text($handle, $_SESSION['config_cliente'], 110, $oi);
 if($_SESSION["td"] == 4){
