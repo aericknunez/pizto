@@ -374,15 +374,13 @@ printer_draw_text($handle, "Tel: " . $_SESSION['config_telefono'], 0, $oi);
         
         
 $oi=$oi+$n1;
-$numero1=str_pad($numero, 8, "0", STR_PAD_LEFT);
-$numero1="000-001-01-$min";
 printer_draw_text($handle, "Fact. Inicial: " . Helpers::NFactura($min), 0, $oi);
 
 $oi=$oi+$n1;
 printer_draw_text($handle, "Fact. Final: " . Helpers::NFactura($max), 0, $oi);
 
 $oi=$oi+$n1;
-printer_draw_text($handle, "FACTURAS: $count", 0, $oi);
+printer_draw_text($handle, "FACTURAS: " .  $count, 0, $oi);
 
 
 
@@ -408,12 +406,12 @@ $oi=$oi+$n2;
     printer_draw_text($handle, "SUBTOTAL:  " . Helpers::Dinero(Helpers::STotal($total, $_SESSION['config_imp'])), 10, $oi);
 
     $oi=$oi+30;
-    printer_draw_text($handle, "ISV:  " .  Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']))), 10, $oi);
+    printer_draw_text($handle, "ISV:  " . Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']))), 10, $oi);
 
     $oi=$oi+30;
     printer_draw_text($handle, "____________________________________", 0, $oi);
     $oi=$oi+30;
-    printer_draw_text($handle, "TOTAL:  $total", 10, $oi);
+    printer_draw_text($handle, "TOTAL:  " . Helpers::Dinero($total), 10, $oi);
     printer_delete_font($font);
 
 
@@ -430,7 +428,7 @@ $oi=$oi+$n2;
 
 
     $oi=$oi+30;
-    printer_draw_text($handle, "Total Eliminadas: $counte", 20, $oi);
+    printer_draw_text($handle, "Total Eliminadas: " . $counte, 20, $oi);
       
 
     printer_end_page($handle);
