@@ -394,7 +394,7 @@ $oi=$oi+$n2;
     printer_draw_text($handle, "____________________________________", 0, 220);
     //consulta cuantos productos imprimir
     $oi=250;
-    printer_draw_text($handle, $dia, 15, $oi);
+    printer_draw_text($handle, $fecha, 15, $oi);
 
     $oi=$oi+30;
     printer_draw_text($handle, "EXENTO:  " . Helpers::Dinero(0), 10, $oi);
@@ -406,7 +406,7 @@ $oi=$oi+$n2;
     printer_draw_text($handle, "SUBTOTAL:  " . Helpers::Dinero(Helpers::STotal($total, $_SESSION['config_imp'])), 10, $oi);
 
     $oi=$oi+30;
-    printer_draw_text($handle, "ISV:  " . Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']))), 10, $oi);
+    printer_draw_text($handle, "ISV:  " . Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']), $_SESSION['config_imp'])), 10, $oi);
 
     $oi=$oi+30;
     printer_draw_text($handle, "____________________________________", 0, $oi);
