@@ -308,8 +308,21 @@ printer_close($handle);
 
 
 
-   public function ReporteDiario($fecha,$imp){
+   public function ReporteDiario($fecha,$imp,$ticket){
     $db = new dbConn();
+
+
+if ($r = $db->select("*", "facturar_ticket", "WHERE id = '$ticket' and td = ".$_SESSION["td"]."")) { 
+$img = $r["img"];
+$txt1=$r["txt1"]; 
+$txt2=$r["txt2"];
+$txt3=$r["txt3"];
+$txt4=$r["txt4"];
+$n1=$r["n1"];
+$n2=$r["n2"];
+$n3=$r["n3"];
+$n4=$r["n4"];
+} unset($r);  
 
 
     if ($r = $db->select("*", "facturar_impresora", "WHERE id = '$imp'")) { 
@@ -395,7 +408,7 @@ $oi=$oi+$n2;
     printer_draw_text($handle, "SUBTOTAL:  " . Helpers::Dinero(Helpers::STotal($total, $_SESSION['config_imp'])), 10, $oi);
 
     $oi=$oi+30;
-    printer_draw_text($handle, "ISV:  " .  Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']), 10, $oi);
+    printer_draw_text($handle, "ISV:  " .  Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']))), 10, $oi);
 
     $oi=$oi+30;
     printer_draw_text($handle, "____________________________________", 0, $oi);

@@ -913,14 +913,14 @@ if($_REQUEST["op"]=="88"){ // Abrir Caja
 if($_REQUEST["op"]=="89"){ // Reporte Diario
 
 	$user = $_SESSION["user"];
-	if ($r = $db->select("impresora", "facturar_users", 
+	if ($r = $db->select("ticket, impresora", "facturar_users", 
 		"WHERE tipo = 2 and user = '$user' and td = ".$_SESSION["td"]."")) { 
-		$impresora = $r["impresora"];
+		$impresora = $r["impresora"]; $ticket = $r["ticket"];
 	} unset($r);  
 
 		include_once '../../system/facturar/Factura.php';
 		$imprimir = new Factura; 
-		$imprimir->ReporteDiario($_REQUEST["fecha"],$impresora);	
+		$imprimir->ReporteDiario($_REQUEST["iden"],$impresora,$ticket);	
 		Alerts::Alerta("success","Imprimiendo","Imprimiendo Factura");
 }
 
