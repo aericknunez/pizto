@@ -322,7 +322,7 @@ class Reporte{
 				       <td>'. Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']), $_SESSION['config_imp'])) .'</td>
 				       <td>'. Helpers::Dinero(0) . '</td>
 				       <td>'. Helpers::Dinero($total) . '</td>
-				     </tr>'; echo $_SESSION['config_imp'];
+				     </tr>';
 					} /// del count
 				    } // del foreach
 				   $a->close();
