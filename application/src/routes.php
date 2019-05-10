@@ -896,7 +896,7 @@ if($_REQUEST["op"]=="87"){ // para no facturar
 }
 
 
-if($_REQUEST["op"]=="88"){ // para no facturar
+if($_REQUEST["op"]=="88"){ // Abrir Caja
 
 	$user = $_SESSION["user"];
 	if ($r = $db->select("impresora", "facturar_users", 
@@ -908,6 +908,23 @@ if($_REQUEST["op"]=="88"){ // para no facturar
 		$imprimir = new Ticket; 
 		$imprimir->AbrirCaja($impresora);//(tipo,numero,cambio,impresor,mesa)	
 }
+
+
+if($_REQUEST["op"]=="89"){ // Reporte Diario
+
+	$user = $_SESSION["user"];
+	if ($r = $db->select("impresora", "facturar_users", 
+		"WHERE tipo = 2 and user = '$user' and td = ".$_SESSION["td"]."")) { 
+		$impresora = $r["impresora"];
+	} unset($r);  
+
+		include_once '../../system/facturar/Factura.php';
+		$imprimir = new Factura; 
+		$imprimir->ReporteDiario($_REQUEST["fecha"],$impresora);	
+		Alerts::Alerta("success","Imprimiendo","Imprimiendo Factura");
+}
+
+
 
 /////////////////configuracion
 if($_REQUEST["op"]=="90"){ 

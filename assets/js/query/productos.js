@@ -26,7 +26,7 @@ return false;
 	var iden = $(this).attr('iden');
     	$.post("application/src/routes.php", {op:op, iden:iden}, 
     	function(htmlexterno){
-		$("#productos").html(htmlexterno);
+		$("#msj").html(htmlexterno);
    	 	});
 	});
 

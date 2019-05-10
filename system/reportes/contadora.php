@@ -12,6 +12,7 @@ $reporte = new Reporte;
 $mes = date("m");
 $ano = date("Y");
 ?>
+<div id="msj"></div>
 
   <div class="row justify-content-md-center">
     <div class="col-12 col-md-auto">

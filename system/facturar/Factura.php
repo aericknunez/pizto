@@ -308,37 +308,14 @@ printer_close($handle);
 
 
 
-   public function ReporteDiario($fecha,$imp,$ticket){
+   public function ReporteDiario($fecha,$imp){
     $db = new dbConn();
 
-    if ($r = $db->select("*", "facturar_ticket", "WHERE id = '$ticket' and td = ".$_SESSION["td"]."")) { 
-    $img = $r["img"];
-    $txt1=$r["txt1"]; 
-    $txt2=$r["txt2"];
-    $txt3=$r["txt3"];
-    $txt4=$r["txt4"];
-    $n1=$r["n1"];
-    $n2=$r["n2"];
-    $n3=$r["n3"];
-    $n4=$r["n4"];
-    } unset($r);  
 
     if ($r = $db->select("*", "facturar_impresora", "WHERE id = '$imp'")) { 
     $print = $r["impresora"];
     } unset($r); 
 
-
-
-      // // inicial y final
-      //     $ax = $db->query("SELECT max(num_fac), min(num_fac), count(num_fac)  FROM ticket_num WHERE fecha = '$fecha' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
-      //   foreach ($ax as $bx) {
-      //       $max=$bx["max(num_fac)"]; $min=$bx["min(num_fac)"]; $count=$bx["count(num_fac)"];
-      //   } $ax->close();
-      // // total
-      // $ay = $db->query("SELECT sum(total) FROM ticket WHERE fecha = '$fecha' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
-      //   foreach ($ay as $by) {
-      //       $total=$by["sum(total)"];
-      //   } $ay->close();
 
 
 
@@ -372,20 +349,35 @@ printer_draw_text($handle, $_SESSION['config_nombre_documento'] . ": " . $_SESSI
 $oi=$oi+$n1;
 printer_draw_text($handle, "Tel: " . $_SESSION['config_telefono'], 0, $oi);
 
+
+
+
+      // inicial y final
+          $ax = $db->query("SELECT max(num_fac), min(num_fac), count(num_fac)  FROM ticket_num WHERE fecha = '$fecha' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
+        foreach ($ax as $bx) {
+            $max=$bx["max(num_fac)"]; $min=$bx["min(num_fac)"]; $count=$bx["count(num_fac)"];
+        } $ax->close();
+        
+        
+        
 $oi=$oi+$n1;
 $numero1=str_pad($numero, 8, "0", STR_PAD_LEFT);
-$numero1="000-001-01-$numero1";
-printer_draw_text($handle, "Fact. Inicial: $numero1", 0, $oi);
+$numero1="000-001-01-$min";
+printer_draw_text($handle, "Fact. Inicial: " . Helpers::NFactura($min), 0, $oi);
 
 $oi=$oi+$n1;
-$numero1=str_pad($numero, 8, "0", STR_PAD_LEFT);
-$numero1="000-001-01-$numero1";
-printer_draw_text($handle, "Fact. Final: $numero1", 0, $oi);
+printer_draw_text($handle, "Fact. Final: " . Helpers::NFactura($max), 0, $oi);
 
 $oi=$oi+$n1;
-printer_draw_text($handle, "FACTURAS: $cantidadF", 0, $oi);
+printer_draw_text($handle, "FACTURAS: $count", 0, $oi);
 
 
+
+      // total
+      $ay = $db->query("SELECT sum(total) FROM ticket WHERE fecha = '$fecha' and tx = 1 and edo = 1 and td = ".$_SESSION["td"]."");
+        foreach ($ay as $by) {
+            $total=$by["sum(total)"];
+        } $ay->close();
 
 $oi=$oi+$n2;
     printer_draw_text($handle, "____________________________________", 0, 220);
@@ -394,31 +386,38 @@ $oi=$oi+$n2;
     printer_draw_text($handle, $dia, 15, $oi);
 
     $oi=$oi+30;
-    printer_draw_text($handle, "EXENTO:  $exe", 10, $oi);
+    printer_draw_text($handle, "EXENTO:  " . Helpers::Dinero(0), 10, $oi);
 
     $oi=$oi+30;
-    printer_draw_text($handle, "GRAVADO:  $gra", 10, $oi);
+    printer_draw_text($handle, "GRAVADO:  " . Helpers::Dinero(Helpers::STotal($total, $_SESSION['config_imp'])), 10, $oi);
 
     $oi=$oi+30;
-    printer_draw_text($handle, "SUBTOTAL:  $sub", 10, $oi);
+    printer_draw_text($handle, "SUBTOTAL:  " . Helpers::Dinero(Helpers::STotal($total, $_SESSION['config_imp'])), 10, $oi);
 
     $oi=$oi+30;
-    printer_draw_text($handle, "ISV:  $isv", 10, $oi);
+    printer_draw_text($handle, "ISV:  " .  Helpers::Dinero(Helpers::Impuesto(Helpers::STotal($total, $_SESSION['config_imp']), 10, $oi);
 
     $oi=$oi+30;
     printer_draw_text($handle, "____________________________________", 0, $oi);
     $oi=$oi+30;
-    printer_draw_text($handle, "TOTAL:  $tot", 10, $oi);
+    printer_draw_text($handle, "TOTAL:  $total", 10, $oi);
     printer_delete_font($font);
 
 
     //////////////////
-    $cajero=$_SESSION['nombre'];
     $oi=$oi+30;
-    printer_draw_text($handle, "Cajero: $cajero", 20, $oi);
+    printer_draw_text($handle, "Cajero: " . $_SESSION['nombre'], 20, $oi);
+
+
+      // Eliminadas
+          $axy = $db->query("SELECT count(num_fac) FROM ticket_num WHERE fecha = '$fecha' and tx = 1 and edo = 2 and td = ".$_SESSION["td"]."");
+        foreach ($axy as $bxy) {
+            $counte=$bxy["count(num_fac)"];
+        } $axy->close();
+
 
     $oi=$oi+30;
-    printer_draw_text($handle, "Total Eliminadas: $to", 20, $oi);
+    printer_draw_text($handle, "Total Eliminadas: $counte", 20, $oi);
       
 
     printer_end_page($handle);

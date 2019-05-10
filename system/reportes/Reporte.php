@@ -313,7 +313,7 @@ class Reporte{
 				// si hay facturas muestro
 				if($count > 0){
 			  echo '<tr>
-				       <th scope="row">'. $fecha . '</th>
+				       <th scope="row"><a id="imprimir-reporte" op="89" iden="'. $fecha . '">'. $fecha . '</a></th>
 				       <td>'. $count . '</td>
 				       <td>'. Helpers::NFactura($min) . ' <br> '. Helpers::NFactura($max) .'</td>
 				       <td>'. Helpers::Dinero(0) . '</td>
