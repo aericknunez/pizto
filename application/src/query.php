@@ -72,6 +72,9 @@ echo '
 	if($_GET["modal"] == "img_gasto"){
 	echo '<script type="text/javascript" src="assets/js/query/imageup.js?v='.$numero.'"></script>';
 	}
+	if($_GET["modal"] == "respaldar"){
+	echo '<script type="text/javascript" src="assets/js/query/respaldo.js?v='.$numero.'"></script>';
+	}
 
 
 }
@@ -169,20 +172,6 @@ $("body").on("click","#cambiar-pantalla-inicio",function(){
             window.location.href="?";
         });
     });	
-
-
-    // function Sync(){
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "sync/execute.php?op=2",
-    //         success: function(data) {
-    //         	console.log(data);
-    //         }
-    //     });
-    // }
-
-
-    // setInterval(Sync, 30000);
 
 
 </script>

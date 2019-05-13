@@ -69,8 +69,15 @@ return false;
         });
     }
 
-setInterval(CompruebaRespaldo, 3000);
+CompruebaRespaldo();
+//setInterval(CompruebaRespaldo, 3000);
 ///
+
+
+
+
+
+
 
 
 });

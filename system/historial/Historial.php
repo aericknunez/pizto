@@ -486,48 +486,30 @@ class Historial{
 	public function SyncStatus(){
 		$db = new dbConn();
 
-		$a = $db->query("SELECT * FROM login_sync WHERE edo = 0 order by id desc");
+				$archivos = glob("sync/db/*.sql");  
+			      foreach($archivos as $data){  
+			      	$data = str_replace("sync/db/", "", $data);
+			      	$data = str_replace(".sql", "", $data);
+				    $output .= '<li class="list-group-item">' . $data . '</li>';
+			      }
+
+			      echo '<div class="form-group row justify-content-center align-items-center">
+		  			<div class="col-xs-2">
+		  			<ul class="list-group">
+		  			<li class="list-group-item list-group-item-action active">Hash pendientes de sincronizar</li>';
+
+					  echo $output;
+				  
+				  echo '</ul></div>
+						</div>';
+
+			      
+
+
+  			$a = $db->query("SELECT * FROM login_sync WHERE edo = 1 order by id desc limit 10");
 	        	$total=0;
 	        	if($a->num_rows > 0){
-	        echo ' <h3>Pendientes de Sincronizar</h3>
-
-				<table class="table table-sm table-striped">
-			  <thead>
-			    <tr>
-			      <th>Hash</th>
-			      <th>Fecha</th>
-			      <th>Hora</th>
-			      <th>Local</th>
-			    </tr>
-			  </thead>
-			  <tbody>';
-		    foreach ($a as $b) {
-
-		    	if ($r = $db->select("cliente", "config_master", "WHERE td = ". $b["td"] ."")) { 
-		        $cliente = $r["cliente"];
-		    	}unset($r); 
-		    	
-		    	echo '<tr>
-			      <th>'. $b["hash"] .'</th>
-			      <td>'. $b["fecha"] .'</td>
-			      <td>'. $b["hora"] .'</td>
-			      <td>'. $cliente .'</td>
-			    </tr>';
-		    }
-		    echo '</tbody>
-		    </table>';
-			echo "<p>El numero de registros es: ". $a->num_rows . "</p>";
-			} else {
-				echo '<p>No existen datos pendientes de sincronizar</p>';
-			}
-  			$a->close();
-
-
-
-  			$a = $db->query("SELECT * FROM login_sync WHERE edo = 1 order by id desc limit 5");
-	        	$total=0;
-	        	if($a->num_rows > 0){
-	        echo '<h3>&Uacuteltimos sincronizados</h3>
+	        echo '<br><h3>&Uacuteltimos sincronizados</h3>
 
 				<table class="table table-sm table-striped">
 			  <thead>

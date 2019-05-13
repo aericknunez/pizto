@@ -55,13 +55,11 @@ class Upload{
 ////////////////	
 	    		$this->DelStatus($fecha);
 		    	return $save;
-		    } else {
-		    	return NULL;
-		    }	  		  		  
+			    } else {
+			    	return NULL;
+			    }	  		  		  
 
-		  } else {
-		  	echo "Ya hay un Sync";
-		  }
+		  } 
 	}
 
 

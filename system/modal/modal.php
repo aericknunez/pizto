@@ -60,5 +60,6 @@ if($_REQUEST["modal"]=="img_gasto") include_once 'system/modal/modal/imagenes_ga
 
 if($_REQUEST["modal"]=="img_negocio") include_once 'system/modal/modal/imagen_negocio.php';
 
+if($_REQUEST["modal"]=="respaldar") include_once 'system/modal/modal/respaldar.php';
 
 if($_REQUEST["modal"]=="newcut") include_once 'system/modal/modal/newcut.php';

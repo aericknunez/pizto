@@ -86,8 +86,8 @@ class Sync{
 
 	public function UrlRespaldo($fecha, $url){
 		if($url == FALSE){
-			echo '<a href="javascript:window.open(\'http://localhost/pizto/sync/redirect.php?op=2&type=1&fecha='.$fecha.'\', \'_blank\', \'width=1,height=1,center=yes,help=no\')" class="btn btn-danger waves-effect waves-light">
-			    Respaldar Ahora
+			echo '<a class="btn btn-danger waves-effect waves-light">
+			    Sin Respaldo
 			</a>';
 		} else {
 			echo '<a class="btn btn-success waves-effect waves-light">

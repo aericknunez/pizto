@@ -14,6 +14,7 @@ $db = new dbConn();
 <?php 
 $cortes = new Corte;
 $cortes->Contenido(date("d-m-Y"));
+
  ?>
 </div>
 

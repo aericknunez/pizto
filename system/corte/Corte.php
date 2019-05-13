@@ -36,8 +36,15 @@ class Corte{
 		    $datos["td"] = $_SESSION["td"];
 
 		   if($db->insert("corte_diario", $datos)){
-		   	Alerts::Alerta("success","Exito!","Se ha ejecutado el corte correctamente!");
+		   //	Alerts::Alerta("success","Exito!","Se ha ejecutado el corte correctamente!");
 		   	$this->CalcularGastoProductos($fecha);
+
+			   	if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0){
+			   		echo '<script>
+						window.location.href="?modal=respaldar"
+					</script>';
+			   	}
+		   	
 		   }
 
 		  
@@ -207,7 +214,10 @@ public function CancelarCorte($ramdom,$fecha){
 				$this->Form();
 			}
 	}
-		
+	
+
+
+
 
 	public function Content($fecha){
 		$sync = new Sync;
