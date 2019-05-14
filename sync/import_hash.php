@@ -13,10 +13,10 @@ $db = new dbConn();
 // busca todos los archivos en el directorio
 $archivos = glob("/home/superpol/public_html/pizto.com/admin/sync/db/*.sql");  
   foreach($archivos as $data){  
-  	$data = str_replace("sync/db/", "", $data);
+  	$data = str_replace("/home/superpol/public_html/pizto.com/admin/sync/db/", "", $data);
   	$hash = str_replace(".sql", "", $data);
 
-    $archx = "/home/superpol/public_html/pizto.com/admin/sync/" . $data;            
+    $archx = "/home/superpol/public_html/pizto.com/admin/sync/db/" . $data;            
     // compruebo si ya hay registro tipo 2 del sync
 $a = $db->query("SELECT * FROM login_sync WHERE hash = '$hash' and tipo = 1");
 if($a->num_rows == 0){
