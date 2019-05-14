@@ -12,7 +12,7 @@ if($_REQUEST["fecha"] == NULL){
 	$fecha = $_REQUEST["fecha"];
 }
 
-// 1 = tablas diarias, 2 = tablas estaticas, 3 ambas
+// 1 = tablas diarias , 2 = tablas estaticas, 3 ambas
 if($_REQUEST["type"] == NULL){
 	$type = 1;
 } else {

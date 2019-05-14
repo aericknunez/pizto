@@ -70,7 +70,7 @@ class Sincronizar{
 
 		// guardo el arvivo creado
 	   		 if($counter > 0){
-					    $save =$this->SaveSync($resultado,$fecha);
+					    $save =$this->SaveSync($resultado,$fecha,"5");
 					    if($save != NULL){
 					    	return $save;
 					    } else {
@@ -147,14 +147,16 @@ class Sincronizar{
 // extraer los datos de la tabla si es que existen
 // ectualizar los correlativos de cada tabla
 
-	public function SaveSync($resultado,$fecha){ // guardo el archivo a sincronizar creado
+	public function SaveSync($resultado,$fecha,$tipox){ // guardo el archivo a sincronizar creado
 
 		   	 	$hora = date("H:i:s");
 		   	 	$hash = $fecha."-".$hora ."-" . $_SESSION["temporal_td"];
 		   	 	$hash = md5($hash);
-		   	 	$hash = $_SESSION["temporal_td"] . "-" . $hash;
+		   	 	$hash = $_SESSION["temporal_td"] . "-" . $tipox . "-" . $hash;
 
 		   $handle = fopen($hash . ".sql",'w+');
+		   // antes de escribir se le agrega la linea para el registro
+		   $resultado.= 'INSERT INTO login_sync VALUES("", "'.$hash.'", "'.$tipox.'", "1",  "'.$fecha.'", "'.$hora.'", "'.$_SESSION["temporal_td"].'");';
 		   if(fwrite($handle,$resultado)){
 		   	
 		   	 $db = new dbConn();

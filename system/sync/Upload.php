@@ -38,7 +38,7 @@ class Upload{
 		        
 		    } $a->close();
 	    
-		    $save = $this->SaveSync($resultado,$fecha);
+		    $save = $this->SaveSync($resultado,$fecha,$tipox);
 		    if($save != NULL){
 
 	///////////// aqui actualizo los correlativos//////
@@ -121,14 +121,15 @@ class Upload{
 
 
 
-	public function SaveSync($resultado,$fecha){ // guardo el archivo a sincronizar creado
+	public function SaveSync($resultado,$fecha,$tipox){ // guardo el archivo a sincronizar creado
 
 		   	 	$hora = date("H:i:s");
 		   	 	$hash = $fecha."-".$hora ."-" . $_SESSION["temporal_td"];
 		   	 	$hash = md5($hash);
-		   	 	$hash = $_SESSION["temporal_td"] . "-" . $hash;
+		   	 	$hash = $_SESSION["temporal_td"] . "-" . $tipox . "-" . $hash;
 
 		   $handle = fopen($hash . ".sql",'w+');
+		   $resultado.= 'INSERT INTO login_sync VALUES("", "'.$hash.'", "'.$tipox.'", "1",  "'.$fecha.'", "'.$hora.'", "'.$_SESSION["temporal_td"].'");';
 		   if(fwrite($handle,$resultado)){
 		   	 	 $db = new dbConn();
 	    	
