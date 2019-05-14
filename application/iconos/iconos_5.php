@@ -51,7 +51,7 @@
  
  
 <div class="modal" id="a9901" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Combo</h5>
@@ -75,6 +75,7 @@
 <li><em>Combo Siete</em><input type="image" id="venta" op="20" cod="1022" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/1111.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Combo ocho</em><input type="image" id="venta" op="20" cod="1023" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/1111.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Super Combo Express</em><input type="image" id="venta" op="20" cod="1052" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/7777.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>Combo Familiar</em><input type="image" id="venta" op="20" cod="1057" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/camaronesempanixados.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 
   
 </ul> 

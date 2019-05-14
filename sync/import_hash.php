@@ -24,11 +24,12 @@ if($a->num_rows == 0){
 		// obtener el td segun el nombre del archivo
 		  	$numero = strpos($hash, "-");
 			$td = substr($hash,0,$numero);
+			$type = substr($hash,$numero + 1,$numero);
 
 			    if ($r = $db->select("td", "login_sync", "WHERE hash = '$hash'")) { 
 			        $tdx = $r["td"];
 			    } unset($r);
-			    if($td == $tdx){
+			    if($td == $tdx and $type == 5){
 			    	@unlink($archx);	
 			    }  
 
