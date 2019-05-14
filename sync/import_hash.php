@@ -17,6 +17,7 @@ $archivos = glob("/home/superpol/public_html/pizto.com/admin/sync/db/*.sql");
   	$hash = str_replace(".sql", "", $data);
 
     $archx = "/home/superpol/public_html/pizto.com/admin/sync/db/" . $data;            
+
     // compruebo si ya hay registro tipo 2 del sync
 $a = $db->query("SELECT * FROM login_sync WHERE hash = '$hash' and tipo = 1");
 if($a->num_rows == 0){

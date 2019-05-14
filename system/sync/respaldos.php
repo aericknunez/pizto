@@ -12,7 +12,7 @@ $sync = new Sync();
 ?>
 <h1>RESPALDOS PENDIENTES <?php 
 
-echo '<a href=""?modal=respaldar&type=1" class="btn-floating btn-sm red"><i class="fa fa-download"></i></a> Configuraciones';
+echo '<a href="?modal=respaldar&type=2" class="btn-floating btn-sm red"><i class="fa fa-download"></i></a> Configuraciones';
  ?></h1>
 
 <?php if(isset($_REQUEST["msj"])){

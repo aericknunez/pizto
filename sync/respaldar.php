@@ -27,7 +27,7 @@ if($_REQUEST["type"] == NULL){
 
 
 // debo eliminar todos los archivos que no se subieron pero que no sean respaldo
-    $as = $db->query("SELECT * FROM sync_status WHERE tipo = 1 and ejecutado = 0 and td = ".$_SESSION["temporal_td"]."");
+    $as = $db->query("SELECT * FROM sync_status WHERE tipo = 5 and ejecutado = 0 and td = ".$_SESSION["temporal_td"]."");
     foreach ($as as $bs) {
 
 	        $sync = $bs["hash"];
@@ -63,14 +63,14 @@ if($sync != NULL){
 unset($_SESSION["temporal_td"]);
 
 
-if($fecha == date("d-m-Y")){
+if($fecha == date("d-m-Y") or $type == 1){
 echo '<script>
 window.location.href="?corte"
 </script>';
 } else {
 echo '<script>
 window.location.href="?respaldos"
-</script>';	
+</script>';
 }
 
 

@@ -29,11 +29,11 @@ if (file_exists($archx)) {
 
 ////////// verifico que aun no se haya echo corte y respaldo
 
-$vc = $db->query("SELECT * FROM sync_status WHERE tipo = 2 and fecha = '$fecha' and td = ".$_SESSION["temporal_td"]."");
+$vc = $db->query("SELECT * FROM sync_status WHERE tipo = 1 and fecha = '$fecha' and td = ".$_SESSION["temporal_td"]."");
 if($vc->num_rows > 0){ // verifico si ya se subio, sino lo subo
 
 // busca todos los respaldo no subidos y los sube
-    $as = $db->query("SELECT * FROM sync_status WHERE tipo = 2 and ejecutado = 0 and td = ".$_SESSION["temporal_td"]."");
+    $as = $db->query("SELECT * FROM sync_status WHERE tipo = 1 and ejecutado = 0 and td = ".$_SESSION["temporal_td"]."");
     foreach ($as as $bs) {
 
 	        $sync = $bs["hash"];
