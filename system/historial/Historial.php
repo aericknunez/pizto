@@ -483,12 +483,12 @@ class Historial{
 
 
 
-	public function SyncStatus(){
+	public function SyncStatus($url){
 		$db = new dbConn();
 
-				$archivos = glob("sync/db/*.sql");  
+				$archivos = glob($url . "*.sql");  
 			      foreach($archivos as $data){  
-			      	$data = str_replace("sync/db/", "", $data);
+			      	$data = str_replace($url, "", $data);
 			      	$data = str_replace(".sql", "", $data);
 				    $output .= '<li class="list-group-item">' . $data . '</li>';
 			      }

@@ -1,18 +1,22 @@
 $(document).ready(function()
 {
 
-		function Respaldar(){
-                      $.ajax({
-                          type: "POST",
-                          url: "sync/respaldar.php",
-                          success: function(data) {
-                            $("#respaldo").html(data);
-                          }
-                      });
-                  }
 
 
-          Respaldar();
+//// monitorear los respaldos
+    function SyncMonitor(){
+        $.ajax({
+            type: "POST",
+            url: "application/src/routes.php?op=124",
+            success: function(data) {
+            	$('#SyncMonitor').html(data);
+            }
+        });
+    }
+
+//SyncMonitor();
+setInterval(SyncMonitor, 3000);
+///
 
 
 });

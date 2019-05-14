@@ -63,17 +63,14 @@ if($sync != NULL){
 unset($_SESSION["temporal_td"]);
 
 
-if($type == 1){
+if($fecha == date("d-m-Y")){
 echo '<script>
 window.location.href="?corte"
 </script>';
-}
-
-
-if($type != 1){
+} else {
 echo '<script>
-window.location.href="?"
-</script>';
+window.location.href="?respaldos"
+</script>';	
 }
 
 

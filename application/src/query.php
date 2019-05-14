@@ -72,12 +72,9 @@ echo '
 	if($_GET["modal"] == "img_gasto"){
 	echo '<script type="text/javascript" src="assets/js/query/imageup.js?v='.$numero.'"></script>';
 	}
-	if($_GET["modal"] == "respaldar"){
-	echo '<script type="text/javascript" src="assets/js/query/respaldo.js?v='.$numero.'"></script>';
-	}
-
 
 }
+
 
 elseif($_SESSION["caduca"] != 0) {
 echo '<script type="text/javascript" src="assets/js/query/noacceso.js?v='.$numero.'"></script>';
@@ -157,6 +154,9 @@ echo '<script type="text/javascript" src="assets/js/query/facturar.js?v='.$numer
 elseif(isset($_GET["facturasopciones"])) {
 echo '<script type="text/javascript" src="assets/js/query/facturar.js?v='.$numero.'"></script>';
 }
+elseif(isset($_GET["syncstatus"])) {
+echo '<script type="text/javascript" src="assets/js/query/respaldo.js?v='.$numero.'"></script>';
+}
 else{
 /// lo que llevara index
 echo '<script type="text/javascript" src="assets/js/query/ventas.js?v='.$numero.'"></script>';
@@ -180,4 +180,36 @@ $("body").on("click","#cambiar-pantalla-inicio",function(){
 <?php  // entre php
 if(isset($_GET["gsemanal"])) {
 include_once 'system/historial/script.php';
-} ?>
+} 
+
+
+// para el respaldo
+	if($_GET["modal"] == "respaldar"){
+		if($_REQUEST["fecha"] != NULL or $_REQUEST["type"] != NULL){
+			$url = "sync/respaldar.php?fecha=" . $_REQUEST["fecha"] . "&type=" . $_REQUEST["type"];
+		} else {
+			$url = "sync/respaldar.php";
+		}
+		?>
+			<script>
+				$(document).ready(function(){
+
+				function Respaldar(){
+		                      $.ajax({
+		                          type: "POST",
+		                          url: "<?php echo $url; ?>",
+		                          success: function(data) {
+		                            $("#respaldo").html(data);
+		                          }
+		                      });
+		                  }
+
+
+		          Respaldar();
+
+		});
+		</script>
+		<?
+	}
+// termina respaldo	
+?>

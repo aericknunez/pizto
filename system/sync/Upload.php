@@ -126,6 +126,7 @@ class Upload{
 		   	 	$hora = date("H:i:s");
 		   	 	$hash = $fecha."-".$hora ."-" . $_SESSION["temporal_td"];
 		   	 	$hash = md5($hash);
+		   	 	$hash = $_SESSION["temporal_td"] . "-" . $hash;
 
 		   $handle = fopen($hash . ".sql",'w+');
 		   if(fwrite($handle,$resultado)){

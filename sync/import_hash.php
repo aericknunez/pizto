@@ -18,7 +18,11 @@ $archivos = glob("/home/superpol/public_html/pizto.com/admin/sync/db/*.sql");
 			@$db->query($query);
 			}
 			@unlink($archx);
-			   
+
+				// obtener el td segun el nombre del archivo
+			   	$numero = strpos($hash, "-");
+				$td = substr($hash,0,$numero);
+
 			    // compruebo si ya hay registro del sync
 	            $a = $db->query("SELECT * FROM login_sync WHERE hash = '$hash' and edo = 1");
 	            if($a->num_rows == 0){

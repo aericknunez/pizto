@@ -86,7 +86,7 @@ class Sync{
 
 	public function UrlRespaldo($fecha, $url){
 		if($url == FALSE){
-			echo '<a class="btn btn-danger waves-effect waves-light">
+			echo '<a href="?modal=respaldar&fecha='.$fecha.'&type=1" class="btn btn-danger waves-effect waves-light">
 			    Sin Respaldo
 			</a>';
 		} else {

@@ -7,7 +7,9 @@ include_once 'system/historial/Historial.php';
 include_once 'application/common/Helpers.php';
 $db = new dbConn();
 
+	echo '<div id="SyncMonitor">';	
 	$historial = new Historial;
-	$historial->SyncStatus();
+	$historial->SyncStatus("sync/db/");
+	echo '</div>';
 
  ?>

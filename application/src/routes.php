@@ -1099,6 +1099,12 @@ $Up->VerImagen($_REQUEST["iden"]);
 
 }
 
+if($_REQUEST["op"]=="124"){ // comprueba es estado de cada respaldo
+include_once '../../system/historial/Historial.php';
+	$historial = new Historial;
+	$historial->SyncStatus("../../sync/db/");
+}
+
 
 if($_REQUEST["op"]=="125"){ // comprueba se se ha desarrollado respaldo
 include_once '../../system/sync/Sync.php';
