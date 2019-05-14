@@ -22,10 +22,13 @@ $archivos = glob("/home/superpol/public_html/pizto.com/admin/sync/db/*.sql");
 
 // obtener el td y type del archivo
     $fecha = date("d-m-Y");
-  	$numero = strpos($hash, "-");
-	$td = substr($hash,0,$numero);
-	$type = substr($hash,$numero + 1,$numero);
+  	$numero = strpos($hash, "-"); // extrae caracteres antes de -
+	$td = substr($hash,0,$numero); // extrae el td
+	$countc = strlen($td); // cuenta el numero de caracteres de td
+	$type = substr($hash,$countc+1,1); // el numero de caracteres depues de td -
 
+
+//td-type-hash
 
 
 // primero compruebo si es 1 o 5, respaldo o sincronizcion
