@@ -74,7 +74,7 @@ class Mesa{
 				</div>'; 
 			    
 			echo '<div class="row justify-content-md-center">';
-			$a = $db->query("SELECT * FROM ticket WHERE mesa = ". $mesa ." and tx = ".$_SESSION["tx"]." and td = ". $_SESSION["td"] ."");
+			$a = $db->query("SELECT * FROM ticket_temp WHERE mesa = ". $mesa ." and tx = ".$_SESSION["tx"]." and td = ". $_SESSION["td"] ."");
 			$productos = $a->num_rows; $a->close();
 			
 			if($productos == 0){
@@ -102,12 +102,12 @@ class Mesa{
 	public function ClientSelect($mesa){
 			$db = new dbConn();
 
-		$d = $db->selectGroup("cliente, cancela", "ticket", "where mesa = ". $mesa ." and cancela = cliente and tx = ".$_SESSION["tx"]." and num_fac= 0 GROUP BY cliente");
+		$d = $db->selectGroup("cliente, cancela", "ticket_temp", "where mesa = ". $mesa ." and cancela = cliente and tx = ".$_SESSION["tx"]." and num_fac= 0 GROUP BY cliente");
         while($r = $d->fetch_assoc() ) {
         	if($_SESSION["client-asign"] == $r["cliente"]) $imagen = "cliente_select.png";
         	else $imagen = "cliente.png";
 
-        	    $a = $db->query("SELECT sum(total) FROM ticket WHERE mesa=$mesa and cancela=".$r["cliente"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+        	    $a = $db->query("SELECT sum(total) FROM ticket_temp WHERE mesa=$mesa and cancela=".$r["cliente"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
     			foreach ($a as $b) { $total=$b["sum(total)"]; } $a->close();
 
 	     	 echo '<a id="select-cliente" op="52" cliente="'.$r["cliente"].'">
@@ -128,7 +128,7 @@ class Mesa{
         } unset($r); 
 
         for ($x = 1; $x <= $clientes; $x++) {
-        	$a = $db->query("SELECT sum(total) FROM ticket WHERE mesa=$mesa and cancela=".$x." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+        	$a = $db->query("SELECT sum(total) FROM ticket_temp WHERE mesa=$mesa and cancela=".$x." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
     			foreach ($a as $b) { $total=$b["sum(total)"]; } $a->close();
 
           echo '<a id="asign-cliente" op="53" mesa="'. $mesa .'" cliente="'.$x.'">
@@ -148,7 +148,7 @@ class Mesa{
 
 			    $cambio = array();
 			    $cambio["cancela"] = $cancela;
-			    if ($db->update("ticket", $cambio, "WHERE mesa=$mesa and cliente = $cliente and tx = ".$_SESSION["tx"]." and td=". $_SESSION["td"]."")) {
+			    if ($db->update("ticket_temp", $cambio, "WHERE mesa=$mesa and cliente = $cliente and tx = ".$_SESSION["tx"]." and td=". $_SESSION["td"]."")) {
 			       Alerts::Alerta("success","Exito!","Cuenta transferida corectamente!");
 			       unset($_SESSION['client-asign']);
 			    } else {
@@ -167,7 +167,7 @@ class Mesa{
         } unset($r); 
 
         for ($x = 1; $x <= $clientes; $x++) {
-        	$a = $db->query("SELECT sum(total) FROM ticket WHERE mesa=$mesa and cancela=".$x." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
+        	$a = $db->query("SELECT sum(total) FROM ticket_temp WHERE mesa=$mesa and cancela=".$x." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
     			foreach ($a as $b) { $total=$b["sum(total)"]; } $a->close();
     			if($total > 0){
     				echo '<a id="cliente-facturar" op="55" mesa="'. $mesa.'" cliente="'.$x.'">
@@ -190,7 +190,7 @@ class Mesa{
 
 		$a = $db->query("SELECT * FROM opciones_ticket WHERE identificador = $identificador and mesa=$mesa and cod = $codigo and td = ".$_SESSION["td"]."");
     		if($a->num_rows){
-    			 if ($r = $db->select("producto", "ticket", "WHERE id = $identificador and td = " . $_SESSION["td"] . "")) { 
+    			 if ($r = $db->select("producto", "ticket_temp", "WHERE id = $identificador and td = " . $_SESSION["td"] . "")) { 
 		        $producto = $r["producto"]; } unset($r);
 
     			echo '<table class="table table-sm">
@@ -224,7 +224,7 @@ class Mesa{
     		
     		} $a->close();
 
-    		    if ($r = $db->select("cliente", "ticket", "WHERE id = $identificador and td = ".$_SESSION["td"]."")) { 
+    		    if ($r = $db->select("cliente", "ticket_temp", "WHERE id = $identificador and td = ".$_SESSION["td"]."")) { 
 			        $cliente = $r["cliente"];
 			    } unset($r);  
 

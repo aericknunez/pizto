@@ -61,7 +61,7 @@ class Pantallas{
 
 	    } $x->close();
 	    //
-	    if ($r = $db->select("cajero", "ticket", "WHERE id = ".$b["identificador"]."")) { 
+	    if ($r = $db->select("cajero", "ticket_temp", "WHERE id = ".$b["identificador"]."")) { 
         $nombre_mesero = $r["cajero"];
     	} unset($r); 
 
@@ -103,7 +103,7 @@ class Pantallas{
 
 	    } $x->close();
 	    //
-	    if ($r = $db->select("cajero", "ticket", "WHERE id = ".$b["identificador"]."")) { 
+	    if ($r = $db->select("cajero", "ticket_temp", "WHERE id = ".$b["identificador"]."")) { 
         $nombre_mesero = $r["cajero"];
     	} unset($r); 
 		//echo '<h6 class="card-title warning-color">Opciones</h6>';
@@ -201,12 +201,12 @@ class Pantallas{
 		$db = new dbConn();
 
 		if($identificador == NULL){
-		$a = $db->query("SELECT max(id) FROM ticket WHERE td = ".$_SESSION["td"]."");
+		$a = $db->query("SELECT max(id) FROM ticket_temp WHERE td = ".$_SESSION["td"]."");
     	foreach ($a as $b) {
         $identificador=$b["max(id)"];
     	} $a->close(); }
 
-    	if ($r = $db->select("cant, cod", "ticket", "WHERE id = $identificador and mesa=$mesa and cliente=$cliente and td=".$_SESSION["td"]."")) { 
+    	if ($r = $db->select("cant, cod", "ticket_temp", "WHERE id = $identificador and mesa=$mesa and cliente=$cliente and td=".$_SESSION["td"]."")) { 
 		        $cod=$r["cant"]; $producto=$r["cod"];
 		    } unset($r); 
 		

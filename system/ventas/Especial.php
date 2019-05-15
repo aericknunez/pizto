@@ -36,7 +36,7 @@ class Especial{
 	    $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 	    $datos["edo"] = 1;
 	    $datos["td"] = $_SESSION["td"];
-	    if ($db->insert("ticket", $datos)) {
+	    if ($db->insert("ticket_temp", $datos)) {
 	        // Agregamos la factura
 	    }  else {
 	    	echo "Error!!";
@@ -48,8 +48,8 @@ class Especial{
 
 	public function BorrarEspecial($iden) {
 		$db = new dbConn();
-		$db->delete("ticket", "WHERE id='$iden' and td = ".$_SESSION["td"]." limit 1");	
-		$a = $db->query("SELECT * FROM ticket WHERE mesa = ".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
+		$db->delete("ticket_temp", "WHERE id='$iden' and td = ".$_SESSION["td"]." limit 1");	
+		$a = $db->query("SELECT * FROM ticket_temp WHERE mesa = ".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
 		    if($a->num_rows == 0){
 		    	$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 		    	unset($_SESSION["mesa"]);
@@ -65,7 +65,7 @@ class Especial{
 
 		public function BorrarTodo($url) {
 		$db = new dbConn();
-		$db->delete("ticket", "WHERE producto = 'Producto-Especial' and mesa = ".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
+		$db->delete("ticket_temp", "WHERE producto = 'Producto-Especial' and mesa = ".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
 		
 		if($url != NULL){
 		unset($_SESSION["mesa"]);
@@ -100,7 +100,7 @@ class Especial{
 
 	public function VerProductos($mesa){
 		$db = new dbConn();
-		$a = $db->query("SELECT * FROM ticket WHERE producto = 'Producto-Especial' and mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
+		$a = $db->query("SELECT * FROM ticket_temp WHERE producto = 'Producto-Especial' and mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
 		    if($a->num_rows != 0){
 		    	echo '<br><h3>'.$_SESSION['config_cliente'].'</h3>';
 		    	echo '<table class="table table-striped table-sm">

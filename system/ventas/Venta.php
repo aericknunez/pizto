@@ -9,7 +9,7 @@ class Venta{
 	public function ComprobarProducto($cod,$mesa,$cliente) {
 		$db = new dbConn();
 
-		$a = $db->query("SELECT * FROM ticket WHERE cod = '$cod' and mesa = '$mesa' and cliente = '$cliente' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+		$a = $db->query("SELECT * FROM ticket_temp WHERE cod = '$cod' and mesa = '$mesa' and cliente = '$cliente' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 		if($a->num_rows == 0){
 			return FALSE;
 		} else {
@@ -73,7 +73,7 @@ class Venta{
 	    $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 	    $datos["edo"] = 1;
 	    $datos["td"] = $_SESSION["td"];
-	    if ($db->insert("ticket", $datos)) {
+	    if ($db->insert("ticket_temp", $datos)) {
 	        // Agregamos la factura
 	    }  else {
 	    	echo "Error!!";
@@ -86,7 +86,7 @@ class Venta{
 	public function Actualizar($cod,$mesa,$cliente,$imp) {
 		$db = new dbConn();
 
-		if ($r = $db->select("cant, pv", "ticket", "WHERE cod = '$cod' and mesa = '$mesa' and cliente = '$cliente' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) { 
+		if ($r = $db->select("cant, pv", "ticket_temp", "WHERE cod = '$cod' and mesa = '$mesa' and cliente = '$cliente' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) { 
         $cantx=$r["cant"];
         $pv=$r["pv"];        
     	} unset($r); 
@@ -102,7 +102,7 @@ class Venta{
 		    $cambio["stotal"] = $stot;
 		    $cambio["imp"] = $im;
 		    $cambio["total"] = $stot + $im;
-		    if ($db->update("ticket", $cambio, "WHERE cod = '$cod' and mesa = '$mesa' and cliente = '$cliente' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		    if ($db->update("ticket_temp", $cambio, "WHERE cod = '$cod' and mesa = '$mesa' and cliente = '$cliente' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
 		        
 		    } 
 
@@ -151,7 +151,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	    $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 	    $datos["edo"] = 1;
 	    $datos["td"] = $_SESSION["td"];
-	    if ($db->insert("ticket", $datos)) {
+	    if ($db->insert("ticket_temp", $datos)) {
 	        // Agregamos la factura
 	    }
 
@@ -165,13 +165,13 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		$db = new dbConn();
 
 		if($identificador == NULL){
-		$a = $db->query("SELECT max(id) FROM ticket WHERE td = ".$_SESSION["td"]."");
+		$a = $db->query("SELECT max(id) FROM ticket_temp WHERE td = ".$_SESSION["td"]."");
     	foreach ($a as $b) {
         $identificador=$b["max(id)"];
     	} $a->close(); }
 
     	if($cod == NULL){
-    		    if ($r = $db->select("cant", "ticket", "WHERE id = $identificador and mesa=$mesa and cliente=$cliente and td=".$_SESSION["td"]."")) { 
+    		    if ($r = $db->select("cant", "ticket_temp", "WHERE id = $identificador and mesa=$mesa and cliente=$cliente and td=".$_SESSION["td"]."")) { 
 			        $cod=$r["cant"];
 			    } unset($r); }
 		
@@ -222,7 +222,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 
 		if($_SESSION["mesa"] != NULL && !isset($_GET["modal"])) {
 
-		    $a = $db->query("SELECT * FROM ticket WHERE producto != 'Producto-Especial' and mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."  and num_fac= 0");
+		    $a = $db->query("SELECT * FROM ticket_temp WHERE producto != 'Producto-Especial' and mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."  and num_fac= 0");
 		    if($a->num_rows == 0){
 		    echo '<div align="center"><br><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable"></div>';
 		    } else {
@@ -258,7 +258,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    	echo '</tbody>
 					</table>';
 
-				    $s = $db->query("SELECT sum(total) FROM ticket WHERE mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
+				    $s = $db->query("SELECT sum(total) FROM ticket_temp WHERE mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
 				    foreach ($s as $t) {
 				        $max=$t["sum(total)"];
 				    } $s->close();
@@ -324,7 +324,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	public function VerFacturaCliente($mesa,$cancela) {
 		$db = new dbConn();
 
-		    $a = $db->query("SELECT * FROM ticket WHERE producto != 'Producto-Especial' and mesa = '$mesa' and cancela = '$cancela' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
+		    $a = $db->query("SELECT * FROM ticket_temp WHERE producto != 'Producto-Especial' and mesa = '$mesa' and cancela = '$cancela' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
 		    if($a->num_rows == 0){
 		    echo '<br><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable">';
 		    } else {
@@ -351,7 +351,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    	echo '</tbody>
 					</table>';
 
-				    $s = $db->query("SELECT sum(total) FROM ticket WHERE mesa = '$mesa' and cancela = '$cancela' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
+				    $s = $db->query("SELECT sum(total) FROM ticket_temp WHERE mesa = '$mesa' and cancela = '$cancela' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and num_fac= 0");
 				    foreach ($s as $t) {
 				        $max=$t["sum(total)"];
 				    } $s->close();
@@ -388,7 +388,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 
 		if($_SESSION["mesa"] != NULL) {
 
-		    $a = $db->query("SELECT * FROM ticket WHERE producto != 'Producto-Especial' and mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."  and num_fac= 0");
+		    $a = $db->query("SELECT * FROM ticket_temp WHERE producto != 'Producto-Especial' and mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."  and num_fac= 0");
 		    if($a->num_rows == 0){
 		    echo '<div align="center"><br><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable"></div>';
 		    } else { 	
@@ -442,7 +442,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	    // actualizar ticket
 	        $cambio = array();
 		    $cambio["num_fac"] = $ultimon;
-		    if ($db->update("ticket", $cambio, "WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0")) {
+		    if ($db->update("ticket_temp", $cambio, "WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0")) {
 		// agregar ticket num
 		    $datos = array();
 		    $datos["fecha"] = date("d-m-Y");
@@ -462,6 +462,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 
 		    unset($_SESSION["mesa"]);
 
+		    $this->DataCopy($mesa, $ultimon);
+
 		    return TRUE;
 		    }
 		}
@@ -478,7 +480,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	    // actualizar ticket
 	        $cambio = array();
 		    $cambio["num_fac"] = $ultimon;
-		    if ($db->update("ticket", $cambio, "WHERE cancela = $cancela and td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0")) {
+		    if ($db->update("ticket_temp", $cambio, "WHERE cancela = $cancela and td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0")) {
 		// agregar ticket num
 		    $datos = array();
 		    $datos["fecha"] = date("d-m-Y");
@@ -492,26 +494,39 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    $db->insert("ticket_num", $datos);
 
 	    // actualizar mesa
-	    $a = $db->query("SELECT * FROM ticket WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0");
+	    $a = $db->query("SELECT * FROM ticket_temp WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0");
 		if($a->num_rows == 0){
 			$cambio = array();
 		    $cambio["estado"] = "2";
 		    $db->update("mesa", $cambio, "WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa"); 
 
 		    unset($_SESSION["mesa"]);
+
 		}
 		$a->close();
     	    
-
+			 $this->DataCopy($mesa, $ultimon);
 		    return TRUE;
 		    }
 		}
+
+
+
+	public function DataCopy($mesa, $factura){
+		$db = new dbConn();
+			$a = $db->query("INSERT INTO ticket (cod, cant, producto, pv, stotal, imp, total, num_fac, fecha, hora, mesa, cliente, cancela, cajero, tipo_pago, user, gravado, tx, fechaF, edo, td) 
+				SELECT cod, cant, producto, pv, stotal, imp, total, num_fac, fecha, hora, mesa, cliente, cancela, cajero, tipo_pago, user, gravado, tx, fechaF, edo, td 
+				FROM ticket_temp WHERE mesa = '$mesa' and num_fac = '$factura'");
+			unset($a);
+
+		}	
+
 ///////////////////////////////////////////////////////////////////
 	public function BorrarProducto($iden,$imp) {
 		$db = new dbConn();
 		    
 		    // obtengo los datos para poder determinar si actualizo o borro
-		    if ($r = $db->select("cant, pv, cod", "ticket", "WHERE id = '$iden'")) { 
+		    if ($r = $db->select("cant, pv, cod", "ticket_temp", "WHERE id = '$iden'")) { 
         	$cantidad = $r["cant"];
         	$pv = $r["pv"];
         	$codigos = $r["cod"];
@@ -522,7 +537,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				$comprobacion = $a->num_rows; $a->close();
    			 
    			 if($comprobacion > 0){ // si tiene opciones activado. borro todo
-   			 	$db->delete("ticket", "WHERE id='$iden' limit 1");
+   			 	$db->delete("ticket_temp", "WHERE id='$iden' limit 1");
    			 	$db->delete("opciones_ticket", "WHERE identificador='$iden' and td = ".$_SESSION["td"]."");
 
    			 } else { // sino borro o actualizo
@@ -539,9 +554,9 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				    $cambio["stotal"] = $stot;
 				    $cambio["imp"] = $im;
 				    $cambio["total"] =  $stot + $im;
-				    $db->update("ticket", $cambio, "WHERE id='$iden' limit 1");
+				    $db->update("ticket_temp", $cambio, "WHERE id='$iden' limit 1");
 		   			 } else {
-		   			 	    $db->delete("ticket", "WHERE id='$iden' limit 1");
+		   			 	    $db->delete("ticket_temp", "WHERE id='$iden' limit 1");
 		   			 }
 
 		   			 /////////////////////////// borrar si es venta especial
@@ -551,7 +566,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 					////////
 				}
 			// comprueba si aun hay productos en la mesa para eliminar o mantener esta
-   		$x = $db->query("SELECT * FROM ticket WHERE mesa = ".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+   		$x = $db->query("SELECT * FROM ticket_temp WHERE mesa = ".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 			if($x->num_rows == NULL){
 				$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 		        unset($_SESSION["mesa"]);
@@ -568,7 +583,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	public function BorrarFactura($mesa) {
 		$db = new dbConn();
 		    
-		     if ( $db->delete("ticket", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		     if ( $db->delete("ticket_temp", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
 		        
 		        $db->delete("mesa", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 
