@@ -36,7 +36,7 @@ $user=sha1($_SESSION['username']);
         
         $configuracion = new Config;
         $configuracion->CrearVariables(); // creo el resto de variables del sistema
-        
+
         $inicia = new Inicio;
         $inicia->CompruebaIconos("../iconos/", NULL); // creo iconos si no exite el archivo
         

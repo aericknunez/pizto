@@ -2,8 +2,6 @@
 <ul class="collapsible collapsible-accordion">
 
 
-
-
 <?php if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 2  or $_SESSION["tipo_cuenta"] == 5) { ?>
 
 <li><a href="?mesashoy" class="collapsible-header waves-effect arrow-r"><i class="fa fa-connectdevelop"></i> Mesas Hoy</a></li>
@@ -89,10 +87,10 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-exchange"></i> Facturas<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
-<li><a href="?rtn" class="waves-effect"> Agregar RTN</a></li>
+<li><a href="?rtn" class="waves-effect"> Agregar <?php echo $_SESSION['config_nombre_documento']; ?></a></li>
 <li><a href="#" class="waves-effect"> Agregar Exonerado</a></li>
 <li><a href="?facturasopciones" class="waves-effect"> Opciones</a></li>
-<?php if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 2 or $_SESSION["tipo_cuenta"] == 5) { ?>
+<?php if(($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 2 or $_SESSION["tipo_cuenta"] == 5) and $_SESSION['config_pais'] == 2) { // para agregar un cai solo en honduras?>
 <li><a href="?cai" class="waves-effect"> Nuevo CAI</a></li>
 <?php } ?>
 <li><a href="?rango" class="waves-effect"> Imprimir Facturas</a></li>

@@ -8,6 +8,7 @@ include_once 'system/facturar/Facturar.php';
 $facturar = new Facturar; 
 $db = new dbConn();
 
+$doc = $_SESSION['config_nombre_documento'];
 ?>
 
 
@@ -19,24 +20,24 @@ if(isset($_REQUEST["new"])){
 ?>
 <h3>
 <a href="?rtn"class="btn-floating btn-sm blue-gradient"><i class="fa fa-user"></i></a>
-NUEVO RTN
+<?php echo "NUEVO " . $doc; ?>
 </h3>
 
 <form class="text-center border border-light p-3" id="form-rtn" name="form-rtn"> 
-<input type="text" id="cliente" name="cliente" autocomplete="off" class="form-control mb-3" placeholder="Client">  
-<input type="text" id="rtn" name="rtn" autocomplete="off" class="form-control mb-3" placeholder="RTN">
-<button class="btn btn-info btn-block my-4" type="submit" id="btn-rtn" name="btn-rtn">Agregar RTN</button>
+<input type="text" id="cliente" name="cliente" autocomplete="off" class="form-control mb-3" placeholder="Cliente">  
+<input type="text" id="rtn" name="rtn" autocomplete="off" class="form-control mb-3" placeholder="<?php echo $doc; ?>">
+<button class="btn btn-info btn-block my-4" type="submit" id="btn-rtn" name="btn-rtn"><?php echo "Agregar " . $doc; ?></button>
 </form>
 <? 
 } else {
  ?>
 <h3>
 <a href="?rtn&new" class="btn-floating btn-sm blue-gradient"><i class="fa fa-plus"></i></a>
-INGRESAR RTN
+<?php echo "INGRESAR " . $doc; ?>
 </h3>
 
 <form class="text-center border border-light p-3">   
-<input type="text" id="search-box-rtn" name="search-box-rtn" autocomplete="off" class="form-control mb-3" placeholder="Ingresar RTN">
+<input type="text" id="search-box-rtn" name="search-box-rtn" autocomplete="off" class="form-control mb-3" placeholder="<?php echo "Ingresar " . $doc; ?>">
 </form>
 <?php 
 }

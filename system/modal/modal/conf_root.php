@@ -38,13 +38,13 @@ $r = $db->select("*", "config_root", "where td = ".$_SESSION['td']."")
         Servidor FTP
     </small><input type="text" id="ftp_servidor" name="ftp_servidor" class="form-control mb-1" placeholder="Servidor FTP" value="<? echo Encrypt::Decrypt($r["ftp_servidor"],$_SESSION['secret_key']); ?>"></td>
        <td><small id="ftp_path" class="form-text text-muted mb-1">
-        Carpeta
+        Carpeta del archivo local
     </small><input type="text" id="ftp_path" name="ftp_path" class="form-control mb-1" placeholder="Carpeta" value="<? echo Encrypt::Decrypt($r["ftp_path"],$_SESSION['secret_key']); ?>"></td>
   </tr>
 
   <tr>
        <td><small id="ftp_ruta" class="form-text text-muted mb-1">
-        Ruta FTP
+        Ruta de carpeta FTP
     </small><input type="text" id="ftp_ruta" name="ftp_ruta" class="form-control mb-1" placeholder="Ruta FTP" value="<? echo Encrypt::Decrypt($r["ftp_ruta"],$_SESSION['secret_key']); ?>"></td>
        <td><small id="ftp_user" class="form-text text-muted mb-1">
         Usuario FTP
