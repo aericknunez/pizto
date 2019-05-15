@@ -39,6 +39,9 @@ class Corte{
 		   //	Alerts::Alerta("success","Exito!","Se ha ejecutado el corte correctamente!");
 		   	$this->CalcularGastoProductos($fecha);
 
+		   	// eliminar el los datos de ticket_temp
+		   	    $db->query("TRUNCATE ticket_temp");
+
 			   	if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0){
 			   		echo '<script>
 						window.location.href="?modal=respaldar"
