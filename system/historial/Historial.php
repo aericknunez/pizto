@@ -279,7 +279,7 @@ class Historial{
 		$a = $db->query("SELECT * FROM gastos WHERE fecha = '$fecha' and td = ". $_SESSION["td"] ." order by id desc");
 	        	$total=0;
 	        	if($a->num_rows > 0){
-	        echo ' <h3>Detalle :: '.$fecha.'</h3>
+	        echo ' <h3>Detalle gastos del dia : '.$fecha.'</h3>
 
 				<table class="table table-sm table-striped">
 			  <thead>
@@ -346,9 +346,6 @@ class Historial{
 
 			} // num rows
 			$a->close();
-
-
-
 
 			
 

@@ -474,6 +474,7 @@ unset($panel);
 			    <th scope="col">Usuario</th>
 			      <th scope="col">Nombre del Sistema</th>
 			      <th scope="col">Pais</th>
+			      <th scope="col">Corte</th>
 			      <th scope="col">Venta Hoy</th>
 			      <th scope="col">Ultima Actualizacion</th>
 			      <th scope="col">Cambiar</th>
@@ -499,7 +500,8 @@ unset($panel);
 		    echo '<tr>
 		    	  <th scope="col">'.$x["nombre"].'</th>
 			      <th scope="col">'.$r["cliente"].'</th>
-			      <th scope="col">'.Helpers::Pais($r["pais"]).'</th>
+			      <th scope="col">'.Helpers::Pais($r["pais"]).'</th>			      
+			      <th scope="col">'.Inicio::SiCorte().'</th>
 			      <th scope="col">'.Helpers::Dinero($totalventa).'</th>
 			      <th scope="col">'.$update.'</th>
 			      <th scope="col">';

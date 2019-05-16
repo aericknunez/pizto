@@ -4,6 +4,7 @@ include_once 'application/common/Helpers.php';
 include_once 'application/common/Mysqli.php';
 $db = new dbConn();
 
+include_once 'system/corte/Corte.php';
 include_once 'system/index/Inicio.php';
 include_once 'system/config_configuraciones/Config.php';
 $configuracion = new Config;

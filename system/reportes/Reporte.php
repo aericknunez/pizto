@@ -7,7 +7,7 @@ class Reporte{
 	}
 
 
-	public function Contenido($fecha){
+	public function Contenido($fecha){ // para sacar el resumen del dia
 
 		$this->Corte($fecha);
 		$this->ProductosEspeciales($fecha);
