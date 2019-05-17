@@ -51,7 +51,7 @@ $user=sha1($_SESSION['username']);
             unlink($archx);
         }
         //////////////
-    
+        
        $inicia->Caduca(); // revisa si ha caducado
        BuscaRespaldo(); // revisa sy hay respaldos imcompletos
 

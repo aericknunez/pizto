@@ -75,6 +75,8 @@ elseif(isset($_GET["rango"])) include_once 'system/reportes/rango.php';
 
 elseif(isset($_GET["contadora"])) include_once 'system/reportes/contadora.php';
 
+elseif(isset($_GET["update"])) include_once 'system/sync/actualizaciones.php';
+
 // para cambiar el tipo de cuenta (solo rrot)
 elseif(isset($_GET["ctc"])) include_once 'system/config_configuraciones/cambio_tipo_cuenta.php';
 
