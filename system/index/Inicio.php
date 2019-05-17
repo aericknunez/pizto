@@ -351,7 +351,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title">Clave: '.$_SESSION['config_cliente'].'</h4>
-			            <p class="black-text display-4">'.Inicio::Clave().'</p>
+			            <p class="black-text display-3">'.Inicio::Clave().'</p>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
