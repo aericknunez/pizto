@@ -495,13 +495,19 @@ unset($panel);
 		    foreach ($ax as $bx) {
 		     $totalventa=$bx["sum(total)"]; } $ax->close();  
 
+		     // busco si hubo corte
+		     if ($ra = $db->select("fecha", "corte_diario", "where edo = 1 and td = ".$b["sucursal"]." order by id DESC LIMIT 1")) { $fechaultima=$ra["fecha"]; } unset($ra); 
+		     if($fechaultima == date("d-m-Y")) $corte = "Realizado";
+		     else $corte = "Sin corte";
+
+
 	    	$userx = $b["user"];
 	    	$x = $db->select("nombre", "login_userdata", "WHERE user = '$userx'");
 		    echo '<tr>
 		    	  <th scope="col">'.$x["nombre"].'</th>
 			      <th scope="col">'.$r["cliente"].'</th>
 			      <th scope="col">'.Helpers::Pais($r["pais"]).'</th>			      
-			      <th scope="col">'.Inicio::SiCorte().'</th>
+			      <th scope="col">'. $corte .'</th>
 			      <th scope="col">'.Helpers::Dinero($totalventa).'</th>
 			      <th scope="col">'.$update.'</th>
 			      <th scope="col">';
