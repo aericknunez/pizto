@@ -24,6 +24,7 @@ ActualizarSistema()
 	var iden = $(this).attr('iden');
     	$.post("application/src/routes.php", {op:op}, 
     	function(data){
+    	$("#mostrar").show();
 		$("#mostrar").html(data);
 		EscondeLoader();
    	 	});
