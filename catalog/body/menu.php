@@ -61,7 +61,7 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 
 
 
-<?php if($_SESSION["tipo_cuenta"] == 1) { ?>
+<?php if($_SESSION["tipo_cuenta"] == 1 and $_SERVER["SERVER_NAME"] == "pizto.com") { ?>
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-user"></i> Reportes Root<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
