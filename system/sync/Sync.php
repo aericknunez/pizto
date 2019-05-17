@@ -176,7 +176,7 @@ class Sync{
 
 
 	public function ComparaVersiones(){
-				$remoto = "http://www.pizto.com/admin/sync/datesync.txt";
+				$remoto = "https://www.pizto.com/admin/sync/datesync.txt";
 				$file = fopen($remoto, "r");
 				if ($file) { 
 				    $line = fgets($file);
@@ -199,6 +199,8 @@ class Sync{
 					} else {
 						Alerts::Mensaje("Su sistema no se encuentra actualizado. Es necesario actualizar el sistema para corregir errores de seguridad, obtener las ultimas novedades y mejor rendimiento","danger",'<a id="actualizar" op="165" class="btn btn-danger">Actualizar Ahora</a>',NULL);
 					}
+				} else {
+					Alerts::Mensaje("Ocurrio un error al comparar","danger",NULL,NULL);
 				}
 	}
 
