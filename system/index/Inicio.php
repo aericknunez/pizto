@@ -337,9 +337,9 @@ if($_SESSION["caduca"] == 3){
 
 		public function SiCorte(){
 			if(Corte::UltimaFecha() == date("d-m-Y")){
-				return "Realizado";
+				return 'Diferencia corte:<h1>' . Helpers::Dinero(Corte::GetDiferencia(date("d-m-Y"))) . '</h1>';
 			} else {
-				return "Sin Corte";
+				return '<p class="black-text display-4">Sin Corte</p>';
 			}
 	}
 
@@ -360,7 +360,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title red-text">'.Inicio::LastUpdate().'</h4>
-			            <p class="black-text display-4">'.Inicio::SiCorte().'</p>
+			            '.Inicio::SiCorte().'
 			        </div>
 			    </div>
 			    <!--/.Panel-->
@@ -383,7 +383,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title">Total de venta</h4>
-			            <p class="black-text display-4">'. Helpers::Dinero(Inicio::Ventas()) .'</p>
+			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Ventas()) .'</h1>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
@@ -392,7 +392,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title">Gastos</h4>
-			            <p class="black-text display-4">'. Helpers::Dinero(Inicio::Gastos()) .'</p>
+			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Gastos()) .'</h1>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
@@ -401,7 +401,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title">Efectivo</h4>
-			            <p class="black-text display-4">'. Helpers::Dinero(Inicio::Efectivo()) .'</p>
+			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Efectivo()) .'</h1>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
@@ -416,7 +416,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title">Remesas</h4>
-			            <p class="black-text display-4">'. Helpers::Dinero(Inicio::Remesas()) .'</p>
+			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Remesas()) .'</h1>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
@@ -425,7 +425,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title">Cheques</h4>
-			            <p class="black-text display-4">'. Helpers::Dinero(Inicio::Cheques()) .'</p>
+			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Cheques()) .'</h1>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
@@ -434,7 +434,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title">Diferencia</h4>
-			            <p class="black-text display-4">'. Helpers::Dinero(Inicio::Diferencia()) .'</p>
+			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Diferencia()) .'</h1>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
@@ -461,7 +461,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title">Total Tx</h4>
-			            <p class="black-text display-4">'. Helpers::Dinero(Corte::TotalTx(date("d-m-Y"))) .'</p>
+			            <h1 class="black-text">'. Helpers::Dinero(Corte::TotalTx(date("d-m-Y"))) .'</h1>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
@@ -470,7 +470,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			            <h4 class="card-title">Total no Tx</h4>
-			            <p class="black-text display-4">'. Helpers::Dinero(Corte::TotalNoTx(date("d-m-Y"))) .'</p>
+			            <h1 class="black-text">'. Helpers::Dinero(Corte::TotalNoTx(date("d-m-Y"))) .'</h1>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
@@ -479,7 +479,7 @@ if($_SESSION["caduca"] == 3){
 			    <div class="card">
 			        <div class="card-body">
 			        	<h4 class="card-title">Clientes</h4>
-			            <p class="black-text display-4">'.Helpers::Entero(Corte::ClientesHoy(date("d-m-Y"))).'</p>
+			            <h1 class="black-text">'.Helpers::Entero(Corte::ClientesHoy(date("d-m-Y"))).'</h1>
 			        </div>
 			    </div>
 			    <!--/.Panel-->
