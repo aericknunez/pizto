@@ -158,11 +158,9 @@ class Upload{
 	public function  CompruebaSync($fecha){ // verifica si se actualiza todo o solo hoy
 	    $db = new dbConn();
 
-	    $a = $db->query("SELECT * FROM sync_status WHERE tipo = 2 and fecha = '$fecha' and td = ".$_SESSION["temporal_td"]."");
+	    $a = $db->query("SELECT * FROM sync_status WHERE tipo = 1 and fecha = '$fecha' and td = ".$_SESSION["temporal_td"]."");
 			return $a->num_rows;
 			$a->close();
-
-
 
 	}
 
@@ -213,6 +211,7 @@ class Upload{
 		    $db->update("sync", $cambio, "WHERE tabla = '$tabla' and ".$_SESSION["temporal_td"]."");
 
 	}
+
 	public function DelStatus($fecha){ // cuantas vaces se ha actualizado
 	    $db = new dbConn();
 
