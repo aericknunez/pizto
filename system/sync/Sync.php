@@ -175,6 +175,39 @@ class Sync{
 	}
 
 
+	public function ComparaVersiones(){
+				$remoto = "http://www.pizto.com/admin/sync/datesync.txt";
+				$file = fopen($remoto, "r");
+				if ($file) { 
+				    $line = fgets($file);
+				    fclose($file);
+				} else {
+					Alerts::Mensaje("Error en el archivo remoto","danger",NULL,NULL);
+				}
+
+				$local = "../../sync/datesync.txt";
+				$file2 = fopen($local, "r");
+				if ($file2) {    
+				    $line2 = fgets($file2);
+				    fclose($file2);
+				} else {
+					Alerts::Mensaje("Error en el archivo local","danger",NULL,NULL);
+				}
+				if($line != NULL and $line2 != NULL){
+					if($line == $line2){
+					    Alerts::Mensaje("El sistema esta actualizado!","success",NULL,NULL);
+					} else {
+						Alerts::Mensaje("Su sistema no se encuentra actualizado. Es necesario actualizar el sistema para corregir errores de seguridad, obtener las ultimas novedades y mejor rendimiento","danger",'<a id="actualizar" op="165" class="btn btn-danger">Actualizar Ahora</a>',NULL);
+					}
+				}
+	}
+
+
+
+
+
+
+
 
 } // class
 

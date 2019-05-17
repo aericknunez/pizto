@@ -1387,6 +1387,19 @@ if($_REQUEST["op"]=="163"){ // Subir Avatar
 
 
 
+if($_REQUEST["op"]=="164"){ // comparar las versiones del sistema
+	include_once '../../system/sync/Sync.php';
+	$synchro = new Sync; 
+	$synchro->ComparaVersiones();
+}	
+
+
+if($_REQUEST["op"]=="165"){ // actualizar sistema
+	include_once '../../system/sync/Sync.php';
+	$synchro = new Sync; 
+	exec('C:\Windows\System32\cmd.exe /c START C:\AppServ\www\pizto\download.bat');
+	$synchro->ComparaVersiones();
+}
 
 
 
