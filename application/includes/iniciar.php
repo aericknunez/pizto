@@ -37,9 +37,7 @@ $user=sha1($_SESSION['username']);
         $configuracion = new Config;
         $configuracion->CrearVariables(); // creo el resto de variables del sistema
 
-        $inicia = new Inicio;
-        $inicia->CompruebaIconos("../iconos/", NULL); // creo iconos si no exite el archivo
-        
+
         // reviso si hay una BD que actualizar
         $archx = "../../sync/" . $_SESSION['td'] . ".sql";
 
@@ -51,7 +49,9 @@ $user=sha1($_SESSION['username']);
             unlink($archx);
         }
         //////////////
-        
+        $inicia = new Inicio;
+        $inicia->CompruebaIconos("../iconos/", NULL); // creo iconos si no exite el archivo
+               
        $inicia->Caduca(); // revisa si ha caducado
        BuscaRespaldo(); // revisa sy hay respaldos imcompletos
 

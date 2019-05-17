@@ -64,7 +64,7 @@ class Sincronizar{
 	    } $a->close();
 
 	    // elimino los sync si son mas de 4
-	    	if($this->GetStatus($fecha) >= 4){
+	    	if($this->GetStatus($fecha) >= 10){
 				$this->DelStatus($fecha);
 			} 
 

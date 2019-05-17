@@ -1398,6 +1398,10 @@ if($_REQUEST["op"]=="165"){ // actualizar sistema
 	include_once '../../system/sync/Sync.php';
 	$synchro = new Sync; 
 	exec('C:\Windows\System32\cmd.exe /c START C:\AppServ\www\pizto\download.bat');
+	$cambio = array();
+    $cambio["up_fecha"] = date("d-m-Y");
+    $cambio["up_hora"] = date("H:i:s");
+    $db->update("alter_opciones", $cambio, "WHERE td = ".$_SESSION["td"]."");
 	$synchro->ComparaVersiones();
 }
 
