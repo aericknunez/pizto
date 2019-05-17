@@ -16,7 +16,7 @@ class Sincronizar{
 
 	    	$tabla = $b["tabla"];
 	    	//// veo de donde sacare el correlativo
-	    	if($this->GetStatus($fecha) >= 4){
+	    	if($this->GetStatus($fecha) >= 10){
 	    		$corr = $this->GetInicio($tabla);
 	    		$del=TRUE;
 	    	} else {
