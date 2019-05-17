@@ -1,5 +1,3 @@
-"DROP TABLE alter_opciones";
-
 CREATE TABLE IF NOT EXISTS `alter_opciones` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `icono` varchar(50) NOT NULL,
