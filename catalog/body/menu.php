@@ -109,7 +109,7 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 
 <?php if($_SESSION["tipo_cuenta"] != 4) { 
 
-if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) or ($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION["root_plataforma"] == 1)) {
+if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) {
 ?>
 <li><a href="?respaldos" class="collapsible-header waves-effect arrow-r"><i class="fa fa-download"></i> Respaldos </a></li>
 <?php } } ?>
@@ -162,6 +162,10 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 <?php if($_SESSION["tipo_cuenta"] == 1) { ?>
 <li><a href="?root" class="waves-effect">Configuracion Root</a></li>
 <li><a href="?codigos" class="waves-effect">C&oacutedigos de validaci&oacuten</a></li>
+<?php } 
+if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) {
+ ?>
+<li><a href="?update" class="waves-effect">Actualizar Sistema</a></li>
 <?php } ?>
 </ul>
 </div>

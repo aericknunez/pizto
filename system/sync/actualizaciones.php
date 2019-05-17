@@ -9,3 +9,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <img src="assets/img/loading.gif" alt=""></div>
 
 <div id="mostrar"></div>
+
+<a id="actualizar" op="166" class="btn btn-success">Actualizar Archivo de Control</a>

@@ -1402,7 +1402,12 @@ if($_REQUEST["op"]=="165"){ // actualizar sistema
 }
 
 
-
+if($_REQUEST["op"]=="166"){ // actualizar el archivo de control
+	include_once '../../system/sync/Sync.php';
+	$synchro = new Sync; 
+	$synchro->ModificaArchivoSync();
+	$synchro->ComparaVersiones();
+}
 
 
 

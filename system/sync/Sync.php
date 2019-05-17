@@ -203,6 +203,18 @@ class Sync{
 	}
 
 
+	public function ModificaArchivoSync(){
+		$hash = date("d-m-Y-H:i:s");
+		$hash = md5($hash);
+		$local = "../../sync/datesync.txt";
+				$file2 = fopen($local, "w+");
+				if ($file2) {    
+				   fwrite($file2, $hash); 
+				   fclose($file2);
+				}
+	}
+
+
 
 
 
