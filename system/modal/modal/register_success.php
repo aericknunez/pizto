@@ -107,7 +107,7 @@ echo ' <div class="row justify-content-md-center">
       <div class="modal-footer">
         <?php 
         if($_REQUEST["op"] == "actualizar"){
-        echo '<a href="?user" class="btn blue-gradient btn-rounded">Regresar</a>';
+        echo '<a href="?user" class="btn btn-primary btn-rounded">Regresar</a>';
         } ?>
       </div>
 

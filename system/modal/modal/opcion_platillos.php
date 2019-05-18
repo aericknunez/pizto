@@ -44,7 +44,7 @@ $db = new dbConn();
             $url="?view&mesa=".$_REQUEST["mesa"]."&select=".$_REQUEST["cliente"];
           } else {
             $url="?";
-          } echo $url; ?>" class="btn blue-gradient btn-rounded">Regresar</a>
+          } echo $url; ?>" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

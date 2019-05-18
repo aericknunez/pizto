@@ -59,7 +59,7 @@ if($_POST){
       </div>
       <div class="modal-footer">
 
-          <a href="?view&mesa=<?php echo $_GET["mesa"] ?>" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?view&mesa=<?php echo $_GET["mesa"] ?>" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

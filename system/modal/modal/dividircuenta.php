@@ -40,7 +40,7 @@ Para agregar la cuenta a otro cliente, seleccione a la izquiera la cuenta a tran
       </div>
       <div class="modal-footer">
           <a href="?modal=pagar&mesa=<?php echo $_REQUEST["mesa"] ?>" class="btn grey btn-rounded">Facturar</a>
-          <a href="?view&mesa=<?php echo $_REQUEST["mesa"] ?>" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?view&mesa=<?php echo $_REQUEST["mesa"] ?>" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

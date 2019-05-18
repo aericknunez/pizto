@@ -47,7 +47,7 @@ $db = new dbConn();
 <!-- ./  content -->
       </div>
       <div class="modal-footer">
-          <a href="?configuraciones" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?configuraciones" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

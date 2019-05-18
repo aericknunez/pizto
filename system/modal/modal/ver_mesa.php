@@ -30,9 +30,9 @@ $mesas->VerProductoMesas($_REQUEST["m"],$_REQUEST["t"]);
       <div class="modal-footer">
           
           <?php if($_REQUEST["dir"] == 1){
-            echo '<a href="?mesashoy" class="btn blue-gradient btn-rounded">Regresar</a>';
+            echo '<a href="?mesashoy" class="btn btn-primary btn-rounded">Regresar</a>';
           } else {
-            echo '<a href="?mesasfecha" class="btn blue-gradient btn-rounded">Regresar</a>';
+            echo '<a href="?mesasfecha" class="btn btn-primary btn-rounded">Regresar</a>';
           } ?>
           
     

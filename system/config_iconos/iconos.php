@@ -47,7 +47,7 @@ include_once 'system/config_iconos/verproductos.php';
 <form class="form-inline md-form mr-auto mb-4" id="form-addopcion" name="form-addopcion">
   <input type="hidden" name="op" id="op" value="10" />
   <input class="form-control mr-sm-2" type="text" placeholder="Nueva Opcion" aria-label="Search" id="nombre" name="nombre">
-  <button class="btn aqua-gradient btn-rounded btn-sm my-0" id="btn-addopcion" name="btn-addopcion" type="submit">Agregar</button>
+  <button class="btn btn-default btn-rounded btn-sm my-0" id="btn-addopcion" name="btn-addopcion" type="submit">Agregar</button>
 </form>
 
 </div>

@@ -147,7 +147,7 @@ $r = $db->select("*", "config_master", "where td = ".$_SESSION['td']."")
       </div>
       <div class="modal-footer">
 
-          <a href="?configuraciones" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?configuraciones" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

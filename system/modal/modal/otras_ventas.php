@@ -19,7 +19,7 @@
       </div>
       <div class="modal-footer">
 
-          <a href="?" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

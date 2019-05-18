@@ -29,7 +29,7 @@ $iconos->GetReordenar($_REQUEST["popup"]);
       </div>
       <div class="modal-footer">
 
-          <a href="?iconos" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?iconos" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

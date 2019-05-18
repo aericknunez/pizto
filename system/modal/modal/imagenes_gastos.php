@@ -36,7 +36,7 @@ $a = $db->query("SELECT * FROM gastos_images WHERE gasto = ".$_REQUEST["gasto"].
       <div class="modal-footer">
           <a href="?modal=imageup&gasto=2" class="btn green btn-rounded">Agregar Imagenes</a>
 
-          <a href="?gastos" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?gastos" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

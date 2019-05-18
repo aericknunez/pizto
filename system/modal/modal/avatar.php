@@ -40,7 +40,7 @@ $images = glob("assets/img/avatar/*.*");
       </div>
       <div class="modal-footer">
 
-          <a href="?user" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?user" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

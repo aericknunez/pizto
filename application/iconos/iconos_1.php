@@ -46,7 +46,7 @@
 </ul> 
  </div> </div>
       <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
 </ul> 
  </div> </div>
       <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -97,7 +97,7 @@
 </ul> 
  </div> </div>
       <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -124,7 +124,7 @@
 </ul> 
  </div> </div>
       <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -153,7 +153,7 @@
 </ul> 
  </div> </div>
       <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -182,7 +182,7 @@
 </ul> 
  </div> </div>
       <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -223,7 +223,7 @@
 </ul> 
  </div> </div>
       <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -270,7 +270,7 @@
 </ul> 
  </div> </div>
       <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -347,7 +347,7 @@
 </ul> 
  </div> </div>
       <div class="modal-footer">
-        <button type="button" class="btn blue-gradient btn-rounded" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

@@ -33,14 +33,14 @@ if($_SESSION["nclientes"] == NULL){
 
 <br><br>
 <div class="d-flex justify-content-center">
-<a href="application/src/routes.php?op=42" class="btn aqua-gradient btn-rounded">Aceptar</a>
+<a href="application/src/routes.php?op=42" class="btn btn-default btn-rounded">Aceptar</a>
 </div>
 
 <!-- ./  content -->
       </div>
       <div class="modal-footer">
 
-    <a href="application/src/routes.php?op=43" class="btn blue-gradient btn-rounded">Regresar</a>
+    <a href="application/src/routes.php?op=43" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

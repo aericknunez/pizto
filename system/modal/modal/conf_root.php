@@ -93,7 +93,7 @@ $r = $db->select("*", "config_root", "where td = ".$_SESSION['td']."")
       </div>
       <div class="modal-footer">
 
-          <a href="?root" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?root" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

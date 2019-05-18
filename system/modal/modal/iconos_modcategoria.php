@@ -16,7 +16,7 @@ action="?modal=selectimg" >
 
 <input type="text" name="codigo" id="codigo" class="form-control mb-4" placeholder="Codigo" value="<? echo $_REQUEST['cod']; ?>" readonly > 
 
-<input name="Enviar" type="submit" id="Enviar" value="Modificar" class="btn blue-gradient btn-rounded"  onclick="return confirmar('Esta seguro que desea modificar el icono?')" ></li>
+<input name="Enviar" type="submit" id="Enviar" value="Modificar" class="btn btn-primary btn-rounded"  onclick="return confirmar('Esta seguro que desea modificar el icono?')" ></li>
 </form>
 
 <? 
@@ -43,7 +43,7 @@ echo "<br><hr>
       </div>
       <div class="modal-footer">
           <a href="?modal=reordenar&popup=<? echo $_REQUEST["cod"]; ?>" class="btn grey btn-rounded">Reordenar Iconos</a>
-          <a href="?iconos" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?iconos" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

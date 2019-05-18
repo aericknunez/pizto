@@ -39,9 +39,9 @@ $clientes = $r["clientes"];
       <div class="modal-footer">
         <?php 
               if($_REQUEST["view"] == 1){
-                echo '<a href="?view&mesa='.$_REQUEST["mesa"].'" class="btn blue-gradient btn-rounded">Regresar</a>';
+                echo '<a href="?view&mesa='.$_REQUEST["mesa"].'" class="btn btn-primary btn-rounded">Regresar</a>';
               } else {
-                echo '<a href="?" class="btn blue-gradient btn-rounded">Regresar</a>';
+                echo '<a href="?" class="btn btn-primary btn-rounded">Regresar</a>';
               }
          ?>
           

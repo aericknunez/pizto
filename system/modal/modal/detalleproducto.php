@@ -50,7 +50,7 @@ $db = new dbConn();
       </div>
       <div class="modal-footer">
 
-          <a href="?producto&x=3" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?producto&x=3" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>

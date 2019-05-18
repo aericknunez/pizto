@@ -39,7 +39,7 @@
       <div class="modal-footer">
           <a href="?modal=img_gasto&gasto=<?php echo $_REQUEST["gasto"] ?>" class="btn green btn-rounded">Ver Imagenes</a>
 
-          <a href="?gastos" class="btn blue-gradient btn-rounded">Regresar</a>
+          <a href="?gastos" class="btn btn-primary btn-rounded">Regresar</a>
     
       </div>
     </div>
