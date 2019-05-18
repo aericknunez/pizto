@@ -6,10 +6,22 @@ include_once '../application/common/Fechas.php';
 include_once '../application/common/Mysqli.php';
 $db = new dbConn();
 
+// busco el numero de local
+
+    if ($r = $db->select("td", "config_root", "WHERE id = 1")) { 
+        $_SESSION["temporal_td"] = $r["td"];
+    } unset($r);  
+
+
+
 if($_REQUEST["fecha"] == NULL){
 	$fecha = date("d-m-Y");
 } else {
 	$fecha = $_REQUEST["fecha"];
+}
+//////// si hay un respaldo y hay que eliminarlo
+if($_REQUEST["delete"] == 1){
+$db->delete("sync_status", "WHERE tipo = 1 and fecha= '$fecha' and td =".$_SESSION["temporal_td"]."");	
 }
 
 // 1 = tablas diarias , 2 = tablas estaticas, 3 ambas
@@ -18,12 +30,6 @@ if($_REQUEST["type"] == NULL){
 } else {
 	$type = $_REQUEST["type"];
 }
-
-// busco el numero de local
-
-    if ($r = $db->select("td", "config_root", "WHERE id = 1")) { 
-        $_SESSION["temporal_td"] = $r["td"];
-    } unset($r);  
 
 
 // debo eliminar todos los archivos que no se subieron pero que no sean respaldo
@@ -34,7 +40,7 @@ if($_REQUEST["type"] == NULL){
 	    	$fichero = $sync . ".sql";
 
 			if (file_exists($fichero)){ 
-
+					$db->delete("sync_status", "WHERE hash= '$sync' and td =".$_SESSION["temporal_td"]."");
 					@unlink($fichero);
 			}
 

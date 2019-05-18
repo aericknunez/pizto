@@ -170,7 +170,7 @@ class Sync{
 						Alerts::RealizadoRespaldo("Respaldo realizado correctamente");
 					}
 			} else {
-				Alerts::RealizarRespaldo("Aun no se ha realizado un respaldo");
+				Alerts::Mensaje("Aun no se ha realizado un respaldo","danger",'<a href="http://localhost/pizto/?modal=respaldar&delete=1"  class="btn btn-danger waves-effect waves-light">Intentar Nuevamente</a>',$boton2);
 			}
 	}
 

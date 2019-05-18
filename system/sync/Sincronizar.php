@@ -70,7 +70,7 @@ class Sincronizar{
 
 		// guardo el arvivo creado
 	   		 if($counter > 0){
-					    $save =$this->SaveSync($resultado,$fecha,"5");
+					    $save =$this->SaveSync($resultado,$fecha,5);
 					    if($save != NULL){
 					    	return $save;
 					    } else {
