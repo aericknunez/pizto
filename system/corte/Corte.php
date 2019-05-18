@@ -193,7 +193,7 @@ public function CancelarCorte($ramdom,$fecha){
 			    $cambio["edo"] = "2";
 			    if ($db->update("corte_diario", $cambio, "WHERE fecha_format=" . Fechas::Format($fecha))) {
 			    	// borra el sincronizado si existe
-			    	$db->delete("sync_status", "WHERE tipo = 2 and fechaF =" . Fechas::Format($fecha));
+			    	$db->delete("sync_status", "WHERE tipo = 1 and fechaF =" . Fechas::Format($fecha));
 			        $this->RevertirCalcularGastoProductos($fecha);
 					Alerts::Alerta("success","Exito!","Corte Anulado Correctamente");
 			    } else {
