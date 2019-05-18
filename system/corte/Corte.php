@@ -41,6 +41,7 @@ class Corte{
 
 		   	// eliminar el los datos de ticket_temp
 		   	    $db->query("TRUNCATE ticket_temp");
+		   	    $this->EliminarMesasActivas($fecha);
 
 			   	if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0){
 			   		echo '<script>
@@ -108,10 +109,17 @@ class Corte{
 	    	$total = $abi->num_rows; $abi->close();
 		
 		if($total > 0){
-			Alerts::Mensaje("Aun hay mesas sin cancelar, estas pueden afectar el total. No olvide cancelarlas","danger",NULL,NULL);
+			Alerts::Mensaje("Aun hay mesas sin cancelar, estas pueden afectar el total. No olvide cancelarlas. Si continua con el corte todos los datos de las mesas creadas y no canceladas se eliminaran","danger",NULL,NULL);
 		}
 	}
 
+	public function EliminarMesasActivas($fecha){
+		$db = new dbConn();
+	    	    
+	    	    $db->delete("mesa", "WHERE estado = 1 and fecha = '$fecha' and td = " . $_SESSION["td"]);
+
+		}
+//////////
 
 
 	public function ClientesHoy($fecha){
