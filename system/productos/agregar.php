@@ -17,7 +17,7 @@ $db = new dbConn();
     <?php 
     $a = $db->query("SELECT * FROM pro_dependiente ORDER BY id");
     foreach ($a as $b) {
-        echo '<option value='. $b["id"] .'>'. $b["nombre"] .'</option>';
+        echo '<option value='. $b["iden"] .'>'. $b["nombre"] .'</option>';
     }
     $a->close();
      ?>

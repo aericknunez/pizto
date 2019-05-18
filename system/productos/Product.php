@@ -9,21 +9,21 @@ class Product{
 	    $db = new dbConn();
 
 	    // obtener el nombre y detalles del producto
-	   if ($r = $db->select("*", "pro_dependiente", "WHERE id = '$producto' and td = ". $_SESSION["td"] ."")) { 
+	   if ($r = $db->select("*", "pro_dependiente", "WHERE iden = '$producto' and td = ". $_SESSION["td"] ."")) { 
         $nombre = $r["nombre"]; $bruto = $r["producto"]; $cant = $r["cantidad"];
     	} unset($r); 
 
     	// obtengo cuanto hay en inventario para descontar
-    	if ($x = $db->select("nombre, cantidad, um", "pro_bruto", "WHERE id = '$bruto' and td = ". $_SESSION["td"] ."")) { 
+    	if ($x = $db->select("nombre, cantidad, um", "pro_bruto", "WHERE iden = '$bruto' and td = ". $_SESSION["td"] ."")) { 
         $nombre_bruto = $x["nombre"]; $inventario = $x["cantidad"]; $um = $x["um"];} unset($x); 
         $inventario = $inventario - ($cantidad * $cant);
         // unidad de medida
-        if ($s = $db->select("unidad", "pro_unidades_medida", "WHERE id = '$um' and td = ". $_SESSION["td"] ."")) { 
+        if ($s = $db->select("unidad", "pro_unidades_medida", "WHERE iden = '$um' and td = ". $_SESSION["td"] ."")) { 
         $unidadmedida = $s["unidad"]; } unset($s); 
     	// descontar del inventario
     	    $cambio = array();
 		    $cambio["cantidad"] = $inventario;
-		    if ($db->update("pro_bruto", $cambio, "WHERE id='$bruto' and td = ". $_SESSION["td"] ."")) {
+		    if ($db->update("pro_bruto", $cambio, "WHERE iden='$bruto' and td = ". $_SESSION["td"] ."")) {
 			    
 			    $datos = array();
 			    $datos["producto"] = $producto;
@@ -52,15 +52,15 @@ class Product{
 	    $db = new dbConn();
 
 	    // cantidad de historial
-        if ($x = $db->select("producto, cantidad", "pro_historial_averias", "WHERE id = '$iden' and td = ". $_SESSION["td"] ."")) { 
+        if ($x = $db->select("producto, cantidad", "pro_historial_averias", "WHERE iden = '$iden' and td = ". $_SESSION["td"] ."")) { 
         $cantidad = $x["cantidad"]; $producto = $x["producto"]; } unset($x);
 
         // conocer de que producto se desconto
-        if ($s = $db->select("producto, cantidad", "pro_dependiente", "WHERE id = '$producto' and td = ". $_SESSION["td"] ."")) { 
+        if ($s = $db->select("producto, cantidad", "pro_dependiente", "WHERE iden = '$producto' and td = ". $_SESSION["td"] ."")) { 
         $pro_bruto = $s["producto"]; $cant_dependiente = $s["cantidad"]; } unset($s); 
 
         // conocer cuanto es la cantidad que tiene ese bruto
-        if ($z = $db->select("cantidad", "pro_bruto", "WHERE id = '$pro_bruto' and td = ". $_SESSION["td"] ."")) { 
+        if ($z = $db->select("cantidad", "pro_bruto", "WHERE iden = '$pro_bruto' and td = ". $_SESSION["td"] ."")) { 
         $cant_bruto = $z["cantidad"]; } unset($z); 
         $cantidad = $cant_dependiente * $cantidad;
         $descontar = $cant_bruto + $cantidad;
@@ -69,7 +69,7 @@ class Product{
 
 	  	    $cambio = array();
 		    $cambio["cantidad"] = $descontar;
-		    $db->update("pro_bruto", $cambio, "WHERE id=".$pro_bruto." and td = ". $_SESSION["td"] ."");
+		    $db->update("pro_bruto", $cambio, "WHERE iden=".$pro_bruto." and td = ". $_SESSION["td"] ."");
 		        
 		   Alerts::Alerta("success","Agregado Correctamente","Averia agregada y desconta del inventario correctamente!");
 		    }
@@ -116,7 +116,7 @@ class Product{
 			  <tbody>';
 		    foreach ($a as $b) {
 		    // obtener el nombre y detalles del producto
-		if ($r = $db->select("*", "pro_dependiente", "WHERE id = ".$b["producto"]." and td = ". $_SESSION["td"] ."")) { 
+		if ($r = $db->select("*", "pro_dependiente", "WHERE iden = ".$b["producto"]." and td = ". $_SESSION["td"] ."")) { 
         $producto = $r["nombre"]; } unset($r); 
 
 		    	echo '<tr>
@@ -205,27 +205,27 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
 	    $db = new dbConn();
 
 	    // obtener el nombre y detalles del producto
-	   if ($r = $db->select("*", "pro_dependiente", "WHERE id = '$producto' and td = ". $_SESSION["td"] ."")) { 
+	   if ($r = $db->select("*", "pro_dependiente", "WHERE iden = '$producto' and td = ". $_SESSION["td"] ."")) { 
         $nombre = $r["nombre"]; $bruto = $r["producto"]; $cant = $r["cantidad"];
     	} unset($r); 
 
     	// obtengo cuanto hay en inventario para descontar
-    	if ($x = $db->select("nombre, cantidad, um", "pro_bruto", "WHERE id = '$bruto' and td = ". $_SESSION["td"] ."")) { 
+    	if ($x = $db->select("nombre, cantidad, um", "pro_bruto", "WHERE iden = '$bruto' and td = ". $_SESSION["td"] ."")) { 
         $nombre_bruto = $x["nombre"]; $inventario = $x["cantidad"]; $um = $x["um"];} unset($x); 
         $inventario = $inventario + ($cantidad * $cant);
         // unidad de medida
-        if ($s = $db->select("unidad", "pro_unidades_medida", "WHERE id = '$um' and td = ". $_SESSION["td"] ."")) { 
+        if ($s = $db->select("unidad", "pro_unidades_medida", "WHERE iden = '$um' and td = ". $_SESSION["td"] ."")) { 
         $unidadmedida = $s["unidad"]; } unset($s); 
     	// descontar del inventario
     	    $cambio = array();
 		    $cambio["cantidad"] = $inventario;
-		    if ($db->update("pro_bruto", $cambio, "WHERE id='$bruto' and td = ". $_SESSION["td"] ."")) {
+		    if ($db->update("pro_bruto", $cambio, "WHERE iden='$bruto' and td = ". $_SESSION["td"] ."")) {
 			    
 			    $datos = array();
 			    $datos["producto"] = $producto;
 			    $datos["cantidad"] = $cantidad;
 			    $datos["comentarios"] = $comentarios;
-			    $datos["descuenta"] = "- " . $cantidad * $cant . " " .$unidadmedida. " a " . $nombre_bruto ;
+			    $datos["descuenta"] = "+ " . $cantidad * $cant . " " .$unidadmedida. " a " . $nombre_bruto ;
 			    $datos["fecha"] = date("d-m-Y");
 			    $datos["hora"] = date("H:i:s");
 			    $datos["usuario"] = $_SESSION["nombre"];
@@ -252,11 +252,11 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
         $cantidad = $x["cantidad"]; $producto = $x["producto"]; } unset($x);
 
         // conocer de que producto se desconto
-        if ($s = $db->select("producto, cantidad", "pro_dependiente", "WHERE id = '$producto' and td = ". $_SESSION["td"] ."")) { 
+        if ($s = $db->select("producto, cantidad", "pro_dependiente", "WHERE iden = '$producto' and td = ". $_SESSION["td"] ."")) { 
         $pro_bruto = $s["producto"]; $cant_dependiente = $s["cantidad"]; } unset($s); 
 
         // conocer cuanto es la cantidad que tiene ese bruto
-        if ($z = $db->select("cantidad", "pro_bruto", "WHERE id = '$pro_bruto' and td = ". $_SESSION["td"] ."")) { 
+        if ($z = $db->select("cantidad", "pro_bruto", "WHERE iden = '$pro_bruto' and td = ". $_SESSION["td"] ."")) { 
         $cant_bruto = $z["cantidad"]; } unset($z); 
         $cantidad = $cant_dependiente * $cantidad;
         $descontar = $cant_bruto - $cantidad;
@@ -265,7 +265,7 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
 
 	  	    $cambio = array();
 		    $cambio["cantidad"] = $descontar;
-		    $db->update("pro_bruto", $cambio, "WHERE id=".$pro_bruto." and td = ". $_SESSION["td"] ."");
+		    $db->update("pro_bruto", $cambio, "WHERE iden=".$pro_bruto." and td = ". $_SESSION["td"] ."");
 		        
 		   Alerts::Alerta("success","Agregado Correctamente","Producto Eliminado correctamente!");
 		    }
@@ -301,7 +301,7 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
 			    <tr>
 			      <th scope="col">Producto</th>
 			      <th scope="col">Cantidad</th>
-			      <th scope="col">Descuenta</th>
+			      <th scope="col">Agrega</th>
 			      <th scope="col">Comentarios</th>
 			      <th scope="col">Fecha</th>
 			      <th scope="col">Hora</th>
@@ -312,7 +312,7 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
 			  <tbody>';
 		    foreach ($a as $b) {
 		    // obtener el nombre y detalles del producto
-		if ($r = $db->select("*", "pro_dependiente", "WHERE id = ".$b["producto"]." and td = ". $_SESSION["td"] ."")) { 
+		if ($r = $db->select("*", "pro_dependiente", "WHERE iden = ".$b["producto"]." and td = ". $_SESSION["td"] ."")) { 
         $producto = $r["nombre"]; } unset($r); 
 
 		    	echo '<tr>
