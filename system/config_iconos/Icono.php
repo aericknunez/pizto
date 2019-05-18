@@ -89,17 +89,17 @@ class Icono{
 		$cambio = array();
 		    $cambio["nombre"] = $nombre;
 		    $cambio["categoria"] = $popup;
-		    $db->update("producto", $cambio, "WHERE cod='".$cod."'");
+		    $db->update("producto", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$cambio = array();
 		    $cambio["nombre"] = $nombre;
 		    $cambio["cat"] = $_REQUEST["popup"];
-		    $db->update("precios", $cambio, "WHERE cod='".$cod."'");
+		    $db->update("precios", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$cambio = array();
 		    $cambio["img_name"] = $imagen;
 		    $cambio["popup"] = $popup;
-		    $db->update("images", $cambio, "WHERE cod='".$cod."'");
+		    $db->update("images", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$db->close();
 
@@ -112,11 +112,11 @@ class Icono{
 
 		$cambio = array();
 		    $cambio["categoria"] = $nombre;
-		    $db->update("categorias", $cambio, "WHERE cod='".$cod."'");
+		    $db->update("categorias", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$cambio = array();
 		    $cambio["img_name"] = $imagen;
-		    $db->update("images", $cambio, "WHERE cod='".$cod."'");
+		    $db->update("images", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$db->close();
 
@@ -128,9 +128,9 @@ class Icono{
 	public function DelProducto($cod){
     	$db = new dbConn();
 
-		$db->delete("producto", "WHERE cod='".$cod."'");
-		$db->delete("precios", "WHERE cod='".$cod."'");
-		$db->delete("images", "WHERE cod='".$cod."'");
+		$db->delete("producto", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+		$db->delete("precios", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+		$db->delete("images", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
 		// para despues que este comida empleado
 		// $db->delete("comida_empleado_ico", "WHERE cod='".$_REQUEST["cod"]."'")
 
@@ -139,12 +139,12 @@ class Icono{
 
 	public function DelCategoria($cod){
     	$db = new dbConn();
-			$db->delete("popup", "WHERE cod='".$cod."'");
-			$db->delete("images", "WHERE cod='".$cod."'");
+			$db->delete("popup", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+			$db->delete("images", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
 
 			$cambio = array();
 			    $cambio["popup"] = "0";
-			    $db->update("images", $cambio, "WHERE popup='".$cod."'");
+			    $db->update("images", $cambio, "WHERE popup='$cod' and td = ".$_SESSION["td"]."");
 
 			$db->close();
     	}
@@ -153,7 +153,7 @@ class Icono{
    public function GetCategoria(){
    	$db = new dbConn();
    	// para obtener el ultimo codigo
-	$ac = $db->query("SELECT max(cod) FROM categorias");
+	$ac = $db->query("SELECT max(cod) FROM categorias WHERE td = ".$_SESSION["td"]."");
 	    foreach ($ac as $bc) {
 	      $ultimocod=$bc["max(cod)"]+1;
 	      if($ultimocod == 1) return 9901;
@@ -165,7 +165,7 @@ class Icono{
 	public function GetImagenNum(){
    	$db = new dbConn();
    	// para obtener el ultimo codigo
-		$a = $db->query("SELECT max(img_order) FROM images");
+		$a = $db->query("SELECT max(img_order) FROM images WHERE td = ".$_SESSION["td"]."");
 	    foreach ($a as $b) {
 	        return $b["max(img_order)"]+1;
 	    }
@@ -177,7 +177,7 @@ class Icono{
 	public function GetCodigoProducto(){
    	$db = new dbConn();
    	// para obtener el ultimo codigo
-		$ac = $db->query("SELECT max(cod) FROM producto");
+		$ac = $db->query("SELECT max(cod) FROM producto WHERE td = ".$_SESSION["td"]."");
     	foreach ($ac as $bc) {
       $ultimocod=$bc["max(cod)"]+1;
       if($ultimocod == 1) return 1001;
@@ -189,7 +189,7 @@ class Icono{
 	public function GetUltimaOpcion(){
    	$db = new dbConn();
    	// para obtener numero de opcion
-		$ac = $db->query("SELECT max(cod) FROM opciones");
+		$ac = $db->query("SELECT max(cod) FROM opciones WHERE td = ".$_SESSION["td"]."");
     	foreach ($ac as $bc) {
 	      $ultimocod=$bc["max(cod)"]+1;
 	      if($ultimocod == 1) return 1;
@@ -202,7 +202,7 @@ class Icono{
 	public function GetUltimaOpcionName(){
    	$db = new dbConn();
    	// para obtener numero de opcion
-		$ac = $db->query("SELECT max(cod) FROM opciones_name");
+		$ac = $db->query("SELECT max(cod) FROM opciones_name WHERE td = ".$_SESSION["td"]."");
 	    foreach ($ac as $bc) {
 	    	$opultima=$bc["max(cod)"]+1;
 	    	if($opultima == 1) return 101;
@@ -252,7 +252,7 @@ class Icono{
 
 	public function VerOpciones(){
    	$db = new dbConn();
-	   	$a = $db->query("SELECT * FROM opciones");
+	   	$a = $db->query("SELECT * FROM opciones WHERE td = ".$_SESSION["td"]."");
           echo '<div class="table-responsive-sm">
             <table class="table">
               <thead>
@@ -284,7 +284,7 @@ class Icono{
 
 	public function VerOpcionesName($cod){
    	$db = new dbConn();
-	   	$a = $db->query("SELECT * FROM opciones_name where opcion='$cod'");
+	   	$a = $db->query("SELECT * FROM opciones_name where opcion='$cod' and td = ".$_SESSION["td"]."");
           echo '<div class="table-responsive-sm">
             <table class="table">
               <thead>
@@ -316,9 +316,9 @@ class Icono{
 
 	public function DelOpciones($cod){
     	$db = new dbConn();
-			$db->delete("opciones", "WHERE cod='".$cod."'");
-			$db->delete("opciones_name", "WHERE opcion='".$cod."'");
-			$db->delete("opciones_asig", "WHERE opcion='".$cod."'");
+			$db->delete("opciones", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+			$db->delete("opciones_name", "WHERE opcion='$cod' and td = ".$_SESSION["td"]."");
+			$db->delete("opciones_asig", "WHERE opcion='$cod' and td = ".$_SESSION["td"]."");
 			$db->close();
 			$this->VerOpciones();
     	}
@@ -326,8 +326,8 @@ class Icono{
 
 	public function DelOpcionesName($cod){
     	$db = new dbConn();
-			$db->delete("opciones_name", "WHERE cod='".$cod."'");
-			$db->delete("opciones_asig", "WHERE opcion='".$cod."'");
+			$db->delete("opciones_name", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+			$db->delete("opciones_asig", "WHERE opcion='$cod' and td = ".$_SESSION["td"]."");
 			$db->close();
 			$this->VerOpcionesName();
     	}
@@ -339,7 +339,7 @@ class Icono{
 	public function GetReordenar($popup){
     	$db = new dbConn();
 
-    	$a = $db->query("SELECT * FROM images WHERE popup = $popup and td = ".$_SESSION["td"]." ORDER BY img_order ASC");
+    	$a = $db->query("SELECT * FROM images WHERE popup = '$popup' and td = ".$_SESSION["td"]." ORDER BY img_order ASC");
 	    foreach ($a as $b) {
 	    
 		if ($r = $db->select("nombre", "producto", "WHERE cod = ".$b["cod"]." and td = ".$_SESSION["td"]."")) { $producto = $r["nombre"];  } unset($r);
@@ -359,7 +359,7 @@ class Icono{
 			
 			$cambio = array();
 		    $cambio["img_order"] = $count;
-		    $db->update("images", $cambio, "WHERE id=$id");
+		    $db->update("images", $cambio, "WHERE id='$id' and td = ".$_SESSION["td"]."");
 
 			$count ++;	
 		} $a->close();
