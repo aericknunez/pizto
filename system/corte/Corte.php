@@ -99,6 +99,21 @@ class Corte{
 		return $total;
 	}
 
+
+//////////// 
+
+	public function MesasAbiertas($fecha){
+		$db = new dbConn();
+	    	$abi = $db->query("SELECT * FROM mesa WHERE estado = 1 and td = ".$_SESSION["td"]." and fecha = '$fecha'"); 
+	    	$total = $abi->num_rows; $abi->close();
+		
+		if($total > 0){
+			Alerts::Mensaje("Aun hay mesas sin cancelar, estas pueden afectar el total. No olvide cancelarlas","danger",NULL,NULL);
+		}
+	}
+
+
+
 	public function ClientesHoy($fecha){
 		$db = new dbConn();
 	        $a = $db->query("SELECT sum(clientes) FROM mesa WHERE td = ".$_SESSION["td"]." and fecha = '$fecha'");

@@ -13,6 +13,7 @@ $db = new dbConn();
 <div align="center" id="contenido">
 <?php 
 $cortes = new Corte;
+$cortes->MesasAbiertas(date("d-m-Y")); // mensaje de verificacion de mesas abiertas
 $cortes->Contenido(date("d-m-Y"));
 
  ?>
