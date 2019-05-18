@@ -121,5 +121,19 @@ return false;
 
 
 
+//////////////////////// dar seguimiento a materia prima
+	$("body").on("click","#cambiar-materia",function(){
+	var op = $(this).attr('op');
+	var iden = $(this).attr('iden');
+	var cod = $(this).attr('cod');
+    $.post("application/src/routes.php", {op:op, iden:iden, cod:cod}, function(htmlexterno){
+	$("#productos").html(htmlexterno);
+   	 });
+
+	});
+
+
+
+
 
 });

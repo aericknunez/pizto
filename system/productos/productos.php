@@ -48,9 +48,9 @@ Esta secci&oacuten es solamente para agregar el producto por primera vez
    <select id="unidad" name="unidad" class="browser-default form-control mb-2" required="yes">
     <option disabled selected>Unidades de Media</option>
     <?php 
-    $a = $db->query("SELECT * FROM pro_unidades_medida ORDER BY id");
+    $a = $db->query("SELECT * FROM pro_unidades_medida ORDER BY iden");
     foreach ($a as $b) {
-        echo '<option value='. $b["id"] .'>'. $b["unidad"] .'</option>';
+        echo '<option value='. $b["iden"] .'>'. $b["unidad"] .'</option>';
     }
     $a->close();
      ?>
@@ -99,7 +99,7 @@ Esta secci&oacuten es solamente para agregar el producto por primera vez
     <?php 
     $a = $db->query("SELECT * FROM pro_bruto ORDER BY id");
     foreach ($a as $b) {
-        echo '<option value='. $b["id"] .'>'. $b["nombre"] .'</option>';
+        echo '<option value='. $b["iden"] .'>'. $b["nombre"] .'</option>';
     }
     $a->close();
      ?>

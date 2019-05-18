@@ -323,16 +323,16 @@ public function CancelarCorte($ramdom,$fecha){
 	    	$ax = $db->query("SELECT dependiente FROM pro_asignado WHERE cod = ".$b["cod"]." and td = ".$_SESSION["td"]."");
 	   		 foreach ($ax as $bx) {
 	   		 		//  paso 3 ver cantidad de guarnicion
-	   		 	if ($r = $db->select("cantidad, producto", "pro_dependiente", "WHERE id = ".$bx["dependiente"]." and td = ".$_SESSION["td"]."")) { 
+	   		 	if ($r = $db->select("cantidad, producto", "pro_dependiente", "WHERE iden = ".$bx["dependiente"]." and td = ".$_SESSION["td"]."")) { 
 	   		 		// paso 4 // actualizar el registro
 	   		 			 
-	   		 			if ($x = $db->select("cantidad", "pro_bruto", "WHERE id=".$r["producto"]." and td = ".$_SESSION["td"]."")) { 
+	   		 			if ($x = $db->select("cantidad", "pro_bruto", "WHERE iden=".$r["producto"]." and td = ".$_SESSION["td"]."")) { 
 	   		 			 	// resto la cantidad encontrada menos la cantidad ocupada
         				$cantidadx=$b["cant"] * $r["cantidad"]; 
 	   		 			
 		   		 		$cambio = array();
 					    $cambio["cantidad"] = $x["cantidad"] - $cantidadx;
-					    $db->update("pro_bruto", $cambio, "WHERE id=".$r["producto"]." and td = ".$_SESSION["td"]."");
+					    $db->update("pro_bruto", $cambio, "WHERE iden=".$r["producto"]." and td = ".$_SESSION["td"]."");
 					    }
         				unset($x); 
 					    // Termina paso 4
@@ -360,15 +360,15 @@ public function CancelarCorte($ramdom,$fecha){
 	    	$ax = $db->query("SELECT dependiente FROM pro_asignado WHERE cod = ".$b["cod"]." and td = ".$_SESSION["td"]."");
 	   		 foreach ($ax as $bx) {
 	   		 		//  paso 3 ver cantidad de guarnicion
-	   		 	if ($r = $db->select("cantidad, producto", "pro_dependiente", "WHERE id = ".$bx["dependiente"]." and td = ".$_SESSION["td"]."")) { 
+	   		 	if ($r = $db->select("cantidad, producto", "pro_dependiente", "WHERE iden = ".$bx["dependiente"]." and td = ".$_SESSION["td"]."")) { 
 	   		 		// paso 4 // actualizar el registro
-	   		 			 if ($x = $db->select("cantidad", "pro_bruto", "WHERE id=".$r["producto"]." and td = ".$_SESSION["td"]."")) { 
+	   		 			 if ($x = $db->select("cantidad", "pro_bruto", "WHERE iden =".$r["producto"]." and td = ".$_SESSION["td"]."")) { 
 	   		 			 	// resto la cantidad encontrada menos la cantidad ocupada
         				$cantidadx=$b["cant"] * $r["cantidad"]; 
 	   		 			
 		   		 		$cambio = array();
 					    $cambio["cantidad"] = $x["cantidad"] + $cantidadx;
-					    $db->update("pro_bruto", $cambio, "WHERE id=".$r["producto"]." and td = ".$_SESSION["td"]."");
+					    $db->update("pro_bruto", $cambio, "WHERE iden=".$r["producto"]." and td = ".$_SESSION["td"]."");
 					    }
         				unset($x); 
 	   		 		// Termina paso 4

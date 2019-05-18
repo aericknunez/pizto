@@ -62,9 +62,6 @@ return false;
 	});
 
 
-});
-
-
 
 
 	$('#btn-cuentas').click(function(e){ /// para el formulario
@@ -103,4 +100,17 @@ return false;
     $.post("application/src/routes.php", {op:op, iden:iden}, function(htmlexterno){
 	$("#cuentas").html(htmlexterno);
    	 });
+});
+
+
+
+
+
+
+
+
+
+
+
+
 });

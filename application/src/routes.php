@@ -442,7 +442,6 @@ if($_REQUEST["op"]=="35"){ // Borrar gasto
 }
 
 
-
 if($_REQUEST["op"]=="36"){ // Agregar Porciones a un producto
 	if(isset($_POST["producto"])){
 		include_once '../../system/productos/Producto.php';
@@ -455,7 +454,7 @@ if($_REQUEST["op"]=="36"){ // Agregar Porciones a un producto
 if($_REQUEST["op"]=="37"){ // Agregar Porciones a un producto
 include_once '../../system/productos/Producto.php';
 $productos = new Producto;
-$productos->BorrarPorcionProducto($_POST["iden"]);
+$productos->BorrarPorcionProducto($_POST["iden"],$_POST["cod"]);
 } 
 
 
@@ -1412,6 +1411,15 @@ if($_REQUEST["op"]=="166"){ // actualizar el archivo de control
 	$synchro->ModificaArchivoSync();
 	$synchro->ComparaVersiones();
 }
+
+
+if($_REQUEST["op"]=="167"){ // dar seguimiento a materia prima
+	include_once '../../system/productos/Producto.php';
+	$productos = new Producto;
+	$productos-> SeguirMateria($_REQUEST["cod"], $_REQUEST["iden"]);
+}
+
+
 
 
 

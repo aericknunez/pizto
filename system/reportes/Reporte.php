@@ -10,6 +10,7 @@ class Reporte{
 	public function Contenido($fecha){ // para sacar el resumen del dia
 
 		$this->Corte($fecha);
+		$this->CalculaMateriaPrima($fecha);
 		$this->ProductosEspeciales($fecha);
 		Historial::HistorialGDiario($fecha);
 		$this->VentaEspecial($fecha);
@@ -440,6 +441,58 @@ class Reporte{
 
 
 
+	public function CalculaMateriaPrima($fecha){
+		$db = new dbConn();
+		    $a = $db->query("SELECT * FROM alter_materiaprima_reporte WHERE td = ". $_SESSION["td"]. " order by id desc");
+		    if($a->num_rows > 0){
+		    	echo "<h2>Productos especiales vendidos</h2>";
+		    	 echo '<table class="table table-sm table-striped">
+			  <thead>
+			    <tr>
+			      <th scope="col">Producto</th>
+			      <th scope="col">Cantidad</th>
+			    </tr>
+			  </thead>
+			  <tbody>';
+			    foreach ($a as $b) {
+			    	// obtengo el nombre del producto
+			    	    if ($r = $db->select("nombre", "pro_bruto", "WHERE iden = ". $b["producto"] ." and td = ". $_SESSION["td"]. "")) { $nombre = $r["nombre"]; } unset($r); 
+			    	// calculo cuanto producto se vendio
+			    	    	$cantidadx = 0;
+			    	   // * cuales son los dependientes y cuanto ocupan del materia prima
+			    	        $adep = $db->query("SELECT * FROM pro_dependiente WHERE producto = ". $b["producto"] ." and td = ". $_SESSION["td"]. "");
+							    foreach ($adep as $bdep) {
+							        $idend = $bdep["iden"]; $cantd = $bdep["cantidad"];
+					    // * busco los productos que tienen asignado esa dependiente y multiplico cantidad por productos
+							           $ar = $db->query("SELECT * FROM pro_asignado WHERE dependiente = '$idend' and td = ". $_SESSION["td"]. "");
+									    foreach ($ar as $br) {
+									        $productox = $br["cod"];
+									        // busco cuantos productos se vendieron
+									            if ($prod = $db->select("sum(cant)", "ticket", "WHERE fecha = '$fecha' and cod = '$productox' and edo = 1 and td = ". $_SESSION["td"]. "")) { 
+											        $cantidad = $prod["sum(cant)"];
+											        $cantidades = $cantd * $cantidad;
+											        $cantidadx = $cantidadx + $cantidades;
+											        unset($cantidades);
+											    }  unset($prod);  
+									    } $ar->close();
+
+
+
+							} $adep->close();
+
+			        $producto = $b["producto"];
+		
+			        echo '<tr>
+			      <th scope="row">'. $nombre .'</th>
+			      <td>'. $cantidadx .'</td>
+			    </tr>';
+			    
+			    } 
+			    echo '</tbody>
+		    	</table>';
+			} $a->close();
+
+	}
 
 
 

@@ -13,6 +13,10 @@ class Producto{
 		    $datos["abreviacion"] = $abreviacion;
 		    $datos["td"] = $_SESSION["td"];
 		    if ($db->insert("pro_unidades_medida", $datos)) {
+		    		$i = $db->insert_id();
+		    	    $cambio = array();
+				    $cambio["iden"] =  $i;
+		    	$db->update("pro_unidades_medida", $cambio, "WHERE id=" . $i);
 		       Alerts::Alerta("success","Agregado Correctamente","Unidad de medida Agregado corectamente!");
 		    }else {
 			    	Alerts::Alerta("danger","Error","Error desconocido, no se agrego el registro!");
@@ -145,6 +149,10 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		     $datos["cantidad"] = $cantidad;
 		    $datos["td"] = $_SESSION["td"];
 		    if ($db->insert("pro_dependiente", $datos)) {
+		    	$i = $db->insert_id();
+		    	    $cambio = array();
+				    $cambio["iden"] =  $i;
+		    	$db->update("pro_dependiente", $cambio, "WHERE id=" . $i);
 		       Alerts::Alerta("success","Agregado Correctamente","Porcion de medida Agregado corectamente!");
 		    }else {
 			    	Alerts::Alerta("danger","Error","Error desconocido, no se agrego el registro!");
@@ -188,7 +196,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 			  <tbody>';
 		    foreach ($a as $b) {
 		    
-		    if ($r = $db->select("nombre", "pro_bruto", "WHERE id = ".$b["producto"]." and td = ".$_SESSION["td"]."")) { 
+		    if ($r = $db->select("nombre", "pro_bruto", "WHERE iden = ".$b["producto"]." and td = ".$_SESSION["td"]."")) { 
 		        $producto = $r["nombre"];
 		    } unset($r); 
 
@@ -286,10 +294,14 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 
 	         $datos = array();
 		    $datos["nombre"] = $nombre;		    
-		     $datos["cantidad"] = $cantidad;
+		    $datos["cantidad"] = $cantidad;
 		     $datos["um"] = $unidad;
 		    $datos["td"] = $_SESSION["td"];
 		    if ($db->insert("pro_bruto", $datos)) {
+		    	$i = $db->insert_id();
+		    	    $cambio = array();
+				    $cambio["iden"] =  $i;
+		    	$db->update("pro_bruto", $cambio, "WHERE id=" . $i);
 		       Alerts::Alerta("success","Agregado Correctamente","Materia de medida Agregado corectamente!");
 		    }else {
 			    	Alerts::Alerta("danger","Error","Error desconocido, no se agrego el registro!");
@@ -327,24 +339,36 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 			      <th scope="col">Nombre</th>
 			      <th scope="col">Cantidad</th>
 			      <th scope="col">Unidad</th>
-			      <th>Del</th>
-			    </tr>
+			      <th>Del</th>';
+			      if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5 or $_SESSION["tipo_cuenta"] == 2) {
+		     	echo '<th>Seguir</th>';
+			     }
+			     echo '</tr>
 			  </thead>
 			  <tbody>';
 	    foreach ($a as $b) {
 
-	    	if ($r = $db->select("abreviacion", "pro_unidades_medida", "WHERE id = ".$b["um"]." and td = ".$_SESSION["td"]."")) { 
+	    	if ($r = $db->select("abreviacion", "pro_unidades_medida", "WHERE iden = ".$b["um"]." and td = ".$_SESSION["td"]."")) { 
 		        $uni = $r["abreviacion"];
 		    } unset($r);
-
+		    	
 	    		echo '<tr>
 			      <th scope="row">'. $b["nombre"] .'</th>
 			      <td>'. $b["cantidad"] .'</td>
 			      <td>'. $uni .'</td>
 			      <td><a id="borrar-materia" op="35" iden="'. $b["id"] .'">
 				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
-				      </a></td>
-			    </tr>';
+				  </a></td>';
+				  // para materia prima
+			    if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5 or $_SESSION["tipo_cuenta"] == 2) {
+				     
+				     $at = $db->query("SELECT * FROM alter_materiaprima_reporte WHERE producto = ". $b["iden"] ." and td =  ". $_SESSION['td'] ."");
+	    		if($at->num_rows != 0){ $colore = "green"; $act = "Activo"; } else { $colore = "red"; $act = "Inactivo"; } $at->close();	
+
+				     	echo '<td><a id="cambiar-materia" op="167" cod="'. $b["iden"] .'" iden="'.$npagina.'"><span class="badge badge-pill '.$colore.'">'.$act.'</span></a></td>';
+				   /// termina lo de materia prima  
+				}
+			    echo '</tr>';
 	        unset($uni);
 		    } echo '</tbody>
 		    		 </table>';
@@ -425,6 +449,36 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 
 
 
+		public function SeguirMateria($id, $iden) { // para saber a cuales productos sigo
+		$db = new dbConn();
+
+		    	$a = $db->query("SELECT * FROM alter_materiaprima_reporte WHERE producto = '$id' and td = ".$_SESSION["td"]."");
+		if($a->num_rows == 0){
+
+		    $datos = array();
+		    $datos["producto"] = $id;
+		    $datos["td"] = $_SESSION["td"];
+		    if ($db->insert("alter_materiaprima_reporte", $datos)) {
+		      Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido cambiado correctamente");
+		    } else {
+			        Alerts::Alerta("error","Error","Ha ocurrido un error desconocido"); 
+			    }
+
+		} else {
+
+			    if ( $db->delete("alter_materiaprima_reporte", "WHERE producto=" . $id)) {
+			        Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido eliminado correctamente"); 
+			    } else {
+			        Alerts::Alerta("error","Error","Ha ocurrido un error desconocido"); 
+			    } 
+
+		}
+		$a->close();
+		    
+		    $this->VerMateria($iden);
+
+   		}
+
 
 
 	public function VerPlatillos($npagina){
@@ -484,7 +538,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
       
 	       if ($rx = $db->select("panel", "control_panel_mostrar", "WHERE producto = ". $b["cod"] ."")) { 
 	       	/// lo hago para cada pantalla
-	       		for ($i = 0; $i <= $pantallas; $i++) {
+	       		for ($i = 1; $i <= $pantallas; $i++) {
 				 if($rx["panel"] == $i) $colore = "green"; else $colore = "red";  
 				echo '<a id="pantalla" op="39.2" cod="'. $b["cod"] .'" iden="'.$i.'" pagina="'.$npagina.'" >
 		        <span class="badge badge-pill '.$colore.'">'.$i.'</span></a>';
@@ -492,13 +546,12 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
     
 		    } else {
 
-		    	for ($i = 0; $i <= $pantallas; $i++) { 
+		    	for ($i = 1; $i <= $pantallas; $i++) { 
 				echo '<a id="pantalla" op="39.2" cod="'. $b["cod"] .'" iden="'.$i.'" pagina="'.$npagina.'" >
 		        <span class="badge badge-pill red">'.$i.'</span></a>';
 				} // for
-		       
-		
-		    } unset($rx); 
+
+		    } unset($rx); // termina lo de las pntallas
     	
 				       		
 		       echo '</td>
@@ -582,6 +635,10 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		    $datos["dependiente"] = $dependiente;
 		    $datos["td"] = $_SESSION["td"];
 		    if ($db->insert("pro_asignado", $datos)) {
+		    	$i = $db->insert_id();
+		    	    $cambio = array();
+				    $cambio["iden"] =  $i;
+		    	$db->update("pro_asignado", $cambio, "WHERE id=" . $i);
 		       Alerts::Alerta("success","Agregado Correctamente","Producto Agregado corectamente!");
 		    }else {
 			    	Alerts::Alerta("warning","Error","Error desconocido, no se agrego el registro!");
@@ -606,14 +663,14 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 				  </thead>
 				  <tbody>';
 	    	foreach ($a as $b) {
-	 if ($r = $db->select("nombre", "pro_dependiente", "WHERE id = ".$b["dependiente"]." and td = ".$_SESSION["td"]."")) { 
+	 if ($r = $db->select("nombre", "pro_dependiente", "WHERE iden = ".$b["dependiente"]." and td = ".$_SESSION["td"]."")) { 
 	        $dependiente=$r["nombre"];
 	    } unset($r);
 	    	echo '<tr>
 			      <th scope="row">'. $b["cod"] .'</th>
 			      <td>'. $dependiente .'</td>
 			      <td>
-			      <a id="borrar-porcion" op="37" iden="'. $b["id"] .'">
+			      <a id="borrar-porcion" op="37" iden="'. $b["iden"] .'" cod="'. $b["cod"] .'">
 				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
 				      </a>
 				      </td>
@@ -628,10 +685,10 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 	}
 
 
-		public function BorrarPorcionProducto($iden) {
+		public function BorrarPorcionProducto($iden,$cod) {
 		$db = new dbConn();
 		    
-		    if ($db->delete("pro_asignado", "WHERE id='$iden' and td = ".$_SESSION["td"]."")) {
+		    if ($db->delete("pro_asignado", "WHERE iden='$iden' and td = ".$_SESSION["td"]."")) {
 		        
 		        Alerts::Alerta("warning","Materia Eliminado","Se ha eliminado el registo correctamente!");
 			   $this->VerPorcionProducto($cod);
@@ -645,29 +702,27 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		$db = new dbConn();
 
 			$ad = $db->query("SELECT * FROM control_panel_mostrar WHERE producto='$cod' and td = ". $_SESSION['td'] ."");
-		 	if($ad->num_rows != 0){
-				$cambio = array();
-				$cambio["panel"] = $iden;
-				if($db->update("control_panel_mostrar", $cambio, "WHERE producto='$cod' and td = ".$_SESSION["td"]."")){
-					// Alerts::Alerta("success","Pantalla Cambiada","Se ha cambiado la pantalla correctamente!");
-				} else {
-					Alerts::Alerta("error","Error!","Ha ocurrido un error inesperado!");
-				}
-
-		 	}else {
-
-		 		    $datos = array();
+			if($ad->num_rows != 0){
+				foreach ($ad as $bd) {
+	        			// si el panel es igual al que viene, elimino
+						if($bd["panel"] == $iden){
+							// eliminar
+							$db->delete("control_panel_mostrar", "WHERE producto='$cod' and td = " . $_SESSION['td']);
+						} else {
+							// actualizar
+							$cambio = array();
+							$cambio["panel"] = $iden;
+							$db->update("control_panel_mostrar", $cambio, "WHERE producto='$cod' and td = ".$_SESSION["td"]."");	
+						}
+			    }
+			}  else { // si no existe en la tabla, lo agrego
+					$datos = array();
 				    $datos["producto"] = $cod;
 				    $datos["panel"] = $iden;
 				    $datos["td"] = $_SESSION["td"];
-				    if($db->insert("control_panel_mostrar", $datos)){
-				    	// Alerts::Alerta("success","Pantalla Cambiada","Se ha cambiado la pantalla correctamente!");
-				    } else {
-				    	Alerts::Alerta("error","Error!","Ha ocurrido un error inesperado!");
-				    }
-
-		 	}
-		    $ad->close();
+				    $db->insert("control_panel_mostrar", $datos);
+			}
+		  $ad->close();
    	}
 
 

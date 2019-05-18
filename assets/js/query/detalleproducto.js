@@ -24,7 +24,8 @@ return false;
 	$("body").on("click","#borrar-porcion",function(){
 	var op = $(this).attr('op');
 	var iden = $(this).attr('iden');
-    	$.post("application/src/routes.php", {op:op, iden:iden}, 
+	var cod = $(this).attr('cod');
+    	$.post("application/src/routes.php", {op:op, iden:iden, cod:cod}, 
     	function(htmlexterno){
 		$("#porciones").html(htmlexterno);
    	 	});

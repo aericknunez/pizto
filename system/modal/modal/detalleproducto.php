@@ -20,9 +20,9 @@ $db = new dbConn();
      <select id="producto" name="producto" class="browser-default form-control mb-2" required="yes">
       <option disabled selected>Seleccione un Producto</option>
       <?php 
-      $a = $db->query("SELECT id, nombre FROM pro_dependiente WHERE td = ". $_SESSION["td"] ." ORDER BY id");
+      $a = $db->query("SELECT iden, nombre FROM pro_dependiente WHERE td = ". $_SESSION["td"] ." ORDER BY id");
       foreach ($a as $b) {
-          echo '<option value='. $b["id"] .'>'. $b["nombre"] .'</option>';
+          echo '<option value='. $b["iden"] .'>'. $b["nombre"] .'</option>';
       }
       $a->close();
        ?>
