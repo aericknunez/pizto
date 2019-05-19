@@ -215,7 +215,7 @@ class Upload{
 	public function DelStatus($fecha){ // cuantas vaces se ha actualizado
 	    $db = new dbConn();
 
-		$db->delete("sync_status", "WHERE fecha = '$fecha' and tipo = 1 and td = ".$_SESSION["temporal_td"]."");
+		$db->delete("sync_status", "WHERE fecha = '$fecha' and tipo = 5 and td = ".$_SESSION["temporal_td"]."");
 	}
 
 
