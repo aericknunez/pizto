@@ -61,7 +61,7 @@ class Producto{
 		    	echo '<tr>
 			      <th scope="row">'. $b["unidad"] .'</th>
 			      <td>'. $b["abreviacion"] .'</td>
-			      <td><a id="borrar-unidad" op="31" iden="'. $b["id"] .'">
+			      <td><a id="borrar-unidad" op="31" iden="'. $b["iden"] .'">
 				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
 				      </a></td>
 			    </tr>';
@@ -130,7 +130,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		public function BorrarUnidad($iden) {
 		$db = new dbConn();
 		    
-		    if ($db->delete("pro_unidades_medida", "WHERE id='$iden' and td = ".$_SESSION["td"]."")) {
+		    if ($db->delete("pro_unidades_medida", "WHERE iden='$iden' and td = ".$_SESSION["td"]."")) {
 		        
 		        Alerts::Alerta("warning","Unidad Eliminado","Se ha eliminado el registo correctamente!");
 			    $this->VerUnidad(1);
@@ -204,7 +204,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 			      <th scope="row">'. $b["nombre"] .'</th>
 			      <td>'. $producto .'</td>
 			      <td>'. $b["cantidad"] .'</td>
-			      <td><a id="borrar-porcion" op="33" iden="'. $b["id"] .'">
+			      <td><a id="borrar-porcion" op="33" iden="'. $b["iden"] .'">
 				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
 				      </a></td>
 			    </tr>';
@@ -277,7 +277,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		public function BorrarPorcion($iden) {
 		$db = new dbConn();
 		    
-		    if ($db->delete("pro_dependiente", "WHERE id='$iden' and td = ".$_SESSION["td"]."")) {
+		    if ($db->delete("pro_dependiente", "WHERE iden='$iden' and td = ".$_SESSION["td"]."")) {
 		        
 		        Alerts::Alerta("warning","Porcion Eliminado","Se ha eliminado el registo correctamente!");
 			    $this->VerPorciones(1);
@@ -356,7 +356,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 			      <th scope="row">'. $b["nombre"] .'</th>
 			      <td>'. $b["cantidad"] .'</td>
 			      <td>'. $uni .'</td>
-			      <td><a id="borrar-materia" op="35" iden="'. $b["id"] .'">
+			      <td><a id="borrar-materia" op="35" iden="'. $b["iden"] .'">
 				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
 				  </a></td>';
 				  // para materia prima
@@ -439,8 +439,8 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		public function BorrarMateria($iden) {
 		$db = new dbConn();
 		    
-		    if ($db->delete("pro_bruto", "WHERE id='$iden' and td = ".$_SESSION["td"]."")) {
-		        
+		    if ($db->delete("pro_bruto", "WHERE iden='$iden' and td = ".$_SESSION["td"]."")) {
+		        $db->delete("alter_materiaprima_reporte", "WHERE producto=" . $iden);
 		        Alerts::Alerta("warning","Materia Eliminado","Se ha eliminado el registo correctamente!");
 			    $this->VerMateria(1);
 		    }
