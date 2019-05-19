@@ -525,7 +525,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 	    foreach ($a as $b) {
 	    		    		$r = $db->select("categoria", "categorias", "WHERE cod = ". $b["categoria"] ." and td =  ". $_SESSION['td'] ."");
 
-	    		$az = $db->query("SELECT * FROM pro_asignado WHERE cod = ". $b["cod"] ."");				 
+	    		$az = $db->query("SELECT * FROM pro_asignado WHERE cod = ". $b["cod"] ." and td =  ". $_SESSION['td'] ."");				 
 			    echo '<tr>
 				       <th scope="row">'. $b["cod"] . '</th>
 				       <td>'. $b["nombre"] . '</td>
@@ -536,7 +536,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 
 				       <td>';
       
-	       if ($rx = $db->select("panel", "control_panel_mostrar", "WHERE producto = ". $b["cod"] ."")) { 
+	       if ($rx = $db->select("panel", "control_panel_mostrar", "WHERE producto = ". $b["cod"] ." and td =  ". $_SESSION['td'] ."")) { 
 	       	/// lo hago para cada pantalla
 	       		for ($i = 1; $i <= $pantallas; $i++) {
 				 if($rx["panel"] == $i) $colore = "green"; else $colore = "red";  
