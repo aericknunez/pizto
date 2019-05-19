@@ -7,6 +7,7 @@ include_once 'application/common/Helpers.php';
 include_once 'application/common/Mysqli.php';
 include_once 'system/index/Inicio.php';
 include_once 'system/corte/Corte.php';
+include_once 'system/ventas/Venta.php';
 $db = new dbConn();
 
 unset($_SESSION['client-asign']);	
@@ -28,6 +29,11 @@ if($_SESSION["muestra_vender"] == NULL){
 	} else {
 		// aqui para cobrar
 				if($_SESSION["tipo_inicio"] == 1){
+					//aqui generamos la nueva mesa si no hay creada
+					if($_SESSION["mesa"] == NULL){
+					$ventas = new Venta;
+					$ventas->CrearMesa(1); }
+
 				include_once 'application/iconos/iconos_'.$_SESSION["td"].'.php';
 				} else {
 				include_once 'system/mesas/mesas.php';
@@ -61,6 +67,10 @@ if($_SESSION["muestra_vender"] == NULL){
 		} else {
 			// aqui para cobrar
 			if($_SESSION["tipo_inicio"] == 1){
+				//aqui generamos la nueva mesa si no hay creada
+					if($_SESSION["mesa"] == NULL){
+					$ventas = new Venta;
+					$ventas->CrearMesa(1); }
 			include_once 'application/iconos/iconos_'.$_SESSION["td"].'.php';
 			} else {
 			include_once 'system/mesas/mesas.php';
@@ -81,6 +91,10 @@ if($_SESSION["muestra_vender"] == NULL){
 		} else {
 			// aqui para cobrar
 			if($_SESSION["tipo_inicio"] == 1){
+				//aqui generamos la nueva mesa si no hay creada
+					if($_SESSION["mesa"] == NULL){
+					$ventas = new Venta;
+					$ventas->CrearMesa(1); }
 			include_once 'application/iconos/iconos_'.$_SESSION["td"].'.php';
 			} else {
 			include_once 'system/mesas/mesas.php';

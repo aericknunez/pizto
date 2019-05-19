@@ -344,16 +344,29 @@ $mesa = $_SESSION["mesa"];
 $ventas->FacturarCliente($_SESSION["mesa"],$_POST["total"],$_POST["cancela"]);
 header("location: ../../?modal=factura&mesa=$mesa&efectivo=".$_POST["total"]."&cancela=".$_POST["cancela"]."");
 }
+
+
+
+
 //////////
-if($_REQUEST["op"]=="26"){ // cambiar tipo de pantalla de inicio
+if($_REQUEST["op"]=="26"){ // cambiar tipo de pantalla de inicio mesa o rapida
 	if($_SESSION["mesa"] == NULL){
 			if($_SESSION["tipo_inicio"] == 1) $_SESSION["tipo_inicio"] = 2;
 			else $_SESSION["tipo_inicio"] = 1;
 		
 	} else {
-	Alerts::Alerta("error","Error!","No debe haber ninguna mesa activa para continuar!");
+		$a = $db->query("SELECT * FROM ticket_temp WHERE mesa = ". $_SESSION["mesa"] ." and tx = ".$_SESSION["tx"]." and td = ". $_SESSION["td"] ."");
+		$productos = $a->num_rows; $a->close();
+		if($productos == 0){
+			$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+			unset($_SESSION["mesa"]);
+			if($_SESSION["tipo_inicio"] == 1) $_SESSION["tipo_inicio"] = 2;
+			else $_SESSION["tipo_inicio"] = 1;
+		}
 	}
-}
+} // termina op
+
+
 
 if($_REQUEST["op"]=="27"){ // cambiar tx
 	if($_SESSION["mesa"] == NULL){
@@ -362,10 +375,18 @@ if($_REQUEST["op"]=="27"){ // cambiar tx
 			$_SESSION["tx"] = 1;
 			}
 	} else {
-	Alerts::Alerta("error","Error!","No debe haber ninguna mesa activa para continuar!");
+		$a = $db->query("SELECT * FROM ticket_temp WHERE mesa = ". $_SESSION["mesa"] ." and tx = ".$_SESSION["tx"]." and td = ". $_SESSION["td"] ."");
+		$productos = $a->num_rows; $a->close();
+		if($productos == 0){
+			$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+			unset($_SESSION["mesa"]);
+			if($_SESSION["tipo_inicio"] == 1) $_SESSION["tipo_inicio"] = 2;
+			else $_SESSION["tipo_inicio"] = 1;
+		}
 	}
-}
+} // termina op
  
+
 
 if($_REQUEST["op"]=="27x"){ // cambiar tx
 	if($_SESSION["mesa"] == NULL){
