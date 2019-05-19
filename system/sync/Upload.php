@@ -134,7 +134,7 @@ class Upload{
 		   	 	 $db = new dbConn();
 	    	
 	    	    $datos = array();
-			    $datos["tipo"] = "2";
+			    $datos["tipo"] = $tipox;
 			    $datos["creado"] = "1";
 			    $datos["subido"] = "0";
 			    $datos["ejecutado"] = "0";

@@ -163,7 +163,7 @@ class Sincronizar{
 
 		   	 		    	
 	    	    $datos = array();
-			    $datos["tipo"] = "1";
+			    $datos["tipo"] = "5";
 			    $datos["creado"] = "1";
 			    $datos["subido"] = "0";
 			    $datos["ejecutado"] = "0";

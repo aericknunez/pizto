@@ -18,7 +18,7 @@ $cortes->Contenido(date("d-m-Y"));
 
  ?>
 </div>
-<a href="http://localhost/pizto/?modal=respaldar&delete=1"></a>
+
 
 <!--Modal: modalConfirmDelete-->
 <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
