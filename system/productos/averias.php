@@ -15,7 +15,7 @@ $db = new dbConn();
      <select id="producto" name="producto" class="browser-default form-control mb-2" required="yes">
     <option disabled selected>Seleccione un producto</option>
     <?php 
-    $a = $db->query("SELECT * FROM pro_dependiente ORDER BY id");
+    $a = $db->query("SELECT * FROM pro_dependiente WHERE td = ". $_SESSION["td"] ." ORDER BY id");
     foreach ($a as $b) {
         echo '<option value='. $b["iden"] .'>'. $b["nombre"] .'</option>';
     }
