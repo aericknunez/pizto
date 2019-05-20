@@ -176,7 +176,7 @@ public function Porcentaje(){
 	$por1=number_format($por1,0,'.','.');
 	$por2=number_format($por2,0,'.','.');
 
-	return "3/4";
+	return "$por1/$por2";
 
 }
 
