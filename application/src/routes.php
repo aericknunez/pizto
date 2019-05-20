@@ -306,6 +306,7 @@ header("location: ../../?modal=factura&mesa=$mesa&efectivo=".$_POST["total"]."")
 
 if($_REQUEST["op"]=="22"){ // MUESTRA EL LATERAL (FACTURA)
 		include_once '../../system/ventas/Venta.php';
+		include_once '../../system/corte/Corte.php';
 		$ventas = new Venta;
 		$ventas->VerFactura($_SESSION["mesa"]);
 } 
@@ -350,14 +351,16 @@ header("location: ../../?modal=factura&mesa=$mesa&efectivo=".$_POST["total"]."&c
 
 //////////
 if($_REQUEST["op"]=="26"){ // cambiar tipo de pantalla de inicio mesa o rapida
+	include_once '../../system/ventas/Venta.php';
+$venta = new Venta;
+
 	if($_SESSION["mesa"] == NULL){
 			if($_SESSION["tipo_inicio"] == 1) $_SESSION["tipo_inicio"] = 2;
 			else $_SESSION["tipo_inicio"] = 1;
 		
 	} else {
-		$a = $db->query("SELECT * FROM ticket_temp WHERE mesa = ". $_SESSION["mesa"] ." and tx = ".$_SESSION["tx"]." and td = ". $_SESSION["td"] ."");
-		$productos = $a->num_rows; $a->close();
-		if($productos == 0){
+
+		if($venta->VerProductosMesa($_SESSION["mesa"]) == 0){
 			$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 			unset($_SESSION["mesa"]);
 			if($_SESSION["tipo_inicio"] == 1) $_SESSION["tipo_inicio"] = 2;
@@ -369,13 +372,14 @@ if($_REQUEST["op"]=="26"){ // cambiar tipo de pantalla de inicio mesa o rapida
 
 
 if($_REQUEST["op"]=="27"){ // cambiar tx
+include_once '../../system/ventas/Venta.php';
+$venta = new Venta;
 	if($_SESSION["mesa"] == NULL){
 			if($_SESSION["tx"] == 1) { $_SESSION["tx"] = 0; } 
 			else { $_SESSION["tx"] = 1; }
 	} else {
-		$a = $db->query("SELECT * FROM ticket_temp WHERE mesa = ". $_SESSION["mesa"] ." and tx = ".$_SESSION["tx"]." and td = ". $_SESSION["td"] ."");
-		$productos = $a->num_rows; $a->close();
-		if($productos == 0){
+		
+		if($venta->VerProductosMesa($_SESSION["mesa"]) == 0){
 			$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 			unset($_SESSION["mesa"]);
 			if($_SESSION["tx"] == 1) { $_SESSION["tx"] = 0; } 

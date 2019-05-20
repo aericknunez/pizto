@@ -216,11 +216,17 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	    
    	}
 
+	public function VerProductosMesa($mesa){
+		$db = new dbConn();
+		$a = $db->query("SELECT * FROM ticket_temp WHERE mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ". $_SESSION["td"] ."");
+		return $a->num_rows; 
+		$a->close();
+	}
 //////////////////////////////////////////////////////////////
 	public function VerFactura($mesa) {
 		$db = new dbConn();
 
-		if($_SESSION["mesa"] != NULL && !isset($_GET["modal"])) {
+		if($this->VerProductosMesa($_SESSION["mesa"]) != 0 && !isset($_GET["modal"])) {
 
 		    $a = $db->query("SELECT * FROM ticket_temp WHERE producto != 'Producto-Especial' and mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."  and num_fac= 0");
 		    if($a->num_rows == 0){
@@ -304,19 +310,19 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				
 			} else {
 
-				if($_SESSION["mesa"] == NULL){
+				if($this->VerProductosMesa($_SESSION["mesa"]) == 0){
 					echo '<div align="center"><h2><a id="cambiar-pantalla-inicio" op="88">'.$_SESSION["config_cliente"].'</a></h2></div><br>';	
 				}
 
 				echo '<div align="center"><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable"></div>';
 
-				if($_SESSION["mesa"] == NULL and $_SESSION["tx"] == 0){
-					echo '<div align="center" class="border border-light"><h2>'. @Corte::Porcentaje() .'</h2></div>';	
+				if($this->VerProductosMesa($_SESSION["mesa"]) == 0 and $_SESSION["tx"] == 0){
+					echo '<div align="center" class="border border-light"><h2>'. Corte::Porcentaje() .'</h2></div>';
 				}
 
 				
 			}
-
+				
 	}
 
 
