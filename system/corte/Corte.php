@@ -17,7 +17,10 @@ class Corte{
 	        $caja_chica=$r["efectivo"];
 	    } unset($r);
 
- 	
+ 		// eliminar el los datos de ticket_temp
+		   	    $db->query("TRUNCATE ticket_temp");
+		   	    $this->EliminarMesasActivas($fecha);
+		   	    
     	// inserto los datos del corte de ahora
     		$datos = array();
 		    $datos["fecha"] = $fecha;
@@ -39,11 +42,7 @@ class Corte{
 		   //	Alerts::Alerta("success","Exito!","Se ha ejecutado el corte correctamente!");
 		   	$this->CalcularGastoProductos($fecha);
 
-		   	// eliminar el los datos de ticket_temp
-		   	    $db->query("TRUNCATE ticket_temp");
-		   	    $this->EliminarMesasActivas($fecha);
-
-			   	if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0){
+		   	  	if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0){
 			   		echo '<script>
 						window.location.href="?modal=respaldar"
 					</script>';

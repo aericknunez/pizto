@@ -132,7 +132,7 @@ class Sync{
 	public function GetStatus($fecha){ // revisar si se ha revisado respaldo
 	    $db = new dbConn();
 
-			$a = $db->query("SELECT * FROM sync_status WHERE fecha = '$fecha' and tipo = 2 and td = ".$_SESSION["td"]."");
+			$a = $db->query("SELECT * FROM sync_status WHERE fecha = '$fecha' and tipo = 1 and td = ".$_SESSION["td"]."");
 			return $a->num_rows;
 			$a->close();
 
@@ -142,7 +142,7 @@ class Sync{
 	public function RevisarRespaldo($fecha){ // revisar si se ha revisado respaldo
 	    $db = new dbConn();
 
-		if ($r = $db->select("*", "sync_status", "WHERE fecha = '$fecha' and tipo = 2 and td = ".$_SESSION["td"]."")) { 
+		if ($r = $db->select("*", "sync_status", "WHERE fecha = '$fecha' and tipo = 1 and td = ".$_SESSION["td"]."")) { 
 	       $creado = $r["creado"]; $subido = $r["subido"]; $ejecutado = $r["ejecutado"];
 	    } unset($r);  
 	    if($creado == 1 and $subido == 0 and $ejecutado == 0){
@@ -161,10 +161,10 @@ class Sync{
 
 			if($this->GetStatus($fecha) >= 1){
 					if($this->RevisarRespaldo($fecha) == 1){
-						Alerts::RealizarRespaldo("Respaldo realizado pero aun no ha subido a la Web");
+						Alerts::RealizarRespaldo("Respaldo realizado pero aun no ha subido a la Web. Este proceso se har&aacute automaticamente");
 					}
 					if($this->RevisarRespaldo($fecha) == 2){
-						Alerts::RealizarRespaldo("Esperando a ser sincronizado...");
+						Alerts::RealizarRespaldo("Respaldo subido exitosamente.  Esperando a ser sincronizado...");
 					}
 					if($this->RevisarRespaldo($fecha) == 3){
 						Alerts::RealizadoRespaldo("Respaldo realizado correctamente");

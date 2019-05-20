@@ -19,6 +19,7 @@ if($_REQUEST["fecha"] == NULL){
 } else {
 	$fecha = $_REQUEST["fecha"];
 }
+
 //////// si hay un respaldo y hay que eliminarlo
 if($_REQUEST["delete"] == 1){
 $db->delete("sync_status", "WHERE tipo = 1 and fecha= '$fecha' and td =".$_SESSION["temporal_td"]."");	
