@@ -352,7 +352,7 @@ header("location: ../../?modal=factura&mesa=$mesa&efectivo=".$_POST["total"]."&c
 //////////
 if($_REQUEST["op"]=="26"){ // cambiar tipo de pantalla de inicio mesa o rapida
 	include_once '../../system/ventas/Venta.php';
-$venta = new Venta;
+	$venta = new Venta;
 
 	if($_SESSION["mesa"] == NULL){
 			if($_SESSION["tipo_inicio"] == 1) $_SESSION["tipo_inicio"] = 2;
@@ -372,8 +372,8 @@ $venta = new Venta;
 
 
 if($_REQUEST["op"]=="27"){ // cambiar tx
-include_once '../../system/ventas/Venta.php';
-$venta = new Venta;
+	include_once '../../system/ventas/Venta.php';
+	$venta = new Venta;
 	if($_SESSION["mesa"] == NULL){
 			if($_SESSION["tx"] == 1) { $_SESSION["tx"] = 0; } 
 			else { $_SESSION["tx"] = 1; }
