@@ -5,6 +5,17 @@ class Helpers{
 
     } 
 
+
+    public static function ServerDomain(){
+          if($_SERVER["SERVER_NAME"] == "pizto.com" 
+          or $_SERVER["SERVER_NAME"] == "superpollo.net"){
+            return TRUE;
+          } else {
+            return FALSE;
+          }
+    }
+
+
     public function Gasto($string) {
     if($string == "1") return '<p class="text-danger font-weight-bold">Compra No Facturado</p>';
     if($string == "2") return '<p class="text-success font-weight-bold">Compra con Factura</p>';

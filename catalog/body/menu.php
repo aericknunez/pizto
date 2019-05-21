@@ -1,3 +1,6 @@
+<?php 
+include_once 'application/common/Helpers.php';
+ ?>
 <li>
 <ul class="collapsible collapsible-accordion">
 
@@ -14,7 +17,7 @@
 
 <?php if($_SESSION["tipo_cuenta"] != 4) { 
 
-if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) or ($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION["root_plataforma"] == 1)) {
+if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
 ?>
 
 <li><a href="?corte" class="collapsible-header waves-effect arrow-r"><i class="fa fa-money"></i> Corte Diario</a></li>
@@ -51,7 +54,7 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 
 <?php if($_SESSION["tipo_cuenta"] != 4) { 
 
-if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) or ($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION["root_plataforma"] == 1)) {
+if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
 ?>
 
 <li><a href="?gastos" class="collapsible-header waves-effect arrow-r"><i class="fa fa-percent"></i> Gastos y Compras</a></li>
@@ -61,7 +64,7 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 
 
 
-<?php if($_SESSION["tipo_cuenta"] == 1 and $_SERVER["SERVER_NAME"] == "pizto.com") { ?>
+<?php if($_SESSION["tipo_cuenta"] == 1 and Helpers::ServerDomain() == TRUE) { ?>
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-user"></i> Reportes Root<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
@@ -81,7 +84,7 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 
 <?php if($_SESSION["tipo_cuenta"] != 4) { 
 
-if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) or ($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION["root_plataforma"] == 1)) {
+if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
 ?>
 
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-exchange"></i> Facturas<i class="fa fa-angle-down rotate-icon"></i></a>
@@ -109,7 +112,7 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 
 <?php if($_SESSION["tipo_cuenta"] != 4) { 
 
-if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) {
+if(Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) {
 ?>
 <li><a href="?respaldos" class="collapsible-header waves-effect arrow-r"><i class="fa fa-download"></i> Respaldos </a></li>
 <?php } } ?>
@@ -128,7 +131,7 @@ if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0)
 <li><a href="?inventario" class="waves-effect">Inventario</a></li>
 
 <?php 
-if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) or ($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION["root_plataforma"] == 1)) {
+if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
  ?>
 <li><a href="?addpro" class="waves-effect">Nuevo Producto</a></li>
 <li><a href="?averias" class="waves-effect">Agregar Averias</a></li>
@@ -147,7 +150,7 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 
 <?php if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 2 or $_SESSION["tipo_cuenta"] == 5) { 
  
-if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) or ($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION["root_plataforma"] == 1)) {
+if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
  ?>
 
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-cogs"></i> Configuraciones<i class="fa fa-angle-down rotate-icon"></i></a>
@@ -163,7 +166,7 @@ if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0
 <li><a href="?root" class="waves-effect">Configuracion Root</a></li>
 <li><a href="?codigos" class="waves-effect">C&oacutedigos de validaci&oacuten</a></li>
 <?php } 
-if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) {
+if(Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) {
  ?>
 <li><a href="?update" class="waves-effect">Actualizar Sistema</a></li>
 <?php } ?>
@@ -197,7 +200,7 @@ if($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0)
 
 <?php } 
 
-if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) or ($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION["root_plataforma"] == 1)) {
+if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
  ?>
 
 <li><a id="cambiar-pantalla-inicio" op="26" class="collapsible-header waves-effect arrow-r"><i class="fa fa-television"></i> Cambiar Inicio </a></li>
@@ -223,7 +226,7 @@ echo '<li><a id="cambiar-pantalla-inicio" op="27x" class="collapsible-header wav
 
 
 <?php 
-if(($_SERVER["SERVER_NAME"] != "pizto.com" and $_SESSION["root_plataforma"] == 0) or ($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION["root_plataforma"] == 1)) {
+if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
  ?>
 
 <li><a href="?tv" class="collapsible-header waves-effect arrow-r"><i class="fa fa-tv"></i> Ver Pantalla </a></li>
