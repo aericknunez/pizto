@@ -9,6 +9,8 @@ include_once '../common/Helpers.php';
 include_once '../common/Fechas.php';
 include_once '../../system/index/Inicio.php';
 
+$redirect = $_SESSION['td'];
+
 	if($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION['tipo_cuenta'] != 1){
 	@Inicio::RegisterInOut(2); // registra la salida
 	}
@@ -24,5 +26,10 @@ setcookie(session_name(),'', time() - 42000, $params["path"], $params["domain"],
 
 // Destroy session 
 session_destroy();
-header("Location: ../../index.php");
+if($redirect == 3){
+	header("Location: https://superpollo.net");
+} else {
+header("Location: ../../index.php");	
+}
+
 exit();
