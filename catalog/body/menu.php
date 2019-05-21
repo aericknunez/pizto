@@ -1,6 +1,3 @@
-<?php 
-include_once 'application/common/Helpers.php';
- ?>
 <li>
 <ul class="collapsible collapsible-accordion">
 

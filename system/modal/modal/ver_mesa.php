@@ -1,6 +1,5 @@
 <?php
 include_once 'system/mesashoy/Mesas.php';
-include_once 'application/common/Helpers.php';
 include_once 'application/common/Mysqli.php';
 $db = new dbConn();
 ?>

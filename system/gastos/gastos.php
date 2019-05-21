@@ -5,7 +5,6 @@ include_once 'application/common/Alerts.php';
 include_once 'application/common/Mysqli.php';
 include_once 'system/gastos/Gasto.php';
 include_once 'system/corte/Corte.php';
-include_once 'application/common/Helpers.php';
 $db = new dbConn();
 
 if(Corte::UltimaFecha() == date("d-m-Y")){

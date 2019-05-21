@@ -1,4 +1,5 @@
 <?php
+include_once '../common/Helpers.php';
 include_once '../includes/variables_db.php';
 include_once '../includes/db_connect.php';
 include_once '../includes/functions.php';
@@ -7,7 +8,6 @@ sec_session_start();
 
 include_once '../common/Alerts.php';
 $alert = new Alerts;
-include_once '../common/Helpers.php';
 $helps = new Helpers;
 include_once '../common/Fechas.php';
 include_once '../common/Encrypt.php';

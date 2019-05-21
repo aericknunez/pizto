@@ -1,11 +1,11 @@
-<? 
+<?
+include_once '../common/Helpers.php';
 include_once 'variables_db.php';
 include_once 'db_connect.php';
 include_once 'functions.php';
 sec_session_start();
 include_once '../common/Encrypt.php';
 include_once '../common/Mysqli.php';
-include_once '../common/Helpers.php';
 include_once '../common/Fechas.php';
 include_once '../../system/corte/Corte.php';
 include_once '../../system/sync/Sync.php';

@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Mysqli.php';
-include_once 'application/common/Helpers.php';
 $db = new dbConn();
 ?>
 

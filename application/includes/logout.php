@@ -1,17 +1,17 @@
 <?php
+include_once '../common/Helpers.php';
 include_once 'variables_db.php';
 include_once 'db_connect.php';
 include_once 'functions.php';
 sec_session_start();
 
 include_once '../common/Mysqli.php';
-include_once '../common/Helpers.php';
 include_once '../common/Fechas.php';
 include_once '../../system/index/Inicio.php';
 
 $redirect = $_SESSION['td'];
 
-	if($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION['tipo_cuenta'] != 1){
+	if(Helpers::ServerDomain() == TRUE and $_SESSION['tipo_cuenta'] != 1){
 	@Inicio::RegisterInOut(2); // registra la salida
 	}
 	

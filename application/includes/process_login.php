@@ -1,4 +1,5 @@
 <?php
+include_once '../common/Helpers.php';
 include_once 'variables_db.php';
 include_once 'db_connect.php';
 include_once 'functions.php';

@@ -1,11 +1,11 @@
-<? 
+<?
+include_once '../common/Helpers.php';
 include_once 'variables_db.php';
 include_once 'db_connect.php';
 include_once 'functions.php';
 sec_session_start();
 include_once '../common/Encrypt.php';
 include_once '../common/Mysqli.php';
-include_once '../common/Helpers.php';
 include_once '../common/Alerts.php';
 include_once '../common/Fechas.php';
 include_once '../../system/corte/Corte.php';
@@ -55,7 +55,7 @@ $user=sha1($_SESSION['username']);
        $inicia->Caduca(); // revisa si ha caducado
        BuscaRespaldo(); // revisa sy hay respaldos imcompletos
 
-	       if($_SERVER["SERVER_NAME"] == "pizto.com" and $_SESSION['tipo_cuenta'] != 1){ // registro entrada en web
+	       if(Helpers::ServerDomain() == TRUE and $_SESSION['tipo_cuenta'] != 1){ // registro entrada en web
 	       	@$inicia->RegisterInOut(1);
 	       }   
        }
