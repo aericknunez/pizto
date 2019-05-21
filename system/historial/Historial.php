@@ -119,10 +119,10 @@ class Historial{
 			    }
 
 			   echo '<tr>
-			       <th scope="row">'. $bx["cant"] . '</th>
+			       <th scope="row">'. $b["sum(cant)"] . '</th>
 			       <td>'. $nombre_producto . '</td>
 			       <td>'. Helpers::Dinero($b["pv"]) . '</td>
-			       <td>'. Helpers::Dinero($bx["total"]) . '</td>
+			       <td>'. Helpers::Dinero($b["sum(total)"]) . '</td>
 			     </tr>';
 			    } $a->close();
 
