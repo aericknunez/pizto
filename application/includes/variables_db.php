@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('America/El_Salvador');
 
-if($_SERVER["SERVER_NAME"] != "pizto.com"){
+if($_SERVER["SERVER_NAME"] != "pizto.com" or $_SERVER["SERVER_NAME"] != "superpollo.net"){
 
 define("HOST", "localhost"); 			//35.225.56.157 The host you want to connect to. 
 define("USER", "root"); 			// The database username. 
