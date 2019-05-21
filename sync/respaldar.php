@@ -1,4 +1,5 @@
 <?php
+include_once '../application/common/Helpers.php'; // [Para todo]
 include_once '../application/includes/variables_db.php';
 include_once '../application/includes/db_connect.php';
 session_start();
