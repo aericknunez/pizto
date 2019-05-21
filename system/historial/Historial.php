@@ -9,9 +9,9 @@ class Historial{
 	public function HistorialDiario($fecha) {
 		$db = new dbConn();
 
-			$a = $db->query("select cod, cant, producto, pv 
+			$a = $db->query("select cod, sum(cant), sum(total), producto, pv 
           from ticket 
-          where cod != 8888 and edo = 1 and fecha = '$fecha' and td = ".$_SESSION['td']." GROUP BY cod");
+          where cod != 8888 and edo = 1 and fecha = '$fecha' and td = ".$_SESSION['td']." GROUP BY cod order by sum(cant) desc");
 					    
 					echo '<h1>Productos vendidos :: '.$fecha.'</h1>
 				    <table class="table table-striped">
@@ -29,16 +29,6 @@ class Historial{
 
 			    foreach ($a as $b) {
 
-			    $az = $db->query("SELECT sum(cant) FROM ticket where edo = 1 and cod = ".$b["cod"]." and fecha = '$fecha' and td = ".$_SESSION['td']."");
-			    foreach ($az as $bz) {
-			        $cant_producto=$bz["sum(cant)"];
-			    } $az->close();
-
-			    $ax = $db->query("SELECT sum(total) FROM ticket where edo = 1 and cod = ".$b["cod"]." and fecha = '$fecha' and td = ".$_SESSION['td']."");
-			    foreach ($ax as $bx) {
-			        $total_producto=$bx["sum(total)"];
-			    } $ax->close();
-
 			    $ay = $db->query("SELECT nombre FROM producto where cod = ".$b["cod"]." and td = ".$_SESSION['td']."");
 			    foreach ($ay as $by) {
 			        $nombre_producto=$by["nombre"];
@@ -51,10 +41,10 @@ class Historial{
 			    }
 			    
 			   echo '<tr>
-			       <th scope="row">'. $cant_producto . '</th>
+			       <th scope="row">'. $b["sum(cant)"] . '</th>
 			       <td>'. $nombre_producto . '</td>
 			       <td>'. Helpers::Dinero($b["pv"]) . '</td>
-			       <td>'. Helpers::Dinero($total_producto) . '</td>
+			       <td>'. Helpers::Dinero($b["sum(total)"]) . '</td>
 			     </tr>';
 			    } 
 
@@ -97,9 +87,9 @@ class Historial{
 	public function HistorialMensual($fechax) {
 		$db = new dbConn();
 
-		$a = $db->query("select cod, cant, producto, pv, fecha 
+		$a = $db->query("select cod, sum(cant), sum(total), producto, pv, fecha 
 					                  from ticket 
-					                  where cod != 8888 and edo = 1 and fecha like '%$fechax' and td = ".$_SESSION['td']." GROUP BY cod");
+					                  where cod != 8888 and edo = 1 and fecha like '%$fechax' and td = ".$_SESSION['td']." GROUP BY cod order by sum(cant) desc");
 					    
 					echo '<h1>Productos vendidos</h1>
 				    <table class="table table-striped">
@@ -117,16 +107,6 @@ class Historial{
 
 			    foreach ($a as $b) {
 
-			    $az = $db->query("SELECT sum(cant) FROM ticket where edo = 1 and cod = ".$b["cod"]." and fecha like '%$fechax' and td = ".$_SESSION['td']."");
-			    foreach ($az as $bz) {
-			        $cant_producto=$bz["sum(cant)"];
-			    } $az->close();
-
-			    $ax = $db->query("SELECT sum(total) FROM ticket where edo = 1 and cod = ".$b["cod"]." and fecha like '%$fechax' and td = ".$_SESSION['td']."");
-			    foreach ($ax as $bx) {
-			        $total_producto=$bx["sum(total)"];
-			    } $ax->close();
-
 			    $ay = $db->query("SELECT nombre FROM producto where cod = ".$b["cod"]." and td = ".$_SESSION['td']."");
 			    foreach ($ay as $by) {
 			        $nombre_producto=$by["nombre"];
@@ -139,10 +119,10 @@ class Historial{
 			    }
 
 			   echo '<tr>
-			       <th scope="row">'. $cant_producto . '</th>
+			       <th scope="row">'. $bx["cant"] . '</th>
 			       <td>'. $nombre_producto . '</td>
 			       <td>'. Helpers::Dinero($b["pv"]) . '</td>
-			       <td>'. Helpers::Dinero($total_producto) . '</td>
+			       <td>'. Helpers::Dinero($bx["total"]) . '</td>
 			     </tr>';
 			    } $a->close();
 
@@ -356,7 +336,7 @@ class Historial{
 	public function HistorialGMensual($fechax) {
 		$db = new dbConn();
 
-					$a = $db->query("SELECT * FROM gastos WHERE fecha like '%$fechax' and td = ". $_SESSION["td"] ." order by id desc");
+					$a = $db->query("SELECT * FROM gastos WHERE fecha like '%$fechax' and td = ". $_SESSION["td"] ." order by fechaF desc");
 	        	$total=0;
 	        	if($a->num_rows > 0){
 	        echo ' <h3>Detalle</h3>
