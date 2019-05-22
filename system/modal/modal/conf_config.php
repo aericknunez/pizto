@@ -134,6 +134,24 @@ $r = $db->select("*", "config_master", "where td = ".$_SESSION['td']."")
        <td><? echo $r["imagen"]; ?></td>
        
      </tr>
+
+  <tr>
+    <td><div class="switch">
+            <label>
+             Imprimir Antes ||  Off
+              <input type="checkbox" <?php if($r["imprimir_antes"] == "on") echo "checked"; ?> id="imprimir_antes" name="imprimir_antes" >
+              <span class="lever"></span> On 
+            </label>
+          </div></td>
+    <td><div class="switch">
+            <label>
+             Permitir TX ||  Off
+              <input type="checkbox" <?php if($r["cambio_tx"] == "on") echo "checked"; ?> id="cambio_tx" name="cambio_tx" >
+              <span class="lever"></span> On 
+            </label>
+          </div></td>
+  </tr>
+
 <?
  unset($r);  
 

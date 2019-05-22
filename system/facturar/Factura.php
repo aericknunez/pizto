@@ -209,6 +209,7 @@ $subtotalf = $subtotalf + $stotal;
 
     }    $a->close();
 
+
 $oi=$oi+$n3+$n1;
 printer_draw_text($handle, "Sub Total " . $_SESSION['config_moneda_simbolo'] . ":", 185, $oi);
 printer_draw_text($handle, Helpers::Format(Helpers::STotal($subtotalf, $_SESSION['config_imp'])), 320, $oi);
@@ -228,6 +229,13 @@ $oi=$oi+$n1;
 printer_draw_text($handle, "Descuentos y Rebajas. ", 100, $oi);
 printer_draw_text($handle, Helpers::Format(0), 320, $oi);
 
+
+if($_SESSION['config_propina'] != 0.00){ ///  prara agregarle la propina -- sino borrar
+$oi=$oi+$n1;
+printer_draw_text($handle, "Propina:", 320, $oi);
+printer_draw_text($handle, Helpers::Format(Helpers::Propina($subtotalf)), 402, $oi);
+$subtotalf = Helpers::PropinaTotal($subtotalf);
+}
 
 $oi=$oi+$n1;
 printer_draw_text($handle, "Total " . $_SESSION['config_moneda_simbolo'] . ":", 232, $oi);

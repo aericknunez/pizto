@@ -27,6 +27,8 @@ if($_REQUEST["modal"]=="addopciones") include_once 'system/modal/modal/iconos_ad
 
 if($_REQUEST["modal"]=="factura") include_once 'system/modal/modal/factura.php';
 
+if($_REQUEST["modal"]=="factura_imprimir") include_once 'system/modal/modal/factura_imprimir.php';
+
 if($_REQUEST["modal"]=="detalleproducto") include_once 'system/modal/modal/detalleproducto.php';
 
 if($_REQUEST["modal"]=="opciones") include_once 'system/modal/modal/opcion_platillos.php';

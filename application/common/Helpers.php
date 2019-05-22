@@ -122,6 +122,20 @@ class Helpers{
     } 
 
 
+    public function Propina($numero){ 
+        $num = $_SESSION['config_propina'] / 100;
+        $propina = $numero * $num;
+        return $propina;
+    }
+
+    public function PropinaTotal($numero){ 
+        $num = $_SESSION['config_propina'] / 100;
+        $propina = $numero * $num;
+        $numer = $propina + $numero;
+        return $numer;
+    }
+
+
     public function NFactura($numero){ 
         $numero1=str_pad($numero, 8, "0", STR_PAD_LEFT);
         $format="000-001-01-$numero1";

@@ -198,11 +198,15 @@ if(Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) {
 <?php } 
 
 if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
+
+if($_SESSION['root_tipo_sistema'] != 1){ 
  ?>
-
 <li><a id="cambiar-pantalla-inicio" op="26" class="collapsible-header waves-effect arrow-r"><i class="fa fa-television"></i> Cambiar Inicio </a></li>
-<li><a id="cambiar-pantalla-inicio" op="27" class="collapsible-header waves-effect arrow-r"><i class="fa fa-refresh"></i> Cambiar Opci&oacuten </a></li>
+<?php }
 
+if($_SESSION['config_cambio_tx'] != NULL){ ?>
+<li><a id="cambiar-pantalla-inicio" op="27" class="collapsible-header waves-effect arrow-r"><i class="fa fa-refresh"></i> Cambiar Opci&oacuten </a></li>
+<?php } ?>
 <?php 
 if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 2 or $_SESSION["tipo_cuenta"] == 5){
 

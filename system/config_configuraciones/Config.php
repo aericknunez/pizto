@@ -5,7 +5,7 @@ class Config{
      } 
 
 
-	public function Configuraciones($sistema,$cliente,$slogan,$propietario,$telefono,$direccion,$email,$pais,$giro,$nit,$imp,$propina,$nombre_impuesto,$nombre_documento,$moneda,$moneda_simbolo,$tipo_inicio,$skin,$inicio_tx,$otras_ventas,$venta_especial){
+	public function Configuraciones($sistema,$cliente,$slogan,$propietario,$telefono,$direccion,$email,$pais,$giro,$nit,$imp,$propina,$nombre_impuesto,$nombre_documento,$moneda,$moneda_simbolo,$tipo_inicio,$skin,$inicio_tx,$otras_ventas,$venta_especial,$imprimir_antes,$cambio_tx){
 		$db = new dbConn();
 
 		$cambio = array();
@@ -30,6 +30,8 @@ class Config{
 	    $cambio["inicio_tx"] = $inicio_tx;
 	    $cambio["otras_ventas"] = $otras_ventas;
 	    $cambio["venta_especial"] = $venta_especial;
+	    $cambio["imprimir_antes"] = $imprimir_antes;
+	    $cambio["cambio_tx"] = $cambio_tx;
 	    if ($db->update("config_master", $cambio, "WHERE td = ".$_SESSION["td"]."")) {
 	    	$this->CrearVariables();
 	        Alerts::Alerta("success","Echo!","Registros actualizados correctamente");
@@ -57,6 +59,7 @@ class Config{
 	    $cambio["tipo_sistema"] = $tipo_sistema;
 	    $cambio["plataforma"] = $plataforma;
 	    if ($db->update("config_root", $cambio, "WHERE td = ".$_SESSION["td"]."")) {
+	    	$this->CrearVariables();
 	        Alerts::Alerta("success","Echo!","Registros actualizados correctamente");
 	    } else {
 	       Alerts::Alerta("error","Error!","Ocurrio un error desconocido!");   
@@ -395,6 +398,7 @@ unset($panel);
 
 	public function CrearVariables(){
 		$db = new dbConn();
+		$encrypt = new Encrypt;
 
 		if ($r = $db->select("*", "config_master", "WHERE td = ".$_SESSION['td']."")) { 
 
@@ -422,6 +426,9 @@ unset($panel);
 			$_SESSION['tx'] = $r["inicio_tx"];
 			$_SESSION['config_otras_ventas'] = $r["otras_ventas"];
 			$_SESSION['config_venta_especial'] = $r["venta_especial"];
+			
+			$_SESSION['config_imprimir_antes'] = $r["imprimir_antes"];
+			$_SESSION['config_cambio_tx'] = $r["cambio_tx"];
 
 			if($_SESSION['config_skin'] == NULL) $_SESSION['config_skin'] = "mdb-skin";
 			// white-skin , mdb-skin , grey-skin , pink-skin ,  light-blue-skin , black-skin  cyan-skin, navy-blue-skin
@@ -436,8 +443,13 @@ unset($panel);
 			$_SESSION['root_expiracion'] = $root["expiracion"];
 			$_SESSION['root_tipo_sistema'] = $root["tipo_sistema"];
 			$_SESSION['root_plataforma'] = $root["plataforma"];
-
+     
 			} unset($root);
+			$_SESSION['root_tipo_sistema'] = $encrypt->Decrypt(
+  			$_SESSION['root_tipo_sistema'],$_SESSION['secret_key']);
+
+			$_SESSION['root_plataforma'] = $encrypt->Decrypt(
+			$_SESSION['root_plataforma'],$_SESSION['secret_key']);
 
 	}
 

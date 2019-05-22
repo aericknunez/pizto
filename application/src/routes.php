@@ -390,15 +390,27 @@ if($_REQUEST["op"]=="27"){ // cambiar tx
  
 
 
-if($_REQUEST["op"]=="27x"){ // cambiar tx
+if($_REQUEST["op"]=="27x"){ // cambiar panel
+	include_once '../../system/ventas/Venta.php';
+	$venta = new Venta;
 	if($_SESSION["mesa"] == NULL){
-			if($_SESSION["muestra_vender"] == 1) { unset($_SESSION["muestra_vender"]);
-			} else {
+		if($_SESSION["muestra_vender"] == 1) { unset($_SESSION["muestra_vender"]); }
+		else {
 			$_SESSION["muestra_vender"] = 1;
-			}
+		} 
+		
 	} else {
-	Alerts::Alerta("error","Error!","No debe haber ninguna mesa activa para continuar!");
-	}
+				if($venta->VerProductosMesa($_SESSION["mesa"]) == 0){
+				$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+				unset($_SESSION["mesa"]);
+					if($_SESSION["muestra_vender"] == 1) { unset($_SESSION["muestra_vender"]); }
+					else {
+						$_SESSION["muestra_vender"] = 1;
+					} 
+				}
+	}	
+
+
 }
 ////////////////////////////////////////////////////
 
@@ -981,7 +993,9 @@ if($_REQUEST["op"]=="90"){
 									$_POST["skin"],
 									$_POST["inicio_tx"],
 									$_POST["otras_ventas"],
-									$_POST["venta_especial"]);
+									$_POST["venta_especial"],
+									$_POST["imprimir_antes"],
+									$_POST["cambio_tx"]);
 }
 
 if($_REQUEST["op"]=="91"){ 

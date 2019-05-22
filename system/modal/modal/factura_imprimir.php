@@ -1,38 +1,32 @@
 <?php
 include_once 'application/common/Mysqli.php';
 $db = new dbConn();
-
-// obtengo el numero de la factura
-     $a = $db->query("SELECT num_fac FROM ticket WHERE num_fac != 0 and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." order by id desc limit 1");
-    foreach ($a as $b) {
-        $factura = $b["num_fac"];
-    } $a->close();
-//
+//////////////// este archivo nad mas sirve para imprimir el ticket o factura antes de ser cobrado.
 ?>
 <div class="modal" id="<? echo $_GET["modal"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          Factura No. <?php echo $factura ?></h5>
+          Imprimir</h5>
       </div>
       <a href="?">
       <div class="modal-body">
 <!-- ./  content -->
 <?php 
 if($_REQUEST["cancela"] != NULL){ 
- $a = $db->query("SELECT sum(stotal) FROM ticket WHERE num_fac = '$factura' and cancela = ".$_REQUEST["cancela"]." and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"].""); 
+ $a = $db->query("SELECT sum(stotal) FROM ticket_temp WHERE cancela = ".$_REQUEST["cancela"]." and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"].""); 
  } else { 
- $a = $db->query("SELECT sum(stotal) FROM ticket WHERE num_fac = '$factura' and mesa = ".$_REQUEST["mesa"]."  and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"].""); 
+ $a = $db->query("SELECT sum(stotal) FROM ticket_temp WHERE mesa = ".$_REQUEST["mesa"]."  and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"].""); 
 }
     foreach ($a as $b) {
         $stotal=$b["sum(stotal)"];
     } $a->close();
 //////////////////
 if($_REQUEST["cancela"] != NULL){ 
-$a = $db->query("SELECT sum(imp) FROM ticket WHERE num_fac = '$factura' and cancela = ".$_REQUEST["cancela"]." and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+$a = $db->query("SELECT sum(imp) FROM ticket_temp WHERE cancela = ".$_REQUEST["cancela"]." and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
  } else { 
-$a = $db->query("SELECT sum(imp) FROM ticket WHERE num_fac = '$factura' and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"].""); 
+$a = $db->query("SELECT sum(imp) FROM ticket_temp WHERE mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"].""); 
 }
 foreach ($a as $b) {
         $imp=$b["sum(imp)"];
@@ -41,9 +35,9 @@ foreach ($a as $b) {
 
 //////////////////
 if($_REQUEST["cancela"] != NULL){ 
-$a = $db->query("SELECT sum(total) FROM ticket WHERE num_fac = '$factura' and cancela = ".$_REQUEST["cancela"]." and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+$a = $db->query("SELECT sum(total) FROM ticket_temp WHERE cancela = ".$_REQUEST["cancela"]." and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
  } else { 
-$a = $db->query("SELECT sum(total) FROM ticket WHERE num_fac = '$factura' and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+$a = $db->query("SELECT sum(total) FROM ticket_temp WHERE mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 }
     foreach ($a as $b) {
         $total=$b["sum(total)"];

@@ -58,17 +58,19 @@
                 <li class="nav-item">
                     <a class="nav-link"><i class="<?php if( $_SESSION["tx"] == 0) echo "fa fa-battery-0"; else { echo "fa fa-battery"; } ?>"></i></a>
                 </li> 
-                <?php } else { ?>
+                <?php } else { 
 
+                if($_SESSION['root_tipo_sistema'] != 1){ ?>    
                     <li class="nav-item">
                     <a id="cambiar-pantalla-inicio" op="26" class="nav-link"><i class="<?php if($_SESSION["tipo_inicio"] == 1) echo "fa fa-tv"; else { echo "fa fa-coffee"; } ?>"></i></a>
                 </li>
-
+                <?php }
+                if($_SESSION['config_cambio_tx'] != NULL){ ?>
                 <li class="nav-item">
                     <a id="cambiar-pantalla-inicio" op="27" class="nav-link"><i class="<?php if( $_SESSION["tx"] == 0) echo "fa fa-battery-0"; else { echo "fa fa-battery"; } ?>"></i></a>
                 </li>
-
-               <? } ?>
+                <?php } 
+                } ?>
                 <li class="nav-item">
                     <a href="?" class="nav-link"><i class="fa fa-home"></i> <span class="clearfix d-none d-sm-inline-block">Inicio</span></a>
                 </li> 

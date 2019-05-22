@@ -222,6 +222,9 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		return $a->num_rows; 
 		$a->close();
 	}
+
+
+
 //////////////////////////////////////////////////////////////
 	public function VerFactura($mesa) {
 		$db = new dbConn();
@@ -275,10 +278,16 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				    		if($_SESSION["noimprimir"] != NULL){
 				    		echo '<a id="cambiar-pantalla-inicio" op="87"><h1 class="text-danger">Total: '. Helpers::Format($max) .'</h1></a>';
 						    } else {
-						    		echo '<a id="cambiar-pantalla-inicio" op="87"><h1>Total: '. Helpers::Format($max) .'</h1></a>';
+						    		if($_SESSION['config_propina'] != 0.00){
+						    		echo '<p>Subtotal: '.$max.' | Propina '.$_SESSION['config_propina'].'% : '. Helpers::Dinero(Helpers::Propina($max)) .'</p>'; }
+
+						    		echo '<a id="cambiar-pantalla-inicio" op="87"><h1>Total: '. Helpers::Dinero(Helpers::PropinaTotal($max)) .'</h1></a>';
 							}
 				    } else {
-				    		echo '<h1>Total: '. Helpers::Format($max) .'</h1>';
+				    			if($_SESSION['config_propina'] != 0.00){
+				    		echo '<p>Subtotal: '.$max.' | Propina '.$_SESSION['config_propina'].'% : '.Helpers::Dinero( Helpers::Propina($max)) .'</p>'; }
+
+				    		echo '<h1>Total: '. Helpers::Dinero(Helpers::PropinaTotal($max)) .'</h1>';
 				    }
 				    	    
 				    
@@ -293,16 +302,24 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				     echo '<form action="application/src/routes.php?op=21" method="post"  name="form-vender" id="form-vender" >
 		        	<input type="text" id="total" name="total" class="form-control mb-1" placeholder="100.00" autofocus>
 					<div align="center">';
-					
+
+				
+
 				echo '<button class="white" type="submit" name="btn-vender" id="btn-vender"><img src="assets/img/imagenes/print.png"></button>';
 					
 					if(!isset($_SESSION['view'])){
-					echo '<a href="?modal=modificar&mesa='.$_SESSION["mesa"].'&view=0" class="btn-floating blue"><i class="fa fa-refresh" aria-hidden="true"></i></a>';
+					echo '<a href="?modal=modificar&mesa='.$_SESSION["mesa"].'&view=0" class="btn-floating blue"><i class="fa fa-refresh" aria-hidden="true"></i></a>'; }
+					else {
+						if($_SESSION['config_imprimir_antes'] != NULL){
+							echo '<a href="?modal=factura_imprimir&mesa='.$_SESSION["mesa"].'&efectivo=" class="btn-floating blue"><i class="fa fa-print" aria-hidden="true"></i></a>';	
+						}
+						
+					}
 					
 					echo '</div>
 					</form>';
 
-}
+
 		    } $a->close();
 		   
 
@@ -361,7 +378,11 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				    foreach ($s as $t) {
 				        $max=$t["sum(total)"];
 				    } $s->close();
-				    echo "<h1>Total: ". Helpers::Dinero($max) ."</h1>";
+
+				    if($_SESSION['config_propina'] != 0.00){
+						    		echo '<p>Subtotal: '.$max.' | Propina '.$_SESSION['config_propina'].'% : '. Helpers::Dinero(Helpers::Propina($max)) .'</p>'; }
+
+				    echo "<h1>Total: ". Helpers::Dinero(Helpers::PropinaTotal($max)) ."</h1>";
 
 				 //    <div class="switch">
 					//   <label>
@@ -468,6 +489,9 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 
 		    unset($_SESSION["mesa"]);
 
+		    if($_SESSION['config_propina'] != 0.00){ ///  prara agregarle la propina
+			$this->AgregarPropina($ultimon); }
+
 		    $this->DataCopy($mesa, $ultimon);
 
 		    return TRUE;
@@ -510,8 +534,11 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 
 		}
 		$a->close();
-    	    
-			 $this->DataCopy($mesa, $ultimon);
+		
+		if($_SESSION['config_propina'] != 0.00){ ///  prara agregarle la propina
+		$this->AgregarPropina($ultimon); }
+
+    	     $this->DataCopy($mesa, $ultimon);
 		    return TRUE;
 		    }
 		}
@@ -527,6 +554,21 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 
 		}	
 
+
+	public function AgregarPropina($factura){
+		$db = new dbConn();
+		// agregar ticket propina
+		    $datos = array();
+		    
+		    $datos["num_fac"] = $factura;
+		    $datos["propina"] = $_SESSION['config_propina'];
+		    $datos["fecha"] = date("d-m-Y");
+		    $datos["hora"] = date("H:i:s");
+		    $datos["tx"] = $_SESSION["tx"];
+		    $datos["td"] = $_SESSION["td"];
+		    $db->insert("ticket_propina", $datos);
+
+	}
 ///////////////////////////////////////////////////////////////////
 	public function BorrarProducto($iden,$imp) {
 		$db = new dbConn();

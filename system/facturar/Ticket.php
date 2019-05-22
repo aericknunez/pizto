@@ -110,6 +110,13 @@ if ($sx = $db->select("sum(total)", "ticket", "WHERE cancela = '$numero' and mes
 
     }    $a->close();
 
+
+
+if($_SESSION['config_propina'] != 0.00){ ///  prara agregarle la propina -- sino borrar
+$stotalx = Helpers::PropinaTotal($stotalx);
+}
+
+
 $oi=$oi+$n2;
 printer_draw_text($handle, "Total:", 325, $oi);
 printer_draw_text($handle, Helpers::Dinero($stotalx), 402, $oi);
