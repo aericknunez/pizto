@@ -21,7 +21,7 @@ $db = new dbConn();
 <option value="0" selected="selected">Ninguno</option>
 <?php 
 
-$d = $db->selectGroup("cod, categoria", "categorias", "order by categoria");
+$d = $db->selectGroup("cod, categoria", "categorias", "WHERE td = ".$_SESSION["td"]." order by categoria");
     if ($d->num_rows > 0) {
         while($r = $d->fetch_assoc() ) {
             echo "<option value='".$r["cod"]."'>" .$r["categoria"]. "</option>";
@@ -38,7 +38,7 @@ $d = $db->selectGroup("cod, categoria", "categorias", "order by categoria");
 
 <option value="0" selected="selected">Ninguno</option>
 <?php 
-$d = $db->selectGroup("cod, nombre", "opciones", "");
+$d = $db->selectGroup("cod, nombre", "opciones", "WHERE td = ".$_SESSION["td"]."");
     if ($d->num_rows > 0) {
         while($r = $d->fetch_assoc() ) {
             echo "<option value='".$r["cod"]."'>" .$r["nombre"]. "</option>";

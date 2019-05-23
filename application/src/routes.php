@@ -189,6 +189,8 @@ $idArray = explode(",",$_POST['ids']);
 //update images order
 $iconos->UpdateReordenar($idArray);
 } 
+
+
  // termina iconos////
 
 /////////////////////// comienza las ventas

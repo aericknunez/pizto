@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          Registrar nuevo Usuario</h5>
+          Registrar nueva categoria</h5>
       </div>
       <div class="modal-body">
 

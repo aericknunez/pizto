@@ -15,17 +15,17 @@ $db = new dbConn();
    <ul class="gallery">
 
 <?php 
-$a = $db->query("Select * from images where popup=".$_REQUEST["cod"]." order by img_order asc");
+$a = $db->query("Select * from images where popup=".$_REQUEST["cod"]." and td = ".$_SESSION["td"]." order by img_order asc");
     foreach ($a as $b) {
     $img=$b['img_name'];
     $cod=$b["cod"];
     $pop=$b["popup"];
 
-  if ($r = $db->select("nombre,cat", "precios", "where cod='".$cod."'")) { 
+  if ($r = $db->select("nombre,cat", "precios", "where cod='$cod' td = ".$_SESSION["td"]."")) { 
     $nombres=$r["nombre"]; $cat=$r["cat"];
     }
 
-    if ($r = $db->select("categoria", "categorias", "where cod='".$cod."'")) { 
+    if ($r = $db->select("categoria", "categorias", "where cod='$cod' td = ".$_SESSION["td"]."")) { 
         $nombres=$r["categoria"]; 
         }
 

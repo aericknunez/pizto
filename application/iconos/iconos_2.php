@@ -28,6 +28,8 @@
 <li><em>Alitas Familiar</em><input type="image" id="venta" op="20" cod="1034" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/alitas.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Orden de Nachos</em><input type="image" id="venta" op="20" cod="1035" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/nachos.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Fresco Natural</em><input type="image" id="venta" op="20" cod="1036" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/limonada.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>Pizza Personal</em><input type="image" id="venta" op="20" cod="1037" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/ert.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>Pizza</em><input type="image" id="venta" op="20" cod="1038" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/510.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
  
  
 <li><a href="?modal=otras_ventas&mesa=<? echo $_SESSION["mesa"]; ?>&cliente=<? echo $_SESSION["clientselect"] ?>&view=<? echo $_SESSION["view"]; ?>"><em>Otras Ventas</em><img src="assets/img/ico/dfs.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li> 
@@ -61,6 +63,31 @@
 <li><em>Combo Hambur Mr</em><input type="image" id="venta" op="20" cod="1020" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/hamburguesapollo.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Combo Hambur Jr</em><input type="image" id="venta" op="20" cod="1021" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/655454.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Combo Pita</em><input type="image" id="venta" op="20" cod="1022" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/pita.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+
+  
+</ul> 
+ </div> </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div><!-- POPUP CON EL CODIGO 9918 telefonos --> 
+ 
+ 
+<div class="modal" id="a9918" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">telefonos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+ <div class="row text-center portfolio"> 
+   <ul class="gallery"> 
+
 
   
 </ul> 

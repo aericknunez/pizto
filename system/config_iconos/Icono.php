@@ -54,6 +54,7 @@ class Icono{
 
 		$db->close();
 
+		if($_SESSION["opcionesx"] != NULL){ unset($_SESSION["opcionesx"]); } // borra la variable que creo en iconosselect
 	}
 	
 
@@ -80,6 +81,8 @@ class Icono{
 	    $db->insert("images", $datos);
 
 	$db->close();
+
+	if($_SESSION["opcionesx"] != NULL){ unset($_SESSION["opcionesx"]); } // borra la variable que creo en iconosselect
    }
 
 
@@ -103,6 +106,8 @@ class Icono{
 
 		$db->close();
 
+		if($_SESSION["opcionesx"] != NULL){ unset($_SESSION["opcionesx"]); } // borra la variable que creo en iconosselect
+
     	}   
 
 
@@ -119,6 +124,8 @@ class Icono{
 		    $db->update("images", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$db->close();
+
+		if($_SESSION["opcionesx"] != NULL){ unset($_SESSION["opcionesx"]); } // borra la variable que creo en iconosselect
 
     	}
 
@@ -247,6 +254,8 @@ class Icono{
 		    $db->insert("images", $datos);
 
 		$this->VerOpcionesName($cod);
+
+		if($_SESSION["opcionesx"] != NULL){ unset($_SESSION["opcionesx"]); } // borra la variable que creo en iconosselect
 	}
 
 
@@ -368,9 +377,23 @@ class Icono{
 	} 
 			
 
+   	
+   	public function MostrarIconos($categoria, $opciones){
+   		$db = new dbConn();
+    	
+    	if($categoria != NULL){
+    		$a = $db->query("SELECT * FROM login_imagenes WHERE categoria = $categoria");
+    	} else {
+    		$a = $db->query("SELECT * FROM login_imagenes");
+    	}	    
+	    foreach ($a as $b) {
+	        echo '<li><a ' . $opciones .' imagen="assets/img/ico/' . $b["imagen"] .'"><img src="assets/img/ico/' . $b["imagen"] .'" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>';
+	    } $a->close();
+   	}
 
 
 
 
-}
+
+} /// termina clase
 ?>

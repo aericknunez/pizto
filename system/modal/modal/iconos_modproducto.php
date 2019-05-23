@@ -22,7 +22,7 @@ action="?modal=selectimg" >
 include_once 'application/common/Mysqli.php';
 $db = new dbConn();
 
-$d = $db->selectGroup("cod, categoria", "categorias", "order by categoria");
+$d = $db->selectGroup("cod, categoria", "categorias", "WHERE td = ".$_SESSION["td"]." order by categoria");
     if ($d->num_rows > 0) {
         while($r = $d->fetch_assoc() ) {
             echo "<option value='";

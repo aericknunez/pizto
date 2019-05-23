@@ -11,7 +11,7 @@
 include_once 'application/common/Mysqli.php';
 $db = new dbConn();
 
-if ($r = $db->select("nombre", "opciones", "WHERE cod = ".$_REQUEST["cod"]."")) { 
+if ($r = $db->select("nombre", "opciones", "WHERE cod = ".$_REQUEST["cod"]." and td = ".$_SESSION["td"]."")) { 
         echo "<h2>".$r["nombre"]. "</h2>";
     } unset($r); 
  ?>  
