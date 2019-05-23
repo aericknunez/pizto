@@ -234,11 +234,18 @@ if($_SESSION["caduca"] == 3){
 		@$ano=date("Y");
 		$fecha="-$mes-$ano";
 
+		$ap = $db->query("SELECT sum(total) FROM ticket_propina where fecha like '%$fecha' and td = ".$_SESSION['td']."");
+		    foreach ($ap as $bp) { 
+		    	$prop = $bp["sum(total)"];
+
+		    } $ap->close();
+
+
 	    $a = $db->query("SELECT sum(total) FROM ticket WHERE edo = 1 and td = ".$_SESSION["td"]." and fecha like '%$fecha'");
 		    foreach ($a as $b) {
 		     $total=$b["sum(total)"];
 		    } $a->close();
-		    return $total;
+		    return $total + $prop;
 	}
 
 	public function Gastos(){
@@ -267,7 +274,7 @@ if($_SESSION["caduca"] == 3){
     		$total = $efectivo;
 		    return $total;	
 		} else {
-			$total = $efectivo + Corte::VentaHoy(date("d-m-Y")) - Corte::GastoHoy(date("d-m-Y"));
+			$total = $efectivo + Corte::VentaHoy(date("d-m-Y")) - Corte::GastoHoy(date("d-m-Y")) + Corte::PropinaHoy(date("d-m-Y"));
 		    return $total;
 		}
 
