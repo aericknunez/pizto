@@ -557,11 +557,19 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 
 	public function AgregarPropina($factura){
 		$db = new dbConn();
+		//obtener total y propina
+			
+			$ar = $db->query("SELECT sum(total) FROM ticket_temp where num_fac = '$factura' and tx = ".$_SESSION['tx']." and td = ".$_SESSION['td']."");
+		    foreach ($ar as $br) {
+		     $totalpro = $br["sum(total)"];
+		    } $ar->close();	
+		    	
 		// agregar ticket propina
-		    $datos = array();
-		    
+		    $datos = array();    
 		    $datos["num_fac"] = $factura;
 		    $datos["propina"] = $_SESSION['config_propina'];
+		    $datos["efectivo"] = $totalpro;
+		    $datos["total"] = Helpers::Propina($totalpro);
 		    $datos["fecha"] = date("d-m-Y");
 		    $datos["hora"] = date("H:i:s");
 		    $datos["tx"] = $_SESSION["tx"];

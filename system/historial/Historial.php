@@ -76,9 +76,15 @@ class Historial{
 		    } $ar->close();
 
 		    $ag = $db->query("SELECT sum(total) FROM ticket where edo = 1 and fecha = '$fecha' and td = ".$_SESSION['td']."");
-		    foreach ($ag as $bg) {
+		    foreach ($ag as $bg) { $tot = $bg["sum(total)"];
 		        echo "Total Vendido: ". Helpers::Dinero($bg["sum(total)"]) . "<br>";
 		    } $ag->close();
+
+		    $ap = $db->query("SELECT sum(total) FROM ticket_propina where fecha = '$fecha' and td = ".$_SESSION['td']."");
+		    foreach ($ap as $bp) { $prop = $bp["sum(total)"];
+		        echo "Total Propina: ". Helpers::Dinero($bp["sum(total)"]) . "<br>";
+		    } $ap->close();
+		     echo "Total Agrupado: ". Helpers::Dinero($prop + $tot) . "<br>";
 
 	}
 
@@ -150,11 +156,15 @@ class Historial{
 		    } $ar->close();
 
 		    $ag = $db->query("SELECT sum(total) FROM ticket where edo = 1 and fecha like '%$fechax' and td = ".$_SESSION['td']."");
-		    foreach ($ag as $bg) {
+		    foreach ($ag as $bg) { $tot = $bg["sum(total)"];
 		        echo "Total Vendido: ". Helpers::Dinero($bg["sum(total)"]) . "<br>";
 		    } $ag->close();
 
-
+		    $ap = $db->query("SELECT sum(total) FROM ticket_propina where fecha like '%$fechax' and td = ".$_SESSION['td']."");
+		    foreach ($ap as $bp) { $prop = $bp["sum(total)"];
+		        echo "Total Propina: ". Helpers::Dinero($bp["sum(total)"]) . "<br>";
+		    } $ap->close();
+		    echo "Total Agrupado: ". Helpers::Dinero($prop + $tot) . "<br>";
 
 	}
 
@@ -175,8 +185,9 @@ class Historial{
 						<thead>
 					     <tr>
 					       <th>Fecha</th>
-					       <th>Mesas</th>
+					       <th>Mesas</th>					       
 					       <th>Clientes</th>
+					       <th>Propina</th>
 					       <th>Efectivo</th>
 					        <th>Total</th>
 					        <th>Gastos</th>
@@ -188,6 +199,7 @@ class Historial{
 
 			    $xmesas=0;
 				$xclientes=0;
+				$xpropina=0;
 				$xefectivo=0;
 				$xtotal=0;
 				$xgastos=0; 
@@ -198,6 +210,7 @@ class Historial{
 				if($b["edo"] == 1){
 				$xmesas=$xmesas+$b["mesas"];
 				$xclientes=$xclientes+$b["clientes"];
+				$xpropina=$xpropina+$b["propina"];
 				$xefectivo=$xefectivo+$b["efectivo"];
 				$xtotal=$xtotal+$b["total"];
 				$xgastos=$xgastos+$b["gastos"];
@@ -210,6 +223,7 @@ class Historial{
 				       <th scope="row">'. $b["fecha"] . '</th>
 				       <td>'. $b["mesas"] . '</td>
 				       <td>'. $b["clientes"] . '</td>
+				       <td>'. Helpers::Dinero($b["propina"]) . '</td>
 				       <td>'. Helpers::Dinero($b["efectivo"]) . '</td>
 				       <td>'. Helpers::Dinero($b["total"]) . '</td>
 				       <td>'. Helpers::Dinero($b["gastos"]) . '</td>
@@ -222,6 +236,7 @@ class Historial{
 			       <th scope="row">Totales</th>
 			       <td>'. $xmesas . '</td>
 			       <td>'. $xclientes . '</td>
+			       <td>'. Helpers::Dinero($xpropina) . '</td>
 			       <td>'. Helpers::Dinero($xefectivo) . '</td>
 			       <td>'. Helpers::Dinero($xtotal) . '</td>
 			       <td>'. Helpers::Dinero($xgastos) . '</td>

@@ -29,6 +29,7 @@ class Corte{
 		    $datos["mesas"] = $this->MesasHoy($fecha);
 		    $datos["clientes"] = $this->ClientesHoy($fecha);
 		    $datos["efectivo"] = $efectivo;
+		    $datos["propina"] = $this->PropinaHoy($fecha);
 		    $datos["tx"] = $this->TotalTx($fecha);
 		    $datos["no_tx"] = $this->TotalNoTx($fecha);
 		    $datos["total"] = $this->VentaHoy($fecha);
@@ -142,6 +143,16 @@ class Corte{
 	}
 
 
+	public function PropinaHoy($fecha){
+		$db = new dbConn();
+	    $a = $db->query("SELECT sum(total) FROM ticket_propina WHERE td = ".$_SESSION["td"]." and fecha = '$fecha'");
+		    foreach ($a as $b) {
+		     $total=$b["sum(total)"];
+		    } $a->close();
+		    return $total;
+	}
+
+
 	public function TotalTx($fecha){
 		$db = new dbConn();
 	    $a = $db->query("SELECT sum(total) FROM ticket WHERE edo = 1 and td = ".$_SESSION["td"]." and fecha = '$fecha' and tx = 1");
@@ -194,7 +205,7 @@ public function Porcentaje(){
 
 	public function DiferenciaDinero($caja_chica, $efectivo, $fecha){
 		/// conversiones para el dinero
-				$total_cc = $this->VentaHoy($fecha)+$caja_chica; //total ventas  mas caja chica de ayer
+				$total_cc = $this->VentaHoy($fecha)+$caja_chica+$this->PropinaHoy($fecha); //total ventas  mas caja chica de ayer
 				$total_debido = $total_cc-$this->GastoHoy($fecha); //dinero que deberia haber ()
 				$diferencia = $efectivo - $total_debido;
 				return $diferencia;
