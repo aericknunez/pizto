@@ -26,7 +26,7 @@ setcookie(session_name(),'', time() - 42000, $params["path"], $params["domain"],
 
 // Destroy session 
 session_destroy();
-if($redirect == 3){
+if($redirect == 3 and Helpers::ServerDomain() == TRUE){
 header("Location: https://superpollo.net");
 } else {
 header("Location: ../../index.php");
