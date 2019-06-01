@@ -98,6 +98,13 @@ $user = $_SESSION["user"];
 
 
 }
+
+    if($_SESSION["noimprimir"] == 1){ unset($_SESSION["noimprimir"]); } /// elimino la opcion de no imprimir
+    // elimino los rtn
+    if($_SESSION["rtn"] != NULL and $_SESSION["cliente"] != NULL){
+        unset($_SESSION["cliente"]);
+        unset($_SESSION["rtn"]); }
+
  ?> 
 
 

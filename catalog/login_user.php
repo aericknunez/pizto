@@ -31,8 +31,6 @@ $db = new dbConn();
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 
-
-
 <!-- Section: Team v.1 -->
 <section class="team-section text-center">
   <!-- Grid row -->
@@ -61,6 +59,13 @@ $db = new dbConn();
  ?>
    </div>
   <!-- Grid row -->
+
+  <?php
+if (isset($_GET['error'])) {
+    echo '<p class="text-danger">Error al Ingresar!</p>';
+}
+?>
+
 </section>
 <!-- Section: Team v.1 -->
 
@@ -70,7 +75,6 @@ $db = new dbConn();
 </div>
 <!-- </div> -->
 
- 
 
 
 </main>

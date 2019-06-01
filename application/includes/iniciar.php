@@ -18,6 +18,8 @@ header("location: logout.php");
 exit();
 }
 
+if (login_check($mysqli) == true) {
+
 $user=sha1($_SESSION['username']);
 
 	function UserInicio($user){
@@ -85,4 +87,5 @@ $user=sha1($_SESSION['username']);
 
 UserInicio($user);
 
+}
 ?>

@@ -40,7 +40,7 @@
 					</span>
 						<?php
 				        if (isset($_GET['error'])) {
-				            echo '<p class="error">Error Logging In!</p>';
+				            echo '<p class="error">Error al Ingresar!</p>';
 				        }
 				        ?>
 					<div class="wrap-input100 validate-input" data-validate = "Introduzca un email valido">

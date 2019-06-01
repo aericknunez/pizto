@@ -1460,7 +1460,16 @@ if($_REQUEST["op"]=="167"){ // dar seguimiento a materia prima
 
 
 
+if($_REQUEST["op"]=="168"){ // borrar factura completa
+include_once '../../system/facturar/Facturar.php';
+	$facturar = new Facturar; 
+	$facturar->BorrarFactura($_REQUEST["mesa"], $_REQUEST["num_fac"]);
 
+include_once '../../system/tv/Pantallas.php';
+	$pantalla = new Pantallas;
+	$pantalla->EliminaControl($_REQUEST["mesa"]);
+	$pantalla->Cambia(1);
+} 
 
 
 

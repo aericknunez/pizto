@@ -8,7 +8,7 @@ function sec_session_start() {
 
     // Forces sessions to only use cookies.
     if (ini_set('session.use_only_cookies', 1) === FALSE) {
-        header("Location: ../../error.php?err=Could not initiate a safe session (ini_set)");
+        header("Location: ../../error.php?err=No se puede iniciar");
         exit();
     }
 
@@ -71,7 +71,7 @@ function login($email, $password, $mysqli) {
                     $now = time();
                     if (!$mysqli->query("INSERT INTO login_attempts(user_id, time) 
                                     VALUES ('$user_id', '$now')")) {
-                        header("Location: ../../error.php?err=Database error: login_attempts");
+                        header("Location: ../../error.php?err=Database error: Password Incorrecto");
                         exit();
                     }
 
@@ -113,7 +113,7 @@ function checkbrute($user_id, $mysqli) {
         }
     } else {
         // Could not create a prepared statement
-        header("Location: ../../error.php?err=Database error: cannot prepare statement check force");
+        header("Location: ../../error.php?err=Database error: No puedes entrar por fuerza bruta");
         exit();
     }
 }
@@ -155,7 +155,7 @@ function login_check($mysqli) {
             }
         } else {
             // Could not prepare statement 
-           echo "<br> NO se puede establecer conexion con el servidor";
+           echo "<br> No se puede establecer conexion con el servidor";
             exit();
         }
     } else {

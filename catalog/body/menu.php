@@ -95,6 +95,9 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <?php } ?>
 <li><a href="?rango" class="waves-effect"> Imprimir Facturas</a></li>
 <li><a href="?contadora" class="waves-effect"> Imprimir Reporte</a></li>
+<?php if($_SESSION["tx"] == 1 and (Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)){
+echo '<li><a href="?eliminar_facturas" class="waves-effect"> Eliminar Facturas</a></li>';	
+} ?>
 </ul>
 </div>
 </li>

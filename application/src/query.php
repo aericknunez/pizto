@@ -154,6 +154,9 @@ echo '<script type="text/javascript" src="assets/js/query/facturar.js?v='.$numer
 elseif(isset($_GET["facturasopciones"])) {
 echo '<script type="text/javascript" src="assets/js/query/facturar.js?v='.$numero.'"></script>';
 }
+elseif(isset($_GET["eliminar_facturas"])) {
+echo '<script type="text/javascript" src="assets/js/query/facturar.js?v='.$numero.'"></script>';
+}
 elseif(isset($_GET["syncstatus"])) {
 echo '<script type="text/javascript" src="assets/js/query/respaldo.js?v='.$numero.'"></script>';
 }
@@ -208,7 +211,7 @@ include_once 'system/historial/script.php';
 		                  }
 
 
-		          Respaldar();
+		        Respaldar();
 
 		});
 		</script>

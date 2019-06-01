@@ -442,4 +442,78 @@ class Facturar{
 
 
 
+
+
+
+/////////////eliminar facturas
+	public function EliminarFacturas(){
+			$db = new dbConn();
+
+	    $a = $db->query("SELECT * FROM ticket_num WHERE edo = 1 and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." order by id desc");
+	    if($a->num_rows > 0){
+	echo '<table class="table table-sm table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">Factura</th>
+	      <th scope="col">Hora</th>
+	      <th scope="col">Borrar</th>
+	    </tr>
+	  </thead>
+	  <tbody>';
+	    foreach ($a as $b) {
+	    echo '<tr>
+	      <td>'. $b["num_fac"] .'</td>
+	      <td>'. $b["hora"] .'</th>
+	      <td><a id="eliminar-factura" op="168" num_fac="'.$b["num_fac"].'" mesa="'.$b["mesa"].'">
+				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      </a></td>
+	    </tr>';
+	    }
+	    echo '</tbody>
+    		</table>';
+	    $a->close(); 
+	  } else {
+	  	echo '<h3 class="border border-light">No hay Facturas emitidas este dia</h3>';
+	  }
+ 
+	}
+
+	public function BorrarFactura($mesa, $ticket) {
+		$db = new dbConn();
+		    
+		    // temp
+		     if ( $db->delete("ticket_temp", "WHERE num_fac = '$ticket' and mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		    
+		    // ticket 
+		      $db->delete("ticket", "WHERE num_fac = '$ticket' and mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+
+		    // ticket 
+		      $db->delete("ticket_num", "WHERE num_fac = '$ticket' and mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+
+		    // verifica si ya no hay mas productos en la mesa
+		    $a = $db->query("SELECT * FROM ticket_temp WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+				
+				if($a->num_rows == 0){
+					
+					$db->delete("mesa", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+
+		        	$db->delete("mesa_nombre", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+				}
+
+				$a->close(); 		       
+	        	
+	        	Alerts::Alerta("success","Eliminada!","factura: ". $ticket ." eliminada correctamente !");
+		    } else {
+		    	Alerts::Alerta("error","Error!","Ocurrio un error!");
+		    }
+
+		    $this->EliminarFacturas();
+
+   	}
+
+
+
+
+
+
 }  // class

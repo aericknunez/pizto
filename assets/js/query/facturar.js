@@ -214,4 +214,23 @@ return false;
 
 
 
+
+
+//////////////// eliminar la factura
+	$("body").on("click","#eliminar-factura",function(){
+	var op = $(this).attr('op');
+	var num_fac = $(this).attr('num_fac');
+	var mesa = $(this).attr('mesa');
+    	$.post("application/src/routes.php", {op:op, num_fac:num_fac, mesa:mesa}, 
+    	function(htmlexterno){
+		$("#resultado").html(htmlexterno);
+   	 	});
+	});
+
+
+
+
+
+
+
 });

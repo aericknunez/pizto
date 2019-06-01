@@ -82,12 +82,14 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
             // Ejecuta la consulta preparada.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Fallo el registro');
-            }
-        }
-               //header('Location: ./?modal=register_success&user=' . $_POST['username']);
+            } else {
+                 //header('Location: ./?modal=register_success&user=' . $_POST['username']);
                echo '<script>
                         window.location.href="?modal=register_success&user=' . $_POST['username'] . '";
                     </script>';
+            }
+        }
+              
     }
 }
 ?>
