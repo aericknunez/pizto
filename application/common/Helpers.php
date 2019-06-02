@@ -18,6 +18,16 @@ class Helpers{
     }
 
 
+    static public function ServerDemo(){
+      $direccion = dirname(__FILE__);
+        if (strpos($direccion, 'demo') !== false) {
+           return TRUE;
+        } else { 
+          return FALSE; 
+        }  
+    }
+
+
     public function Gasto($string) {
     if($string == "1") return '<p class="text-danger font-weight-bold">Compra No Facturado</p>';
     if($string == "2") return '<p class="text-success font-weight-bold">Compra con Factura</p>';
