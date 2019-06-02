@@ -74,6 +74,10 @@ class Config{
 		$db = new dbConn();
 //ESTE ARCHIVO CREA ICONOS CADA VES QUE ES NECESARIO AL INICIO DE SESION
 // CONSULTA TODOS LOS ICONOS Y LOS GUARDA EN UN ARCHIVO LLAMADO iconos.php 
+$countico = $db->query("SELECT * FROM images WHERE td = ".$_SESSION["td"]."");
+if($countico->num_rows > 0){ // si hay iconos prosigo. sino voy hasta el final
+
+
 
 $return.= "<div class=\"row text-center portfolio\"> 
    <ul class=\"gallery\"> \n\n";
@@ -392,7 +396,29 @@ unset($panel);
    fclose($handle);
 	
 
-	} // fin de la funcion
+
+} else {
+	//save
+$return.= '<? '; 
+$return.= 'Alerts::Mensaje("No hay iconos que mostrar, por favor ingrese sus productos para poder realizar sus ventas","danger","<a href=\"?iconos\" class=\"btn btn-success\">CREAR ICONOS</a>","<a href=\"https://pizto.com/help#iconos\" class=\"btn btn-primary\" target=\"_blank\"><i class=\"fa fa-info-circle \"></i> VER COMO HACERLO </a>");'; 
+$return.= ' ?>'; 
+
+   if($handle = fopen($url . "iconos_".$_SESSION["td"].".php",'w+')){
+
+   		if($msj != NULL){
+   			$alert = new Alerts;
+    		$alert->Alerta("success","Echo!","Aun no hay iconos para crear");
+   		}
+   	
+   }
+   fwrite($handle,$return);
+   fclose($handle);
+
+} $countico->close(); // cierro si no hay iconos
+
+
+
+} // fin de la funcion
 
 
 
