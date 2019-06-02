@@ -38,7 +38,7 @@ session_destroy();
 if($redirect == 3 and Helpers::ServerDomain() == TRUE){
 header("Location: https://superpollo.net");
 } else {
-header("Location: ../../index.php");
+header("Location: ../../");
 }
 	
 exit();
