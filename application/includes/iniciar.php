@@ -102,6 +102,18 @@ $user=sha1($_SESSION['username']);
             } unset($r); 
     }
 
+    function VerificaUso(){
+        $db = new dbConn();
+
+            $a = $db->query("SELECT * FROM images WHERE td = " . $_SESSION['td']);
+            if($a->num_rows == 0){
+               $_SESSION['sinuso'] = TRUE; 
+            }
+            $a->close();
+
+    }
+
+
 
 UserInicio($user);
 
