@@ -37,7 +37,7 @@ $user=sha1($_SESSION['username']);
 // antes de seguir debo revisar si exixten datos en el sistema de este usuario
 // si no hay datos, debo redirigirlo a la pantalla de config para que los llene
 // de igual manera si estan incompletos y el sistema no puede continuar, debe llenarlos
-
+            VerificaUso();
             BuscaDatosSistema();
 
 /// continua con el login normal
