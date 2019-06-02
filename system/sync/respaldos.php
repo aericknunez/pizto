@@ -16,7 +16,7 @@ echo '<a href="?modal=respaldar&type=2" class="btn-floating btn-sm red"><i class
 
 <?php if(isset($_REQUEST["msj"])){
     echo '<div class="alert alert-danger">
- Se ha detectado que en los &uacuteltimos 5 dias hubo actividad en el sistema pero por alg&uacutena raz&oacuten no se hubo registro de cortes o respaldos. <br>
+ Se ha detectado que en los &uacuteltimos dias hubo actividad en el sistema pero por alg&uacutena raz&oacuten no se hubo registro de cortes o respaldos. <br>
  Puede hacer los cortes y respaldos uno a uno en esta secci&oacuten 
 </div> ';
 } ?>

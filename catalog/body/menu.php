@@ -158,7 +158,7 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <ul class="list-unstyled">
 <li><a href="?iconos" class="waves-effect">Iconos</a></li>
 <li><a href="?precios" class="waves-effect">Precios</a></li>
-<?php if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5) { ?>                        
+<?php if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5 or $_SESSION["tipo_cuenta"] == 2) { ?>                        
 <li><a href="?configuraciones" class="waves-effect">Configuraciones</a></li>
 <?php } ?>
 <li><a href="?venta_especial" class="waves-effect">Venta Especial</a></li>
