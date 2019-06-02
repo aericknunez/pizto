@@ -13,11 +13,6 @@ unset($_SESSION['client-asign']);
 unset($_SESSION['clientselect']);
 unset($_SESSION['view']);
 
-if($_SESSION['sinuso'] != NULL){ // para decir que no esta en uso el sistema
-Alerts::Mensaje('Al parecer sus sistema se encuentra sin registros, para comenzar debe agregar nuevos productos para posteriormente comenzar a venderlos. Si no sabe por donde comenzar, no se preocupe, puede ir a la secci&oacuten de ayuda o ponerse en contacto con nosotros.',"warning",'<a href="?iconos" class="btn btn-success">AGREGAR PRODUCTOS</a>','<a href="https://pizto.com/help" class="btn btn-primary" target="_blank"><i class="fa fa-info-circle "></i> IR A LA AYUDA </a>');
-unset($_SESSION['sinuso']);	
-}
-
 if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5) {
 		
 if($_SESSION["muestra_vender"] == NULL){
