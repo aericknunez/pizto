@@ -34,7 +34,13 @@ $user=sha1($_SESSION['username']);
             $_SESSION['secret_key'] = md5($r["td"]);
 
             } unset($r);
+// antes de seguir debo revisar si exixten datos en el sistema de este usuario
+// si no hay datos, debo redirigirlo a la pantalla de config para que los llene
+// de igual manera si estan incompletos y el sistema no puede continuar, debe llenarlos
 
+            BuscaDatosSistema();
+
+/// continua con el login normal
         
         $configuracion = new Config;
         $configuracion->CrearVariables(); // creo el resto de variables del sistema
@@ -82,6 +88,18 @@ $user=sha1($_SESSION['username']);
          }   
         
 
+    }
+
+    function BuscaDatosSistema(){
+        $db = new dbConn();
+
+            if ($r = $db->select("*", "config_master", "WHERE td = 4")) { 
+                if($r["cliente"] == NULL or $r["moneda"] == NULL){
+                        $_SESSION['nodatainicial'] = md5($_SESSION['td']); // es para los que no llena datos 
+                      header("location: ../../?modal=conf_config&inicio");
+                       exit();
+                }  
+            } unset($r); 
     }
 
 

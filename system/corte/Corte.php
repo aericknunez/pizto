@@ -226,7 +226,21 @@ public function CancelarCorte($ramdom,$fecha){
 			    $cambio["edo"] = "2";
 			    if ($db->update("corte_diario", $cambio, "WHERE fecha_format=" . Fechas::Format($fecha))) {
 			    	// borra el sincronizado si existe
+			    	    $as = $db->query("SELECT * FROM sync_status WHERE tipo = 1 and fecha = '$fecha' and ejecutado = 0 and td = ".$_SESSION["td"]."");
+						    foreach ($as as $bs) {
+
+							        $sync = $bs["hash"];
+							    	$fichero = "../../sync/" . $sync . ".sql";
+
+									if (file_exists($fichero)){ 
+											$db->delete("sync_status", "WHERE hash= '$sync' and td =".$_SESSION["td"]."");
+											@unlink($fichero);
+									}
+
+						    } $as->close();
+
 			    	$db->delete("sync_status", "WHERE tipo = 1 and fechaF =" . Fechas::Format($fecha));
+			    	////////////// lo del sync
 			        $this->RevertirCalcularGastoProductos($fecha);
 					Alerts::Alerta("success","Exito!","Corte Anulado Correctamente");
 			    } else {

@@ -2,7 +2,8 @@
 include_once '../application/common/Helpers.php'; // [Para todo]
 include_once '../application/includes/variables_db.php';
 include_once '../application/includes/db_connect.php';
-session_start();
+include_once '../application/includes/functions.php';
+sec_session_start();
 include_once '../application/common/Fechas.php';
 include_once '../application/common/Mysqli.php';
 $db = new dbConn();
@@ -71,7 +72,7 @@ if($sync != NULL){
 unset($_SESSION["temporal_td"]);
 
 
-if($fecha == date("d-m-Y") or $type == 1){
+if($fecha == date("d-m-Y") and $type == 1){
 echo '<script>
 window.location.href="?corte"
 </script>';

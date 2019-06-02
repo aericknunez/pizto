@@ -7,9 +7,17 @@ $db = new dbConn();
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          Configuraciones del sistema</h5>
+          Datos necesarios para el funcionamiento del sistema</h5>
       </div>
+      <?php if(isset($_REQUEST["inicio"])){
+        include_once 'application/common/Alerts.php';
+        $alert = new Alerts();
+        $alert->Mensaje("Debe llenar los datos nececesarios para poder usar el sistema correctamente","danger",$boton,$boton2);
+      } ?>
+      
+
       <div class="modal-body">
+
 <!-- ./  content -->
 <div id="ventana"></div>
 
@@ -25,8 +33,8 @@ $r = $db->select("*", "config_master", "where td = ".$_SESSION['td']."")
         Nombre del Sistema
     </small><input type="text" id="sistema" name="sistema" class="form-control mb-1" placeholder="Sistema" value="<? echo $r["sistema"]; ?>"></td>
        <td><small id="cliente" class="form-text text-muted mb-1">
-        Nombre del Cliente
-    </small><input type="text" id="cliente" name="cliente" class="form-control mb-1" placeholder="Sistema" value="<? echo $r["cliente"]; ?>"></td>
+        Nombre del Negocio (OBLIGATORIO)
+    </small><input type="text" id="cliente" name="cliente" class="form-control mb-1" placeholder="Nombre del Negocio" value="<? echo $r["cliente"]; ?>"></td>
   </tr>
 
 
@@ -53,7 +61,7 @@ $r = $db->select("*", "config_master", "where td = ".$_SESSION['td']."")
         Email
     </small><input type="text" id="email" name="email" class="form-control mb-1" placeholder="Email" value="<? echo $r["email"]; ?>"></td>
        <td><small id="pais" class="form-text text-muted mb-1">
-        Pais
+        Pais (OBLIGATORIO)
     </small>
     <select id="pais" name="pais" class="browser-default form-control" required="yes">
     <option value="" disabled <? if($r["pais"] == NULL) echo "selected" ?>>Pais</option>
@@ -69,7 +77,7 @@ $r = $db->select("*", "config_master", "where td = ".$_SESSION['td']."")
         Giro
     </small><input type="text" id="giro" name="giro" class="form-control mb-1" placeholder="Giro" value="<? echo $r["giro"]; ?>"></td>
        <td><small id="nit" class="form-text text-muted mb-1">
-        NIT
+        NIT o RTN
     </small><input type="text" id="nit" name="nit" class="form-control mb-1" placeholder="NIT" value="<? echo $r["nit"]; ?>"></td>
   </tr>
 
@@ -164,8 +172,12 @@ $r = $db->select("*", "config_master", "where td = ".$_SESSION['td']."")
 <!-- ./  content -->
       </div>
       <div class="modal-footer">
-
-          <a href="?configuraciones" class="btn btn-primary btn-rounded">Regresar</a>
+          <?php if($_SESSION['nodatainicial'] == NULL){
+            echo '<a href="?configuraciones" class="btn btn-primary btn-rounded">Regresar</a>';
+          } else {
+            echo '<a href="application/includes/logout.php" class="btn btn-primary btn-rounded">Cerrar Sessi&oacuten</a>';
+          } ?>
+          
     
       </div>
     </div>

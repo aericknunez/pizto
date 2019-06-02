@@ -35,7 +35,8 @@
 <li><em>Pepsi 1.25</em><input type="image" id="venta" op="20" cod="1032" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/22.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Pepsi 1/2 Lt</em><input type="image" id="venta" op="20" cod="1033" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/pepsil.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><a data-target="#a9903" data-toggle="modal"><em>Mountain Dew</em><img src="assets/img/ico/35.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
-<li><em>Cocacola 1.1</em><input type="image" id="venta" op="20" cod="1044" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/24.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>Coca-Cola 1.1</em><input type="image" id="venta" op="20" cod="1044" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/26.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>AguaAzul</em><input type="image" id="venta" op="20" cod="1045" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/73.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
  
  
 <li><a href="?modal=otras_ventas&mesa=<? echo $_SESSION["mesa"]; ?>&cliente=<? echo $_SESSION["clientselect"] ?>&view=<? echo $_SESSION["view"]; ?>"><em>Otras Ventas</em><img src="assets/img/ico/dfs.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li> 

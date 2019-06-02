@@ -155,7 +155,7 @@ Existe un corte realizado este dia, ya no se puede seguir agregando '.$tipo.' a 
 
 
     public function Mensaje($texto,$style,$boton,$boton2){
-      echo '<div class="alert alert-'.$style.' alert-dismissible">
+      echo '<div class="border border-light alert alert-'.$style.' alert-dismissible">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       '.$texto.'
       <br>
