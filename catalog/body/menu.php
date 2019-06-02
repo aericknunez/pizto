@@ -1,4 +1,3 @@
-<li>
 <ul class="collapsible collapsible-accordion">
 
 

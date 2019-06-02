@@ -142,13 +142,7 @@ class Inicio{
             
             } else {
                 $_SESSION["caduca"] = 0;
-            }
-  
-$_SESSION['root_tipo_sistema'] = $encrypt->Decrypt(
-  	$_SESSION['root_tipo_sistema'],$_SESSION['secret_key']);
-
-$_SESSION['root_plataforma'] = $encrypt->Decrypt(
-	$_SESSION['root_plataforma'],$_SESSION['secret_key']);     
+            }  
 
             unset($r);  
        }
