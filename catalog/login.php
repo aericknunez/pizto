@@ -42,6 +42,9 @@
 				        if (isset($_GET['error'])) {
 				            echo '<p class="error">Error al Ingresar!</p>';
 				        }
+				        if (isset($_GET['iniciar'])) {
+				            echo '<p class="error">Para comenzar a utilizar el sistema debe iniciar sesi&oacuten y terminar su registro!</p>';
+				        }
 				        ?>
 					<div class="wrap-input100 validate-input" data-validate = "Introduzca un email valido">
 						<!-- <input class="input100" type="text" name="email" placeholder="Email"> -->
