@@ -55,7 +55,7 @@ class Admin{
 	    	$ax = $db->query("SELECT * FROM login_db_user WHERE hash = '$hash' and td = " . $bc["td"]);
 	    	if($ax->num_rows > 0){	    		
 	    		
-	    		$as = $db->query("SELECT * FROM sync_status WHERE hash = '$hash' and td = ".$bc["td"]."");
+	    		$as = $db->query("SELECT * FROM login_sync WHERE hash = '$hash' and td = ".$bc["td"]."");
 	    		if($as->num_rows > 0){
 	    			$edo = "Ejecutado";
 	    			$ico = "fa-ban";
