@@ -63,7 +63,7 @@ class Admin{
 	    			$dir = ''; //nada
 	    		} else{
 	    			$edo = "Activo";
-	    			$ico = "fa-refresh";
+	    			$ico = "fa-check-square-o";
 	    			$color = "blue";
 	    			$dir = 'id="ejecuta-db-sync" op="201" td="'.$bc["td"].'" hash="'.$hash.'"'; // desactivarlo
 	    		}
