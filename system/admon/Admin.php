@@ -122,10 +122,28 @@ class Admin{
 		        Alerts::Alerta("success","Eliminado!","Usuario agregado correctamente!");
 	   
 	    }
-
 	   $this->VerHashes(); 	     		
 	}
 
+
+
+// agregar nuevo hash
+	public function NewHash($hash){
+		$db = new dbConn();
+  		
+  		if(strlen($hash) != 36){
+  			Alerts::Alerta("error","Error!","El hash no coincide!"); 
+  		} else {
+  			$datos = array();
+		    $datos["hash"] = $hash;
+		    $datos["fecha"] = date("d-m-Y");
+		    $datos["hora"] = date("H:i:s");
+		    if ($db->insert("login_db_sync", $datos)) {
+		      Alerts::Alerta("success","Agregado!","Usuario agregado correctamente!");  
+		    }
+		}    
+	   $this->VerHashes(); 	     		
+	}
 
 
 

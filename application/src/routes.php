@@ -1622,6 +1622,24 @@ include_once '../../system/admon/Admin.php';
 } 
 
 
+if($_REQUEST["op"]=="203"){ // agregar neuevo hash
+include_once '../../system/admon/Admin.php';
+	$admin = new Admin; 
+	$admin->NewHash($_POST["hash"]);
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /////////
 $db->close();

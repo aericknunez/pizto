@@ -13,6 +13,28 @@ $(document).ready(function()
 	});
 
 
+	$('#btn-new-hash').click(function(e){ /// para el formulario
+		e.preventDefault();
+		$.ajax({
+			url: "application/src/routes.php?op=203",
+			method: "POST",
+			data: $("#form-new-hash").serialize(),
+			success: function(data){
+				$("#contenido").html(data);
+				$("#form-new-hash").trigger("reset");
+			}
+		})
+	})
+$("#form-new-hash").keypress(function(e) {//Para deshabilitar el uso de la tecla "Enter"
+if (e.which == 13) {
+return false;
+}
+});
+
+
+
+
+
 
 
 });
