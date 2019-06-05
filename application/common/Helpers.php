@@ -17,6 +17,13 @@ class Helpers{
           }
     }
 
+    public static function IsAdmin(){ // verifica si es administrador del sistema
+          if($_SESSION["tipo_cuenta"] == 1 and $_SESSION["td"] == 0){
+            return TRUE;
+          } else {
+            return FALSE;
+          }
+    }
 
     static public function ServerDemo(){
       $direccion = dirname(__FILE__);

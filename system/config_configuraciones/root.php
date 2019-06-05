@@ -72,7 +72,6 @@ $r = $db->select("*", "config_root", "where td = ".$_SESSION['td']."");
      </tr>
 <?
  unset($r);  
-echo $_SESSION['root_tipo_sistema'];
    ?>
    </tbody>
 </table>

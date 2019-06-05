@@ -45,8 +45,6 @@ elseif(isset($_GET["gastomensual"])) include_once 'system/historial/gasto_mensua
 
 elseif(isset($_GET["inout"])) include_once 'system/historial/inout.php';
 
-elseif(isset($_GET["syncstatus"])) include_once 'system/historial/syncstatus.php';
-
 elseif(isset($_GET["cortes"])) include_once 'system/historial/cortes.php';
 
 elseif(isset($_GET["mesasfecha"])) include_once 'system/historial/mesasfecha.php';
@@ -85,8 +83,10 @@ elseif($_SESSION['sinuso'] != NULL) include_once 'system/index/mensajes.php';
 
 
 // admin
+elseif(isset($_GET["syncstatus"])) include_once 'system/historial/syncstatus.php';
 elseif(isset($_GET["db_sync"])) include_once 'system/admon/db_user.php';
- 
+elseif(Helpers::IsAdmin() == TRUE) include_once 'system/admon/inicio.php';
+
 else{
 include_once 'system/index/index.php';
 }
