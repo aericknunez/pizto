@@ -11,7 +11,7 @@ class Sincronizar{
 
 	    $counter = 0;
 
-		$a = $db->query("SELECT * FROM sync WHERE td = ".$_SESSION["temporal_td"]."");
+		$a = $db->query("SELECT * FROM sync_up WHERE edo = 1 and td = ".$_SESSION["temporal_td"]."");
 	    foreach ($a as $b) {
 
 	    	$tabla = $b["tabla"];
@@ -58,8 +58,10 @@ class Sincronizar{
 
 	        	   $this->UpdateSync($b["tabla"], $this->GetId($b["tabla"]));
 
-	        	} else 
-	        	$resultado.= "#  No actualizable \n\n";
+	        	} else {
+	        		$resultado.= "#  No actualizable \n\n";
+	        	}
+	        	
 
 	    } $a->close();
 
@@ -77,7 +79,14 @@ class Sincronizar{
 					    	return NULL;
 					    }
 			} unset($counter);
-	}
+	
+	} // termina el metodo
+
+
+
+
+
+
 
 
 	public function GetCorrelativo($tabla){ // ultimo id de la tabla sync
@@ -92,6 +101,11 @@ class Sincronizar{
 	}
 
 
+
+
+
+
+
 	public function GetInicio($tabla){ // ultimo id de la tabla sync
 	    $db = new dbConn();
 
@@ -104,23 +118,39 @@ class Sincronizar{
 	}
 
 
+
+
+
+
+
 	public function GetStatus($fecha){ // cuantas vaces se ha actualizado
 	    $db = new dbConn();
 
-			$a = $db->query("SELECT * FROM sync_status WHERE fecha = '$fecha' and tipo = 1 and td = ".$_SESSION["temporal_td"]."");
+			$a = $db->query("SELECT * FROM sync_status WHERE fecha = '$fecha' and tipo = 5 and td = ".$_SESSION["temporal_td"]."");
 			return $a->num_rows;
 			$a->close();
 
 	}
 
+
+
+
+
+
 	public function DelStatus($fecha){ // cuantas vaces se ha actualizado
 	    $db = new dbConn();
 
-		$db->delete("sync_status", "WHERE fecha = '$fecha' and tipo = 1 and td = ".$_SESSION["temporal_td"]."");
+		$db->delete("sync_status", "WHERE fecha = '$fecha' and tipo = 5 and td = ".$_SESSION["temporal_td"]."");
 	}
 
 
-		public function GetId($tabla){ // ultimo id de la tabla a buscar
+
+
+
+
+
+	
+	public function GetId($tabla){ // ultimo id de la tabla a buscar
 	    $db = new dbConn();
 
 	$a = $db->query("SELECT * FROM $tabla WHERE td = ".$_SESSION["temporal_td"]." order by id desc limit 1");
@@ -132,20 +162,31 @@ class Sincronizar{
 	}
 
 
+
+
+
+
+
+
 	public function UpdateSync($tabla, $correlativo){ // actualizar correlativo de Sync
 	    $db = new dbConn();
 
 	        $cambio = array();
 		    $cambio["correlativo"] = $correlativo-1;
-		    $db->update("sync", $cambio, "WHERE tabla = '$tabla' and ".$_SESSION["temporal_td"]."");
+		    $db->update("sync", $cambio, "WHERE tabla = '$tabla' and td = ".$_SESSION["temporal_td"]."");
 
 	}
+
+
+
 
 // recorrer la tabla sync para saber que datos sincronizar y sacar el correlativo
 // obtener el ultimo id de cada tabla
 // comparar el ultimo id de cada tabla con el correlativo de sync
 // extraer los datos de la tabla si es que existen
 // ectualizar los correlativos de cada tabla
+
+
 
 	public function SaveSync($resultado,$fecha,$tipox){ // guardo el archivo a sincronizar creado
 
@@ -180,6 +221,11 @@ class Sincronizar{
 		   fclose($handle);
 		 
 	}
+
+
+
+
+
 
 
 

@@ -80,6 +80,8 @@ $iconos->AddCategoria($_REQUEST["nombre"], $_REQUEST["imagen"]);
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 }
 
 if($_REQUEST["op"]=="5"){
@@ -90,7 +92,10 @@ $iconos->AddProducto($_REQUEST["nombre"],$_REQUEST["imagen"],$_REQUEST["popup"],
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 }
+
 
 if($_REQUEST["op"]=="6"){
 include_once '../../system/config_iconos/Icono.php';
@@ -100,7 +105,10 @@ $iconos->ModProducto($_REQUEST["cod"],$_REQUEST["nombre"],$_REQUEST["popup"],$_R
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 }
+
 
 if($_REQUEST["op"]=="7"){
 include_once '../../system/config_iconos/Icono.php';
@@ -110,7 +118,10 @@ $iconos->ModCategoria($_REQUEST["cod"],$_REQUEST["nombre"],$_REQUEST["imagen"]);
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 }
+
 
 if($_REQUEST["op"]=="8"){
 include_once '../../system/config_iconos/Icono.php';
@@ -120,6 +131,8 @@ $iconos->DelProducto($_REQUEST["cod"]);
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 }
 
 
@@ -131,10 +144,12 @@ $iconos->DelCategoria($_REQUEST["cod"]);
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 }
 
+
 if($_REQUEST["op"]=="10"){
-//print_r($_POST);
 	include_once '../../system/config_iconos/Icono.php';
 	$iconos = new Icono;
 if($_REQUEST["nombre"] != NULL){
@@ -147,7 +162,10 @@ if($_REQUEST["nombre"] != NULL){
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 }
+
 
 
 if($_REQUEST["op"]=="11"){
@@ -158,7 +176,10 @@ $iconos->AddOpcionName($_REQUEST["cod"],$_REQUEST["nombre"],$_REQUEST["imagen"])
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 }
+
 
 if($_REQUEST["op"]=="12"){
 include_once '../../system/config_iconos/Icono.php';
@@ -168,7 +189,10 @@ $iconos->DelOpciones($_REQUEST["cod"]);
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 }
+
 
 if($_REQUEST["op"]=="13"){
 include_once '../../system/config_iconos/Icono.php';
@@ -178,7 +202,10 @@ $iconos->DelOpcionesName($_REQUEST["cod"]);
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
+	
+	Helpers::ActivaActualizar();
 } 
+
 
 
 if($_REQUEST["op"]=="14"){
@@ -441,6 +468,8 @@ if($_REQUEST["op"]=="30"){ // Agregar Unidad
 	include_once '../../system/productos/Producto.php';
 	$productos = new Producto;
 	$productos->AddUnidad($_POST["nombre"],$_POST["abreviacion"]);
+	
+	Helpers::ActivaActualizar();
 } 
 
 
@@ -448,27 +477,37 @@ if($_REQUEST["op"]=="31"){ // Borrar gasto
 	include_once '../../system/productos/Producto.php';
 	$productos = new Producto;
 	$productos->BorrarUnidad($_POST["iden"]);
+	
+	Helpers::ActivaActualizar();
 } 
+
 
 if($_REQUEST["op"]=="32"){ // Agregar Porciones
 	include_once '../../system/productos/Producto.php';
 	$productos = new Producto;
 	$productos->AddPorciones($_POST["nombre"],$_POST["producto"],$_POST["cantidad"]);
+	
+	Helpers::ActivaActualizar();
 } 
 
 
-if($_REQUEST["op"]=="33"){ // Borrar gasto
+
+if($_REQUEST["op"]=="33"){ // Borrar porcion
 	include_once '../../system/productos/Producto.php';
 	$productos = new Producto;
 	$productos->BorrarPorcion($_POST["iden"]);
+	
+	Helpers::ActivaActualizar();
 } 
 
 
 
-if($_REQUEST["op"]=="34"){ // Borrar gasto
+if($_REQUEST["op"]=="34"){ // agrega materia prima
 	include_once '../../system/productos/Producto.php';
 	$productos = new Producto;
 	$productos->AddMateria($_POST["nombre"],$_POST["cantidad"],$_POST["unidad"]);
+	
+	Helpers::ActivaActualizar();
 }
 
 
@@ -476,6 +515,8 @@ if($_REQUEST["op"]=="35"){ // Borrar gasto
 	include_once '../../system/productos/Producto.php';
 	$productos = new Producto;
 	$productos->BorrarMateria($_POST["iden"]);
+	
+	Helpers::ActivaActualizar();
 }
 
 
@@ -485,6 +526,8 @@ if($_REQUEST["op"]=="36"){ // Agregar Porciones a un producto
 		$productos = new Producto;
 		$productos->AddPorcionProducto($_POST["iden"],$_POST["producto"]);
 	}
+	
+	Helpers::ActivaActualizar();
 } 
  
 
@@ -492,6 +535,8 @@ if($_REQUEST["op"]=="37"){ // Agregar Porciones a un producto
 include_once '../../system/productos/Producto.php';
 $productos = new Producto;
 $productos->BorrarPorcionProducto($_POST["iden"],$_POST["cod"]);
+	
+	Helpers::ActivaActualizar();
 } 
 
 
@@ -501,11 +546,13 @@ $productos = new Producto;
 $productos->VerPlatillos($_POST["iden"]);
 } 
 
+
 if($_REQUEST["op"]=="39"){ // mostrar productos paginados
 include_once '../../system/productos/Producto.php';
 $productos = new Producto;
 $productos->VerMateria($_POST["iden"]);
 }
+
 
 if($_REQUEST["op"]=="39.3"){ // mostrar productos paginados
 include_once '../../system/productos/Producto.php';
@@ -513,11 +560,13 @@ $productos = new Producto;
 $productos->VerPorciones($_POST["iden"]);
 }
 
+
 if($_REQUEST["op"]=="39.1"){ // mostrar productos paginados
 include_once '../../system/productos/Producto.php';
 $productos = new Producto;
 $productos->VerUnidad($_POST["iden"]);
 } 
+
 
 if($_REQUEST["op"]=="39.2"){ // cambiar pantalla
 include_once '../../system/productos/Producto.php';
@@ -529,6 +578,10 @@ include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
 } 
+
+
+
+
 /////////////////////////////////// mesa
 if($_REQUEST["op"]=="40"){ // sumar numero de clientes
 include_once '../../system/mesas/Mesa.php';
@@ -536,11 +589,13 @@ $mesas = new Mesa;
 $mesas->Sumar();
 }
 
+
 if($_REQUEST["op"]=="41"){ // Agrega uno mas a la mesa
 include_once '../../system/mesas/Mesa.php';
 $mesas = new Mesa;
 $mesas->Restar();
 } 
+
 
 if($_REQUEST["op"]=="42"){ // activar mesa
 include_once '../../system/ventas/Venta.php';
@@ -552,10 +607,11 @@ header("location: ../../?view&mesa=".$mesa."");
 } 
 
 
-if($_REQUEST["op"]=="43"){ // activar mesa
+if($_REQUEST["op"]=="43"){ // 
 unset($_SESSION["nclientes"]);
 header("location: ../../?");
 } 
+
 
 if($_REQUEST["op"]=="44"){ // nuevo cliente en mesa
 include_once '../../system/mesas/Mesa.php';
@@ -573,17 +629,21 @@ if($_REQUEST["op"]=="45"){ // cambiar cliente
 		}
 }
 
+
 if($_REQUEST["op"]=="46"){ // cargar clientes
 include_once '../../system/mesas/Mesa.php';
 $mesas = new Mesa;
 $mesas->VerClientes($_SESSION['mesa']);
 } 
 
+
 if($_REQUEST["op"]=="47"){ // cargar iconos
 include_once '../../system/mesas/Mesa.php';
 $mesas = new Mesa;
 $mesas->VerIconos($_SESSION['mesa']);
 }  
+
+
 
 ///////////////////////////////////////////// cuentas
 
@@ -593,11 +653,13 @@ $mesas = new Mesa;
 $mesas->ClientSelect($_SESSION['mesa']);
 }  
 
+
 if($_REQUEST["op"]=="51"){ // clientes a pasar cuenta
 include_once '../../system/mesas/Mesa.php';
 $mesas = new Mesa;
 $mesas->AsignClient($_SESSION['mesa']);
 }  
+
 
 if($_REQUEST["op"]=="52"){ // seleccionar cliente
 		if($_SESSION['client-asign'] == $_REQUEST["cliente"]) { 
@@ -626,11 +688,16 @@ $mesas = new Mesa;
 $mesas->ClienteFactura($_SESSION['mesa']); 
 }
 
+
 if($_REQUEST["op"]=="55"){ // mostrar cliente a facturar
 		include_once '../../system/ventas/Venta.php';
 		$ventas = new Venta;
 		$ventas->VerFacturaCliente($_REQUEST["mesa"],$_REQUEST["cliente"]);
 }
+
+
+
+
 
 /////////////////////////////////////////////////////
 if($_REQUEST["op"]=="56"){ // modificar opciones
@@ -676,11 +743,13 @@ include_once '../../system/tv/Pantallas.php';
 }
 
 
+
 if($_REQUEST["op"]=="59"){ // agregar opciones (listar opciones para agregar)
 	include_once '../../system/mesas/Mesa.php';
 	$mesas = new Mesa;
 	$mesas->ListarOpciones($_REQUEST["cod"], $_REQUEST["iden"], $_REQUEST["cliente"]);
 }
+
 
 
 if($_REQUEST["op"]=="60"){ // cambiar o eliminar
@@ -713,6 +782,7 @@ $mesas->VerSubOpciones(
 }
 
 
+
 if($_REQUEST["op"]=="62"){ // agrega la opcion
 	include_once '../../system/ventas/Venta.php';
 	$ventas = new Venta;
@@ -735,6 +805,7 @@ include_once '../../system/tv/Pantallas.php';
 }
 
 
+
 ///////////////////////// corte /////////////////
 
 if($_REQUEST["op"]=="65"){ // corte preguntar
@@ -755,6 +826,7 @@ if($_POST["fecha"] == NULL){ $fecha = date("d-m-Y");
 }
 $cortes->EjecutarCorte($_POST["efectivo"], $fecha);
 }
+
 
 
 if($_REQUEST["op"]=="67"){ // ver el contenido
@@ -798,6 +870,7 @@ if($_REQUEST["op"]=="71"){ // historial mensual
 	$historial->HistorialMensual($fechax);
 }
 
+
 if($_REQUEST["op"]=="72"){ // historial cortes
 	include_once '../../system/historial/Historial.php';
 	$historial = new Historial;
@@ -809,6 +882,7 @@ if($_REQUEST["op"]=="72"){ // historial cortes
 	$historial->HistorialCortes($inicio, $fin);
 
 }
+
 
 ///////
 if($_REQUEST["op"]=="73"){ // historial diario
@@ -870,6 +944,7 @@ if($_REQUEST["op"]=="81"){ // search -> Eliminar Orden tx =0
 	$search->BorrarOrden($_REQUEST["iden"]); // el iden es el numero de factura
 }
 
+
 if($_REQUEST["op"]=="82"){ // search -> Eliminar Orden tx =0
 Alerts::AlertaCambios("cancelar-factura","83",$_REQUEST["iden"],"Esta seguro que desea eliminar esta Factura? El cambio no se puede revertir");
 }
@@ -880,6 +955,7 @@ if($_REQUEST["op"]=="83"){ // search -> Eliminar Factura tx =1
 	$search->CancelarFactura($_REQUEST["iden"]); // el iden es el numero de factura
 }
 
+
 if($_REQUEST["op"]=="84"){ // search -> Eliminar Orden tx =0
 Alerts::AlertaCambios("pasar-factura","85",$_REQUEST["iden"],"Esta seguro que desea Pasar a factura esta orden? El cambio no se puede revertir");
 }
@@ -889,6 +965,7 @@ if($_REQUEST["op"]=="85"){ // search -> Eliminar Factura tx =1
 	$search = new Busqueda;
 	$search->CambiarFactura($_REQUEST["iden"]); // el iden es el numero de factura
 }
+
 
 
 if($_REQUEST["op"]=="86"){ // imprimir factura
@@ -962,6 +1039,7 @@ if($_REQUEST["op"]=="89"){ // Reporte Diario
 
 
 
+
 /////////////////configuracion
 if($_REQUEST["op"]=="90"){ 
 	include_once '../../system/config_configuraciones/Config.php';
@@ -998,6 +1076,7 @@ if($_REQUEST["op"]=="90"){
 									$_POST["venta_especial"],
 									$_POST["imprimir_antes"],
 									$_POST["cambio_tx"]);
+	Helpers::ActivaActualizar();
 }
 
 if($_REQUEST["op"]=="91"){ 
@@ -1015,6 +1094,7 @@ include_once '../../system/config_configuraciones/Config.php';
 						Encrypt::Encrypt($_POST["ftp_password"],$_SESSION['secret_key']),
 						Encrypt::Encrypt($_POST["tipo_sistema"],$_SESSION['secret_key']),
 						Encrypt::Encrypt($_POST["plataforma"],$_SESSION['secret_key']));
+	Helpers::ActivaActualizar();
 }
 
 
@@ -1066,12 +1146,14 @@ $configuracion = new Config;
 $configuracion->VerProductosEspecial($_REQUEST["iden"]);
 } 
 
+
 if($_REQUEST["op"]=="101"){ // mostrar productos paginados products venta especial
 include_once '../../system/config_especial/Config.php';
 $configuracion = new Config;
 $configuracion->CambiarEspecial($_REQUEST["cod"]);
 $configuracion->VerProductosEspecial($_REQUEST["iden"]);
 } 
+
 
 if($_REQUEST["op"]=="102"){ // cambia para mostrarlo en el reporte
 include_once '../../system/config_especial/Config.php';
@@ -1080,16 +1162,22 @@ $configuracion->CambiarReporte($_REQUEST["cod"]);
 $configuracion->VerProductosEspecial($_REQUEST["iden"]);
 } 
 
+
 if($_REQUEST["op"]=="110"){ // agregar producto averias
 include_once '../../system/productos/Product.php';
 $producto = new Product;
 $producto->AgregarAveria($_POST["producto"],$_POST["cantidad"],$_POST["comentarios"]);
+	
+	Helpers::ActivaActualizar();
 } 
+
 
 if($_REQUEST["op"]=="111"){ // borrar averias
 include_once '../../system/productos/Product.php';
 $producto = new Product;
 $producto->EliminarAveria($_REQUEST["iden"]);
+	
+	Helpers::ActivaActualizar();
 } 
 
 if($_REQUEST["op"]=="112"){ // paginador averias
@@ -1103,12 +1191,16 @@ if($_REQUEST["op"]=="115"){ // agregar producto nuevo
 include_once '../../system/productos/Product.php';
 $producto = new Product;
 $producto->AgregarProducto($_POST["producto"],$_POST["cantidad"],$_POST["comentarios"]);
+	
+	Helpers::ActivaActualizar();
 } 
 
 if($_REQUEST["op"]=="116"){ // borrar averias
 include_once '../../system/productos/Product.php';
 $producto = new Product;
 $producto->EliminarProducto($_REQUEST["iden"]);
+	
+	Helpers::ActivaActualizar();
 } 
 
 if($_REQUEST["op"]=="117"){ // paginador averias
@@ -1127,7 +1219,8 @@ $Up->Subir(
 		$_FILES['archivo']['size'],
 		$_POST["gasto"],
 		$_POST["descripcion"]);
-
+	
+	Helpers::ActivaActualizar();
 }
 
 if($_REQUEST["op"]=="121"){ // mostrar imagen factura
@@ -1158,11 +1251,14 @@ echo '<script>
 </script>';
 }
 
+
 if($_REQUEST["op"]=="127"){ // validar codigo de sistema
 include_once '../common/Encrypt.php';
 include_once '../../system/index/Inicio.php';
 $inicio = new Inicio;
 $inicio->Validar($_POST["fecha_submit"], $_POST["codigo"]);
+	
+	Helpers::ActivaActualizar();
 }
 
 
@@ -1173,6 +1269,7 @@ include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->AddSucursal($_POST["user"],$_POST["sistema"]);
 }
+
 
 if($_REQUEST["op"]=="129"){ // cambiar local
 include_once '../../system/config_configuraciones/Config.php';
@@ -1231,23 +1328,30 @@ if($_REQUEST["op"]=="136"){ // vpregunta eliminar una cosa
 $alert->Eliminar($_REQUEST["idx"],$_REQUEST["opx"],$_REQUEST["iden"],"rtn");
 }
 
+
 if($_REQUEST["op"]=="137"){ // eliminar RTN
 include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->EliminarRtn($_REQUEST["iden"]);
 }
 
+
 if($_REQUEST["op"]=="138"){ // eliminar RTN
 include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->AgregarCai($_POST["inicial"],$_POST["final"],$_POST["fechalimite_submit"],$_POST["cai"]);
+	
+	Helpers::ActivaActualizar();
 
 }
+
 
 if($_REQUEST["op"]=="139"){ // eliminar RTN
 include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->EliminarCai($_REQUEST["iden"]);
+	
+	Helpers::ActivaActualizar();
 }
 
 
@@ -1265,6 +1369,8 @@ include_once '../../system/facturar/Facturar.php';
 							$_POST["n2"],
 							$_POST["n3"],
 							$_POST["n4"]);
+	
+	Helpers::ActivaActualizar();
 
 }
 
@@ -1273,6 +1379,8 @@ if($_REQUEST["op"]=="141"){ // agragar impresora
 include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->AgregarImpresora($_POST["impresora"],$_POST["comentarios"]);
+	
+	Helpers::ActivaActualizar();
 }
 
 
@@ -1280,6 +1388,8 @@ if($_REQUEST["op"]=="142"){ // agragarUsuarios
 include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->AgregarUsuarios($_POST["tipo"],$_POST["ticket"],$_POST["impresora"],$_POST["clase"]);
+	
+	Helpers::ActivaActualizar();
 }
 
 
@@ -1288,18 +1398,24 @@ if($_REQUEST["op"]=="143"){
 include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->EliminarFact($_REQUEST["iden"]);
+	
+	Helpers::ActivaActualizar();
 }
 /// eliminar impresora
 if($_REQUEST["op"]=="144"){ 
 include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->EliminarPrint($_REQUEST["iden"]);
+	
+	Helpers::ActivaActualizar();
 }
 /// Usuarios
 if($_REQUEST["op"]=="145"){ 
 include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->EliminarUser($_REQUEST["iden"]);
+	
+	Helpers::ActivaActualizar();
 }
 
 
@@ -1456,6 +1572,8 @@ if($_REQUEST["op"]=="167"){ // dar seguimiento a materia prima
 	include_once '../../system/productos/Producto.php';
 	$productos = new Producto;
 	$productos-> SeguirMateria($_REQUEST["cod"], $_REQUEST["iden"]);
+	
+	Helpers::ActivaActualizar();
 }
 
 
@@ -1472,6 +1590,36 @@ include_once '../../system/tv/Pantallas.php';
 } 
 
 
+
+
+
+
+
+
+
+
+/// comienza admin 200
+/// 
+/// 
+if($_REQUEST["op"]=="200"){ // agrega un usuario a sync
+include_once '../../system/admon/Admin.php';
+	$admin = new Admin; 
+	$admin->AddClienteSync($_REQUEST["hash"],$_REQUEST["td"]);
+} 
+
+
+if($_REQUEST["op"]=="201"){ // elimina un usuario a sync
+include_once '../../system/admon/Admin.php';
+	$admin = new Admin; 
+	$admin->DelClienteSync($_REQUEST["hash"],$_REQUEST["td"]);
+} 
+
+
+if($_REQUEST["op"]=="202"){ // elimina un usuario a sync
+include_once '../../system/admon/Admin.php';
+	$admin = new Admin; 
+	$admin->DelHash($_REQUEST["hash"]);
+} 
 
 
 

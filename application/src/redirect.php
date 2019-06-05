@@ -83,6 +83,10 @@ elseif(isset($_GET["ctc"])) include_once 'system/config_configuraciones/cambio_t
 
 elseif($_SESSION['sinuso'] != NULL) include_once 'system/index/mensajes.php';
 
+
+// admin
+elseif(isset($_GET["db_sync"])) include_once 'system/admon/db_user.php';
+ 
 else{
 include_once 'system/index/index.php';
 }

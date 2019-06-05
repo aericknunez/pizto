@@ -46,7 +46,7 @@ class Upload{
 	    foreach ($ax as $bx) {
 
 	        // comparar los id
-	        if($this->GetCorrelativo($bx["tabla"]) < $this->GetId($bx["tabla"])) {
+	        if($this->GetCorrelativo($bx["tabla"]) <= $this->GetId($bx["tabla"])) {
 	        	   
 	        	$this->UpdateSync($bx["tabla"], $this->GetId($bx["tabla"]));
 
@@ -155,6 +155,7 @@ class Upload{
 
 
 
+
 	public function  CompruebaSync($fecha){ // verifica si se actualiza todo o solo hoy
 	    $db = new dbConn();
 
@@ -163,6 +164,7 @@ class Upload{
 			$a->close();
 
 	}
+
 
 
 // revisar si se debe subir todo o no
@@ -177,6 +179,7 @@ class Upload{
 
 
 
+
 	public function GetCorrelativo($tabla){ // ultimo id de la tabla sync
 	    $db = new dbConn();
 
@@ -187,6 +190,8 @@ class Upload{
 
 	    } $a->close();
 	}
+
+
 
 		public function GetId($tabla){ // ultimo id de la tabla a buscar
 	    $db = new dbConn();
@@ -200,6 +205,7 @@ class Upload{
 	}
 
 
+
 	public function UpdateSync($tabla, $correlativo){ // actualizar correlativo de Sync
 	    $db = new dbConn();
 
@@ -208,7 +214,7 @@ class Upload{
 	        $cambio = array();
 		    $cambio["correlativo"] = $corr;
 		    $cambio["inicio"] = $corr;
-		    $db->update("sync", $cambio, "WHERE tabla = '$tabla' and ".$_SESSION["temporal_td"]."");
+		    $db->update("sync", $cambio, "WHERE tabla = '$tabla' and td = ".$_SESSION["temporal_td"]."");
 
 	}
 

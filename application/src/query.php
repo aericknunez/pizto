@@ -163,6 +163,13 @@ echo '<script type="text/javascript" src="assets/js/query/respaldo.js?v='.$numer
 elseif(isset($_GET["update"])) {
 echo '<script type="text/javascript" src="assets/js/query/sync.js?v='.$numero.'"></script>';
 }
+
+
+/// admin
+elseif(isset($_GET["db_sync"])) {
+echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
+}
+
 else{
 /// lo que llevara index
 echo '<script type="text/javascript" src="assets/js/query/ventas.js?v='.$numero.'"></script>';
