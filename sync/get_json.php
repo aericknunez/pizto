@@ -17,7 +17,7 @@ $hora = date("H:i:s");
 
 
 
-$data =  file_get_contents('https://pizto.com/admin/application/includes/db_sync_json.php'); 
+$data =  file_get_contents('https://pizto.com/admin/application/includes/db_sync_json.php?x='$_SESSION["temporal_td"]); 
 $datos = json_decode($data, true);
 
 foreach ($datos as $valores) { // vamos hacer un archivo por cada hash
