@@ -49,7 +49,6 @@ if($a->num_rows == 0){
 	$dato["hash"] = $sync;
 	$dato["fecha"] = $fecha;
 	$dato["hora"] = $hora;
-	$dato["edo"] = 1;
 	$db->insert("login_db_sync", $dato);
 
 // aqui ejecuto el sql que deberia estar en el directorio descargado de git
