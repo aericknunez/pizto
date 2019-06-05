@@ -52,7 +52,7 @@ class Admin{
 
 	    foreach ($ac as $bc) {  
 
-	    	$ax = $db->query("SELECT * FROM login_db_user WHERE hash = '$hash' order by id desc");
+	    	$ax = $db->query("SELECT * FROM login_db_user WHERE hash = '$hash' and td = " . $bc["td"]);
 	    	if($ax->num_rows > 0){	    		
 	    		
 	    		$as = $db->query("SELECT * FROM sync_status WHERE hash = '$hash' and td = ".$bc["td"]."");
