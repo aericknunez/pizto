@@ -10,6 +10,7 @@ include_once 'application/includes/register.inc.php'; // [para registrar]
 if (login_check($mysqli) == true) {
     include_once 'catalog/index.php';
 } else {
+	
 	if(isset($_REQUEST["change"])){
 		if($_SESSION["inicio"] == NULL){
 			$_SESSION["inicio"] = 1;
@@ -28,5 +29,6 @@ if (login_check($mysqli) == true) {
 		} else {
 			include_once 'catalog/login.php';
 		}   
+
 }
 ?>
