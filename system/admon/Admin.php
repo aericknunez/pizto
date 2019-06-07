@@ -198,6 +198,35 @@ class Admin{
 
 	}
 
+	public function UltimosHas(){
+		$db = new dbConn();
+
+	 $a = $db->query("SELECT * FROM login_sync order by id desc limit 3");
+
+	if($a->num_rows > 0){
+	 echo '<div class="card mb-4">
+
+            <div class="card-header text-center">
+               &Uacuteltimos Hash sincronizados
+            </div>
+
+            <div class="card-body  text-center">
+            <div class="list-group list-group-flush">';
+	    foreach ($a as $b) {  
+		    echo '<a class="list-group-item list-group-item-action waves-effect">
+					<small>'. substr($b["hash"], 0, 30) .'</small>
+                    </a>';
+	    } 
+	    echo '</div>
+
+            </div>
+
+        </div>';
+		} 
+		$a->close();
+	}
+
+
 
 
 

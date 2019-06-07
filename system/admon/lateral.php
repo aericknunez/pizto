@@ -5,23 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php if(isset($admin)){ ?>
         <!--Card-->
-        <div class="card mb-4">
 
-            <!-- Card header -->
-            <div class="card-header text-center">
-               Datos Usuarios
-            </div>
-
-            <!--Card content-->
-            <div class="card-body">
-
-                <canvas id="pieChart"></canvas>
-
-            </div>
-
-        </div>
-        <!--/.Card-->
-
+        <div id="hashes"><?php $admin->UltimosHas(); ?></div>
         <!--Card-->
         <div class="card mb-4">
 
