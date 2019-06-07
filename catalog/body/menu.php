@@ -9,7 +9,6 @@
 <li><a href="?inout" class="waves-effect"> Entradas y Salidas</a></li>
 <li><a href="?db_sync" class="waves-effect"> Gestionar Sync DB</a></li>
 <li><a href="?ctc" class="collapsible-header waves-effect arrow-r"> Cambiar Cuenta</a></li>
-<li><a href="?contadora" class="waves-effect"> Imprimir Reporte</a></li>
 
 <!-- <li><a href="?propinas" class="waves-effect"> Calcular Propinas</a></li> -->
 </ul>

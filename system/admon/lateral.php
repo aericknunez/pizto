@@ -1,6 +1,62 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 ?>
-<h3 class="text-center">ADMINISTRACION</h3>
-<img src="assets/img/logo/default.png" alt="">
+
+
+<?php if(isset($admin)){ ?>
+        <!--Card-->
+        <div class="card mb-4">
+
+            <!-- Card header -->
+            <div class="card-header text-center">
+               Datos Usuarios
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+                <canvas id="pieChart"></canvas>
+
+            </div>
+
+        </div>
+        <!--/.Card-->
+
+        <!--Card-->
+        <div class="card mb-4">
+
+            <!--Card content-->
+            <div class="card-body">
+
+                <!-- List group links -->
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action waves-effect">Trafico
+                        <span class="badge badge-success badge-pill pull-right"><?php echo $admin->Trafico(date("d-m-Y")); ?>
+                            <i class="fa fa-arrow-right ml-1"></i>
+                        </span>
+                    </a>
+                    <a class="list-group-item list-group-item-action waves-effect">Entradas
+                        <span class="badge badge-danger badge-pill pull-right"><?php echo $admin->Entradas(date("d-m-Y")); ?>
+                            <i class="fa fa-arrow-right ml-1"></i>
+                        </span>
+                    </a>
+                    <a class="list-group-item list-group-item-action waves-effect">Productos Hoy
+                        <span class="badge badge-primary badge-pill pull-right"><?php echo $admin->Productos(date("d-m-Y")); ?></span>
+                    </a>
+                    <a class="list-group-item list-group-item-action waves-effect">Productos Total
+                        <span class="badge badge-primary badge-pill pull-right"><?php echo $admin->ProductosT(); ?></span>
+                    </a>
+                    <a class="list-group-item list-group-item-action waves-effect">Cuentas
+                        <span class="badge badge-primary badge-pill pull-right"><?php echo $admin->Cuentas(); ?></span>
+                    </a>
+                </div>
+                <!-- List group links -->
+
+            </div>
+
+        </div>
+        <!--/.Card-->
+<?php } else {
+echo '<div align="center"><br><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable"></div>';
+}
+ ?>

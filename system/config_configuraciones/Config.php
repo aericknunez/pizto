@@ -546,7 +546,7 @@ $return.= ' ?>';
 			      <th scope="col">'.$r["cliente"].'</th>
 			      <th scope="col">'.Helpers::Pais($r["pais"]).'</th>			      
 			      <th scope="col">'. $corte .'</th>
-			      <th scope="col">'.Helpers::Dinero($totalventa).'</th>
+			      <th scope="col">'. $r["moneda_simbolo"] . $totalventa .'</th>
 			      <th scope="col">'.$update.'</th>
 			      <th scope="col">';
 				if($b["sucursal"] == $_SESSION['td']){

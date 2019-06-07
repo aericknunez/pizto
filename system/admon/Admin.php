@@ -151,6 +151,55 @@ class Admin{
 
 
 
+//// para el inicio
+// agregar nuevo hash
+	public function Trafico($fecha){
+		$db = new dbConn();
+  		
+   		$a = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha'");
+		return $a->num_rows;
+		$a->close();
+
+	}
+
+	public function Entradas($fecha){
+		$db = new dbConn();
+  		
+   		$a = $db->query("SELECT * FROM login_inout WHERE fecha = '$fecha'");
+		return $a->num_rows;
+		$a->close();
+
+	}
+
+	public function Productos($fecha){
+		$db = new dbConn();
+  		
+   		$a = $db->query("SELECT * FROM ticket WHERE fecha = '$fecha'");
+		return $a->num_rows;
+		$a->close();
+
+	}
+
+	public function ProductosT(){
+		$db = new dbConn();
+
+   		$a = $db->query("SELECT * FROM ticket");
+		return $a->num_rows;
+		$a->close();
+
+	}
+
+	public function Cuentas(){
+		$db = new dbConn();
+
+   		$a = $db->query("SELECT * FROM config_master");
+		return $a->num_rows;
+		$a->close();
+
+	}
+
+
+
 
 } // fin de la clase
 
