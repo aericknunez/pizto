@@ -61,7 +61,11 @@ $user=sha1($_SESSION['username']);
         $inicia->CompruebaIconos("../iconos/", NULL); // creo iconos si no exite el archivo
                
        $inicia->Caduca(); // revisa si ha caducado
-       BuscaRespaldo(); // revisa sy hay respaldos imcompletos
+       
+       if(Helpers::ServerDomain() == FALSE){ 
+            BuscaRespaldo(); // revisa sy hay respaldos imcompletos
+        } 
+       
 
 	       if(Helpers::ServerDomain() == TRUE and $_SESSION['tipo_cuenta'] != 1){ // registro entrada en web
 	       	@$inicia->RegisterInOut(1);
