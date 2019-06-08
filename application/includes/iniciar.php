@@ -62,7 +62,7 @@ $user=sha1($_SESSION['username']);
                
        $inicia->Caduca(); // revisa si ha caducado
        
-       if(Helpers::ServerDomain() == FALSE){ 
+       if(Helpers::ServerDomain() == FALSE){  // REVISAR ESTA FUNCION DESPUES
             BuscaRespaldo(); // revisa sy hay respaldos imcompletos
         } 
        
