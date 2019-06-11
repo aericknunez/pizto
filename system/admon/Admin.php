@@ -189,7 +189,7 @@ class Admin{
 
 	    	$a = $db->query("SELECT * FROM login_sync WHERE td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
-	    		return '<th scope="col" class="text-success font-weight-bold">Ajecutandose</th>';	
+	    		return '<th scope="col" class="text-info font-weight-bold">Ajecutandose</th>';	
 	    	} else {
 	    		return '<th scope="col" class="text-danger font-weight-bold">Detenido</th>';	
 	    	}
@@ -202,7 +202,7 @@ class Admin{
 
 	    	$a = $db->query("SELECT * FROM login_sync WHERE tipo = 1 and td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
-	    		return '<th scope="col" class="text-success font-weight-bold">Ejecutado</th>';	
+	    		return '<th scope="col" class="text-info font-weight-bold">Ejecutado</th>';	
 	    	} else {
 	    		return '<th scope="col" class="text-danger font-weight-bold">Sin Corte</th>';	
 	    	}
