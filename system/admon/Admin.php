@@ -185,7 +185,7 @@ class Admin{
 	public function CompruebaHashHoy($fecha,$td){// comprueba cual esel hash de ahora
 		$db = new dbConn();
 
-	    	$a = $db->query("SELECT * FROM login_sync WHERE tipo = 1 and td = '$td' and fecha = '$fecha'"); 
+	    	$a = $db->query("SELECT * FROM login_sync WHERE td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
 	    		return "Ajecutandose";	
 	    	} else {
@@ -198,7 +198,7 @@ class Admin{
 	public function CompruebaHashCorte($fecha,$td){// comprueba corte de ahora
 		$db = new dbConn();
 
-	    	$a = $db->query("SELECT * FROM login_sync WHERE td = '$td' and fecha = '$fecha'"); 
+	    	$a = $db->query("SELECT * FROM login_sync WHERE tipo = 1 and td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
 	    		return "Ajecutado";	
 	    	} else {
