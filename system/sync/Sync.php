@@ -94,6 +94,7 @@ class Sync{
 			    Existe Respaldo
 			</a>';
 		}
+		echo '<a href="?modal=respaldar&fecha='.$fecha.'&type=1"><span class="badge badge-pill pink"><i class="fa fa-upload" aria-hidden="true"></i></span></a>';
 	}
 
 
