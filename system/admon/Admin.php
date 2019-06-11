@@ -171,9 +171,9 @@ class Admin{
 		    echo '<tr>
 		    		<th scope="col">'.$b["td"].'</th>
 		    	  <th scope="col">'.$b["cliente"].'</th>
-			      <th scope="col">'. $this->CompruebaHashHoy($fecha,$b["td"]) .'</th>
+			      '. $this->CompruebaHashHoy($fecha,$b["td"]) .'
 			      <th scope="col">'.$this->UltimaHoraHash($fecha,$b["td"]).'</th>			      
-			      <th scope="col">'.$this->CompruebaHashCorte($fecha,$b["td"]).'</th>
+			      '.$this->CompruebaHashCorte($fecha,$b["td"]).'
 			      </tr>';
 	    } 
 	    echo '</tbody>
@@ -189,9 +189,9 @@ class Admin{
 
 	    	$a = $db->query("SELECT * FROM login_sync WHERE td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
-	    		return "Ajecutandose";	
+	    		return '<th scope="col" class="text-success font-weight-bold">Ajecutandose</th>';	
 	    	} else {
-	    		return "Detenido";	
+	    		return '<th scope="col" class="text-danger font-weight-bold">Detenido</th>';	
 	    	}
 	    	$a->close();
 		
@@ -202,9 +202,9 @@ class Admin{
 
 	    	$a = $db->query("SELECT * FROM login_sync WHERE tipo = 1 and td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
-	    		return "Ajecutado";	
+	    		return '<th scope="col" class="text-success font-weight-bold">Ejecutado</th>';	
 	    	} else {
-	    		return "Sin Corte";	
+	    		return '<th scope="col" class="text-danger font-weight-bold">Sin Corte</th>';	
 	    	}
 	    	$a->close();
 		
