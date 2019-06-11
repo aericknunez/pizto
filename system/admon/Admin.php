@@ -153,7 +153,7 @@ class Admin{
 	public function VerActualizacionesDia($fecha){
 		$db = new dbConn();
 
- $a = $db->query("SELECT cliente, td FROM config_master order by td desc");
+ $a = $db->query("SELECT cliente, td FROM config_master order by td asc");
 
 	if($a->num_rows > 0){
 	 echo '<table class="table table-sm table-striped">
@@ -169,9 +169,9 @@ class Admin{
 	    foreach ($a as $b) {  
 		    echo '<tr>
 		    	  <th scope="col">'.$b["cliente"].'</th>
-			      <th scope="col">'. $this->CompruebaHashHoy($fecha) .'</th>
-			      <th scope="col">'.$this->UltimaHoraHash($fecha).'</th>			      
-			      <th scope="col">'.$this->CompruebaHashCorte($fecha).'</th>
+			      <th scope="col">'. $this->CompruebaHashHoy($fecha,$b["td"]) .'</th>
+			      <th scope="col">'.$this->UltimaHoraHash($fecha,$b["td"]).'</th>			      
+			      <th scope="col">'.$this->CompruebaHashCorte($fecha,$b["td"]).'</th>
 			      </tr>';
 	    } 
 	    echo '</tbody>
@@ -182,10 +182,10 @@ class Admin{
 
 
 
-	public function CompruebaHashHoy($fecha){// comprueba cual esel hash de ahora
+	public function CompruebaHashHoy($fecha,$td){// comprueba cual esel hash de ahora
 		$db = new dbConn();
 
-	    	$a = $db->query("SELECT * FROM login_sync WHERE tipo = 1 and td = ".$_SESSION["td"]." and fecha = '$fecha'"); 
+	    	$a = $db->query("SELECT * FROM login_sync WHERE tipo = 1 and td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
 	    		return "Ajecutandose";	
 	    	} else {
@@ -195,10 +195,10 @@ class Admin{
 		
 	}
 
-	public function CompruebaHashCorte($fecha){// comprueba corte de ahora
+	public function CompruebaHashCorte($fecha,$td){// comprueba corte de ahora
 		$db = new dbConn();
 
-	    	$a = $db->query("SELECT * FROM login_sync WHERE td = ".$_SESSION["td"]." and fecha = '$fecha'"); 
+	    	$a = $db->query("SELECT * FROM login_sync WHERE td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
 	    		return "Ajecutado";	
 	    	} else {
@@ -208,9 +208,9 @@ class Admin{
 		
 	}
 
-	public function UltimaHoraHash($fecha){ //para reporte nada mas
+	public function UltimaHoraHash($fecha,$td){ //para reporte nada mas
 		$db = new dbConn();
-	    if ($r = $db->select("hora", "login_sync", "where fecha = '$fecha' and td = ".$_SESSION["td"]." order by id DESC LIMIT 1")) { 
+	    if ($r = $db->select("hora", "login_sync", "where fecha = '$fecha' and td = '$td' order by id DESC LIMIT 1")) { 
 	        $hora=$r["hora"];
 	    } 
 	    unset($r); 
