@@ -85,6 +85,7 @@ elseif($_SESSION['sinuso'] != NULL) include_once 'system/index/mensajes.php';
 // admin
 elseif(isset($_GET["syncstatus"])) include_once 'system/historial/syncstatus.php';
 elseif(isset($_GET["db_sync"])) include_once 'system/admon/db_user.php';
+elseif(isset($_GET["actualizacionesup"])) include_once 'system/admon/actualizaciones_activas.php';
 elseif(Helpers::IsAdmin() == TRUE) include_once 'system/admon/inicio.php';
 
 else{

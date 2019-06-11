@@ -8,6 +8,7 @@
 <li><a href="?syncstatus" class="waves-effect"> Estado Sincronizaci&oacuten</a></li>
 <li><a href="?inout" class="waves-effect"> Entradas y Salidas</a></li>
 <li><a href="?db_sync" class="waves-effect"> Gestionar Sync DB</a></li>
+<li><a href="?actualizacionesup" class="waves-effect"> Ver Sucursales Up</a></li>
 <li><a href="?ctc" class="collapsible-header waves-effect arrow-r"> Cambiar Cuenta</a></li>
 
 <!-- <li><a href="?propinas" class="waves-effect"> Calcular Propinas</a></li> -->
