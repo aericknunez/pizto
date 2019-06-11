@@ -159,7 +159,8 @@ class Admin{
 	 echo '<table class="table table-sm table-striped">
 			  <thead>
 			    <tr>
-			    <th scope="col">Cliente</th>
+			    <th scope="col">ID</th>
+			    	<th scope="col">Cliente</th>
 			      <th scope="col">Estado</th>
 			      <th scope="col">Hora</th>
 			      <th scope="col">Corte</th>
@@ -168,6 +169,7 @@ class Admin{
 			  <tbody>';
 	    foreach ($a as $b) {  
 		    echo '<tr>
+		    		<th scope="col">'.$b["td"].'</th>
 		    	  <th scope="col">'.$b["cliente"].'</th>
 			      <th scope="col">'. $this->CompruebaHashHoy($fecha,$b["td"]) .'</th>
 			      <th scope="col">'.$this->UltimaHoraHash($fecha,$b["td"]).'</th>			      
