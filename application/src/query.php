@@ -203,7 +203,7 @@ include_once 'system/historial/script.php';
 // para el respaldo
 	if($_GET["modal"] == "respaldar"){
 		if($_REQUEST["fecha"] != NULL or $_REQUEST["type"] != NULL){
-			$url = "sync/respaldar.php?fecha=" . $_REQUEST["fecha"] . "&type=" . $_REQUEST["type"];
+			$url = "sync/respaldar.php?fecha=" . $_REQUEST["fecha"] . "&type=" . $_REQUEST["type"] . "&delete=" . $_REQUEST["delete"];
 		} else {
 			$url = "sync/respaldar.php";
 		}
