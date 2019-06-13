@@ -30,13 +30,13 @@ $dia6 = Fechas::DiaResta(date("d-m-Y"),6);
                 datasets: [{
                     label: 'Trafico Diario',
                     data: [
-                    <?php echo Helpers::Entero($admin->Trafico($dia6)); ?>, 
-			        <?php echo Helpers::Entero($admin->Trafico($dia5)); ?>, 
-			        <?php echo Helpers::Entero($admin->Trafico($dia4)); ?>, 
-			        <?php echo Helpers::Entero($admin->Trafico($dia3)); ?>, 
-			        <?php echo Helpers::Entero($admin->Trafico($dia2)); ?>, 
-			        <?php echo Helpers::Entero($admin->Trafico($dia1)); ?>, 
-			        <?php echo Helpers::Entero($admin->Trafico($hoy)); ?>
+                    <?php echo Helpers::Entero($admin->Productos($dia6)); ?>, 
+			        <?php echo Helpers::Entero($admin->Productos($dia5)); ?>, 
+			        <?php echo Helpers::Entero($admin->Productos($dia4)); ?>, 
+			        <?php echo Helpers::Entero($admin->Productos($dia3)); ?>, 
+			        <?php echo Helpers::Entero($admin->Productos($dia2)); ?>, 
+			        <?php echo Helpers::Entero($admin->Productos($dia1)); ?>, 
+			        <?php echo Helpers::Entero($admin->Productos($hoy)); ?>
         ],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
