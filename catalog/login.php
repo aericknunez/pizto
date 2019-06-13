@@ -10,6 +10,10 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/mdb.min.css" rel="stylesheet">
     <link href="assets/css/galeria.css" rel="stylesheet">
+<!-- PARA LOGIN -->
+		<script type="text/JavaScript" src="assets/login/sha512.js"></script> 
+        <script type="text/JavaScript" src="assets/login/forms.js"></script> 
+
 
     <style>/* Required for full background image */
 
@@ -106,8 +110,7 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
           <!--Grid column-->
           <div class="col-md-6 col-xl-5 mb-4">
             <!--Form-->
-            <form id="form-registro" name="form-registro">
-
+			<form action="application/includes/process_login.php" method="post" name="login_form" > 
             <div class="card wow fadeInRight" data-wow-delay="0.3s">
               <div class="card-body">
                 <!--Header-->
@@ -121,20 +124,34 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
 
                 <div class="md-form">
                   <i class="fa fa-envelope prefix white-text active"></i>
-                  <input type="email" id="email" name="email" class="white-text form-control">
+                  <input type="text" name="email" class="white-text form-control" />
                   <label for="email" class="active">Email</label>
                 </div>
 
                 <div class="md-form">
                   <i class="fa fa-lock prefix white-text active"></i>
-                  <input type="password" id="pass" name="pass" class="white-text form-control">
+                  
+                  <input type="password" 
+                             name="password" 
+                             id="password" class="white-text form-control" />
+
                   <label for="pass">Password</label>
                 </div>
 
                 <div class="text-center mt-4">
-                  <button class="btn btn-indigo" id="btn-registro" name="btn-registro">Iniciar</button>
+                	<input type="button" 
+                   value="Login" class="btn btn-indigo"
+                   onclick="formhash(this.form, this.form.password);" />
+
+                  
                   <hr class="hr-light mb-3 mt-4">                
                   <div class="inline-ul text-center d-flex justify-content-center">
+
+                  	<?php
+				        if (isset($_GET['error'])) {
+				            echo '<p class="text-danger">Error al Ingresar!</p>';
+				        }
+				        ?>
                     <!-- <a class="p-2 m-2 tw-ic">
                       <i class="fa fa-twitter white-text"></i>
                     </a>
@@ -187,7 +204,7 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
         new WOW().init();
 
        </script>
-       <script type="text/javascript" src="lib/main.js"></script>
+       	<script src="login/js/main.js"></script>
 </body>
 
 </html>
