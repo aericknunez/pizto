@@ -1,110 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Iniciar Sesi&oacuten</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Demo -  Pizto.com</title>
 
-	<link rel="icon" type="image/png" href="login/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="login/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="login/css/util.css">
-	<link rel="stylesheet" type="text/css" href="login/css/main.css">
-<!--===============================================================================================-->
-		<!-- PARA LOGIN -->
-		<script type="text/JavaScript" src="assets/login/sha512.js"></script> 
-        <script type="text/JavaScript" src="assets/login/forms.js"></script> 
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/mdb.min.css" rel="stylesheet">
+    <link href="assets/css/galeria.css" rel="stylesheet">
+
+    <style>/* Required for full background image */
+
+html,
+body,
+header,
+.view {
+  height: 100%;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 1000px;
+  }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 650px;
+  }
+}
+
+.top-nav-collapse {
+  background-color: #3f51b5 !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+  background: transparent !important;
+}
+
+@media (max-width: 991px) {
+  .navbar:not(.top-nav-collapse) {
+    background: #3f51b5 !important;
+  }
+}
+
+.rgba-gradient {
+  background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+  background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
+  background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+}
+
+.card {
+  background-color: rgba(126, 123, 215, 0.2);
+}
+
+.md-form label {
+  color: #ffffff;
+}
+
+h6 {
+  line-height: 1.7;
+}
+body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
+
 </head>
-<body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="login/images/img-01.png" alt="IMG">
-				</div>
+<body class="hidden-sn navy-blue-skin">
 
-				<!-- <form class="login100-form validate-form"> -->
-				<form action="application/includes/process_login.php" method="post" name="login_form" class="login100-form validate-form" > 
-					<span class="login100-form-title">
-						Iniciar Sesi&oacuten
-					</span>
-						<?php
-				        if (isset($_GET['error'])) {
-				            echo '<p class="error">Error al Ingresar!</p>';
-				        }
-				        if (isset($_GET['iniciar'])) {
-				            echo '<p class="error">Para comenzar a utilizar el sistema debe iniciar sesi&oacuten y terminar su registro!</p>';
-				        }
-				        ?>
-					<div class="wrap-input100 validate-input" data-validate = "Introduzca un email valido">
-						<!-- <input class="input100" type="text" name="email" placeholder="Email"> -->
-						<input type="text" name="email" class="input100" 
-						<?php if($_REQUEST["user"] != null) echo 'value="'.$_REQUEST["user"].'"'; ?> 
-						/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
+<div id="result"></div>
+<!-- Main navigation -->
+<header>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password necesario">
-						<!-- <input class="input100" type="password" name="pass" placeholder="Password"> -->
-						<input type="password" 
-                             name="password" 
-                             id="password" class="input100" 
-                             <?php if($_REQUEST["pass"] != null) echo 'value="'.$_REQUEST["pass"].'"'; ?>
-                             />
+  <!-- Full Page Intro -->
+  <div class="view" style="background-image: url('https://cdn-images-1.medium.com/max/1200/0*V3gN7KZ4P-r-YQPu.'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-gradient d-flex justify-content-center">
+      <!-- Content -->
+      <div class="container">
+        <!--Grid row-->
+        <div class="row mt-5">
+          <!--Grid column-->
+          
 
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<!-- <button class="login100-form-btn">
-							Login
-						</button> -->
-						<input type="button" 
-                   value="Login" class="login100-form-btn"
-                   onclick="formhash(this.form, this.form.password);" />
-                  <br><a href="?change">Cambiar inicio</a>
-					</div>
 
-				</form>
-			</div>
-		</div>
-	</div>
 
-	
+          <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left d-none d-md-block">
+            <!-- <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Registrese Ahora! </h1> 
 
-	
-<!--===============================================================================================-->	
-	<script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="login/vendor/bootstrap/js/popper.js"></script>
-	<script src="login/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="login/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="login/vendor/tilt/tilt.jquery.min.js"></script>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
-<!--===============================================================================================-->
-	<script src="login/js/main.js"></script>
+            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s"> -->
+            <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">
+			<img src="assets/img/secure.png" alt="">
+            </h6>
 
+          </div>
+
+
+
+          <!--Grid column-->
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-5 mb-4">
+            <!--Form-->
+            <form id="form-registro" name="form-registro">
+
+            <div class="card wow fadeInRight" data-wow-delay="0.3s">
+              <div class="card-body">
+                <!--Header-->
+                <div class="text-center">
+                  <h3 class="white-text">
+                    <i class="fa fa-user white-text"></i> Iniciar Sesi&oacuten</h3>
+                  <hr class="hr-light">
+                </div>
+                <!--Body-->
+                
+
+                <div class="md-form">
+                  <i class="fa fa-envelope prefix white-text active"></i>
+                  <input type="email" id="email" name="email" class="white-text form-control">
+                  <label for="email" class="active">Email</label>
+                </div>
+
+                <div class="md-form">
+                  <i class="fa fa-lock prefix white-text active"></i>
+                  <input type="password" id="pass" name="pass" class="white-text form-control">
+                  <label for="pass">Password</label>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button class="btn btn-indigo" id="btn-registro" name="btn-registro">Iniciar</button>
+                  <hr class="hr-light mb-3 mt-4">                
+                  <div class="inline-ul text-center d-flex justify-content-center">
+                    <!-- <a class="p-2 m-2 tw-ic">
+                      <i class="fa fa-twitter white-text"></i>
+                    </a>
+                    <a class="p-2 m-2 li-ic">
+                      <i class="fa fa-linkedin white-text"> </i>
+                    </a>
+                    <a class="p-2 m-2 ins-ic">
+                      <i class="fa fa-instagram white-text"> </i>
+                    </a> -->
+                    <img src="assets/img/logo/pizto.png" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </form>
+            <!--/.Form-->
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+  </div>
+  <!-- Full Page Intro -->
+</header>
+<!-- Main navigation -->
+
+<!-- 
+<main>
+
+
+
+</main>  
+ -->
+
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/popper.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/mdb.min.js"></script>
+    <script>
+        // SideNav Initialization
+        $(".button-collapse").sideNav();
+        
+        new WOW().init();
+
+       </script>
+       <script type="text/javascript" src="lib/main.js"></script>
 </body>
+
 </html>
