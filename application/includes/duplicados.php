@@ -17,14 +17,15 @@ if($_REQUEST["fecha"] == NULL){
     $fecha = $_REQUEST["fecha"];
 }
 
+Delete("corte_diario", "user", $fecha);
 
-Delete("ticket", "cod", $fecha);
-Delete("ticket_num", "mesa", $fecha);
-Delete("mesa_nombre", "mesa", $fecha);
-Delete("gastos_images", "imagen", $fecha);
-Delete("mesa", "mesa", $fecha);
-Delete("gastos", "tipo", $fecha);
-Delete("control_cocina", "mesa", $fecha);
+// Delete("ticket", "cod", $fecha);
+// Delete("ticket_num", "mesa", $fecha);
+// Delete("mesa_nombre", "mesa", $fecha);
+// Delete("gastos_images", "imagen", $fecha);
+// Delete("mesa", "mesa", $fecha);
+// Delete("gastos", "tipo", $fecha);
+// Delete("control_cocina", "mesa", $fecha);
 
 
   function Delete($tabla, $cod, $fecha){
@@ -57,3 +58,19 @@ Delete("control_cocina", "mesa", $fecha);
 
     $a->close();
  }
+ 
+
+
+
+
+///////redirect
+
+ $fechax = new Fechas();
+
+ $next = $fechax->DiaSiguiente($fecha);
+
+ sleep(2);
+
+ echo '<script>
+    window.location.href="?fecha='. $next.'"
+</script>';
