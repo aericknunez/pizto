@@ -24,12 +24,7 @@ if (login_check($mysqli) == true) {
 		  		if($_SESSION["inicio"] == NULL){
 					include_once 'catalog/login_user.php';
 				} else {
-					if(Helpers::ServerDomain() == FALSE){
-						include_once 'catalog/login.php';
-					}  else {
-						include_once 'catalog/loginx.php';
-					}
-					
+					include_once 'catalog/login.php';
 				}
 		} else {
 			include_once 'catalog/login.php';
