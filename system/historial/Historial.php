@@ -507,6 +507,7 @@ class Historial{
 			  <thead>
 			    <tr>
 			      <th>Hash</th>
+			      <th>Tipo</th>
 			      <th>Fecha</th>
 			      <th>Hora</th>
 			      <th>Local</th>
@@ -521,6 +522,7 @@ class Historial{
 		    	
 		    	echo '<tr>
 			      <th>'. $b["hash"] .'</th>
+			      <th>'.Helpers::VerTipoSync($b["tipo"]).'s</th>
 			      <td>'. $b["fecha"] .'</td>
 			      <td>'. $b["hora"] .'</td>
 			      <td>'. $cliente .'</td>
