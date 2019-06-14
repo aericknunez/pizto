@@ -55,9 +55,8 @@ class Helpers{
 
     static public function VerTipoSync($tipo) {
     if($tipo == "1") return '<p class="text-danger font-weight-bold">Corte</p>';
-    if($tipo == "2") return '<p class="text-success font-weight-bold">Configuraciones</p>';
-    if($tipo == "3") return '<p class="text-warning font-weight-bold">Todo</p>';
-    
+    if($tipo == "2") return '<p class="text-success font-weight-bold">Configuracion</p>';
+    if($tipo == "3") return '<p class="text-warning font-weight-bold">Todo</p>'; 
     if($tipo == "4") return '<p class="text-primary font-weight-bold">Sync BD</p>';
     if($tipo == "5") return '<p class="text-info font-weight-bold">Sync Upload</p>';
     }
