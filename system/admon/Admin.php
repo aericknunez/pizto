@@ -107,7 +107,7 @@ class Admin{
 	    foreach ($a as $b) {  
 		    echo '<tr>
 		    		<th scope="col">'.$b["hash"].'</th>
-		    	  <th scope="col">'.$b["tipo"].'</th>
+		    	  <th scope="col">'.Helpers::VerTipoSync($b["tipo"]).'</th>
 			      <th scope="col">'.$b["fecha"].'</th>
 			      <th scope="col">'.$b["hora"].'</th>
 			      </tr>';
@@ -327,6 +327,20 @@ class Admin{
 		} 
 		$a->close();
 	}
+
+
+
+	static public function VerClienteNombre($td){
+		$db = new dbConn();
+
+   		if ($r = $db->select("cliente", "config_master", "WHERE td = '$td'")) { 
+	        return $r["cliente"];
+	    } unset($r);  
+
+	}
+
+
+
 
 
 
