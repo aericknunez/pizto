@@ -169,6 +169,12 @@ echo '<script type="text/javascript" src="assets/js/query/sync.js?v='.$numero.'"
 elseif(isset($_GET["db_sync"])) {
 echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
 }
+elseif(isset($_GET["actualizacionesup"])) { // no tiene nada el script
+echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
+}
+elseif(isset($_GET["synclist"])) { // no tiene nada el script
+echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
+}
 elseif(Helpers::IsAdmin() == TRUE) {
 echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
 include_once 'system/admon/script.php';

@@ -88,6 +88,37 @@ class Admin{
 	}
 
 
+	public function VerSyncLocal($fecha,$td){
+		$db = new dbConn();
+
+ $a = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha' and td = '$td' order by id desc");
+
+	if($a->num_rows > 0){
+	 echo '<table class="table table-sm table-striped">
+			  <thead>
+			    <tr>
+			    <th scope="col">Hash</th>
+			    <th scope="col">Tipo</th>
+			     <th scope="col">Fecha</th>
+			     <th scope="col">Hora</th>
+			    </tr>
+			  </thead>
+			  <tbody>';
+	    foreach ($a as $b) {  
+		    echo '<tr>
+		    		<th scope="col">'.$b["hash"].'</th>
+		    	  <th scope="col">'.$b["tipo"].'</th>
+			      <th scope="col">'.$b["fecha"].'</th>
+			      <th scope="col">'.$b["hora"].'</th>
+			      </tr>';
+	    } 
+	    echo '</tbody>
+		    </table>';
+		} 
+		$a->close();
+	}
+
+
 
 	public function AddClienteSync($hash,$td){
 		$db = new dbConn();
@@ -170,7 +201,7 @@ class Admin{
 	    foreach ($a as $b) {  
 		    echo '<tr>
 		    		<th scope="col">'.$b["td"].'</th>
-		    	  <th scope="col">'.$b["cliente"].'</th>
+		    	  <th scope="col"><a href="?synclist&td='.$b["td"].'">'.$b["cliente"].'</a></th>
 			      '. $this->CompruebaHashHoy($fecha,$b["td"]) .'
 			      <th scope="col">'.$this->UltimaHoraHash($fecha,$b["td"]).'</th>			      
 			      '.$this->CompruebaHashCorte($fecha,$b["td"]).'

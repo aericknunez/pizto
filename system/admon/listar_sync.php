@@ -8,7 +8,7 @@ include_once 'system/admon/Admin.php';
 $admon = new Admin;
 
 ?>
-<h1>Estado actualizaciones</h1>
+<h1>Listado archivos de Sincronizacion</h1>
 
 
 
@@ -17,7 +17,7 @@ $admon = new Admin;
 
 <?php   
 echo '<div id="contenido">';
-$admon->VerActualizacionesDia(date("d-m-Y"));
+$admon->VerSyncLocal(date("d-m-Y"), $_REQUEST["td"]);
 echo '</div>';
  ?>
 
