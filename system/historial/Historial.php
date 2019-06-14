@@ -522,11 +522,11 @@ class Historial{
 		    	
 		    	echo '<tr>
 			      <th>'. $b["hash"] .'</th>
-			      <th>'.Helpers::VerTipoSync($b["tipo"]).'</th>
+			      <th></th>
 			      <td>'. $b["fecha"] .'</td>
 			      <td>'. $b["hora"] .'</td>
 			      <td>'. $cliente .'</td>
-			    </tr>'
+			    </tr>';
 		    }
 		    echo '</tbody>
 		    </table>';
