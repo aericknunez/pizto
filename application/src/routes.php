@@ -1487,7 +1487,8 @@ $user = $_SESSION["user"];
 
 		for ($x = $_REQUEST["inicio"]; $x <= $_REQUEST["final"]; $x++) {
 			$counter = $counter + 1;
-			$imprimir->$clase(2,$x,NULL,$impresora,NULL,$ticket);//(tipo,numero,cambio,imp)
+			$imprimir->$clase(2,$x,NULL,$impresora,NULL,$ticket);
+			//(tipo,numero,efectivo,impresora,(mesa), (tiket o factura))
 		}
 
 	$texto = "<br>Se estan imprimiendo las facturas desde la factura ".$_REQUEST["inicio"]." hasta la factura ".$_REQUEST["final"]." con un total de facturas de " . $counter . ". Por favor espere hasta que se hayan impreso todas las facturas.";
