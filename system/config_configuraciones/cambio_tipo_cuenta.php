@@ -22,7 +22,7 @@ $configuracion = new Config;
 <div class="row d-flex justify-content-center text-center">
 	  <div class="col-sm-6">
 
-<?php  if($_SESSION["tipo_cuenta"] == 1 and $_SESSION["td"] != 0){ ?>
+<?php  if($_SESSION["tipo_cuenta"] == 1){ ?>
 	<h3>Usuarios y Sistemas</h3>	
 
 	<form class="text-center border border-light p-2" method="post" id="form-cuentas" name="form-cuentas">
