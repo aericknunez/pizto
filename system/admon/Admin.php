@@ -184,7 +184,7 @@ class Admin{
 	public function VerActualizacionesDia($fecha){
 		$db = new dbConn();
 
- $a = $db->query("SELECT cliente, td FROM config_master order by td asc");
+ $a = $db->query("SELECT cliente, td FROM config_master WHERE td != 0 order by td asc");
 
 	if($a->num_rows > 0){
 	 echo '<table class="table table-sm table-striped">
