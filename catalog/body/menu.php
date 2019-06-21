@@ -95,8 +95,9 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <li><a href="?cai" class="waves-effect"> Nuevo CAI</a></li>
 <?php } ?>
 <li><a href="?rango" class="waves-effect"> Imprimir Facturas</a></li>
-<li><a href="?contadora" class="waves-effect"> Imprimir Reporte</a></li>
-<?php if($_SESSION["tx"] == 1 and (Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)){
+
+<?php if($_SESSION["tx"] == 1 and ($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 2 or $_SESSION["tipo_cuenta"] == 5)){
+echo '<li><a href="?contadora" class="waves-effect"> Imprimir Reporte</a></li>';
 echo '<li><a href="?eliminar_facturas" class="waves-effect"> Eliminar Facturas</a></li>';	
 } ?>
 </ul>
