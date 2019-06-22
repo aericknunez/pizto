@@ -82,7 +82,7 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
 <header>
 
   <!-- Full Page Intro -->
-  <div class="view" style="background-image: url('https://cdn-images-1.medium.com/max/1200/0*V3gN7KZ4P-r-YQPu.'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="view" style="background-image: url('assets/img/Photos/fondo.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <!-- Mask & flexbox options-->
     <div class="mask rgba-gradient d-flex justify-content-center">
       <!-- Content -->
@@ -140,7 +140,7 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
 
                 <div class="text-center mt-4">
                 	<input type="button" 
-                   value="Login" class="btn btn-indigo"
+                   value="Ingresar" class="btn btn-indigo"
                    onclick="formhash(this.form, this.form.password);" />
 
                   

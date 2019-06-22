@@ -1,1 +1,0 @@
-UPDATE `sync_up` SET `edo`= 1 WHERE tabla = 'corte_diario' and `td` = (SELECT td FROM config_master WHERE id = 1);
