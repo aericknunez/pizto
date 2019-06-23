@@ -46,16 +46,8 @@ $user=sha1($_SESSION['username']);
         $configuracion->CrearVariables(); // creo el resto de variables del sistema
 
 
-        // reviso si hay una BD que actualizar
-        $archx = "../../sync/" . $_SESSION['td'] . ".sql";
-
-        if (file_exists($archx)) {
-            $sql = explode(";",file_get_contents($archx));//
-            foreach($sql as $query){
-            $arr = $db->query($query);
-            }
-            unlink($archx);
-        }
+        // Aqui revisare si quedo la ultima mesa sin productos (se elimino los sql para meterlos)
+            VerificaMesa();
         //////////////
         $inicia = new Inicio;
         $inicia->CompruebaIconos("../iconos/", NULL); // creo iconos si no exite el archivo
@@ -111,6 +103,21 @@ $user=sha1($_SESSION['username']);
             }
             $a->close();
 
+    }
+
+
+    function VerificaMesa(){
+        $db = new dbConn();
+
+            if ($r = $db->select("estado, mesa", "mesa", "where td = ".$_SESSION["td"]." order by id DESC LIMIT 1")) { 
+                $estado=$r["estado"]; $mesa=$r["mesa"]; } unset($r); 
+        
+        if($estado == 1){
+            include_once '../../system/ventas/Venta.php'; 
+                if(Venta::VerProductosMesa($_SESSION["mesa"]) == NULL){
+                  $db->delete("mesa", "WHERE estado = 1 and mesa = '$mesa' and tx = ". $_SESSION["tx"] ." and td = " . $_SESSION["td"]);
+                }
+        }
     }
 
 

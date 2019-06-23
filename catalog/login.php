@@ -162,7 +162,9 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
                       <i class="fa fa-instagram white-text"> </i>
                     </a> -->
                     <img src="assets/img/logo/pizto.png" alt="">
+                    
                   </div>
+                  <a href="?change">Cambiar inicio</a>
                 </div>
               </div>
             </div>
