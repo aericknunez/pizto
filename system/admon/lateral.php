@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </span>
                     </a>
                     <a class="list-group-item list-group-item-action waves-effect">Productos Hoy
-                        <span class="badge badge-primary badge-pill pull-right"><?php echo $admin->Productos(date("d-m-Y")); ?></span>
+                        <span class="badge badge-primary badge-pill pull-right"><?php echo Helpers::Entero($admin->Productos(date("d-m-Y"))); ?></span>
                     </a>
                     <a class="list-group-item list-group-item-action waves-effect">Productos Total
                         <span class="badge badge-primary badge-pill pull-right"><?php echo $admin->ProductosT(); ?></span>
