@@ -48,6 +48,13 @@ include_once '../../system/user/Usuarios.php';
 	$usuarios->CambiarAvatar($_REQUEST["iden"],$_REQUEST["user"]);
 }
 
+
+if($_REQUEST["op"]=="0z"){ // redirecciona despues de registrar a llenar datos
+echo '<script>
+    window.location.href="../../?modal=register_success&user=' . $_REQUEST["user"] . '";
+</script>';
+}
+
 /// usuarios
 if($_REQUEST["op"]=="1"){
 include_once '../../system/user/Usuarios.php';

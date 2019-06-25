@@ -81,11 +81,11 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
             $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
             // Ejecuta la consulta preparada.
             if (! $insert_stmt->execute()) {
-                header('Location: ../error.php?err=Fallo el registro');
+                header('Location: ../../error.php?err=Fallo el registro');
             } else {
                  //header('Location: ./?modal=register_success&user=' . $_POST['username']);
                echo '<script>
-                        window.location.href="?modal=register_success&user=' . $_POST['username'] . '";
+                        window.location.href="application/src/routes.php?op=0z&user=' . $_POST['username'] . '";
                     </script>';
             }
         }
