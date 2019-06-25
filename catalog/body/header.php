@@ -1,6 +1,10 @@
 <body class="hidden-sn <?php echo $_SESSION['config_skin']; ?>">
     
-<div class="loader border-top-primary border-right-warning border-bottom-success border-left-danger"></div>
+<!-- preloader -->
+<div id="mdb-preloader" class="flex-center">
+    <div id="preloader-markup">
+    </div>
+</div>
 <!-- white-skin , mdb-skin , grey-skin , pink-skin ,  light-blue-skin , black-skin  cyan-skin, navy-blue-skin -->
 <!--Double navigation-->
 <header>

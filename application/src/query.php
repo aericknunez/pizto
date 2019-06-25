@@ -196,6 +196,10 @@ $("body").on("click","#cambiar-pantalla-inicio",function(){
         });
     });	
 
+// preloader
+    $(window).on("load", function () {
+        $('#mdb-preloader').fadeOut('slow');
+    });
 
 </script>
 
