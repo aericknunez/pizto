@@ -276,20 +276,24 @@ class Admin{
 	public function Productos($fecha){
 		$db = new dbConn();
   		
-   		$a = $db->query("SELECT * FROM ticket WHERE fecha = '$fecha'");
-		return $a->num_rows;
-		$a->close();
+		$a = $db->query("SELECT sum(cant) FROM ticket WHERE fecha = '$fecha'");
+		    foreach ($a as $b) {
+		        $cant=$b["sum(cant)"];
+		    } $a->close();
+		    return $cant;
 
 	}
 
 	public function ProductosT(){
 		$db = new dbConn();
 
-   		$a = $db->query("SELECT * FROM ticket");
-		return $a->num_rows;
-		$a->close();
-
+   		$a = $db->query("SELECT sum(cant) FROM ticket");
+		    foreach ($a as $b) {
+		        $cant=$b["sum(cant)"];
+		    } $a->close();
+		    return $cant;
 	}
+
 
 	public function Cuentas(){
 		$db = new dbConn();
