@@ -1470,6 +1470,8 @@ include_once '../../system/historial/Historial.php';
 if($_REQUEST["op"]=="161"){ // ImprimirRanfo
 $user = $_SESSION["user"];
 
+if($_SESSION["td"] == 1){
+	
 	if($_REQUEST["inicio"] >= $_REQUEST["final"]){
 		Alerts::Alerta("error","Error!","El numero inicial de factura debe ser menor a el numero final!");
 	} else {
@@ -1494,6 +1496,10 @@ $user = $_SESSION["user"];
 	$texto = "<br>Se estan imprimiendo las facturas desde la factura ".$_REQUEST["inicio"]." hasta la factura ".$_REQUEST["final"]." con un total de facturas de " . $counter . ". Por favor espere hasta que se hayan impreso todas las facturas.";
 	Alerts::Mensaje($texto,"warning",NULL,NULL);
   }
+
+	} else {
+		Alerts::Alerta("error","Error!","Debe estar facturando para usar esta función!");
+	}
 
 } 
 
