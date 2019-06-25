@@ -198,7 +198,7 @@ $("body").on("click","#cambiar-pantalla-inicio",function(){
 
 // preloader
     $(window).on("load", function () {
-        $('#mdb-preloader').fadeOut('slow');
+        $('#mdb-preloader').fadeOut('fast');
     });
 
 </script>
