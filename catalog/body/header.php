@@ -1,9 +1,21 @@
 <body class="hidden-sn <?php echo $_SESSION['config_skin']; ?>">
     
 <!-- preloader -->
+
 <div id="mdb-preloader" class="flex-center">
-    <div id="preloader-markup">
-    </div>
+    <div class="preloader-wrapper big active crazy">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
 </div>
 <!-- white-skin , mdb-skin , grey-skin , pink-skin ,  light-blue-skin , black-skin  cyan-skin, navy-blue-skin -->
 <!--Double navigation-->
