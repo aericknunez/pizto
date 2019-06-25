@@ -68,7 +68,7 @@ class Helpers{
     }
 
 
-    public function Pais($string) {
+    static public function Pais($string) {
         if($string == "1") return 'El Salvador';
         if($string == "2") return 'Honduras';
         if($string == "3") return 'Guatemala';
