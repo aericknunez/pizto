@@ -280,7 +280,7 @@ class Admin{
 		    foreach ($a as $b) {
 		        $cant=$b["sum(cant)"];
 		    } $a->close();
-		    return  $cant;
+		    return $cant;
 
 	}
 
@@ -291,7 +291,7 @@ class Admin{
 		    foreach ($a as $b) {
 		        $cant=$b["sum(cant)"];
 		    } $a->close();
-		    return  $cant;
+		    return $cant;
 	}
 
 
