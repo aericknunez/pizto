@@ -1477,7 +1477,7 @@ include_once '../../system/historial/Historial.php';
 if($_REQUEST["op"]=="161"){ // ImprimirRanfo
 $user = $_SESSION["user"];
 
-if($_SESSION["td"] == 1){
+if($_SESSION["tx"] == 1){
 	
 	if($_REQUEST["inicio"] >= $_REQUEST["final"]){
 		Alerts::Alerta("error","Error!","El numero inicial de factura debe ser menor a el numero final!");
