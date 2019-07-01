@@ -32,10 +32,12 @@ class Reporte{
 
 						<thead>
 					     <tr>
-					       <th>Fecha</th>
-					       <th>Mesas</th>
-					       <th>Clientes</th>
-					       <th>Efectivo</th>
+					       <th>Fecha</th>';
+					if($_SESSION["td"] != 3){
+					echo '<th>Mesas</th>
+					       <th>Clientes</th>';
+					   }
+					echo '<th>Efectivo</th>
 					        <th>Total</th>
 					        <th>Gastos</th>
 					        <th>Diferencia</th>
@@ -52,10 +54,12 @@ class Reporte{
 				$colores='class="text-danger"';	
 				} 
 				  echo '<tr '.$colores.'>
-				       <th scope="row">'. $b["fecha"] . '</th>
-				       <td>'. $b["mesas"] . '</td>
-				       <td>'. $b["clientes"] . '</td>
-				       <td>'. Helpers::Dinero($b["efectivo"]) . '</td>
+				       <th scope="row">'. $b["fecha"] . '</th>';
+				if($_SESSION["td"] != 3){
+				echo '<td>'. $b["mesas"] . '</td>
+				       <td>'. $b["clientes"] . '</td>';
+				   }
+				echo '<td>'. Helpers::Dinero($b["efectivo"]) . '</td>
 				       <td>'. Helpers::Dinero($b["total"]) . '</td>
 				       <td>'. Helpers::Dinero($b["gastos"]) . '</td>
 				       <td>'. Helpers::Dinero($b["diferencia"]) . '</td>

@@ -184,11 +184,13 @@ class Historial{
 
 						<thead>
 					     <tr>
-					       <th>Fecha</th>
-					       <th>Mesas</th>					       
+					       <th>Fecha</th>';
+					if($_SESSION["td"] != 3){
+					echo '<th>Mesas</th>					       
 					       <th>Clientes</th>
-					       <th>Propina</th>
-					       <th>Efectivo</th>
+					       <th>Propina</th>';
+					}
+					  echo '<th>Efectivo</th>
 					        <th>Total</th>
 					        <th>Gastos</th>
 					        <th>Diferencia</th>
@@ -220,11 +222,13 @@ class Historial{
 				$colores='class="text-danger"';	
 				} 
 				  echo '<tr '.$colores.'>
-				       <th scope="row">'. $b["fecha"] . '</th>
-				       <td>'. $b["mesas"] . '</td>
+				       <th scope="row">'. $b["fecha"] . '</th>';
+					if($_SESSION["td"] != 3){
+				echo '<td>'. $b["mesas"] . '</td>
 				       <td>'. $b["clientes"] . '</td>
-				       <td>'. Helpers::Dinero($b["propina"]) . '</td>
-				       <td>'. Helpers::Dinero($b["efectivo"]) . '</td>
+				       <td>'. Helpers::Dinero($b["propina"]) . '</td>';
+				   }
+				 echo '<td>'. Helpers::Dinero($b["efectivo"]) . '</td>
 				       <td>'. Helpers::Dinero($b["total"]) . '</td>
 				       <td>'. Helpers::Dinero($b["gastos"]) . '</td>
 				       <td>'. Helpers::Dinero($b["diferencia"]) . '</td>
@@ -232,12 +236,14 @@ class Historial{
 				unset($colores);
 				    }
 				   $a->close();
-			  echo '<tr class="light-blue lighten-4">
-			       <th scope="row">Totales</th>
-			       <td>'. $xmesas . '</td>
+			echo '<tr class="light-blue lighten-4">
+			       <th scope="row">Totales</th>';
+					if($_SESSION["td"] != 3){
+			echo '<td>'. $xmesas . '</td>
 			       <td>'. $xclientes . '</td>
-			       <td>'. Helpers::Dinero($xpropina) . '</td>
-			       <td>'. Helpers::Dinero($xefectivo) . '</td>
+			       <td>'. Helpers::Dinero($xpropina) . '</td>';
+				   }
+			echo '<td>'. Helpers::Dinero($xefectivo) . '</td>
 			       <td>'. Helpers::Dinero($xtotal) . '</td>
 			       <td>'. Helpers::Dinero($xgastos) . '</td>
 			       <td>'. Helpers::Dinero($xdiferecia) . '</td>
