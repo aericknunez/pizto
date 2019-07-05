@@ -449,7 +449,7 @@ class Facturar{
 	public function EliminarFacturas(){
 			$db = new dbConn();
 
-	    $a = $db->query("SELECT * FROM ticket_num WHERE edo = 1 and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." order by id desc");
+	$a = $db->query("SELECT * FROM ticket_num WHERE edo = 1 and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." limit 15 order by id desc");
 	    if($a->num_rows > 0){
 	echo '<table class="table table-sm table-striped">
 	  <thead>

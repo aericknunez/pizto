@@ -11,7 +11,7 @@ if (!class_exists('dbConn')):
         public function conn() {
 			$this->db_connect = new mysqli($this->HOST, $this->USER, $this->PASSWORD, $this->DATABASE);
 			if ($this->db_connect->connect_error) {
-				die("Failed connect to MySQL!");
+				die("Error de en la Base de Datos!");
 				return;
 			}
 			return $this->db_connect;

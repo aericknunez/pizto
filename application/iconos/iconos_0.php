@@ -2,12 +2,12 @@
    <ul class="gallery"> 
 
 <li><a data-target="#a9901" data-toggle="modal"><em>Clasicas</em><img src="assets/img/ico/19.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
-<li><em>Clasica Jamon</em><input type="image" id="venta" op="20" cod="1001" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/ertry.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>Clasica Jamon</em><input type="image" id="venta" op="20" cod="1001" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="1" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/ertry.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>2 x 1 Suprema</em><input type="image" id="venta" op="20" cod="1004" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/6.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Orilla de queso</em><input type="image" id="venta" op="20" cod="1005" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/22..png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Combo Wings</em><input type="image" id="venta" op="20" cod="1006" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/alitas.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Super Suprema</em><input type="image" id="venta" op="20" cod="1007" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/6.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
-<li><em>Calzone Italiano</em><input type="image" id="venta" op="20" cod="1008" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/gegt.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>Calzone Italiano</em><input type="image" id="venta" op="20" cod="1008" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="1" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/gegt.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><a data-target="#a9902" data-toggle="modal"><em>Especialidades</em><img src="assets/img/ico/11.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
 <li><a data-target="#a9903" data-toggle="modal"><em>Gourmet Esp</em><img src="assets/img/ico/12.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
 <li><em>Fresco 1.5 Lts</em><input type="image" id="venta" op="20" cod="1045" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/25.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
@@ -17,7 +17,7 @@
 <li><em>Fresco Natural</em><input type="image" id="venta" op="20" cod="1049" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/jugodenaranja.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><a data-target="#a9904" data-toggle="modal"><em>Alitas</em><img src="assets/img/ico/alitass.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
 <li><a data-target="#a9905" data-toggle="modal"><em>Extras</em><img src="assets/img/ico/15.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
-<li><em>Combo Orilla de Queso</em><input type="image" id="venta" op="20" cod="1058" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/5.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>Combo Orilla de Queso</em><input type="image" id="venta" op="20" cod="1058" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="1" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/5.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
  
  
 <li><a href="?modal=otras_ventas&mesa=<? echo $_SESSION["mesa"]; ?>&cliente=<? echo $_SESSION["clientselect"] ?>&view=<? echo $_SESSION["view"]; ?>"><em>Otras Ventas</em><img src="assets/img/ico/dfs.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li> 
@@ -41,7 +41,7 @@
  <div class="row text-center portfolio"> 
    <ul class="gallery"> 
 
-<li><em>Clasica Jamon</em><input type="image" id="venta" op="20" cod="1001" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/sfgeg.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>Clasica Jamon</em><input type="image" id="venta" op="20" cod="1001" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="1" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/sfgeg.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Clasica Pepperoni</em><input type="image" id="venta" op="20" cod="1002" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/egrjy.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Clasica Extraqueso</em><input type="image" id="venta" op="20" cod="1003" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/5.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 
@@ -154,7 +154,7 @@
  <div class="row text-center portfolio"> 
    <ul class="gallery"> 
 
-<li><em>6 Alitas</em><input type="image" id="venta" op="20" cod="1050" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/102.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
+<li><em>6 Alitas</em><input type="image" id="venta" op="20" cod="1050" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="1" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/102.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>12 Alitas</em><input type="image" id="venta" op="20" cod="1051" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/102.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>24 Alitas</em><input type="image" id="venta" op="20" cod="1052" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/102.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 
