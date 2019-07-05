@@ -283,7 +283,9 @@ class Reporte{
   		$a = $db->query("select * from corte_diario where fecha like '%$fechax' and td = ".$_SESSION['td']." and edo = 1 order by fecha_format asc");
 
 				if($a->num_rows > 0){  
-					echo '<br><hr>
+					echo '<div id="areaImprimir">
+
+					<br><hr>
 					<table class="table table-striped table-sm">
 
 						<thead>
@@ -439,8 +441,27 @@ class Reporte{
 
 				} // num rows de las facturas eliminadas
 				
-			} // num rows
+				// vinvulo para imprimir
+		echo '</div>'; // div de imprimir
+		echo '<script>
+              function printDiv(nombreDiv) {
+                   var contenido= document.getElementById(nombreDiv).innerHTML;
+                   var contenidoOriginal= document.body.innerHTML;
+
+                   document.body.innerHTML = contenido;
+
+                   window.print();
+
+                   document.body.innerHTML = contenidoOriginal;
+              } 
+              </script>';
+
+        echo '<div align="center"><a onclick="printDiv(\'areaImprimir\')" class="btn-floating btn-sm blue-gradient"><i class="fa fa-print" id="basic"></i></a></div>';
+
+		} // num rows
 			//else { echo "No hay datos que mostrar"; }
+	
+				
 	}
 
 
