@@ -463,7 +463,8 @@ class Reporte{
               } 
               </script>';
 
-        echo '<div align="center"><a onclick="printDiv(\'areaImprimir\')" class="btn-floating btn-sm blue-gradient"><i class="fa fa-print" id="basic"></i></a></div>';
+        echo '<div align="center"><a onclick="printDiv(\'areaImprimir\')" class="btn-floating btn-sm blue-gradient"><i class="fa fa-print" id="basic"></i></a><a href="?contadora" class="btn-floating btn-sm red"><i class="fa fa-ban"></i></a></div>';
+
 
 		} // num rows
 			//else { echo "No hay datos que mostrar"; }
