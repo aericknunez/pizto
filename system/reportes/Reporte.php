@@ -284,7 +284,14 @@ class Reporte{
 
 				if($a->num_rows > 0){  
 					echo '<div id="areaImprimir">
-
+					<div align="center">
+					<h3>' . $_SESSION["config_cliente"] . '</h3>
+					<p>' . $_SESSION["config_propietario"] . ', ' . $_SESSION["config_giro"] . ' <br> 
+					Dirección: ' . $_SESSION["config_direccion"] . ' <br>
+					Teléfono: ' . $_SESSION["config_telefono"] . ' <br>
+					RTN: ' . $_SESSION["config_nit"] . ' <br>
+					' . Helpers::Pais($_SESSION["config_pais"]) . '
+					</p> </div>
 					<br><hr>
 					<table class="table table-striped table-sm">
 
