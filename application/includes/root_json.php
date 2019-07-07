@@ -10,7 +10,10 @@ include_once '../common/Mysqli.php';
 
     $db = new dbConn();
 
-    $a = $db->query("SELECT * FROM config_root WHERE td = ". $_REQUEST["x"]."");
+    $a = $db->query("SELECT expira, expireacion, ftp_servidor, 
+    	ftp_path, ftp_ruta, ftp_user, ftp_password, tipo_sistema, 
+    	plataforma, pantallas, td
+    	FROM config_root WHERE td = ". $_REQUEST["x"]."");
     foreach ($a as $b) {
        $data = $b;
     }

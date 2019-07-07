@@ -78,7 +78,7 @@ foreach($sql as $query){
 
 } // foreach
 
-unset($_SESSION["temporal_td"]);
+
 
 
 function SubirFtp($sync){
@@ -103,3 +103,5 @@ $data =  file_get_contents('https://pizto.com/admin/application/includes/root_js
 $cambio = json_decode($data, true);
 
 $db->update("config_root", $cambio, "WHERE td=" . $_SESSION["temporal_td"]);
+
+unset($_SESSION["temporal_td"]);
