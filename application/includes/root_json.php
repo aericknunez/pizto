@@ -1,6 +1,4 @@
 <?
-if(is_numeric($_REQUEST["x"])){
-
 include_once '../common/Helpers.php';
 include_once 'variables_db.php';
 include_once 'db_connect.php';
@@ -22,5 +20,5 @@ include_once '../common/Mysqli.php';
     $a->close();
 
 echo json_encode($b, false);
-}
+
 ?>
