@@ -1,15 +1,15 @@
 <ul class="collapsible collapsible-accordion">
 
 <?php if(Helpers::IsAdmin() == TRUE) { ?>
-<li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-user"></i> Reportes Root<i class="fa fa-angle-down rotate-icon"></i></a>
+<li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-table"></i> Reportes Root<i class="fa fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
 
-<li><a href="?syncstatus" class="waves-effect"> Estado Sincronizaci&oacuten</a></li>
-<li><a href="?inout" class="waves-effect"> Entradas y Salidas</a></li>
-<li><a href="?db_sync" class="waves-effect"> Gestionar Sync DB</a></li>
-<li><a href="?actualizacionesup" class="waves-effect"> Ver Sucursales Up</a></li>
-<li><a href="?ctc" class="collapsible-header waves-effect arrow-r"> Cambiar Cuenta</a></li>
+<li><a href="?syncstatus" class="waves-effect"><i class="fa fa-upload"></i> Estado Sincronizaci&oacuten</a></li>
+<li><a href="?inout" class="waves-effect"><i class="fa fa-exchange"></i> Entradas y Salidas</a></li>
+<li><a href="?db_sync" class="waves-effect"><i class="fa fa-database"></i> Gestionar Sync DB</a></li>
+<li><a href="?actualizacionesup" class="waves-effect"><i class="fa fa-file-archive-o"></i> Ver Sucursales Up</a></li>
+<li><a href="?ctc" class="collapsible-header waves-effect arrow-r"><i class="fa fa-refresh"></i> Cambiar Cuenta</a></li>
 <li><a href="?user" class="collapsible-header waves-effect arrow-r"><i class="fa fa-user"></i> Usuarios </a></li>
 
 
