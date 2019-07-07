@@ -512,9 +512,6 @@ $return.= ' ?>';
 			    <th scope="col">Usuario</th>
 			      <th scope="col">Nombre del Sistema</th>
 			      <th scope="col">Pais</th>
-			      <th scope="col">Corte</th>
-			      <th scope="col">Venta Hoy</th>
-			      <th scope="col">Ultima Actualizacion</th>
 			      <th scope="col">Cambiar</th>
 			    </tr>
 			  </thead>
@@ -527,16 +524,6 @@ $return.= ' ?>';
 		    		$update = $rx["fecha"] . " | " . $rx["hora"];		        
 		    	} unset($rx);
 
-		    	// total venta por sucursal
-		    	$fechax = date("d-m-Y");
-		    $ax = $db->query("SELECT sum(total) FROM ticket WHERE edo = 1 and td = ".$b["sucursal"]." and fecha = '$fechax'");
-		    foreach ($ax as $bx) {
-		     $totalventa=$bx["sum(total)"]; } $ax->close();  
-
-		     // busco si hubo corte
-		     if ($ra = $db->select("fecha", "corte_diario", "where edo = 1 and td = ".$b["sucursal"]." order by id DESC LIMIT 1")) { $fechaultima=$ra["fecha"]; } unset($ra); 
-		     if($fechaultima == date("d-m-Y")) $corte = "Realizado";
-		     else $corte = "Sin corte";
 
 
 	    	$userx = $b["user"];
@@ -545,9 +532,6 @@ $return.= ' ?>';
 		    	  <th scope="col">'.$x["nombre"].'</th>
 			      <th scope="col">'.$r["cliente"].'</th>
 			      <th scope="col">'.Helpers::Pais($r["pais"]).'</th>			      
-			      <th scope="col">'. $corte .'</th>
-			      <th scope="col">'. $r["moneda_simbolo"] . $totalventa .'</th>
-			      <th scope="col">'.$update.'</th>
 			      <th scope="col">';
 				if($b["sucursal"] == $_SESSION['td']){
 					echo '<a id="predeterminar" op="131" iden="'.$b["sucursal"].'" class="btn-sm">Predeterminar  <i class="fa fa-play red-text"></i></a>';
