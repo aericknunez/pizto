@@ -95,3 +95,11 @@ function SubirFtp($sync){
 			return FALSE;
 		}
 }
+
+
+
+///////// actualizar el root
+$data =  file_get_contents('https://pizto.com/admin/application/includes/root_json.php?x=' . $_SESSION["temporal_td"]); 
+$cambio = json_decode($data, true);
+
+$db->update("config_root", $cambio, "WHERE td=" . $_SESSION["temporal_td"]);
