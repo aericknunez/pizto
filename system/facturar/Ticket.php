@@ -308,7 +308,7 @@ if ($sx = $db->select("sum(total)", "ticket", "WHERE cancela = '$numero' and mes
 // $oi=$oi+$n2;
 // printer_draw_text($handle, "____________________________________", 0, $oi);
 
-
+$oi=$oi+$n1;
 $oi=$oi+$n1;
 printer_draw_text($handle, date("d-m-Y"), 0, $oi);
 printer_draw_text($handle, date("H:i:s"), 400, $oi);

@@ -511,6 +511,7 @@ printer_select_font($handle, $font);
 
 
 //// comienza la factura
+$oi="140";
 printer_draw_text($handle, $_SESSION['config_cliente'], 110, $oi);
 
 
