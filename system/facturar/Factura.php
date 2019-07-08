@@ -599,8 +599,8 @@ printer_draw_text($handle, "____________________________________", 0, $oi);
 $oi=$oi+$n1;
 printer_draw_text($handle, "Cant.", 0, $oi);
 printer_draw_text($handle, "Descripcion", 60, $oi);
-printer_draw_text($handle, "P/U", 270, $oi);
-printer_draw_text($handle, "Total", 350, $oi);
+printer_draw_text($handle, "P/U", 300, $oi);
+printer_draw_text($handle, "Total", 380, $oi);
 $oi=$oi+$n1+$n3;
 printer_draw_text($handle, "____________________________________", 0, $oi);
 
@@ -663,12 +663,12 @@ if ($sx = $db->select("sum(total)", "ticket", "WHERE cancela = '$numero' and mes
           $oi=$oi+$n1;
           printer_draw_text($handle, $scant, 0, $oi);
           printer_draw_text($handle, $b["producto"], 30, $oi);
-          printer_draw_text($handle, $b["pv"], 270, $oi);
-          printer_draw_text($handle, $stotal, 350, $oi);
+          printer_draw_text($handle, $b["pv"], 300, $oi);
+          printer_draw_text($handle, $stotal, 380, $oi);
 
           $g="G";
 
-          printer_draw_text($handle, $g, 385, $oi);
+          printer_draw_text($handle, $g, 400, $oi);
 ////
 $subtotalf = $subtotalf + $stotal;
 ///
@@ -678,34 +678,34 @@ $subtotalf = $subtotalf + $stotal;
 
 $oi=$oi+$n3+$n1;
 printer_draw_text($handle, "Sub Total " . $_SESSION['config_moneda_simbolo'] . ":", 185, $oi);
-printer_draw_text($handle, Helpers::Format(Helpers::STotal($subtotalf, $_SESSION['config_imp'])), 340, $oi);
+printer_draw_text($handle, Helpers::Format(Helpers::STotal($subtotalf, $_SESSION['config_imp'])), 380, $oi);
 
 
 $oi=$oi+$n1;
 printer_draw_text($handle, "15% Impu. " . $_SESSION['config_moneda_simbolo'] . ":", 175, $oi);
-printer_draw_text($handle, Helpers::Format(Helpers::Impuesto(Helpers::STotal($subtotalf, $_SESSION['config_imp']), $_SESSION['config_imp'])), 340, $oi);
+printer_draw_text($handle, Helpers::Format(Helpers::Impuesto(Helpers::STotal($subtotalf, $_SESSION['config_imp']), $_SESSION['config_imp'])), 380, $oi);
 
 
 $oi=$oi+$n1;
 printer_draw_text($handle, "18% Impu. ", 175, $oi);
-printer_draw_text($handle, Helpers::Format(0), 340, $oi);
+printer_draw_text($handle, Helpers::Format(0), 380, $oi);
 
 
 $oi=$oi+$n1;
 printer_draw_text($handle, "Descuentos y Rebajas. ", 100, $oi);
-printer_draw_text($handle, Helpers::Format(0), 340, $oi);
+printer_draw_text($handle, Helpers::Format(0), 380, $oi);
 
 
 if($_SESSION['config_propina'] != 0.00){ ///  prara agregarle la propina -- sino borrar
 $oi=$oi+$n1;
-printer_draw_text($handle, "Propina:", 340, $oi);
-printer_draw_text($handle, Helpers::Format(Helpers::Propina($subtotalf)), 402, $oi);
+printer_draw_text($handle, "Propina:", 175, $oi);
+printer_draw_text($handle, Helpers::Format(Helpers::Propina($subtotalf)), 380, $oi);
 $subtotalf = Helpers::PropinaTotal($subtotalf);
 }
 
 $oi=$oi+$n1;
 printer_draw_text($handle, "Total " . $_SESSION['config_moneda_simbolo'] . ":", 232, $oi);
-printer_draw_text($handle, Helpers::Format($subtotalf), 340, $oi);
+printer_draw_text($handle, Helpers::Format($subtotalf), 380, $oi);
 
 $oi=$oi+$n2;
 printer_draw_text($handle, "____________________________________", 0, $oi);
