@@ -474,7 +474,7 @@ $oi=$oi+$n2;
 
 
 
- public function Imprimir($tipo,$numero,$efectivo,$imp,$dato,$ticket){
+ public function Italia($tipo,$numero,$efectivo,$imp,$dato,$ticket){
   $db = new dbConn();
 //(tipo,numero,cambio,impresor,mesa,factura_o_tiket)
 // el tipo es 1 =  mesa, 2 = factura, 3 = cancela un cliente
