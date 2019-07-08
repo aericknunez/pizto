@@ -40,21 +40,30 @@ printer_select_font($handle, $font);
 
 //// comienza la factura
 printer_draw_text($handle, $_SESSION['config_cliente'], 110, $oi);
-$oi=$oi+$n1;
+
+if($_SESSION["td"] == 4){
+  $oi=$oi+$n1;
 printer_draw_text($handle, "Venta de pollo frito en piezas, Papas fritas", 0, $oi);
 $oi=$oi+$n1;
 printer_draw_text($handle, "y ensaladas, etc", 120, $oi);
-if($_SESSION["td"] == 4){
 $oi=$oi+$n1;
 printer_draw_text($handle, "Mercado Concepcion, 1/2 al sur de", 0, $oi);
 $oi=$oi+$n1;
 printer_draw_text($handle, "Farmacia san Jose, Choluteca.", 0, $oi);
 } elseif($_SESSION["td"] == 3){
+  $oi=$oi+$n1;
+printer_draw_text($handle, "Venta de pollo frito en piezas, Papas fritas", 0, $oi);
+$oi=$oi+$n1;
+printer_draw_text($handle, "y ensaladas, etc", 120, $oi);
 $oi=$oi+$n1;
 printer_draw_text($handle, "Bo. El centro 1/2 Cdra al Este", 0, $oi);
 $oi=$oi+$n1;
 printer_draw_text($handle, "del Elektra, Choluteca, Honduras.", 0, $oi);
 } else {
+  $oi=$oi+$n1;
+printer_draw_text($handle, $_SESSION['config_giro'], 0, $oi);
+
+$oi=$oi+$n1;
   printer_draw_text($handle, $_SESSION['config_direccion'], 0, $oi);
 } 
 //printer_draw_text($handle, $_SESSION['config_direccion'], 0, $oi);
