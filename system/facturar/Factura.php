@@ -49,12 +49,14 @@ $oi=$oi+$n1;
 printer_draw_text($handle, "Mercado Concepcion, 1/2 al sur de", 0, $oi);
 $oi=$oi+$n1;
 printer_draw_text($handle, "Farmacia san Jose, Choluteca.", 0, $oi);
-} if($_SESSION["td"] == 3){
+} elseif($_SESSION["td"] == 3){
 $oi=$oi+$n1;
 printer_draw_text($handle, "Bo. El centro 1/2 Cdra al Este", 0, $oi);
 $oi=$oi+$n1;
 printer_draw_text($handle, "del Elektra, Choluteca, Honduras.", 0, $oi);
-}  
+} else {
+  printer_draw_text($handle, $_SESSION['config_direccion'], 0, $oi);
+} 
 //printer_draw_text($handle, $_SESSION['config_direccion'], 0, $oi);
 // $oi=$oi+$n1;
 // printer_draw_text($handle, Helpers::Pais($_SESSION['config_pais']), 0, $oi);
