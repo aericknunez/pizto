@@ -502,7 +502,7 @@ $return.= ' ?>';
 	if($_SESSION["tipo_cuenta"] == 1 and $_SESSION["td"] != 0){ 
 	 $a = $db->query("SELECT * FROM login_sucursales order by user desc");
 	} else {
-		$a = $db->query("SELECT * FROM login_sucursales WHERE user = '$user' order by td");
+		$a = $db->query("SELECT * FROM login_sucursales WHERE user = '$user'");
 	}
 
 	if($a->num_rows > 0){
