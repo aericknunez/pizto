@@ -308,11 +308,11 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				echo '<button class="white" type="submit" name="btn-vender" id="btn-vender"><img src="assets/img/imagenes/print.png"></button>';
 					
 					if(!isset($_SESSION['view'])){
+						if($_SESSION['opcionesactivas'] == TRUE){
 					echo '<a href="?modal=modificar&mesa='.$_SESSION["mesa"].'&view=0" class="btn-floating blue"><i class="fa fa-refresh" aria-hidden="true"></i></a>'; }
-					else {
+					} else {
 						if($_SESSION['config_imprimir_antes'] != NULL){
-							echo '<a href="?modal=factura_imprimir&mesa='.$_SESSION["mesa"].'&efectivo=" class="btn-floating blue"><i class="fa fa-print" aria-hidden="true"></i></a>';	
-						}
+						 	echo '<a href="?modal=factura_imprimir&mesa='.$_SESSION["mesa"].'&efectivo=" class="btn-floating blue"><i class="fa fa-print" aria-hidden="true"></i></a>'; }
 						
 					}
 					
@@ -402,7 +402,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 					   <button class="white" type="submit" name="btn-vender" id="btn-vender"><img src="assets/img/imagenes/print.png"></button>
 					</div>
 					</form>';
-
+					if($_SESSION['config_imprimir_antes'] != NULL){
+						 	echo '<div align="center"><a href="?modal=factura_imprimir&mesa='.$_SESSION["mesa"].'&cancela='.$cancela.'" class="btn-floating blue"><i class="fa fa-print" aria-hidden="true"></i></a></div>'; }
 		    } $a->close();
 		   
 

@@ -75,7 +75,7 @@ class Mesa{
 				</div>'; 
 			    
 			echo '<div class="row justify-content-md-center">';
-			$a = $db->query("SELECT * FROM ticket_temp WHERE mesa = ". $mesa ." and tx = ".$_SESSION["tx"]." and td = ". $_SESSION["td"] ."");
+			$a = $db->query("SELECT * FROM ticket_temp WHERE mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ". $_SESSION["td"] ."");
 			$productos = $a->num_rows; $a->close();
 			
 			if($productos == 0){
@@ -86,10 +86,12 @@ class Mesa{
 			echo '<a href="?modal=nombremesa&mesa='.$mesa.'" class="btn btn-cyan">Agregar Nombre</a>';
 
 			if($productos > 0){
+				if($_SESSION['opcionesactivas'] == TRUE){
 			echo '<a href="?modal=modificar&mesa='.$mesa.'&view=1" class="btn btn-brown">Modificar Opciones</a>';
+				}
 
-			if ($r = $db->select("clientes", "mesa", "WHERE mesa = ".$mesa." and td = ".$_SESSION["td"]."")) { 
-			    if($r["clientes"] > 1) echo '<a href="?modal=dividir&mesa='.$mesa.'" class="btn btn-cyan">Dividir Cuentas</a>';
+			if ($r = $db->select("clientes", "mesa", "WHERE mesa = '$mesa' and td = ".$_SESSION["td"]."")) { 
+			    if($r["clientes"] > 1) echo '<a href="?modal=dividir&mesa='.$mesa.'" class="btn btn-primary">Dividir Cuentas</a>';
 			    } unset($r);
 			}
 			

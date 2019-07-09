@@ -97,8 +97,10 @@ $user = $_SESSION["user"];
 
       </div></a>
       <div class="modal-footer">
-
-          <a href="?" class="btn btn-primary btn-rounded">Regresar</a>
+          <?php if($_REQUEST["cancela"] != NULL){ 
+            echo '<a href="?modal=pagar&mesa=' . $_REQUEST["mesa"] . '" class="btn btn-primary btn-rounded">Continuar </a>';
+          } ?>
+          <a href="?view&mesa=<? echo $_REQUEST["mesa"];  ?>" class="btn btn-primary btn-rounded">Ir a mesa</a>
     
       </div>
     </div>

@@ -8,7 +8,7 @@ $db = new dbConn();
 unset($_SESSION["mesa"]);
 
     $a = $db->query("SELECT * FROM mesa WHERE estado = 1 and tx = ".$_SESSION["tx"]." and td =".$_SESSION["td"]."");
-    echo '<div class="d-flex justify-content-center">';
+    echo '<div class="row justify-content-center">';
     
     foreach ($a as $b) {
     		// obtengo el nombre de la mesa

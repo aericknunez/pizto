@@ -39,7 +39,7 @@ $user=sha1($_SESSION['username']);
 // de igual manera si estan incompletos y el sistema no puede continuar, debe llenarlos
             VerificaUso();
             BuscaDatosSistema();
-
+            VerificaOpciones(); 
 /// continua con el login normal
         
         $configuracion = new Config;
@@ -118,6 +118,21 @@ $user=sha1($_SESSION['username']);
                   $db->delete("mesa", "WHERE estado = 1 and mesa = '$mesa' and tx = ". $_SESSION["tx"] ." and td = " . $_SESSION["td"]);
                 }
         }
+    }
+
+
+
+
+    function VerificaOpciones(){ // determina si el sistema tiene opciones activas para mostrar o no el boton modificar opciones
+        $db = new dbConn();
+
+            $a = $db->query("SELECT * FROM opciones WHERE td = " . $_SESSION['td']);
+            if($a->num_rows == 0){
+               $_SESSION['opcionesactivas'] = FALSE; 
+            } else {
+              $_SESSION['opcionesactivas'] = TRUE;  
+            }
+            $a->close();
     }
 
 
