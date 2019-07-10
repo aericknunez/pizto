@@ -153,7 +153,7 @@ class Admin{
 
 
 			
-    	$x = $db->query("SELECT * FROM login_sync WHERE WHERE fecha = '$fecha' and tipo = 1 and td = ". $bc["td"] ."");
+    	$x = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha' and tipo = 1 and td = ". $bc["td"] ."");
 				if($x->num_rows > 0){
 						$fechax = $r["fecha"];
 				    	$horax = $r["hora"];
