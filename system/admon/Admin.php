@@ -155,7 +155,7 @@ class Admin{
 			
     	$x = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha' and tipo = 1 and td = ". $bc["td"] ."");
 				if($x->num_rows > 0){
-				    	$edox = '<th scope="col" class="black-text">Correcto!</th>';
+				    	$edox = '<th scope="col" class="green-text">Correcto!</th>';
 				} else {
 				    	$edox = '<th scope="col" class="red-text">Error!</th>';
 				} 
