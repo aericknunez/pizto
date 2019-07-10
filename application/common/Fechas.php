@@ -53,16 +53,14 @@ class Fechas{
     public function NombreDia($fecha){ // nombre del dia segun fecha 
             $fecha = strtotime($fecha); //a timestamp 
 
-            //el parametro w en la funcion date indica que queremos el dia de la semana 
-            //lo devuelve en numero 0 domingo, 1 lunes,.... 
             switch (date('w', $fecha)){ 
-                case 0: echo "Domingo"; break; 
-                case 1: echo "Lunes"; break; 
-                case 2: echo "Martes"; break; 
-                case 3: echo "Miercoles"; break; 
-                case 4: echo "Jueves"; break; 
-                case 5: echo "Viernes"; break; 
-                case 6: echo "Sabado"; break; 
+                case 0: return "Domingo"; break; 
+                case 1: return "Lunes"; break; 
+                case 2: return "Martes"; break; 
+                case 3: return "Miercoles"; break; 
+                case 4: return "Jueves"; break; 
+                case 5: return "Viernes"; break; 
+                case 6: return "Sabado"; break; 
             }  
     }
 
@@ -99,8 +97,7 @@ class Fechas{
         return $format;
      }
 
-     public function FechaEscrita($fecha)
-    {  
+     public static function FechaEscrita($fecha) {  
         $dia=substr($fecha,0,2);
         $mes=substr($fecha,3,2);
         $anio=substr($fecha,6,4);
@@ -148,8 +145,7 @@ class Fechas{
     }
 
 
-public function MesEscrito($fecha)
-    {  
+public static function MesEscrito($fecha) {  
         $mes=substr($fecha,0,2);
               
         switch ($mes){
@@ -193,6 +189,12 @@ public function MesEscrito($fecha)
         
         return $mes; 
     }
+
+
+
+
+
+
 
 
 }
