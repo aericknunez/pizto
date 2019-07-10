@@ -142,25 +142,29 @@ class Admin{
 
 	foreach ($ac as $bc) {  
 				/// reviso si ya hubo corte ese dia
-			if(Corte::UltimaFecha() == $fecha){
-				$cortex = '<p class="black-text>Con Corte</p>';
-			} else {
-				$cortex = '<p class="red-text">Sin Corte</p>';
-			} 
+			
+			$a = $db->query("SELECT * FROM corte_diario WHERE fecha = '$fecha' and td = ". $bc["td"] ."");
+				if($a->num_rows > 0){
+					$cortex = '<p class="black-text>Con Corte</p>';
+				} else {
+					$cortex = '<p class="red-text">Sin Corte</p>';
+				} 
+    		$a->close();
 
 
-				if ($r = $db->select("fecha, hora", "login_sync", "WHERE fecha = '$fecha' and tipo = 1 and td = ". $bc["td"] ."")) { 
-				    if($r->num_rows > 0){
-				    	$fechax = $r["fecha"];
+			
+    	$x = $db->query("SELECT * FROM login_sync WHERE WHERE fecha = '$fecha' and tipo = 1 and td = ". $bc["td"] ."");
+				if($x->num_rows > 0){
+						$fechax = $r["fecha"];
 				    	$horax = $r["hora"];
 				    	$edox = '<p class="black-text">Correcto</p>';
-				    } else {
-				    	$fechax = "NULL";
+				} else {
+						$fechax = "NULL";
 				    	$horax = "NULL";
 				    	$edox = '<p class="red-text">Error!</p>';
-				    }
-			    } unset($r);
-
+				} 
+			} 
+    		$x->close();
 
 
 			   echo '<tr>

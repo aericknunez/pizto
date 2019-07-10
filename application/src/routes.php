@@ -1646,7 +1646,7 @@ include_once '../../system/admon/Admin.php';
 if($_REQUEST["op"]=="204"){ // muestra listado de  estado cortes web
 include_once '../../system/admon/Admin.php';
 	$admin = new Admin; 
-include_once '../../system/corte/Corte.php'; // necesario para verificar corte
+
 
 	if($_POST["fecha_submit"] == NULL){ 
 		$fecha = date("d-m-Y"); 
