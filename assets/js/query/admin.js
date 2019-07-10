@@ -36,5 +36,52 @@ return false;
 
 
 
+$('.datepicker').pickadate({
+  weekdaysShort: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+  weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+  monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+  'Noviembre', 'Diciembre'],
+  monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct',
+  'Nov', 'Dic'],
+  showMonthsShort: true,
+  formatSubmit: 'dd-mm-yyyy',
+  close: 'Cancel'
+})
+
+
+	$('#btn-edocortes').click(function(e){ /// para el formulario
+		$("#form-diario").hide();
+		MuestraLoader();
+		e.preventDefault();
+		$.ajax({
+			url: "application/src/routes.php?op=70",
+			method: "POST",
+			data: $("#form-edocortes").serialize(),
+			success: function(data){
+				$("#contenido").html(data);
+				$("#form-edocortes").trigger("reset");
+				$("#form-edocortes").show();
+				EscondeLoader();
+			}
+		})
+	})
+	
+
+
+// quita el loader
+	EscondeLoader();
+	function EscondeLoader(){
+		$("#loaderx").hide();
+	}
+
+// muestra loader
+	function MuestraLoader(){
+		$("#loaderx").show();
+	}
+
+
+
+
+
 
 });

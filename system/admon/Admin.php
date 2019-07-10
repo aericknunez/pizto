@@ -120,6 +120,68 @@ class Admin{
 
 
 
+
+	public function EdoCortes($fecha){
+		$db = new dbConn();
+
+	 $ac = $db->query("SELECT * FROM config_master order by td desc");
+
+	if($ac->num_rows > 0){
+				 echo '<table class="table table-sm table-striped">
+			  <thead>
+			    <tr>
+			    <th scope="col">TD</th>
+			    <th scope="col">Ciente</th>			    
+			     <th scope="col">Corte</th>
+			     <th scope="col">Fecha</th>
+			     <th scope="col">Hora</th>
+			     <th scope="col">Estado</th>
+			    </tr>
+			  </thead>
+			  <tbody>';
+
+	foreach ($ac as $bc) {  
+				/// reviso si ya hubo corte ese dia
+			if(Corte::UltimaFecha() == $fecha){
+				$cortex = '<p class="black-text display-4">Con Corte</p>';
+			} else {
+				$cortex = '<p class="red-text display-4">Sin Corte</p>';
+			} 
+
+
+				if ($r = $db->select("fecha, hora", "login_sync", "WHERE fecha = '$fecha' and tipo = 1 and td = ". $bc["td"] ."")) { 
+				    if($r->num_rows > 0){
+				    	$fechax = $r["fecha"];
+				    	$horax = $r["hora"];
+				    	$edox = '<p class="black-text display-4">Correcto</p>';
+				    } else {
+				    	$fechax = "NULL";
+				    	$horax = "NULL";
+				    	$edox = '<p class="red-text display-4">Error!</p>';
+				    }
+			    } unset($r);
+
+
+
+			   echo '<tr>
+			   	  <th scope="col">'.$bc["td"].'</th>
+		    	  <th scope="col">'.$bc["cliente"].'</th>
+		    	  <th scope="col">'.$cortex.'</th>
+		    	  <th scope="col">'.$fechax.'</th>
+			      <th scope="col">'.$horax.'</th>
+			      <th scope="col">'.$edox.'</th>
+			      </tr>';
+
+			  } // foreach
+			 echo '</tbody>
+		    </table>';
+		}
+		$ac->close();
+	}
+
+
+
+
 	public function AddClienteSync($hash,$td){
 		$db = new dbConn();
 		    

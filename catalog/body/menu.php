@@ -9,6 +9,7 @@
 <li><a href="?inout" class="waves-effect"><i class="fa fa-exchange"></i> Entradas y Salidas</a></li>
 <li><a href="?db_sync" class="waves-effect"><i class="fa fa-database"></i> Gestionar Sync DB</a></li>
 <li><a href="?actualizacionesup" class="waves-effect"><i class="fa fa-file-archive-o"></i> Ver Sucursales Up</a></li>
+<li><a href="?edocortes" class="collapsible-header waves-effect arrow-r"><i class="fa fa-refresh"></i> Estado Cortes</a></li>
 <li><a href="?ctc" class="collapsible-header waves-effect arrow-r"><i class="fa fa-refresh"></i> Cambiar Cuenta</a></li>
 <li><a href="?user" class="collapsible-header waves-effect arrow-r"><i class="fa fa-user"></i> Usuarios </a></li>
 
