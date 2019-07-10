@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Fechas.php'; /// Necesario para el escript
+include_once 'system/admon/Admin.php';
+$admin = new Admin;
+
 
 $hoy = date("d-m-Y");
 $dia1 = Fechas::DiaResta(date("d-m-Y"),1);
