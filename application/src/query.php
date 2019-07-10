@@ -185,7 +185,9 @@ else{
 /// lo que llevara index
 		if(Helpers::IsAdmin() == TRUE) {
 		echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
-		include_once 'system/admon/script.php';
+				if($inicio_entrada == 1){
+					include_once 'system/admon/script.php';
+				}
 		} else {
 		echo '<script type="text/javascript" src="assets/js/query/ventas.js?v='.$numero.'"></script>';	
 		}
