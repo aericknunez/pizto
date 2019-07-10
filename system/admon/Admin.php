@@ -124,7 +124,7 @@ class Admin{
 	public function EdoCortes($fecha){
 		$db = new dbConn();
 
-	 $ac = $db->query("SELECT * FROM config_master order by td desc");
+	 $ac = $db->query("SELECT * FROM config_master WHERE td != 0  order by td asc");
 
 	if($ac->num_rows > 0){
 				 echo '<table class="table table-sm table-striped">
@@ -143,9 +143,9 @@ class Admin{
 	foreach ($ac as $bc) {  
 				/// reviso si ya hubo corte ese dia
 			if(Corte::UltimaFecha() == $fecha){
-				$cortex = '<p class="black-text display-4">Con Corte</p>';
+				$cortex = '<p class="black-text>Con Corte</p>';
 			} else {
-				$cortex = '<p class="red-text display-4">Sin Corte</p>';
+				$cortex = '<p class="red-text">Sin Corte</p>';
 			} 
 
 
@@ -153,11 +153,11 @@ class Admin{
 				    if($r->num_rows > 0){
 				    	$fechax = $r["fecha"];
 				    	$horax = $r["hora"];
-				    	$edox = '<p class="black-text display-4">Correcto</p>';
+				    	$edox = '<p class="black-text">Correcto</p>';
 				    } else {
 				    	$fechax = "NULL";
 				    	$horax = "NULL";
-				    	$edox = '<p class="red-text display-4">Error!</p>';
+				    	$edox = '<p class="red-text">Error!</p>';
 				    }
 			    } unset($r);
 
