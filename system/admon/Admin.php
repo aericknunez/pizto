@@ -163,8 +163,7 @@ class Admin{
 				    	$horax = "NULL";
 				    	$edox = '<p class="red-text">Error!</p>';
 				} 
-			} 
-    		$x->close();
+	    		$x->close();
 
 
 			   echo '<tr>
