@@ -1,3 +1,5 @@
+TRUNCATE TABLE `ticket_temp`;
+
 TRUNCATE TABLE `ticket_num`;
 
 TRUNCATE TABLE `ticket`;
