@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <a class="list-group-item list-group-item-action waves-effect">Productos Total
                         <span class="badge badge-primary badge-pill pull-right"><?php echo $admin->ProductosT(); ?></span>
                     </a>
-                    <a class="list-group-item list-group-item-action waves-effect">Cuentas
+                    <a href="?ctc" class="list-group-item list-group-item-action waves-effect">Cuentas
                         <span class="badge badge-primary badge-pill pull-right"><?php echo $admin->Cuentas(); ?></span>
                     </a>
                 </div>
