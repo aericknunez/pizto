@@ -155,12 +155,8 @@ class Admin{
 			
     	$x = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha' and tipo = 1 and td = ". $bc["td"] ."");
 				if($x->num_rows > 0){
-						$fechax = $x["fecha"];
-				    	$horax = $x["hora"];
 				    	$edox = '<th scope="col" class="black-text">Correcto!</th>';
 				} else {
-						$fechax = "NULL";
-				    	$horax = "NULL";
 				    	$edox = '<th scope="col" class="red-text">Error!</th>';
 				} 
 	    		$x->close();
@@ -170,8 +166,7 @@ class Admin{
 			   	  <th scope="col">'.$bc["td"].'</th>
 		    	  <th scope="col">'.$bc["cliente"].'</th>
 		    	  '.$cortex.'
-		    	  <th scope="col">'.$fechax.'</th>
-			      <th scope="col">'.$horax.'</th>
+		    	  <th scope="col">'.$fecha.'</th>
 			      '.$edox.'
 			      </tr>';
 
