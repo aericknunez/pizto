@@ -145,9 +145,9 @@ class Admin{
 			
 			$a = $db->query("SELECT * FROM corte_diario WHERE fecha = '$fecha' and td = ". $bc["td"] ."");
 				if($a->num_rows > 0){
-					$cortex = '<p class="black-text>Con Corte</p>';
+					$cortex = '<th scope="col" class="black-text">Con Corte</th>';
 				} else {
-					$cortex = '<p class="red-text">Sin Corte</p>';
+					$cortex = '<th scope="col" class="red-text">Sin Corte</th>';
 				} 
     		$a->close();
 
@@ -155,13 +155,13 @@ class Admin{
 			
     	$x = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha' and tipo = 1 and td = ". $bc["td"] ."");
 				if($x->num_rows > 0){
-						$fechax = $r["fecha"];
-				    	$horax = $r["hora"];
-				    	$edox = '<p class="black-text">Correcto</p>';
+						$fechax = $x["fecha"];
+				    	$horax = $x["hora"];
+				    	$edox = '<th scope="col" class="black-text">Correcto!</th>';
 				} else {
 						$fechax = "NULL";
 				    	$horax = "NULL";
-				    	$edox = '<p class="red-text">Error!</p>';
+				    	$edox = '<th scope="col" class="red-text">Error!</th>';
 				} 
 	    		$x->close();
 
@@ -169,10 +169,10 @@ class Admin{
 			   echo '<tr>
 			   	  <th scope="col">'.$bc["td"].'</th>
 		    	  <th scope="col">'.$bc["cliente"].'</th>
-		    	  <th scope="col">'.$cortex.'</th>
+		    	  '.$cortex.'
 		    	  <th scope="col">'.$fechax.'</th>
 			      <th scope="col">'.$horax.'</th>
-			      <th scope="col">'.$edox.'</th>
+			      '.$edox.'
 			      </tr>';
 
 			  } // foreach
