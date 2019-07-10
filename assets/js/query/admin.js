@@ -54,7 +54,7 @@ $('.datepicker').pickadate({
 		MuestraLoader();
 		e.preventDefault();
 		$.ajax({
-			url: "application/src/routes.php?op=70",
+			url: "application/src/routes.php?op=204",
 			method: "POST",
 			data: $("#form-edocortes").serialize(),
 			success: function(data){
