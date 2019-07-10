@@ -50,7 +50,7 @@ $('.datepicker').pickadate({
 
 
 	$('#btn-edocortes').click(function(e){ /// para el formulario
-		$("#form-diario").hide();
+		$("#form-edocortes").hide();
 		MuestraLoader();
 		e.preventDefault();
 		$.ajax({
