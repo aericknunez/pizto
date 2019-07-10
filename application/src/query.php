@@ -169,15 +169,6 @@ echo '<script type="text/javascript" src="assets/js/query/sync.js?v='.$numero.'"
 elseif(isset($_GET["db_sync"])) {
 echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
 }
-elseif(isset($_GET["actualizacionesup"])) { // no tiene nada el script para el archivo
-echo '<script type="text/javascript" src="assets/js/query/null.js?v='.$numero.'"></script>';
-}
-elseif(isset($_GET["synclist"])) { // no tiene nada el script para el archivo
-echo '<script type="text/javascript" src="assets/js/query/null.js?v='.$numero.'"></script>';
-}
-elseif(isset($_GET["root"])) { // no tiene nada el script para el archivo
-echo '<script type="text/javascript" src="assets/js/query/null.js?v='.$numero.'"></script>';
-}
 elseif(isset($_GET["edocortes"])) {
 echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
 }
