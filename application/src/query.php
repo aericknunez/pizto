@@ -182,14 +182,15 @@ elseif(isset($_GET["edocortes"])) {
 echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
 }
 
-elseif(Helpers::IsAdmin() == TRUE) {
-echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
-include_once 'system/admon/script.php';
-}
-
 else{
 /// lo que llevara index
-echo '<script type="text/javascript" src="assets/js/query/ventas.js?v='.$numero.'"></script>';
+		if(Helpers::IsAdmin() == TRUE) {
+		echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
+		include_once 'system/admon/script.php';
+		} else {
+		echo '<script type="text/javascript" src="assets/js/query/ventas.js?v='.$numero.'"></script>';	
+		}
+
 }
 	
 ?>

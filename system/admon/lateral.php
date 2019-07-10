@@ -15,12 +15,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <!-- List group links -->
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action waves-effect">Trafico
+                    <a href="?syncstatus" class="list-group-item list-group-item-action waves-effect">Trafico
                         <span class="badge badge-success badge-pill pull-right"><?php echo $admin->Trafico(date("d-m-Y")); ?>
                             <i class="fa fa-arrow-right ml-1"></i>
                         </span>
                     </a>
-                    <a class="list-group-item list-group-item-action waves-effect">Entradas
+                    <a href="?inout" class="list-group-item list-group-item-action waves-effect">Entradas
                         <span class="badge badge-danger badge-pill pull-right"><?php echo $admin->Entradas(date("d-m-Y")); ?>
                             <i class="fa fa-arrow-right ml-1"></i>
                         </span>
