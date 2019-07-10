@@ -124,6 +124,7 @@ class Admin{
 	public function EdoCortes($fecha){
 		$db = new dbConn();
 
+		echo "<h3>". Fechas::FechaEscrita($fecha) ."</h3>";
 	 $ac = $db->query("SELECT * FROM config_master WHERE td != 0  order by td asc");
 
 	if($ac->num_rows > 0){
