@@ -136,7 +136,6 @@ class Admin{
 			    <th scope="col">Ciente</th>			    
 			     <th scope="col">Corte</th>
 			     <th scope="col">Fecha</th>
-			     <th scope="col">Hora</th>
 			     <th scope="col">Estado</th>
 			    </tr>
 			  </thead>
