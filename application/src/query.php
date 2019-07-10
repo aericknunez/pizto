@@ -181,7 +181,6 @@ echo '<script type="text/javascript" src="assets/js/query/null.js?v='.$numero.'"
 elseif(isset($_GET["edocortes"])) {
 echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
 }
-
 else{
 /// lo que llevara index
 		if(Helpers::IsAdmin() == TRUE) {
