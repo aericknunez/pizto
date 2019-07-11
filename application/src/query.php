@@ -176,7 +176,7 @@ else{
 /// lo que llevara index
 		if(Helpers::IsAdmin() == TRUE) {
 		echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
-				if($inicio_entrada == 1){
+				if($inicio_entrada == 1){ // se declara en inicio de admin
 					include_once 'system/admon/script.php';
 				}
 		} else {
