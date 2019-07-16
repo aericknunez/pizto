@@ -1,4 +1,3 @@
-<ul class="collapsible collapsible-accordion">
 
 <?php if(Helpers::IsAdmin() == TRUE) { ?>
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-table"></i> Reportes Root<i class="fa fa-angle-down rotate-icon"></i></a>

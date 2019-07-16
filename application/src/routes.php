@@ -17,7 +17,7 @@ $db = new dbConn();
 // filtros para cuando no hay session abierta
 if($_SESSION["user"] == NULL and $_SESSION["td"] == NULL){
 echo '<script>
-	window.location.href="application/includes/logout.php"
+	window.location.href="../includes/logout.php"
 </script>';
 exit();
 }
