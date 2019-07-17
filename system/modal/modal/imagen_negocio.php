@@ -17,7 +17,7 @@ $db = new dbConn();
 
     <div class="file-field">
         <a class="btn-floating blue-gradient mt-0 float-left">
-            <i class="fa fa-paperclip" aria-hidden="true"></i>
+            <i class="fas fa-paperclip" aria-hidden="true"></i>
             <input type="file" id="archivo" name="archivo">
         </a>
         <div class="file-path-wrapper">

@@ -59,7 +59,7 @@
 <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
 <!-- SideNav slide-out button -->
 <div class="float-left">
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
 </div>
 <!-- Breadcrumb-->
 <div class="breadcrumb-dn mr-auto">
@@ -70,27 +70,27 @@
                 
             <?php if($_SESSION["tipo_cuenta"] == 4) { ?>
                 <li class="nav-item">
-                    <a class="nav-link"><i class="<?php if($_SESSION["tipo_inicio"] == 1) echo "fa fa-tv"; else { echo "fa fa-coffee"; } ?>"></i></a>
+                    <a class="nav-link"><i class="<?php if($_SESSION["tipo_inicio"] == 1) echo "fas fa-tv"; else { echo "fas fa-coffee"; } ?>"></i></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link"><i class="<?php if( $_SESSION["tx"] == 0) echo "fa fa-battery-0"; else { echo "fa fa-battery"; } ?>"></i></a>
+                    <a class="nav-link"><i class="<?php if( $_SESSION["tx"] == 0) echo "fas fa-battery-empty"; else { echo "fas fa-battery-full"; } ?>"></i></a>
                 </li> 
                 <?php } else { 
 
                 if($_SESSION['root_tipo_sistema'] != 1){ ?>    
                     <li class="nav-item">
-                    <a id="cambiar-pantalla-inicio" op="26" class="nav-link"><i class="<?php if($_SESSION["tipo_inicio"] == 1) echo "fa fa-tv"; else { echo "fa fa-coffee"; } ?>"></i></a>
+                    <a id="cambiar-pantalla-inicio" op="26" class="nav-link"><i class="<?php if($_SESSION["tipo_inicio"] == 1) echo "fas fa-tv"; else { echo "fas fa-coffee"; } ?>"></i></a>
                 </li>
                 <?php }
                 if($_SESSION['config_cambio_tx'] != NULL){ ?>
                 <li class="nav-item">
-                    <a id="cambiar-pantalla-inicio" op="27" class="nav-link"><i class="<?php if( $_SESSION["tx"] == 0) echo "fa fa-battery-0"; else { echo "fa fa-battery"; } ?>"></i></a>
+                    <a id="cambiar-pantalla-inicio" op="27" class="nav-link"><i class="<?php if( $_SESSION["tx"] == 0) echo "fas fa-battery-empty"; else { echo "fas fa-battery-full"; } ?>"></i></a>
                 </li>
                 <?php } 
                 } ?>
                 <li class="nav-item">
-                    <a href="?" class="nav-link"><i class="fa fa-home"></i> <span class="clearfix d-none d-sm-inline-block">Inicio</span></a>
+                    <a href="?" class="nav-link"><i class="fas fa-home"></i> <span class="clearfix d-none d-sm-inline-block">Inicio</span></a>
                 </li> 
 
             </ul>

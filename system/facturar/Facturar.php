@@ -144,11 +144,11 @@ class Facturar{
 
 			      if($max == $b["id"]){
 			      	echo '<a id="eliminarx" op="136" idx="eliminar" opx="139" iden="'.$b["id"].'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a>';
 			      } else {
 			      	echo '<a>
-				      <span class="badge green"><i class="fa fa-lock" aria-hidden="true"></i></span>
+				      <span class="badge green"><i class="fas fa-lock" aria-hidden="true"></i></span>
 				      </a>';
 			      }		      
 				  echo '</td>
@@ -225,7 +225,7 @@ class Facturar{
 	      <td>'. $b["impresora"] .'</td>
 	      <td>'. $b["comentarios"] .'</th>
 	      <td><a id="eliminari" op="144" iden="'.$b["id"].'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a></td>
 	    </tr>';
 	    }
@@ -271,7 +271,7 @@ class Facturar{
 	      <td>'. $b["clase"] .'</td>
 	      <td>'. $impresora .'</td>
 	      <td><a id="eliminaru" op="145" iden="'.$b["id"].'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a></td>
 	    </tr>';
 	    }
@@ -310,7 +310,7 @@ class Facturar{
 	      <td>'. $b["txt1"] .' | '. $b["txt2"] .' | '. $b["txt3"] .' | '. $b["txt4"] .' | </td>
 	      <td>'. $b["n1"] .' | '. $b["n2"] .' | '. $b["n3"] .' | '. $b["n4"] .' | </td>
 	      <td><a id="eliminarf" op="143" iden="'.$b["id"].'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a></td>
 	    </tr>';
 	    }
@@ -465,7 +465,7 @@ class Facturar{
 	      <td>'. $b["num_fac"] .'</td>
 	      <td>'. $b["hora"] .'</th>
 	      <td><a id="eliminar-factura" op="168" num_fac="'.$b["num_fac"].'" mesa="'.$b["mesa"].'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a></td>
 	    </tr>';
 	    }

@@ -1,4 +1,4 @@
-<a href="?modal=addcat" class="btn btn-indigo btn-md">Nueva Categoria<i class="fa fa-user ml-2"></i></a>
+<a href="?modal=addcat" class="btn btn-indigo btn-md">Nueva Categoria<i class="fas fa-user-alt ml-2"></i></a>
 Categorias existentes:
 <div class="row text-center portfolio"> 
    <ul class="gallery"> 

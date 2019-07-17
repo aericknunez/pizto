@@ -120,7 +120,7 @@ class Especial{
 				      <td>'. $nombre .'</td>
 				      <td>
 				     <a id="borrar-especial" op="20w" iden="'. $b["id"] .'">
-				      <span class="badge red"><i class="fa fa-minus-circle" aria-hidden="true"></i></span></a>
+				      <span class="badge red"><i class="fas fa-minus-circle" aria-hidden="true"></i></span></a>
 				      </td>
 				    </tr>';
 		    	}

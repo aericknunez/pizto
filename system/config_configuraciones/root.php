@@ -76,4 +76,4 @@ $r = $db->select("*", "config_root", "where td = ".$_SESSION['td']."");
    </tbody>
 </table>
 
-<a href="?modal=conf_root" class="btn btn-indigo">Cambiar configuraciones<i class="fa fa-cog ml-2"></i></a>
+<a href="?modal=conf_root" class="btn btn-indigo">Cambiar configuraciones<i class="fas fa-cog ml-2"></i></a>

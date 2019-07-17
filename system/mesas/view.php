@@ -39,7 +39,7 @@ $mesas->VerClientes($_REQUEST["mesa"]);
                       <p class="pt-3 pr-2">En verdad desea agregar un nuevo cliente a esta mesa?</p>
 
                       <a id="nuevo-cliente" op="44" clientes="<?php echo $clientes + 1; ?>" mesa="<?php echo $_SESSION["mesa"]; ?>" class="btn btn-info">Agregar
-                          <i class="fa fa-diamond ml-1"></i>
+                          <i class="fas fa-gem ml-1"></i>
                       </a>
                       <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cerrar</a>
                   </div>

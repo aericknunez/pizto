@@ -20,11 +20,11 @@ $usuario = sha1($_REQUEST["user"]);
     unset($r); 
   
   $opciones = 'id="form-actualizar" name="form-actualizar"';
-$boton='<button class="btn btn-outline-warning" type="submit" id="btn-actualizar" name="btn-actualizar">Actualizar<i class="fa fa-paper-plane-o ml-2"></i></button>';
+$boton='<button class="btn btn-outline-warning" type="submit" id="btn-actualizar" name="btn-actualizar">Actualizar<i class="fas fa-paper-plane-o ml-2"></i></button>';
 } 
 else{
  $opciones = 'id="form-user" name="form-user"';
-$boton='<button class="btn btn-outline-warning" type="submit" id="btn-user" name="btn-user">Terminar<i class="fa fa-paper-plane-o ml-2"></i></button>'; 
+$boton='<button class="btn btn-outline-warning" type="submit" id="btn-user" name="btn-user">Terminar<i class="fas fa-paper-plane-o ml-2"></i></button>'; 
 } 
  ?>
 

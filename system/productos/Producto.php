@@ -62,7 +62,7 @@ class Producto{
 			      <th scope="row">'. $b["unidad"] .'</th>
 			      <td>'. $b["abreviacion"] .'</td>
 			      <td><a id="borrar-unidad" op="31" iden="'. $b["iden"] .'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a></td>
 			    </tr>';
 		    }
@@ -205,7 +205,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 			      <td>'. $producto .'</td>
 			      <td>'. $b["cantidad"] .'</td>
 			      <td><a id="borrar-porcion" op="33" iden="'. $b["iden"] .'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a></td>
 			    </tr>';
 			    unset($producto);
@@ -357,7 +357,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 			      <td>'. $b["cantidad"] .'</td>
 			      <td>'. $uni .'</td>
 			      <td><a id="borrar-materia" op="35" iden="'. $b["iden"] .'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				  </a></td>';
 				  // para materia prima
 			    if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5 or $_SESSION["tipo_cuenta"] == 2) {
@@ -671,7 +671,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 			      <td>'. $dependiente .'</td>
 			      <td>
 			      <a id="borrar-porcion" op="37" iden="'. $b["iden"] .'" cod="'. $b["cod"] .'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a>
 				      </td>
 			    </tr>';

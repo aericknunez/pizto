@@ -211,11 +211,11 @@ class Mesa{
 				      <td>'. $b["cliente"] .'</td>
 				      <td>
 				      <a id="modificar-opcion" op="57" iden="'. $identificador .'" cod="'. $codigo .'" opcion="'. $opcion .'" activo="'. $b["opcion"] .'" mesa="'. $mesa .'">
-				      <span class="badge green"><i class="fa fa-edit" aria-hidden="true"></i> MODIFICAR</span></a>
+				      <span class="badge green"><i class="fas fa-edit" aria-hidden="true"></i> MODIFICAR</span></a>
 				      </td>
 				      <td>
 				      <a id="borrar-opcion" op="58" iden="'. $identificador .'" cod="'. $codigo .'" mesa="'. $mesa .'" activo="'. $b["opcion"] .'">
-				      <span class="badge red"><i class="fa fa-remove" aria-hidden="true"></i> ELIMINAR</span></a>
+				      <span class="badge red"><i class="fas fa-trash" aria-hidden="true"></i> ELIMINAR</span></a>
 				      </td>
 				    </tr>';
 
@@ -232,7 +232,7 @@ class Mesa{
 			    } unset($r);  
 
 			echo '<a id="agregar-opcion" op="59" iden="'. $identificador .'" cod="'. $codigo .'" mesa="'. $mesa .'" cliente="'. $cliente .'">
-				      <span class="badge blue"><i class="fa fa-plus" aria-hidden="true"> AGREGAR OPCION</i></span>
+				      <span class="badge blue"><i class="fas fa-plus" aria-hidden="true"> AGREGAR OPCION</i></span>
 				      </a>';
 
 	}
@@ -293,7 +293,7 @@ public function ListarOpciones($cod,$identificador,$cliente){
 				      <td>'. $b["nombre"] .'</td>
 				      <td>
 				      <a id="ver-sub-opcion" op="61" iden="'. $identificador .'" cod="'. $cod .'" opcion="'. $b["cod"] .'" mesa="'. $_SESSION["mesa"] .'" cliente="'. $cliente .'">
-				      <span class="badge green"><i class="fa fa-eye" aria-hidden="true"> VER OPCIONES</i></span></a>
+				      <span class="badge green"><i class="fas fa-eye" aria-hidden="true"> VER OPCIONES</i></span></a>
 				      </td>
 				    </tr>';
 
@@ -323,7 +323,7 @@ public function ListarOpciones($cod,$identificador,$cliente){
 				      <td>'. $b["nombre"] .'</td>
 				      <td>
 				      <a id="ejecutar-agregar-opcion" op="62" cod="'. $cod .'" opcion="'. $b["cod"].'" mesa="'. $mesa .'" cliente="'. $cliente .'" iden="'. $identificador .'"  >
-				      <span class="badge green"><i class="fa fa-eye" aria-hidden="true"> AGREGAR OPCION</i></span></a>
+				      <span class="badge green"><i class="fas fa-eye" aria-hidden="true"> AGREGAR OPCION</i></span></a>
 				      </td>
 				    </tr>';
 

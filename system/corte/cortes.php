@@ -50,7 +50,7 @@ $cortes->Contenido(date("d-m-Y"));
 		    <input name="random" type="text" id="random" size="8" maxlength="8" class="form-control" placeholder="HJS4D2" required autofocus />
 		  </div>
 		</div>
-		<button class="btn btn-grey" id="btn-cancelar" name="btn-cancelar"><i class="fa fa-times fa-2x animated jello infinite"></i> Eliminar Corte</button>
+		<button class="btn btn-grey" id="btn-cancelar" name="btn-cancelar"><i class="fas fa-times fa-2x animated jello infinite"></i> Eliminar Corte</button>
 		</form>
 
 

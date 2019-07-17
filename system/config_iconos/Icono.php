@@ -278,8 +278,8 @@ class Icono{
       echo '<tr>
       <th scope="row">'.$n.'</th>
       <td>'.$b["nombre"].'</td>
-      <td><a href="?modal=addopciones&cod='.$b["cod"].'" class="btn-floating btn-sm green"><i class="fa fa-edit"></i></a></td>
-      <td><a id="delopciones" op="12" cod="'.$b["cod"].'" class="btn-floating btn-sm red"><i class="fa fa-trash"></i></a></td>
+      <td><a href="?modal=addopciones&cod='.$b["cod"].'" class="btn-floating btn-sm green"><i class="fas fa-edit"></i></a></td>
+      <td><a id="delopciones" op="12" cod="'.$b["cod"].'" class="btn-floating btn-sm red"><i class="fas fa-trash-alt"></i></a></td>
       </tr>';
     }
     echo '</tbody>
@@ -309,7 +309,7 @@ class Icono{
       echo '<tr>
       <th scope="row">'.$n.'</th>
       <td>'.$b["nombre"].'</td>
-      <td><a id="delopciones" op="13" cod="'.$b["cod"].'" class="btn-floating btn-sm red"><i class="fa fa-trash"></i></a></td>
+      <td><a id="delopciones" op="13" cod="'.$b["cod"].'" class="btn-floating btn-sm red"><i class="fas fa-trash-alt"></i></a></td>
       </tr>';
     }
     echo '</tbody>

@@ -16,23 +16,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <!-- List group links -->
                 <div class="list-group list-group-flush">
                     <a href="?syncstatus" class="list-group-item list-group-item-action waves-effect">Trafico
-                        <span class="badge badge-success badge-pill pull-right"><?php echo $admin->Trafico(date("d-m-Y")); ?>
-                            <i class="fa fa-arrow-right ml-1"></i>
+                        <span class="badge badge-success badge-pill float-right"><?php echo $admin->Trafico(date("d-m-Y")); ?>
+                            <i class="fas fa-arrow-right ml-1"></i>
                         </span>
                     </a>
                     <a href="?inout" class="list-group-item list-group-item-action waves-effect">Entradas
-                        <span class="badge badge-danger badge-pill pull-right"><?php echo $admin->Entradas(date("d-m-Y")); ?>
-                            <i class="fa fa-arrow-right ml-1"></i>
+                        <span class="badge badge-danger badge-pill float-right"><?php echo $admin->Entradas(date("d-m-Y")); ?>
+                            <i class="fas fa-arrow-right ml-1"></i>
                         </span>
                     </a>
                     <a class="list-group-item list-group-item-action waves-effect">Productos Hoy
-                        <span class="badge badge-primary badge-pill pull-right"><?php echo Helpers::Entero($admin->Productos(date("d-m-Y"))); ?></span>
+                        <span class="badge badge-primary badge-pill float-right"><?php echo Helpers::Entero($admin->Productos(date("d-m-Y"))); ?></span>
                     </a>
                     <a class="list-group-item list-group-item-action waves-effect">Productos Total
-                        <span class="badge badge-primary badge-pill pull-right"><?php echo $admin->ProductosT(); ?></span>
+                        <span class="badge badge-primary badge-pill float-right"><?php echo $admin->ProductosT(); ?></span>
                     </a>
                     <a href="?ctc" class="list-group-item list-group-item-action waves-effect">Cuentas
-                        <span class="badge badge-primary badge-pill pull-right"><?php echo $admin->Cuentas(); ?></span>
+                        <span class="badge badge-primary badge-pill float-right"><?php echo $admin->Cuentas(); ?></span>
                     </a>
                 </div>
                 <!-- List group links -->

@@ -30,7 +30,7 @@ class Admin{
 			      <th scope="col">'.$b["hora"].'</th>			      
 			      <th scope="col">'.$b["edo"].'</th>
 			      <th scope="col"><a id="ejecuta-db-sync" op="202" td="" hash="'.$b["hash"].'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span></a></th>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span></a></th>
 			    </tr>';
 			    $this->VerClientesHashes($b["hash"]);
 	    } 

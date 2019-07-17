@@ -133,5 +133,5 @@ $r = $db->select("*", "config_master", "where td = ".$_SESSION['td']."")
    </tbody>
 </table>
 
-<a href="?modal=conf_config" class="btn btn-indigo">Cambiar configuraciones<i class="fa fa-cog ml-2"></i></a>
-<a href="?modal=img_negocio" class="btn btn-cyan">Cambiar Imagen<i class="fa fa-user ml-2"></i></a>
+<a href="?modal=conf_config" class="btn btn-indigo">Cambiar configuraciones<i class="fas fa-cog ml-2"></i></a>
+<a href="?modal=img_negocio" class="btn btn-cyan">Cambiar Imagen<i class="fas fa-user-alt ml-2"></i></a>

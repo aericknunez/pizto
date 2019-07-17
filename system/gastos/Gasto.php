@@ -67,11 +67,11 @@ class Gasto{
 			      if($b["edo"] == 1){
 
 			      	echo '<a href="?modal=imageup&gasto='. $b["id"] .'">
-				      <span class="badge green"><i class="fa fa-photo" aria-hidden="true"></i></span>
+				      <span class="badge green"><i class="fas fa-image" aria-hidden="true"></i></span>
 				      </a>
 
 			      <a id="borrar-gasto" op="29" iden="'. $b["id"] .'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a>';
 			      }
 			      echo '</td>

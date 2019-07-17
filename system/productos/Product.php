@@ -128,7 +128,7 @@ class Product{
 			      <td>'. $b["hora"] .'</td>
 			      <td>'. $b["usuario"] .'</td>
 			      <td><a id="borrar-averia" op="111" iden="'. $b["id"] .'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a></td>
 			    </tr>';
 		    }
@@ -324,7 +324,7 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
 			      <td>'. $b["hora"] .'</td>
 			      <td>'. $b["usuario"] .'</td>
 			      <td><a id="borrar-averia" op="116" iden="'. $b["id"] .'">
-				      <span class="badge red"><i class="fa fa-trash" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
 				      </a></td>
 			    </tr>';
 		    }

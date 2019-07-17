@@ -34,7 +34,7 @@ echo '</div>';
 <!-- aqui comienza para agregar mesa -->
 <div class="d-flex justify-content-center">
 <a href="?modal=addmesa">
-<i class="fa fa-plus fa-5x" aria-hidden="true"></i><br>
+<i class="fas fa-plus fa-5x" aria-hidden="true"></i><br>
 Agregar
 </a>
 </div>  

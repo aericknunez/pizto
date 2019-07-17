@@ -106,7 +106,7 @@ if (isset($_GET['error'])) {
 <div class="col-xs-2">
   <input type="password" name="password" id="password" class="form-control"/>
   <button id="show_password" class="btn btn-primary" type="button">
-  <span class="fa fa-eye-slash icon"></span>
+  <span class="fas fa-eye-slash icon"></span>
   </button>
 </div>
 
@@ -143,12 +143,12 @@ $(document).ready(function()
               $('#show_password').hover(function show() {
                 //Cambiar el atributo a texto
                 $('#password').attr('type', 'text');
-                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                $('.icon').removeClass('fas fa-eye-slash').addClass('fas fa-eye');
             },
             function () {
                 //Cambiar el atributo a contraseña
                 $('#password').attr('type', 'password');
-                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                $('.icon').removeClass('fas fa-eye').addClass('fas fa-eye-slash');
             });
             //CheckBox mostrar contraseña
             $('#ShowPassword').click(function () {

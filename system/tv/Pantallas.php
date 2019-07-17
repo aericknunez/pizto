@@ -133,9 +133,9 @@ class Pantallas{
 	    } unset($r);
 
 	for ($i = 1; $i <= $pantallas; $i++) {  
-	echo '<a id="cambiar-panel" op="99" iden="'.$i.'" class="btn-floating btn-sm"><i class="fa fa-beer red-text"> '.$i.' </i></a>';
+	echo '<a id="cambiar-panel" op="99" iden="'.$i.'" class="btn-floating btn-sm"><i class="fas fa-beer red-text"> '.$i.' </i></a>';
 	} // for
-	echo '<a id="cambiar-panel" op="99" iden="" class="btn-floating btn-sm"><i class="fa fa-globe red-text"> All </i></a>';
+	echo '<a id="cambiar-panel" op="99" iden="" class="btn-floating btn-sm"><i class="fas fa-globe red-text"> All </i></a>';
 	if($_SESSION["panel_mostrar"] != NULL){
 		echo 'Mostrando productos de la pantalla ' . $_SESSION["panel_mostrar"]; } else {
 		echo 'Se estan mostrando todos los productos';

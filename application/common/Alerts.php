@@ -8,13 +8,14 @@ class Alerts{
 
        public function Alerta($tipo,$encabezado,$texto){ 
        //tipo = warning , success , error , info , danger
+       // md-toast-top-right / md-toast-top-left / md-toast-bottom-right /md-toast-bottom-left
         echo '<script>
         toastr.'.$tipo.'("'.$texto.'", "'.$encabezado.'", {
               "closeButton": true,
               "debug": false,
               "newestOnTop": true,
               "progressBar": false,
-              "positionClass": "toast-top-center",
+              "positionClass": "md-toast-top-right", 
               "preventDuplicates": true,
               "onclick": null,
               "showDuration": 100,
@@ -29,6 +30,7 @@ class Alerts{
         </script>';
         }
 
+
         public function Cambios($return){
         echo '<div class="alert alert-info alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -42,7 +44,7 @@ class Alerts{
 
     public function Eliminado(){
         echo '<div class="alert alert-danger ">
-        <h4><i class="icon fa fa-ban"></i> Alerta!</h4>
+        <h4><i class="icon fas fa-ban"></i> Alerta!</h4>
         Se ha eliminado el registro correctamente... 
 
         </div>';
@@ -53,7 +55,7 @@ class Alerts{
     public function Eliminar($id,$op,$iden,$return){
         echo '<div class="alert alert-danger alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <h4><i class="icon fa fa-ban"></i> Alerta!</h4>
+    <h4><i class="icon fas fa-ban"></i> Alerta!</h4>
     Esta seguro que desea eliminar este resgistro? Es posible que se pierda informaci&oacuten relacionada a este. 
     <br>
     
@@ -70,7 +72,7 @@ class Alerts{
     public function EliminarUsuario($iden, $user){
         echo '<div class="alert alert-danger alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <h4><i class="icon fa fa-ban"></i> Alerta!</h4>
+    <h4><i class="icon fas fa-ban"></i> Alerta!</h4>
     Esta seguro que desea eliminar este usuario? Es posible que se pierda informaci&oacuten relacionada a este. 
     <br>
     
@@ -83,7 +85,7 @@ class Alerts{
 
     public function UsuarioEliminado(){
         echo '<div class="alert alert-danger ">
-    <h4><i class="icon fa fa-ban"></i> Alerta!</h4>
+    <h4><i class="icon fas fa-ban"></i> Alerta!</h4>
     Usuario Eliminado Correctamente 
     <br>
     
@@ -97,7 +99,7 @@ class Alerts{
     public function RealizarCorte($id,$op,$efectivo){
     echo '<div class="alert alert-danger alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <h4><i class="icon fa fa-ban"></i> Alerta!</h4>
+    <h4><i class="icon fas fa-ban"></i> Alerta!</h4>
     Esta seguro que <strong>'. $efectivo .'</strong> es la cantidad correcta?
     <br>
     
@@ -113,7 +115,7 @@ class Alerts{
     public function AlertaCambios($id,$op,$iden,$mensaje){
     echo '<div class="alert alert-danger alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <h4><i class="icon fa fa-ban"></i> Alerta!</h4>
+    <h4><i class="icon fas fa-ban"></i> Alerta!</h4>
     '. $mensaje .'
     <br>
     

@@ -116,7 +116,7 @@ body { overflow-x: hidden; padding-left: 5px; padding-right: 5px; }</style>
                 <!--Header-->
                 <div class="text-center">
                   <h3 class="white-text">
-                    <i class="fa fa-user white-text"></i> Iniciar Sesi&oacuten</h3>
+                    <i class="fas fa-user-alt white-text"></i> Iniciar Sesi&oacuten</h3>
                   <hr class="hr-light">
                 </div>
                 <!--Body-->

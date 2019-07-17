@@ -245,7 +245,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 					      <th scope="col">Total</th>
 					      <th scope="col">
 					      <a id="borrar-factura" op="24" mesa="'. $mesa .'">
-					      <span class="badge badge-pill pink"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></span>
+					      <span class="badge badge-pill pink"><i class="fas fa-trash-alt fa-2x" aria-hidden="true"></i></span>
 					      </a>
 					      </th>
 					    </tr>
@@ -259,7 +259,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				      <td>'. $b["pv"] .'</td>
 				      <td>'. $b["total"] .'</td>
 				      <td><a id="borrar-producto" op="23" iden="'. $b["id"] .' mesa="'. $mesa .'">
-				      <span class="badge red"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>
+				      <span class="badge red"><i class="fas fa-minus-circle" aria-hidden="true"></i></span>
 				      </a>
 				      </td>
 				    </tr>';
@@ -309,10 +309,10 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 					
 					if(!isset($_SESSION['view'])){
 						if($_SESSION['opcionesactivas'] == TRUE){
-					echo '<a href="?modal=modificar&mesa='.$_SESSION["mesa"].'&view=0" class="btn-floating blue"><i class="fa fa-refresh" aria-hidden="true"></i></a>'; }
+					echo '<a href="?modal=modificar&mesa='.$_SESSION["mesa"].'&view=0" class="btn-floating blue"><i class="fas fa-redo" aria-hidden="true"></i></a>'; }
 					} else {
 						if($_SESSION['config_imprimir_antes'] != NULL){
-						 	echo '<a href="?modal=factura_imprimir&mesa='.$_SESSION["mesa"].'&efectivo=" class="btn-floating blue"><i class="fa fa-print" aria-hidden="true"></i></a>'; }
+						 	echo '<a href="?modal=factura_imprimir&mesa='.$_SESSION["mesa"].'&efectivo=" class="btn-floating blue"><i class="fas fa-print" aria-hidden="true"></i></a>'; }
 						
 					}
 					
@@ -403,7 +403,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 					</div>
 					</form>';
 					if($_SESSION['config_imprimir_antes'] != NULL){
-						 	echo '<div align="center"><a href="?modal=factura_imprimir&mesa='.$_SESSION["mesa"].'&cancela='.$cancela.'" class="btn-floating blue"><i class="fa fa-print" aria-hidden="true"></i></a></div>'; }
+						 	echo '<div align="center"><a href="?modal=factura_imprimir&mesa='.$_SESSION["mesa"].'&cancela='.$cancela.'" class="btn-floating blue"><i class="fas fa-print" aria-hidden="true"></i></a></div>'; }
 		    } $a->close();
 		   
 
@@ -441,7 +441,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 						      <td>'. $b["pv"] .'</td>
 						      <td>'. $b["total"] .'</td>
 						      <td><a id="ver-producto" op="56" iden="'. $b["id"] .'" cod="'. $i .'" mesa="'. $mesa .'">
-						      <span class="badge red"><i class="fa fa-coffee" aria-hidden="true"></i></span>
+						      <span class="badge red"><i class="fas fa-coffee" aria-hidden="true"></i></span>
 						      </a></td>
 						    </tr>';
 		    	 		$i = $i + 1;

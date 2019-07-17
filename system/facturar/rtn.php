@@ -18,7 +18,7 @@ $doc = $_SESSION['config_nombre_documento'];
 if(isset($_REQUEST["new"])){
 ?>
 <h3>
-<a href="?rtn"class="btn-floating btn-sm blue-gradient"><i class="fa fa-user"></i></a>
+<a href="?rtn"class="btn-floating btn-sm blue-gradient"><i class="fas fa-user-alt"></i></a>
 <?php echo "NUEVO " . $doc; ?>
 </h3>
 
@@ -31,7 +31,7 @@ if(isset($_REQUEST["new"])){
 } else {
  ?>
 <h3>
-<a href="?rtn&new" class="btn-floating btn-sm blue-gradient"><i class="fa fa-plus"></i></a>
+<a href="?rtn&new" class="btn-floating btn-sm blue-gradient"><i class="fas fa-plus"></i></a>
 <?php echo "INGRESAR " . $doc; ?>
 </h3>
 

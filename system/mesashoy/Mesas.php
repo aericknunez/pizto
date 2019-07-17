@@ -94,7 +94,7 @@ class Mesas{
 		       <td>'.$totalz.'</td>
 		       <td>'.$propz.'</td>
 		       <td>'.$totalesz.'</td>
-		       <td><a href="?modal=ver_mesa&m='. $b["mesa"] . '&t='. $b["tx"] . '&dir='. $dir . '" class="btn-floating btn-sm"><i class="fa fa-cutlery red-text"></i></a></td>
+		       <td><a href="?modal=ver_mesa&m='. $b["mesa"] . '&t='. $b["tx"] . '&dir='. $dir . '" class="btn-floating btn-sm"><i class="fas fa-utensils red-text"></i></a></td>
 		     </tr>';
 		    }
 		   $a->close();

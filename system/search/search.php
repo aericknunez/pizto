@@ -20,21 +20,21 @@ if($registros != 0){
   <div id="ventana"></div>
 <hr>
 <?php if($_SESSION["tx"]==1){
-echo '<a id="imprimir-factura" op="86" tipo="2" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-mdb-color" data-toggle="tooltip" title="Imprimir Factura"><i class="fa fa-print"></i></a>';
+echo '<a id="imprimir-factura" op="86" tipo="2" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-mdb-color" data-toggle="tooltip" title="Imprimir Factura"><i class="fas fa-print"></i></a>';
 
     if ($r = $db->select("edo", "ticket", "WHERE num_fac='".$_POST["search"]."' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) { 
         if($r["edo"] == 1){
-        	echo '<a id="mensaje-borrar" op="82" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-danger" title="Elimiar Factura"><i class="fa fa-trash"></i></a>';
+        	echo '<a id="mensaje-borrar" op="82" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-danger" title="Elimiar Factura"><i class="fas fa-trash-alt"></i></a>';
 
         }
     } unset($r); 
 
 } else {
-echo '<a id="imprimir-factura" op="86" tipo="1" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-mdb-color" data-toggle="tooltip" title="Imprimir Factura"><i class="fa fa-print"></i></a>
+echo '<a id="imprimir-factura" op="86" tipo="1" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-mdb-color" data-toggle="tooltip" title="Imprimir Factura"><i class="fas fa-print"></i></a>
 
-<a id="mensaje-borrar" op="80" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-danger" title="Elimiar Factura"><i class="fa fa-trash"></i></a>
+<a id="mensaje-borrar" op="80" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-danger" title="Elimiar Factura"><i class="fas fa-trash-alt"></i></a>
 
-<a id="mensaje-pasar" op="84" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-warning" title="Cambiar Orden"><i class="fa fa-refresh"></i></a>'; 
+<a id="mensaje-pasar" op="84" iden="'.$_POST["search"].'" class="btn-floating btn-lg btn-warning" title="Cambiar Orden"><i class="fas fa-redo"></i></a>'; 
 }
 
 
