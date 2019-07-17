@@ -13,7 +13,7 @@ class Historial{
           from ticket 
           where cod != 8888 and edo = 1 and fecha = '$fecha' and td = ".$_SESSION['td']." GROUP BY cod order by sum(cant) desc");
 					    
-					echo '<h1>Productos vendidos :: '.$fecha.'</h1>
+					echo '<h1 class="h1-responsive">Productos vendidos :: '.$fecha.'</h1>
 				    <table class="table table-striped">
 
 						<thead>
@@ -179,7 +179,7 @@ class Historial{
 				$a = $db->query("select * from corte_diario where fecha_format BETWEEN '$primero' AND '$segundo' and td = ".$_SESSION['td']." order by fecha_format, id asc");
 
 					    
-					echo '<h1>Productos vendidos</h1>
+					echo '<h1 class="h1-responsive">Productos vendidos</h1>
 				    <table class="table table-striped">
 
 						<thead>
@@ -280,7 +280,7 @@ class Historial{
 		$a = $db->query("SELECT * FROM gastos WHERE fecha = '$fecha' and td = ". $_SESSION["td"] ." order by id desc");
 	        	$total=0;
 	        	if($a->num_rows > 0){
-	        echo ' <h3>Detalle gastos del dia : '.$fecha.'</h3>
+	        echo ' <h3 class="h3-responsive">Detalle gastos del dia : '.$fecha.'</h3>
 
 				<table class="table table-sm table-striped">
 			  <thead>
@@ -360,7 +360,7 @@ class Historial{
 					$a = $db->query("SELECT * FROM gastos WHERE fecha like '%$fechax' and td = ". $_SESSION["td"] ." order by fechaF desc");
 	        	$total=0;
 	        	if($a->num_rows > 0){
-	        echo ' <h3>Detalle</h3>
+	        echo ' <h3 class="h3-responsive">Detalle</h3>
 
 				<table class="table table-sm table-striped">
 			  <thead>
@@ -440,7 +440,7 @@ class Historial{
 		$a = $db->query("SELECT * FROM login_inout WHERE fecha = '$fecha' order by id desc");
 	        	$total=0;
 	        	if($a->num_rows > 0){
-	        echo ' <h3>Entradas y Salidas</h3>
+	        echo ' <h3 class="h3-responsive">Entradas y Salidas</h3>
 
 				<table class="table table-sm table-striped">
 			  <thead>
