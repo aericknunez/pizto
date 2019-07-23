@@ -105,12 +105,3 @@ $cambio = json_decode($data, true);
 $db->update("config_root", $cambio, "WHERE td=" . $_SESSION["temporal_td"]);
 
 unset($_SESSION["temporal_td"]);
-
-// optimizar
-if (file_exists("optimize.sql")) {
-		$sql = explode(";",file_get_contents($archx));//
-		foreach($sql as $query){
-		@$db->query($query);
-		} 
- } 
-//
