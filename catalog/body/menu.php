@@ -46,7 +46,7 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 
 
 <?php if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5) { ?>
-<li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-pie-chart"></i> Historial<i class="fas fa-angle-down rotate-icon"></i></a>
+<li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-calendar-alt"></i> Historial<i class="fas fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
 <li><a href="?reportediario" class="waves-effect"> Reporte Diario</a></li>
@@ -200,7 +200,7 @@ if(Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) {
 <?php if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 5) { 
 ?>
 
-<li><a href="?ctc" class="collapsible-header waves-effect arrow-r"><i class="fas fa-user-alt"></i> Cambiar Cuenta</a></li>
+<li><a href="?ctc" class="collapsible-header waves-effect arrow-r"> Cambiar Cuenta</a></li>
 
 <?php } 
 
@@ -208,18 +208,18 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 
 if($_SESSION['root_tipo_sistema'] != 1){ 
  ?>
-<li><a id="cambiar-pantalla-inicio" op="26" class="collapsible-header waves-effect arrow-r"><i class="fas fa-television"></i> Cambiar Inicio </a></li>
+<li><a id="cambiar-pantalla-inicio" op="26" class="collapsible-header waves-effect arrow-r"> Cambiar Inicio </a></li>
 <?php }
 
 if($_SESSION['config_cambio_tx'] != NULL){ ?>
-<li><a id="cambiar-pantalla-inicio" op="27" class="collapsible-header waves-effect arrow-r"><i class="fas fa-refresh"></i> Cambiar Opci&oacuten </a></li>
+<li><a id="cambiar-pantalla-inicio" op="27" class="collapsible-header waves-effect arrow-r"> Cambiar Opci&oacuten </a></li>
 <?php } ?>
 <?php 
 if($_SESSION["tipo_cuenta"] == 1 or $_SESSION["tipo_cuenta"] == 2 or $_SESSION["tipo_cuenta"] == 5){
 
 if($_SESSION["muestra_vender"] == NULL) $nf="Mostrar Facturar";
 else $nf="Mostrar Panel Inicio";
-echo '<li><a id="cambiar-pantalla-inicio" op="27x" class="collapsible-header waves-effect arrow-r"><i class="fas fa-refresh"></i> '.$nf.' </a></li>';
+echo '<li><a id="cambiar-pantalla-inicio" op="27x" class="collapsible-header waves-effect arrow-r"> '.$nf.' </a></li>';
 
 } }
 ?>

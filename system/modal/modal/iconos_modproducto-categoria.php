@@ -21,15 +21,15 @@ $a = $db->query("Select * from images where popup=".$_REQUEST["cod"]." and td = 
     $cod=$b["cod"];
     $pop=$b["popup"];
 
-  if ($r = $db->select("nombre,cat", "precios", "where cod='$cod' td = ".$_SESSION["td"]."")) { 
-    $nombres=$r["nombre"]; $cat=$r["cat"];
+  if ($r = $db->select("nombre,cat", "precios", "where cod='$cod' and td = ".$_SESSION["td"]."")) { 
+    $nom=$r["nombre"]; $cat=$r["cat"];
     }
 
     if ($r = $db->select("categoria", "categorias", "where cod='$cod' td = ".$_SESSION["td"]."")) { 
         $nombres=$r["categoria"]; 
         }
 
-    echo "<li><a href='?modal=modproducto&cod=$cod&name=$nombres&img=$img&cat=$cat&pop=".$_REQUEST["cod"]."'><em>$nombres</em><img src='$img' alt='image' class='img-fluid img-responsive wow fadeIn' /></a></li>";
+    echo "<li><a href='?modal=modproducto&cod=$cod&name=$nom&img=$img&cat=$cat&pop=".$_REQUEST["cod"]."'><em>$nombres</em><img src='$img' alt='image' class='img-fluid img-responsive wow fadeIn' /></a></li>";
     
     }
     $a->close();
