@@ -1,6 +1,5 @@
 <div class="row text-center portfolio"> 
    <ul class="gallery"> 
-
 <li><a data-target="#a9901" data-toggle="modal"><em>Clasicas</em><img src="assets/img/ico/19.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
 <li><em>Clasica Jamon</em><input type="image" id="venta" op="20" cod="1001" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="1" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/ertry.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>2 x 1 Suprema</em><input type="image" id="venta" op="20" cod="1004" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/6.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>

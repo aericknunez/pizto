@@ -1,6 +1,5 @@
 <div class="row text-center portfolio"> 
    <ul class="gallery"> 
-
 <li><a data-target="#a9908" data-toggle="modal"><em>Bebidas</em><img src="assets/img/ico/pilsener.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
 <li><a data-target="#a9902" data-toggle="modal"><em>Carnes</em><img src="assets/img/ico/carne.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>
 <li><a data-target="#a9903" data-toggle="modal"><em>Mariscos</em><img src="assets/img/ico/4534.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>

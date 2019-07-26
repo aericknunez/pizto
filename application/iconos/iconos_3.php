@@ -1,6 +1,5 @@
 <div class="row text-center portfolio"> 
    <ul class="gallery"> 
-
 <li><em>Pollo Entero</em><input type="image" id="venta" op="20" cod="1001" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/332342.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Medio Pollo</em><input type="image" id="venta" op="20" cod="1002" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/2.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
 <li><em>Pierna de Pollo</em><input type="image" id="venta" op="20" cod="1003" mesa="<? echo $_SESSION["mesa"] ?>" cliente="<? echo $_SESSION["clientselect"] ?>" panel="" view="<? echo $_SESSION["view"] ?>" src="assets/img/ico/101.png" alt="image" class="img-fluid img-responsive wow fadeIn" /></li>
