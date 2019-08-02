@@ -246,7 +246,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    echo '<div align="center"><br><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable"></div>';
 		    } else {
 		    	echo '<br><h3 class="h3-responsive">'.$_SESSION['config_cliente'].'</h3>';
-		    	echo '<table class="table table-striped table-sm table-responsive">
+		    	echo '<table class="table table-striped table-sm table-condensed">
 					  <thead>
 					    <tr>
 					      <th scope="col">#</th>
