@@ -255,7 +255,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 					      <th scope="col">Total</th>
 					      <th scope="col">
 					      <a id="borrar-factura" op="24" mesa="'. $mesa .'">
-					      <span class="badge badge-pill pink"><i class="fas fa-trash-alt fa-2x" aria-hidden="true"></i></span>
+					      <span><i class="fas fa-trash-alt red-text fa-lg" aria-hidden="true"></i></span>
 					      </a>
 					      </th>
 					    </tr>
@@ -269,7 +269,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				      <td>'. $b["pv"] .'</td>
 				      <td>'. $b["total"] .'</td>
 				      <td><a id="borrar-producto" op="23" iden="'. $b["id"] .' mesa="'. $mesa .'">
-				      <span class="badge red"><i class="fas fa-minus-circle" aria-hidden="true"></i></span>
+				      <span><i class="fas fa-minus-circle red-text fa-lg" aria-hidden="true"></i></span>
 				      </a>
 				      </td>
 				    </tr>';
@@ -282,7 +282,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				        $max=$t["sum(total)"];
 				    } $s->close();
 				   
-				    if($_SESSION["rtn"] != NULL){ echo "RTN:" . $_SESSION["rtn"]; }
+				    if($_SESSION["rtn"] != NULL){ echo $_SESSION['config_nombre_documento'] . ": " . $_SESSION["rtn"]; }
 
 				    if($_SESSION["tx"] == 0){
 				    		if($_SESSION["noimprimir"] != NULL){
