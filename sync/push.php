@@ -15,6 +15,26 @@ $db = new dbConn();
     } unset($r);  
 
 
+
+// busca todos los respaldo no subidos y los sube
+    $aw = $db->query("SELECT * FROM sync_up WHERE subido = 0 and td = ".$_SESSION["temporal_td"]."");
+    foreach ($aw as $bw) {
+    	$sync = $bw["comprobacion"];
+    	$fichero = $sync . ".sql";
+			if (file_exists($fichero)){ 
+					
+						if(SubirFtp($sync) == TRUE){
+							@unlink($sync . ".sql");
+						}
+				
+			}
+  
+    } 
+    unset($sync); 
+    $aw->close();
+
+
+
 /////////// RESPALDAR ////////
 
 include_once '../system/sync/Push.php';
