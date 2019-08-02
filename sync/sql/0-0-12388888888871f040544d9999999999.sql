@@ -222,3 +222,5 @@ INSERT INTO `sync_tabla` (`id`, `tabla`, `edo`, `hash`, `time`, `td`) VALUES
 
 
 UPDATE `sync_tabla` SET `td`= (SELECT td FROM config_root WHERE id=1);
+
+
