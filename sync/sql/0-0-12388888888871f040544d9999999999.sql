@@ -217,8 +217,7 @@ INSERT INTO `sync_tabla` (`id`, `tabla`, `edo`, `hash`, `time`, `td`) VALUES
 (36, 'productos_venta_especial', 1, '8f6f17af02', 1564698717, 3),
 (41, 'ticket', 1, '7a9cfb6c6b', 1564698738, 3),
 (42, 'ticket_num', 1, 'd0a02a2ba4', 1564698742, 3),
-(43, 'ticket_propina', 1, '14459b72d6', 1564698746, 3),
-(44, 'ticket_temp', 1, '40c42ccc74', 1564698750, 3);
+(43, 'ticket_propina', 1, '14459b72d6', 1564698746, 3);
 
 
 UPDATE `sync_tabla` SET `td`= (SELECT td FROM config_root WHERE id=1);
