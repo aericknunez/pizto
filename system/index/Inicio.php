@@ -14,6 +14,8 @@ class Inicio{
 		if($veri->num_rows == 0){
 			$datos = array();
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    $db->insert("alter_opciones", $datos); 
 		} $veri->close();
 
@@ -34,7 +36,8 @@ class Inicio{
 
 	    	    $cambio = array();
 			    $cambio["icono"] = $size;
-			    $db->update("alter_opciones", $cambio, "WHERE td = ".$_SESSION["td"]."");
+			    
+			    Helpers::UpdateId("alter_opciones", $cambio, "td = ".$_SESSION["td"]."");
 			} 
 
 		} else {
@@ -44,7 +47,8 @@ class Inicio{
 			$size = filesize($nombre_fichero);
 				$cambio = array();
 			    $cambio["icono"] = $size;
-			    $db->update("alter_opciones", $cambio, "WHERE td = ".$_SESSION["td"]."");
+			    
+			    Helpers::UpdateId("alter_opciones", $cambio, "td = ".$_SESSION["td"]."");
 			} 
 
 		      
@@ -76,6 +80,8 @@ class Inicio{
 		    $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 		    $datos["hora"] = date("H:i:s");
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    $db->insert("login_inout", $datos); 		
 	}
 
@@ -90,7 +96,8 @@ class Inicio{
 			    $cambio = array();
 			    $cambio["expira"] = Encrypt::Encrypt($fecha,$_SESSION['secret_key']);
 			    $cambio["expiracion"] = $codigo;
-			    if ($db->update("config_root", $cambio, "WHERE td = ".$_SESSION["td"]."")) {
+			    
+			    if (Helpers::UpdateId("config_root", $cambio, "td = ".$_SESSION["td"]."")) {
 			        
 			        Alerts::Alerta("success","Cambios realizados","Ha introducido su codigo correctamente");
 			    } else {

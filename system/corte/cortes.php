@@ -10,7 +10,7 @@ $db = new dbConn();
 if($_SESSION["mesa"] != NULL){ // para eliminar la masa que viene de index
  include_once 'system/ventas/Venta.php'; 
     if(Venta::VerProductosMesa($_SESSION["mesa"]) == NULL){
-      $db->delete("mesa", "WHERE estado = 1 and mesa = ". $_SESSION["mesa"] ." and tx = ". $_SESSION["tx"] ." and td = " . $_SESSION["td"]);
+      Helpers::DeleteId("mesa", "estado = 1 and mesa = ". $_SESSION["mesa"] ." and tx = ". $_SESSION["tx"] ." and td = " . $_SESSION["td"]);
       unset ($_SESSION["mesa"]);
     }
 }

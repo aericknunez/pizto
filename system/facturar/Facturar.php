@@ -18,6 +18,8 @@ class Facturar{
 					    $datos["rtn"] = $rtn;
 					    $datos["cliente"] = strtoupper($cliente);
 					    $datos["td"] = $_SESSION["td"];
+					    $datos["hash"] = Helpers::HashId();
+						$datos["time"] = Helpers::TimeId();
 					    if ($db->insert("facturar_rtn", $datos)) {
 					        Alerts::Alerta("success","echo!","RTN agregado correctamente!");
 
@@ -99,7 +101,7 @@ class Facturar{
 	public function EliminarRtn($rtn){
 			$db = new dbConn();
 
-		    if ( $db->delete("facturar_rtn", "WHERE rtn = '$rtn' and td = ".$_SESSION["td"]."")) {
+		    if ( Helpers::DeleteId("facturar_rtn", "rtn = '$rtn' and td = ".$_SESSION["td"]."")) {
 		        Alerts::Alerta("success","Error!","RTN Eliminado correctamente!");
 		        $this->QuitarRtn();
 		    } else {
@@ -175,6 +177,8 @@ class Facturar{
 					    $datos["fechaF"] = Fechas::Format($fecha);
 					    $datos["cai"] = $cai;
 					    $datos["td"] = $_SESSION["td"];
+					    $datos["hash"] = Helpers::HashId();
+						$datos["time"] = Helpers::TimeId();
 					    if ($db->insert("facturar_cai", $datos)) {
 					        Alerts::Alerta("success","Echo!","Se agrego un nuevo CAI!");
 					    } else {
@@ -193,7 +197,7 @@ class Facturar{
 	public function EliminarCai($id){
 			$db = new dbConn();
 
-		    if ( $db->delete("facturar_cai", "WHERE id = '$id' and td = ".$_SESSION["td"]."")) {
+		    if ( Helpers::DeleteId("facturar_cai", "id = '$id' and td = ".$_SESSION["td"]."")) {
 		        Alerts::Alerta("success","Echo!","CAI Eliminado correctamente!");
 		        $this->QuitarRtn();
 		    } else {
@@ -339,6 +343,8 @@ class Facturar{
 			    $datos["n3"] = $n3;
 			    $datos["n4"] = $n4;
 			    $datos["td"] = $_SESSION["td"];
+			    $datos["hash"] = Helpers::HashId();
+				$datos["time"] = Helpers::TimeId();
 			    if ($db->insert("facturar_ticket", $datos)) {
 			        Alerts::Alerta("success","Echo!","Se agrego una factura!");
 			    } else {
@@ -358,6 +364,8 @@ class Facturar{
 			    $datos["impresora"] = $impresora;
 			    $datos["comentarios"] = $comentarios;
 			    $datos["td"] = $_SESSION["td"];
+			    $datos["hash"] = Helpers::HashId();
+				$datos["time"] = Helpers::TimeId();
 			    if ($db->insert("facturar_impresora", $datos)) {
 			        Alerts::Alerta("success","Echo!","Se agrego una Impresora!");
 			    } else {
@@ -379,6 +387,8 @@ class Facturar{
 			    $datos["clase"] = $clase;
 			    $datos["impresora"] = $impresora;			    
 			    $datos["td"] = $_SESSION["td"];
+			    $datos["hash"] = Helpers::HashId();
+				$datos["time"] = Helpers::TimeId();
 			    if ($db->insert("facturar_users", $datos)) {
 			        Alerts::Alerta("success","Echo!","Se agrego un nuevo Usuario!");
 			    } else {
@@ -395,7 +405,7 @@ class Facturar{
 	public function EliminarFact($iden){
 			$db = new dbConn();
 
-		    if ( $db->delete("facturar_ticket", "WHERE id = '$iden' and td = ".$_SESSION["td"]."")) {
+		    if ( Helpers::DeleteId("facturar_ticket", "id = '$iden' and td = ".$_SESSION["td"]."")) {
 		        Alerts::Alerta("success","Realizado!","Ticket Eliminado correctamente!");
 		    } else {
 		        Alerts::Alerta("error","Error!","El Ticket no ha sido eliminado!");
@@ -409,7 +419,7 @@ class Facturar{
 	public function EliminarPrint($iden){
 			$db = new dbConn();
 
-		    if ( $db->delete("facturar_impresora", "WHERE id = '$iden' and td = ".$_SESSION["td"]."")) {
+		    if ( Helpers::DeleteId("facturar_impresora", "id = '$iden' and td = ".$_SESSION["td"]."")) {
 		        Alerts::Alerta("success","Realizado!","Impresora Eliminado correctamente!");
 		    } else {
 		        Alerts::Alerta("error","Error!","La Impresora no ha sido eliminado!");
@@ -423,7 +433,7 @@ class Facturar{
 	public function EliminarUser($iden){
 			$db = new dbConn();
 
-		    if ( $db->delete("facturar_users", "WHERE id = '$iden' and td = ".$_SESSION["td"]."")) {
+		    if ( Helpers::DeleteId("facturar_users", "id = '$iden' and td = ".$_SESSION["td"]."")) {
 		        Alerts::Alerta("success","Realizado!","Usuario Eliminado correctamente!");
 		    } else {
 		        Alerts::Alerta("error","Error!","El Usuario no ha sido eliminado!");
@@ -449,7 +459,7 @@ class Facturar{
 	public function EliminarFacturas(){
 			$db = new dbConn();
 
-	$a = $db->query("SELECT * FROM ticket_num WHERE edo = 1 and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." limit 15 order by id desc");
+	$a = $db->query("SELECT * FROM ticket_num WHERE edo = '1' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." ORDER BY id desc limit 15");
 	    if($a->num_rows > 0){
 	echo '<table class="table table-sm table-striped">
 	  <thead>
@@ -478,26 +488,28 @@ class Facturar{
  
 	}
 
+
+
 	public function BorrarFactura($mesa, $ticket) {
 		$db = new dbConn();
 		    
 		    // temp
-		     if ( $db->delete("ticket_temp", "WHERE num_fac = '$ticket' and mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		     if ( Helpers::DeleteId("ticket_temp", "num_fac = '$ticket' and mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
 		    
 		    // ticket 
-		      $db->delete("ticket", "WHERE num_fac = '$ticket' and mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+		      Helpers::DeleteId("ticket", "num_fac = '$ticket' and mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 
 		    // ticket 
-		      $db->delete("ticket_num", "WHERE num_fac = '$ticket' and mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+		      Helpers::DeleteId("ticket_num", "num_fac = '$ticket' and mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 
 		    // verifica si ya no hay mas productos en la mesa
 		    $a = $db->query("SELECT * FROM ticket_temp WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 				
 				if($a->num_rows == 0){
 					
-					$db->delete("mesa", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+					Helpers::DeleteId("mesa", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 
-		        	$db->delete("mesa_nombre", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+		        	Helpers::DeleteId("mesa_nombre", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 				}
 
 				$a->close(); 		       

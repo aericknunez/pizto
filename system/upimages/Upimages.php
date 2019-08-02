@@ -35,6 +35,8 @@ $cdestino = '../../assets/img/facturas';
                                 $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
                                 $datos["hora"] = date("H:i:s");
                                 $datos["td"] = $_SESSION["td"];
+                                $datos["hash"] = Helpers::HashId();
+                                $datos["time"] = Helpers::TimeId();
                                 if ($db->insert("gastos_images", $datos)) {
                                     
                                 Alerts::Alerta("success","Agregado Correctamente","Imagen Agregada Correctamente");
@@ -124,7 +126,8 @@ function resizeThumbnailImage($thumb_image_name, $image, $width, $height, $start
 
             $cambio = array();
             $cambio["imagen"] = $img;
-            $db->update("config_master", $cambio, "WHERE td = ".$_SESSION["td"]."");
+            
+            Helpers::UpdateId("config_master", $cambio, "td = ".$_SESSION["td"]."");
     }
 
 

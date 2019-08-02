@@ -8,7 +8,7 @@ $db = new dbConn();
 
 	echo '<div id="SyncMonitor">';	
 	$historial = new Historial;
-	$historial->SyncStatus("sync/db/");
+	$historial->SyncStatus("sync/database/");
 	echo '</div>';
 
  ?>

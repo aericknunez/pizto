@@ -71,7 +71,7 @@ class Admin{
 	    	} else {
 	    		$edo = "Inactivo";
 	    		$color = "green";
-	    		$ico = "fa-refresh";
+	    		$ico = "fa-asterisk";
 	    		$dir = 'id="ejecuta-db-sync" op="200" td="'.$bc["td"].'" hash="'.$hash.'"'; // activarlo	    		
 	    	}
 
@@ -79,7 +79,7 @@ class Admin{
 			      <th scope="col" colspan="3">'.$bc["cliente"].'</th>
 			      <th scope="col">'.$edo.'</th>
 			      <th scope="col"><a '.$dir.'>
-				      <span class="badge '.$color.'"><i class="fa '.$ico.'" aria-hidden="true"></i></span></a></th>
+				      <span class="badge '.$color.'"><i class="fas '.$ico.'" aria-hidden="true"></i></span></a></th>
 			    </tr>';
 
 			  } 
@@ -187,6 +187,8 @@ class Admin{
 		    $datos = array();
 		    $datos["hash"] = $hash;
 		    $datos["td"] = $td;
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("login_db_user", $datos)) {
 		      Alerts::Alerta("success","Agregado!","Usuario agregado correctamente!");  
 		    }
@@ -197,7 +199,7 @@ class Admin{
 	public function DelClienteSync($hash,$td){
 		$db = new dbConn();
   
-	    if ( $db->delete("login_db_user", "WHERE hash = '$hash' and td =" . $td)) {
+	    if ( Helpers::DeleteId("login_db_user", "hash = '$hash' and td =" . $td)) {
 	        Alerts::Alerta("success","Eliminado!","Usuario agregado correctamente!");
 	    }
 	   $this->VerHashes(); 	     		
@@ -209,8 +211,8 @@ class Admin{
 	public function DelHash($hash){
 		$db = new dbConn();
   		
-  		if ( $db->delete("login_db_sync", "WHERE hash = '$hash'")) {
-		        $db->delete("login_db_user", "WHERE hash = '$hash'");
+  		if ( Helpers::DeleteId("login_db_sync", "hash = '$hash'")) {
+		        Helpers::DeleteId("login_db_user", "hash = '$hash'");
 		        Alerts::Alerta("success","Eliminado!","Usuario agregado correctamente!");
 	   
 	    }
@@ -230,6 +232,8 @@ class Admin{
 		    $datos["hash"] = $hash;
 		    $datos["fecha"] = date("d-m-Y");
 		    $datos["hora"] = date("H:i:s");
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("login_db_sync", $datos)) {
 		      Alerts::Alerta("success","Agregado!","Usuario agregado correctamente!");  
 		    }

@@ -59,13 +59,13 @@ class Busqueda{
 				        $mesa = $r["mesa"];
 				    } unset($r);
 		    
-		     if ( $db->delete("ticket", "WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		     if ( Helpers::DeleteId("ticket", "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
 		        
-		        $db->delete("ticket_num", "WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+		        Helpers::DeleteId("ticket_num", "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 
 			        $a = $db->query("SELECT * FROM ticket WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 					if($a->num_rows == 0){
-						$db->delete("mesa", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+						Helpers::DeleteId("mesa", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 					}
 					$a->close();
 		        
@@ -86,8 +86,9 @@ class Busqueda{
 		
 		    $cambio = array();
 		    $cambio["edo"] = "2";
-		    if ($db->update("ticket", $cambio, "WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
-		        $db->update("ticket_num", $cambio, "WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+		    
+		    if (Helpers::UpdateId("ticket", $cambio, "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		        Helpers::UpdateId("ticket_num", $cambio, "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 		        echo '<script>
 						window.location.href="?"
 		        	</script>';
@@ -111,8 +112,9 @@ class Busqueda{
 		    $cambio = array();
 		    $cambio["num_fac"] = $max+1;
 		    $cambio["tx"] = 1;
-		    if ($db->update("ticket", $cambio, "WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
-		        $db->update("ticket_num", $cambio, "WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+		    
+		    if (Helpers::UpdateId("ticket", $cambio, "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		        Helpers::UpdateId("ticket_num", $cambio, "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 		        echo '<script>
 						window.location.href="?"
 		        	</script>';

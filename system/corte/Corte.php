@@ -38,7 +38,8 @@ class Corte{
 		    $datos["user"] = $_SESSION["user"];
 		    $datos["edo"] = 1;
 		    $datos["td"] = $_SESSION["td"];
-
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		   if($db->insert("corte_diario", $datos)){
 		   //	Alerts::Alerta("success","Exito!","Se ha ejecutado el corte correctamente!");
 		   	$this->CalcularGastoProductos($fecha);
@@ -116,7 +117,7 @@ class Corte{
 	public function EliminarMesasActivas($fecha){
 		$db = new dbConn();
 	    	    
-	    	    $db->delete("mesa", "WHERE estado = 1 and fecha = '$fecha' and td = " . $_SESSION["td"]);
+	    	    Helpers::DeleteId("mesa", "estado = 1 and fecha = '$fecha' and td = " . $_SESSION["td"]);
 
 		}
 //////////
@@ -224,23 +225,9 @@ public function CancelarCorte($ramdom,$fecha){
 
 				$cambio = array();
 			    $cambio["edo"] = "2";
-			    if ($db->update("corte_diario", $cambio, "WHERE fecha_format=" . Fechas::Format($fecha))) {
-			    	// borra el sincronizado si existe
-			    	    $as = $db->query("SELECT * FROM sync_status WHERE tipo = 1 and fecha = '$fecha' and ejecutado = 0 and td = ".$_SESSION["td"]."");
-						    foreach ($as as $bs) {
+			    
+			    if (Helpers::UpdateId("corte_diario", $cambio, "fecha_format=" . Fechas::Format($fecha))) {
 
-							        $sync = $bs["hash"];
-							    	$fichero = "../../sync/" . $sync . ".sql";
-
-									if (file_exists($fichero)){ 
-											$db->delete("sync_status", "WHERE hash= '$sync' and td =".$_SESSION["td"]."");
-											@unlink($fichero);
-									}
-
-						    } $as->close();
-
-			    	$db->delete("sync_status", "WHERE tipo = 1 and fechaF =" . Fechas::Format($fecha));
-			    	////////////// lo del sync
 			        $this->RevertirCalcularGastoProductos($fecha);
 					Alerts::Alerta("success","Exito!","Corte Anulado Correctamente");
 			    } else {
@@ -356,7 +343,8 @@ public function CancelarCorte($ramdom,$fecha){
 	   		 			
 		   		 		$cambio = array();
 					    $cambio["cantidad"] = $x["cantidad"] - $cantidadx;
-					    $db->update("pro_bruto", $cambio, "WHERE iden=".$r["producto"]." and td = ".$_SESSION["td"]."");
+					    
+					    Helpers::UpdateId("pro_bruto", $cambio, "iden=".$r["producto"]." and td = ".$_SESSION["td"]."");
 					    }
         				unset($x); 
 					    // Termina paso 4
@@ -369,6 +357,8 @@ public function CancelarCorte($ramdom,$fecha){
 	    $datos["fecha"] = date("d-m-Y");
 	    $datos["hora"] = date("H:i:s");
 	    $datos["td"] = $_SESSION["td"];
+	    $datos["hash"] = Helpers::HashId();
+		$datos["time"] = Helpers::TimeId();
 	    $db->insert("pro_registro_up", $datos); 
 	}
 
@@ -392,7 +382,8 @@ public function CancelarCorte($ramdom,$fecha){
 	   		 			
 		   		 		$cambio = array();
 					    $cambio["cantidad"] = $x["cantidad"] + $cantidadx;
-					    $db->update("pro_bruto", $cambio, "WHERE iden=".$r["producto"]." and td = ".$_SESSION["td"]."");
+					    
+					    Helpers::UpdateId("pro_bruto", $cambio, "iden=".$r["producto"]." and td = ".$_SESSION["td"]."");
 					    }
         				unset($x); 
 	   		 		// Termina paso 4
@@ -401,7 +392,7 @@ public function CancelarCorte($ramdom,$fecha){
 	    	// /// /// /// //
 	    } $a->close(); // termina paso 1
 // Elimino el registro de que se hizo la reversion
-	$db->delete("pro_registro_up", "WHERE fecha = '$fecha' and td = ".$_SESSION["td"]."");
+	Helpers::DeleteId("pro_registro_up", "fecha = '$fecha' and td = ".$_SESSION["td"]."");
 	}
 
 

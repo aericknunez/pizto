@@ -34,6 +34,8 @@ class Venta{
 		    $datos["estado"] = 1;
 		    $datos["tx"] = $_SESSION["tx"];
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    $db->insert("mesa", $datos); 
 		
 		$_SESSION["mesa"] = $ultimamesa + 1;    
@@ -73,6 +75,8 @@ class Venta{
 	    $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 	    $datos["edo"] = 1;
 	    $datos["td"] = $_SESSION["td"];
+	    $datos["hash"] = Helpers::HashId();
+		$datos["time"] = Helpers::TimeId();
 	    if ($db->insert("ticket_temp", $datos)) {
 	        // Agregamos la factura
 	    }  else {
@@ -102,7 +106,8 @@ class Venta{
 		    $cambio["stotal"] = $stot;
 		    $cambio["imp"] = $im;
 		    $cambio["total"] = $stot + $im;
-		    if ($db->update("ticket_temp", $cambio, "WHERE cod = '$cod' and mesa = '$mesa' and cliente = '$cliente' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		    
+		    if (Helpers::UpdateId("ticket_temp", $cambio, "cod = '$cod' and mesa = '$mesa' and cliente = '$cliente' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
 		        
 		    } 
 
@@ -151,6 +156,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	    $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 	    $datos["edo"] = 1;
 	    $datos["td"] = $_SESSION["td"];
+	    $datos["hash"] = Helpers::HashId();
+		$datos["time"] = Helpers::TimeId();
 	    if ($db->insert("ticket_temp", $datos)) {
 	        // Agregamos la factura
 	    }
@@ -182,6 +189,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	    $datos["mesa"] = $mesa;
 	    $datos["cliente"] = $cliente;
 	    $datos["td"] = $_SESSION["td"];
+	    $datos["hash"] = Helpers::HashId();
+		$datos["time"] = Helpers::TimeId();
 	    $db->insert("opciones_ticket", $datos);
 
 	    return $identificador;
@@ -192,7 +201,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		$a = $db->query("SELECT * FROM opciones_ticket WHERE cod = '$cod' and identificador='$identificador' and td = ".$_SESSION["td"]."");
 		if($a->num_rows > 0){
 
-			 if($db->delete("opciones_ticket", "WHERE cod='$cod' and identificador='$identificador' and opcion = $activo and td = ".$_SESSION["td"]." limit 1")){
+			 if(Helpers::DeleteId("opciones_ticket", "cod='$cod' and identificador='$identificador' and opcion = $activo and td = ".$_SESSION["td"]." limit 1")){
 			 	 Alerts::Alerta("success","Exito!","Opcion Eliminada corectamente!");
 			 } else {
 			 	 Alerts::Alerta("error","Error!","Ocurrio un error desconocido!");
@@ -206,8 +215,9 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		$db = new dbConn();
 		
 		    $cambio = array();
-		    $cambio["opcion"] = $cambios;    
-		    if ($db->update("opciones_ticket", $cambio, "WHERE cod=$cod and identificador = $identificador and opcion = $activo and td = ".$_SESSION["td"]." limit 1")) 
+		    $cambio["opcion"] = $cambios;
+		        
+		    if (Helpers::UpdateId("opciones_ticket", $cambio, "cod=$cod and identificador = $identificador and opcion = $activo and td = ".$_SESSION["td"]." limit 1")) 
 		    {
 		         Alerts::Alerta("success","Exito!","Opcion Cambiada corectamente!"); 
 		    } else {
@@ -470,7 +480,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	    // actualizar ticket
 	        $cambio = array();
 		    $cambio["num_fac"] = $ultimon;
-		    if ($db->update("ticket_temp", $cambio, "WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0")) {
+		    
+		    if (Helpers::UpdateId("ticket_temp", $cambio, "td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0")) {
 		// agregar ticket num
 		    $datos = array();
 		    $datos["fecha"] = date("d-m-Y");
@@ -481,12 +492,15 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    $datos["edo"] = 1;
 		    $datos["tx"] = $_SESSION["tx"];
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    $db->insert("ticket_num", $datos);
 
 	    // actualizar mesa
     	    $cambio = array();
 		    $cambio["estado"] = "2";
-		    $db->update("mesa", $cambio, "WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa"); 
+		    
+		    Helpers::UpdateId("mesa", $cambio, "td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa"); 
 
 		    unset($_SESSION["mesa"]);
 
@@ -511,7 +525,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	    // actualizar ticket
 	        $cambio = array();
 		    $cambio["num_fac"] = $ultimon;
-		    if ($db->update("ticket_temp", $cambio, "WHERE cancela = $cancela and td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0")) {
+		    
+		    if (Helpers::UpdateId("ticket_temp", $cambio, "cancela = $cancela and td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa and num_fac = 0")) {
 		// agregar ticket num
 		    $datos = array();
 		    $datos["fecha"] = date("d-m-Y");
@@ -522,6 +537,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    $datos["edo"] = 1;
 		    $datos["tx"] = $_SESSION["tx"];
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    $db->insert("ticket_num", $datos);
 
 	    // actualizar mesa
@@ -529,7 +546,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		if($a->num_rows == 0){
 			$cambio = array();
 		    $cambio["estado"] = "2";
-		    $db->update("mesa", $cambio, "WHERE td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa"); 
+		    
+		    Helpers::UpdateId("mesa", $cambio, "td = ".$_SESSION["td"]." and tx = ".$_SESSION["tx"]." and mesa = $mesa"); 
 
 		    unset($_SESSION["mesa"]);
 
@@ -548,8 +566,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 
 	public function DataCopy($mesa, $factura){
 		$db = new dbConn();
-			$a = $db->query("INSERT INTO ticket (cod, cant, producto, pv, stotal, imp, total, num_fac, fecha, hora, mesa, cliente, cancela, cajero, tipo_pago, user, gravado, tx, fechaF, edo, td) 
-				SELECT cod, cant, producto, pv, stotal, imp, total, num_fac, fecha, hora, mesa, cliente, cancela, cajero, tipo_pago, user, gravado, tx, fechaF, edo, td 
+			$a = $db->query("INSERT INTO ticket (cod, cant, producto, pv, stotal, imp, total, num_fac, fecha, hora, mesa, cliente, cancela, cajero, tipo_pago, user, gravado, tx, fechaF, edo, td, hash, time) 
+				SELECT cod, cant, producto, pv, stotal, imp, total, num_fac, fecha, hora, mesa, cliente, cancela, cajero, tipo_pago, user, gravado, tx, fechaF, edo, td, hash, time 
 				FROM ticket_temp WHERE mesa = '$mesa' and num_fac = '$factura'");
 			unset($a);
 
@@ -575,6 +593,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    $datos["hora"] = date("H:i:s");
 		    $datos["tx"] = $_SESSION["tx"];
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    $db->insert("ticket_propina", $datos);
 
 	}
@@ -594,8 +614,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				$comprobacion = $a->num_rows; $a->close();
    			 
    			 if($comprobacion > 0){ // si tiene opciones activado. borro todo
-   			 	$db->delete("ticket_temp", "WHERE id='$iden' limit 1");
-   			 	$db->delete("opciones_ticket", "WHERE identificador='$iden' and td = ".$_SESSION["td"]."");
+   			 	Helpers::DeleteId("ticket_temp", "id='$iden' limit 1");
+   			 	Helpers::DeleteId("opciones_ticket", "identificador='$iden' and td = ".$_SESSION["td"]."");
 
    			 } else { // sino borro o actualizo
 
@@ -611,9 +631,9 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				    $cambio["stotal"] = $stot;
 				    $cambio["imp"] = $im;
 				    $cambio["total"] =  $stot + $im;
-				    $db->update("ticket_temp", $cambio, "WHERE id='$iden' limit 1");
+				    Helpers::UpdateId("ticket_temp", $cambio, "id='$iden' limit 1");
 		   			 } else {
-		   			 	    $db->delete("ticket_temp", "WHERE id='$iden' limit 1");
+		   			 	    Helpers::DeleteId("ticket_temp", "id='$iden' limit 1");
 		   			 }
 
 		   			 /////////////////////////// borrar si es venta especial
@@ -625,7 +645,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 			// comprueba si aun hay productos en la mesa para eliminar o mantener esta
    		$x = $db->query("SELECT * FROM ticket_temp WHERE mesa = ".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 			if($x->num_rows == NULL){
-				$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+				Helpers::DeleteId("mesa", "mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 		        unset($_SESSION["mesa"]);
 		        echo '<script>
 						window.location.href="?"
@@ -640,11 +660,11 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	public function BorrarFactura($mesa) {
 		$db = new dbConn();
 		    
-		     if ( $db->delete("ticket_temp", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		     if ( Helpers::DeleteId("ticket_temp", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
 		        
-		        $db->delete("mesa", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+		        Helpers::DeleteId("mesa", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 
-		        $db->delete("mesa_nombre", "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+		        Helpers::DeleteId("mesa_nombre", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 
 		        unset($_SESSION["mesa"]);
 		        echo '<script>

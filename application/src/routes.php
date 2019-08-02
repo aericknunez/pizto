@@ -227,6 +227,15 @@ $iconos->UpdateReordenar($idArray);
 
  // termina iconos////
 
+
+///////////// modifica las tablas del sync
+if($_REQUEST["op"]=="15"){
+	include_once '../../system/config_configuraciones/Config.php';
+	$configuracion = new Config;
+	$configuracion->ModTabla($_POST);
+}
+
+
 /////////////////////// comienza las ventas
 
 if($_REQUEST["op"]=="20"){ //venta normal
@@ -397,7 +406,7 @@ if($_REQUEST["op"]=="26"){ // cambiar tipo de pantalla de inicio mesa o rapida
 	} else {
 
 		if($venta->VerProductosMesa($_SESSION["mesa"]) == 0){
-			$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+			Helpers::DeleteId("mesa", "mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 			unset($_SESSION["mesa"]);
 			if($_SESSION["tipo_inicio"] == 1) $_SESSION["tipo_inicio"] = 2;
 			else $_SESSION["tipo_inicio"] = 1;
@@ -416,7 +425,7 @@ if($_REQUEST["op"]=="27"){ // cambiar tx
 	} else {
 		
 		if($venta->VerProductosMesa($_SESSION["mesa"]) == 0){
-			$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+			Helpers::DeleteId("mesa", "mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 			unset($_SESSION["mesa"]);
 			if($_SESSION["tx"] == 1) { $_SESSION["tx"] = 0; } 
 			else { $_SESSION["tx"] = 1; }
@@ -437,7 +446,7 @@ if($_REQUEST["op"]=="27x"){ // cambiar panel
 		
 	} else {
 				if($venta->VerProductosMesa($_SESSION["mesa"]) == 0){
-				$db->delete("mesa", "WHERE mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+				Helpers::DeleteId("mesa", "mesa=".$_SESSION["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 				unset($_SESSION["mesa"]);
 					if($_SESSION["muestra_vender"] == 1) { unset($_SESSION["muestra_vender"]); }
 					else {
@@ -1569,7 +1578,7 @@ if($_REQUEST["op"]=="165"){ // actualizar sistema
 	$cambio = array();
     $cambio["up_fecha"] = date("d-m-Y");
     $cambio["up_hora"] = date("H:i:s");
-    $db->update("alter_opciones", $cambio, "WHERE td = ".$_SESSION["td"]."");
+    Helpers::UpdateId("alter_opciones", $cambio, "td = ".$_SESSION["td"]."");
 	$synchro->ComparaVersiones();
 }
 

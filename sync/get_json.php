@@ -40,6 +40,8 @@ if($a->num_rows == 0){
 	$datos["fechaF"] = strtotime($fecha);
 	$datos["hash"] = $sync;
 	$datos["td"] = $_SESSION["temporal_td"];
+	$datos["hash"] = Helpers::HashId();
+	$datos["time"] = Helpers::TimeId();
 	$db->insert("sync_status", $datos);
 	}
 	unset($resultado);
@@ -49,6 +51,8 @@ if($a->num_rows == 0){
 	$dato["hash"] = $sync;
 	$dato["fecha"] = $fecha;
 	$dato["hora"] = $hora;
+	$datos["hash"] = Helpers::HashId();
+	$datos["time"] = Helpers::TimeId();
 	$db->insert("login_db_sync", $dato);
 
 // aqui ejecuto el sql que deberia estar en el directorio descargado de git
@@ -69,7 +73,7 @@ foreach($sql as $query){
 			$cambio = array();
 			$cambio["subido"] = 1;
 	    	$cambio["ejecutado"] = 1;
-			if($db->update("sync_status", $cambio, "WHERE hash = '$sync' and td = ".$_SESSION["temporal_td"]."")){
+			if(Helpers::UpdateId("sync_status", $cambio, "hash = '$sync' and td = ".$_SESSION["temporal_td"]."")){
 			 @unlink($sync . ".sql");	
 			}
 		}	 
@@ -97,11 +101,23 @@ function SubirFtp($sync){
 }
 
 
+if(file_exists("desencadenador.php") == TRUE){
+	include_once 'desencadenador.php';
+
+$az = $db->query("SELECT * FROM sync_tabla WHERE td = ".$_SESSION["temporal_td"]."");
+	if($az->num_rows > 0){
+
+		unlink("desencadenador.php");
+
+	}
+$az->close();
+	
+}
+
 
 ///////// actualizar el root
 $data =  file_get_contents('https://pizto.com/admin/application/includes/root_json.php?x=' . $_SESSION["temporal_td"]); 
 $cambio = json_decode($data, true);
-
-$db->update("config_root", $cambio, "WHERE td=" . $_SESSION["temporal_td"]);
+Helpers::UpdateId("config_root", $cambio, "td=" . $_SESSION["temporal_td"]);
 
 unset($_SESSION["temporal_td"]);

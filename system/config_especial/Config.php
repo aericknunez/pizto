@@ -17,6 +17,8 @@ class Config{
 		    $datos = array();
 		    $datos["producto"] = $cod;
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("alter_producto_reporte", $datos)) {
 		      Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido cambiado correctamente");
 		    } else {
@@ -25,7 +27,7 @@ class Config{
 
 		} else {
 
-			    if ( $db->delete("alter_producto_reporte", "WHERE producto=" . $cod)) {
+			    if ( Helpers::DeleteId("alter_producto_reporte", "producto=" . $cod)) {
 			        Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido eliminado correctamente"); 
 			    } else {
 			        Alerts::Alerta("error","Error","Ha ocurrido un error desconocido"); 
@@ -54,6 +56,8 @@ class Config{
 		    $datos = array();
 		    $datos["producto"] = $cod;
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("productos_venta_especial", $datos)) {
 		      Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido cambiado correctamente");
 		    } else {
@@ -62,7 +66,7 @@ class Config{
 
 		} else {
 
-			    if ( $db->delete("productos_venta_especial", "WHERE producto=" . $cod)) {
+			    if ( Helpers::DeleteId("productos_venta_especial", "producto=" . $cod)) {
 			        Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido eliminado correctamente"); 
 			    } else {
 			        Alerts::Alerta("error","Error","Ha ocurrido un error desconocido"); 

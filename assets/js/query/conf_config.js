@@ -104,6 +104,15 @@ return false;
 
 
 
+	$("body").on("click","#tablemod",function(){ // modificar tablas
+	var op = $(this).attr('op');
+	var tabla = $(this).attr('tabla');
+	var accion = $(this).attr('accion');
+	var edo = $(this).attr('edo');
+	    $.post("application/src/routes.php", {op:op, tabla:tabla, accion:accion, edo:edo}, function(data){
+		$("#contenido").html(data);
+	   	 });
+	});
 
 
 

@@ -28,7 +28,8 @@ class Mesa{
 
 			$cambio = array();
 		    $cambio["clientes"] = $clientes;
-		    if ($db->update("mesa", $cambio, "WHERE mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		    
+		    if (Helpers::UpdateId("mesa", $cambio, "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
 		        Alerts::Alerta("success","Exito!","Cliente Agregado corectamente!");
 		    }
 	}
@@ -151,7 +152,8 @@ class Mesa{
 
 			    $cambio = array();
 			    $cambio["cancela"] = $cancela;
-			    if ($db->update("ticket_temp", $cambio, "WHERE mesa=$mesa and cliente = $cliente and tx = ".$_SESSION["tx"]." and td=". $_SESSION["td"]."")) {
+			    
+			    if (Helpers::UpdateId("ticket_temp", $cambio, "mesa=$mesa and cliente = $cliente and tx = ".$_SESSION["tx"]." and td=". $_SESSION["td"]."")) {
 			       Alerts::Alerta("success","Exito!","Cuenta transferida corectamente!");
 			       unset($_SESSION['client-asign']);
 			    } else {
@@ -344,13 +346,15 @@ public function ListarOpciones($cod,$identificador,$cliente){
 
     			$cambio = array();
 				$cambio["opciones"] = 0;
-				$db->update("control_cocina", $cambio, "WHERE mesa = '$mesa' and identificador = '$identificador' and cod = '$codigo' and td = ".$_SESSION["td"]."");
+				
+				Helpers::UpdateId("control_cocina", $cambio, "mesa = '$mesa' and identificador = '$identificador' and cod = '$codigo' and td = ".$_SESSION["td"]."");
     			 
     		} else {
 
     			$cambio = array();
 				$cambio["opciones"] = 1;
-				$db->update("control_cocina", $cambio, "WHERE mesa = '$mesa' and identificador = '$identificador' and cod = '$codigo' and td = ".$_SESSION["td"]."");
+				
+				Helpers::UpdateId("control_cocina", $cambio, "mesa = '$mesa' and identificador = '$identificador' and cod = '$codigo' and td = ".$_SESSION["td"]."");
     		}
 
 	}

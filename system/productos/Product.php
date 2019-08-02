@@ -23,7 +23,8 @@ class Product{
     	// descontar del inventario
     	    $cambio = array();
 		    $cambio["cantidad"] = $inventario;
-		    if ($db->update("pro_bruto", $cambio, "WHERE iden='$bruto' and td = ". $_SESSION["td"] ."")) {
+		    
+		    if (Helpers::UpdateId("pro_bruto", $cambio, "iden='$bruto' and td = ". $_SESSION["td"] ."")) {
 			    
 			    $datos = array();
 			    $datos["producto"] = $producto;
@@ -34,6 +35,8 @@ class Product{
 			    $datos["hora"] = date("H:i:s");
 			    $datos["usuario"] = $_SESSION["nombre"];
 			    $datos["td"] = $_SESSION["td"];
+			    $datos["hash"] = Helpers::HashId();
+				$datos["time"] = Helpers::TimeId();
 
 		    if ($db->insert("pro_historial_averias", $datos)) {
 		    Alerts::Alerta("success","Agregado Correctamente","Averia agregada y desconta del inventario correctamente!");
@@ -65,11 +68,12 @@ class Product{
         $cantidad = $cant_dependiente * $cantidad;
         $descontar = $cant_bruto + $cantidad;
 
-	  if ($db->delete("pro_historial_averias", "WHERE id='$iden' and td = ".$_SESSION["td"]."")) {
+	  if (Helpers::DeleteId("pro_historial_averias", "id='$iden' and td = ".$_SESSION["td"]."")) {
 
 	  	    $cambio = array();
 		    $cambio["cantidad"] = $descontar;
-		    $db->update("pro_bruto", $cambio, "WHERE iden=".$pro_bruto." and td = ". $_SESSION["td"] ."");
+		    
+		    Helpers::UpdateId("pro_bruto", $cambio, "iden=".$pro_bruto." and td = ". $_SESSION["td"] ."");
 		        
 		   Alerts::Alerta("success","Agregado Correctamente","Averia agregada y desconta del inventario correctamente!");
 		    }
@@ -219,7 +223,8 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
     	// descontar del inventario
     	    $cambio = array();
 		    $cambio["cantidad"] = $inventario;
-		    if ($db->update("pro_bruto", $cambio, "WHERE iden='$bruto' and td = ". $_SESSION["td"] ."")) {
+		    
+		    if (Helpers::UpdateId("pro_bruto", $cambio, "iden='$bruto' and td = ". $_SESSION["td"] ."")) {
 			    
 			    $datos = array();
 			    $datos["producto"] = $producto;
@@ -230,6 +235,8 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
 			    $datos["hora"] = date("H:i:s");
 			    $datos["usuario"] = $_SESSION["nombre"];
 			    $datos["td"] = $_SESSION["td"];
+			    $datos["hash"] = Helpers::HashId();
+				$datos["time"] = Helpers::TimeId();
 
 		    if ($db->insert("pro_historial_addpro", $datos)) {
 		    Alerts::Alerta("success","Agregado Correctamente","Producto agregado al inventario correctamente!");
@@ -261,11 +268,12 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
         $cantidad = $cant_dependiente * $cantidad;
         $descontar = $cant_bruto - $cantidad;
 
-	  if ($db->delete("pro_historial_addpro", "WHERE id='$iden' and td = ".$_SESSION["td"]."")) {
+	  if (Helpers::DeleteId("pro_historial_addpro", "id='$iden' and td = ".$_SESSION["td"]."")) {
 
 	  	    $cambio = array();
 		    $cambio["cantidad"] = $descontar;
-		    $db->update("pro_bruto", $cambio, "WHERE iden=".$pro_bruto." and td = ". $_SESSION["td"] ."");
+		    
+		    Helpers::UpdateId("pro_bruto", $cambio, "iden=".$pro_bruto." and td = ". $_SESSION["td"] ."");
 		        
 		   Alerts::Alerta("success","Agregado Correctamente","Producto Eliminado correctamente!");
 		    }

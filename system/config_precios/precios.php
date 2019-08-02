@@ -12,7 +12,8 @@ $iden=$_REQUEST["iden"];
 
     $cambio = array();
     $cambio["precio"] = $_POST["precio"];
-    if ($db->update("precios", $cambio, "WHERE id='$iden'")) {
+    
+    if (Helpers::UpdateId("precios", $cambio, "id='$iden'")) {
         
     } 
 

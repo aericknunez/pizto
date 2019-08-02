@@ -17,6 +17,8 @@ class Icono{
 		    $datos["gravado"] = "1";
 		    $datos["fecha_registro"] = date('d-m-Y');
 		    $datos["td"] = $_SESSION['td'];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 
 		    $db->insert("producto", $datos);
 
@@ -27,6 +29,8 @@ class Icono{
 		    $datos["cat"] = $popup;
 		    $datos["precio"] = $precio;
 		    $datos["td"] = $_SESSION['td'];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 
 		    $db->insert("precios", $datos);
 
@@ -38,6 +42,8 @@ class Icono{
 		    $datos["cod"] = $cod;
 		    $datos["edo"] = "1";
 		    $datos["td"] = $_SESSION['td'];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 
 		    $db->insert("images", $datos);
 
@@ -47,6 +53,8 @@ class Icono{
 		    $datos["producto"] = $cod;
 		    $datos["opcion"] = $opcion;
 		    $datos["td"] = $_SESSION['td'];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 
 		    $db->insert("opciones_asig", $datos);
 		}
@@ -66,6 +74,8 @@ class Icono{
 	    $datos["cod"] = $cat;
 	    $datos["categoria"] = $nombre;
 	    $datos["td"] = $_SESSION['td'];
+	    $datos["hash"] = Helpers::HashId();
+		$datos["time"] = Helpers::TimeId();
 
 	    $db->insert("categorias", $datos);
 
@@ -77,6 +87,8 @@ class Icono{
 	    $datos["cod"] = $cat;
 	    $datos["edo"] = "1";
 	    $datos["td"] = $_SESSION['td'];
+	    $datos["hash"] = Helpers::HashId();
+		$datos["time"] = Helpers::TimeId();
 
 	    $db->insert("images", $datos);
 
@@ -92,17 +104,20 @@ class Icono{
 		$cambio = array();
 		    $cambio["nombre"] = $nombre;
 		    $cambio["categoria"] = $popup;
-		    $db->update("producto", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+		    
+		    Helpers::UpdateId("producto", $cambio, "cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$cambio = array();
 		    $cambio["nombre"] = $nombre;
 		    $cambio["cat"] = $_REQUEST["popup"];
-		    $db->update("precios", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+		    
+		    Helpers::UpdateId("precios", $cambio, "cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$cambio = array();
 		    $cambio["img_name"] = $imagen;
 		    $cambio["popup"] = $popup;
-		    $db->update("images", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+		    
+		    Helpers::UpdateId("images", $cambio, "cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$db->close();
 
@@ -117,11 +132,13 @@ class Icono{
 
 		$cambio = array();
 		    $cambio["categoria"] = $nombre;
-		    $db->update("categorias", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+		    
+		    Helpers::UpdateId("categorias", $cambio, "cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$cambio = array();
 		    $cambio["img_name"] = $imagen;
-		    $db->update("images", $cambio, "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+		    
+		    Helpers::UpdateId("images", $cambio, "cod='$cod' and td = ".$_SESSION["td"]."");
 
 		$db->close();
 
@@ -135,23 +152,24 @@ class Icono{
 	public function DelProducto($cod){
     	$db = new dbConn();
 
-		$db->delete("producto", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
-		$db->delete("precios", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
-		$db->delete("images", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+		Helpers::DeleteId("producto", "cod='$cod' and td = ".$_SESSION["td"]."");
+		Helpers::DeleteId("precios", "cod='$cod' and td = ".$_SESSION["td"]."");
+		Helpers::DeleteId("images", "cod='$cod' and td = ".$_SESSION["td"]."");
 		// para despues que este comida empleado
-		// $db->delete("comida_empleado_ico", "WHERE cod='".$_REQUEST["cod"]."'")
+		// Helpers::DeleteId("comida_empleado_ico", "WHERE cod='".$_REQUEST["cod"]."'")
 
 		$db->close();
     	}
 
 	public function DelCategoria($cod){
     	$db = new dbConn();
-			$db->delete("popup", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
-			$db->delete("images", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
+			Helpers::DeleteId("popup", "cod='$cod' and td = ".$_SESSION["td"]."");
+			Helpers::DeleteId("images", "cod='$cod' and td = ".$_SESSION["td"]."");
 
 			$cambio = array();
 			    $cambio["popup"] = "0";
-			    $db->update("images", $cambio, "WHERE popup='$cod' and td = ".$_SESSION["td"]."");
+			    
+			    Helpers::UpdateId("images", $cambio, "popup='$cod' and td = ".$_SESSION["td"]."");
 
 			$db->close();
     	}
@@ -225,6 +243,8 @@ class Icono{
 	    $datos["nombre"] = $nombre;
 	    $datos["cod"] = $this->GetUltimaOpcion();
 	    $datos["td"] = $_SESSION['td'];
+	    $datos["hash"] = Helpers::HashId();
+		$datos["time"] = Helpers::TimeId();
 	    $db->insert("opciones", $datos);
 
 	    $this->VerOpciones();
@@ -239,7 +259,8 @@ class Icono{
 	    $datos["cod"] =	$codi;
 	    $datos["opcion"] = $cod;
 	    $datos["td"] = $_SESSION['td'];
-
+	    $datos["hash"] = Helpers::HashId();
+		$datos["time"] = Helpers::TimeId();
 	    $db->insert("opciones_name", $datos);
 
 	    // inserto en la tabla de imagenes
@@ -250,7 +271,8 @@ class Icono{
 		    $datos["cod"] =	$codi;
 		    $datos["edo"] = "1";
 		    $datos["td"] = $_SESSION['td'];
-
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    $db->insert("images", $datos);
 
 		$this->VerOpcionesName($cod);
@@ -325,9 +347,9 @@ class Icono{
 
 	public function DelOpciones($cod){
     	$db = new dbConn();
-			$db->delete("opciones", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
-			$db->delete("opciones_name", "WHERE opcion='$cod' and td = ".$_SESSION["td"]."");
-			$db->delete("opciones_asig", "WHERE opcion='$cod' and td = ".$_SESSION["td"]."");
+			Helpers::DeleteId("opciones", "cod='$cod' and td = ".$_SESSION["td"]."");
+			Helpers::DeleteId("opciones_name", "opcion='$cod' and td = ".$_SESSION["td"]."");
+			Helpers::DeleteId("opciones_asig", "opcion='$cod' and td = ".$_SESSION["td"]."");
 			$db->close();
 			$this->VerOpciones();
     	}
@@ -335,8 +357,8 @@ class Icono{
 
 	public function DelOpcionesName($cod){
     	$db = new dbConn();
-			$db->delete("opciones_name", "WHERE cod='$cod' and td = ".$_SESSION["td"]."");
-			$db->delete("opciones_asig", "WHERE opcion='$cod' and td = ".$_SESSION["td"]."");
+			Helpers::DeleteId("opciones_name", "cod='$cod' and td = ".$_SESSION["td"]."");
+			Helpers::DeleteId("opciones_asig", "opcion='$cod' and td = ".$_SESSION["td"]."");
 			$db->close();
 			$this->VerOpcionesName();
     	}
@@ -368,7 +390,8 @@ class Icono{
 			
 			$cambio = array();
 		    $cambio["img_order"] = $count;
-		    $db->update("images", $cambio, "WHERE id='$id' and td = ".$_SESSION["td"]."");
+		    
+		    Helpers::UpdateId("images", $cambio, "id='$id' and td = ".$_SESSION["td"]."");
 
 			$count ++;	
 		} $a->close();

@@ -164,7 +164,9 @@ elseif(isset($_GET["update"])) {
 echo '<script type="text/javascript" src="assets/js/query/sync.js?v='.$numero.'"></script>';
 }
 
-
+elseif(isset($_GET["tablas"])) {
+echo '<script type="text/javascript" src="assets/js/query/conf_config.js?v='.$numero.'"></script>';
+} 
 /// admin
 elseif(isset($_GET["db_sync"])) {
 echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
@@ -212,11 +214,7 @@ include_once 'system/historial/script.php';
 
 // para el respaldo
 	if($_GET["modal"] == "respaldar"){
-		if($_REQUEST["fecha"] != NULL or $_REQUEST["type"] != NULL){
-			$url = "sync/respaldar.php?fecha=" . $_REQUEST["fecha"] . "&type=" . $_REQUEST["type"] . "&delete=" . $_REQUEST["delete"];
-		} else {
-			$url = "sync/respaldar.php";
-		}
+			$url = "sync/push.php";
 		?>
 			<script>
 				$(document).ready(function(){

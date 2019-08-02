@@ -19,13 +19,16 @@ if($_POST){
                     $datos["fecha"] = date("d-m-Y");
                     $datos["hora"] = date("H:i:s");
                     $datos["td"] = $_SESSION["td"];
+                    $datos["hash"] = Helpers::HashId();
+                    $datos["time"] = Helpers::TimeId();
                     $db->insert("mesa_nombre", $datos); 
 
         } else { // actualizamos
 
               $cambio = array();
               $cambio["nombre"] =$_POST["nombre"];
-              $db->update("mesa_nombre", $cambio, "WHERE mesa = ".$_GET["mesa"]." and tx = ".$_SESSION["tx"]." and td =".$_SESSION["td"]."");
+              
+              Helpers::UpdateId("mesa_nombre", $cambio, "mesa = ".$_GET["mesa"]." and tx = ".$_SESSION["tx"]." and td =".$_SESSION["td"]."");
 
         }
         echo '<script>

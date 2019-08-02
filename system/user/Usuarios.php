@@ -14,6 +14,8 @@ class Usuarios{
     $datos["tkn"] = 1;
     $datos["avatar"] = "1.png";
     $datos["td"] = $_SESSION['td'];
+    $datos["hash"] = Helpers::HashId();
+	$datos["time"] = Helpers::TimeId();
     if ($db->insert("login_userdata", $datos)) {
         unset($_SESSION['newuser']);
         echo '<h2>Usuario agregado con exito!</h2>';
@@ -28,7 +30,8 @@ class Usuarios{
 	    	    $cambio = array();
 			    $cambio["nombre"] = $nombre;
 			    $cambio["tipo"] = $tipo;
-			    if ($db->update("login_userdata", $cambio, "WHERE user='$user'")) {
+			    
+			    if (Helpers::UpdateId("login_userdata", $cambio, "user='$user'")) {
 			    Alerts::Alerta("success","Actualizado","Usuario Actualizado");
 			    } else {
 			    Alerts::Alerta("error","Error!","Error al actualizar!");
@@ -42,7 +45,8 @@ class Usuarios{
 
 	    	    $cambio = array();
 			    $cambio["avatar"] = $avatar;
-			    if ($db->update("login_userdata", $cambio, "WHERE user='$user'")) {
+			    
+			    if (Helpers::UpdateId("login_userdata", $cambio, "user='$user'")) {
 			    Alerts::Alerta("success","Actualizado","Usuario Actualizado");
 			    echo '<img src="assets/img/avatar/'.$avatar.'" class="img-fluid rounded-circle hoverable mx-auto d-block" alt="alt="avatar mx-auto white">';
 			     
@@ -68,7 +72,8 @@ class Usuarios{
 	        	$cambio = array();
 			    $cambio["password"] = $password;
 			    $cambio["salt"] = $random_salt;
-			    if ($db->update("login_members", $cambio, "WHERE username = '".$_SESSION["username"]."'")) {
+			    
+			    if (Helpers::UpdateId("login_members", $cambio, "username = '".$_SESSION["username"]."'")) {
 
 			    	Alerts::Alerta("success","Password Cambiado","Pasword cambiado correctamente!");
 			    }
@@ -123,9 +128,9 @@ class Usuarios{
 	public function EliminarUsuario($iden, $username) {
 			$db = new dbConn();
 			
-			if ( $db->delete("login_members", "WHERE id='$iden'")) {
+			if ( Helpers::DeleteId("login_members", "id='$iden'")) {
         	
-        		if ( $db->delete("login_userdata", "WHERE user='$username'")) {
+        		if ( Helpers::DeleteId("login_userdata", "user='$username'")) {
 	        	
 	        	$this->VerUsuarios();
 	     	Alerts::Alerta("success","Usuario Eliminado","Usuario eliminado correctamente!");

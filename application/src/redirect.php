@@ -79,7 +79,10 @@ elseif(isset($_GET["update"])) include_once 'system/sync/actualizaciones.php';
 
 elseif(isset($_GET["ctc"])) include_once 'system/config_configuraciones/cambio_tipo_cuenta.php';
 
+elseif(isset($_GET["tablas"])) include_once 'system/config_configuraciones/tablas.php';
+
 elseif($_SESSION['sinuso'] != NULL) include_once 'system/index/mensajes.php';
+
 
 
 // admin

@@ -19,6 +19,8 @@ class Gasto{
 			    $datos["user"] = $_SESSION["user"];
 			    $datos["edo"] = 1;
 			    $datos["td"] = $_SESSION["td"];
+			    $datos["hash"] = Helpers::HashId();
+				$datos["time"] = Helpers::TimeId();
 			    if ($db->insert("gastos", $datos)) {
 			        Alerts::Alerta("success","Agregado Correctamente","Gasto Agregado corectamente!");
 			    } else {
@@ -103,7 +105,8 @@ class Gasto{
 
 			    $cambio = array();
 			    $cambio["edo"] = 0;
-			    if ($db->update("gastos", $cambio, "WHERE id='$iden' and td = ".$_SESSION["td"]."")) {
+			    
+			    if (Helpers::UpdateId("gastos", $cambio, "id='$iden' and td = ".$_SESSION["td"]."")) {
 			        Alerts::Alerta("warning","Gasto Eliminado","Se ha eliminado el registo correctamente!");
 			    } else {
 			        Alerts::Alerta("info","Error","No se ha eliminado el registo correctamente!"); 

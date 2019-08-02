@@ -32,7 +32,7 @@ class Config{
 	    $cambio["venta_especial"] = $venta_especial;
 	    $cambio["imprimir_antes"] = $imprimir_antes;
 	    $cambio["cambio_tx"] = $cambio_tx;
-	    if ($db->update("config_master", $cambio, "WHERE td = ".$_SESSION["td"]."")) {
+	    if (Helpers::UpdateId("config_master", $cambio, "td = ".$_SESSION["td"]."")) {
 	    	$this->CrearVariables();
 	        Alerts::Alerta("success","Echo!","Registros actualizados correctamente");
 	    } else {
@@ -58,7 +58,8 @@ class Config{
 	    $cambio["ftp_password"] = $ftp_password;
 	    $cambio["tipo_sistema"] = $tipo_sistema;
 	    $cambio["plataforma"] = $plataforma;
-	    if ($db->update("config_root", $cambio, "WHERE td = ".$_SESSION["td"]."")) {
+	    
+	    if (Helpers::UpdateId("config_root", $cambio, "td = ".$_SESSION["td"]."")) {
 	    	$this->CrearVariables();
 	        Alerts::Alerta("success","Echo!","Registros actualizados correctamente");
 	    } else {
@@ -487,6 +488,8 @@ $return.= ' ?>';
 		    $datos = array();
 		    $datos["user"] = $user;
 		    $datos["sucursal"] = $td;
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("login_sucursales", $datos)) {
 		    Alerts::Alerta("success","Agregado Correctamente","Usuario agregado correctamente a la sucursal");
 		    } else {
@@ -561,7 +564,8 @@ $return.= ' ?>';
 
 		    $cambio = array();
 		    $cambio["td"] = $td;
-		    if ($db->update("login_userdata", $cambio, "WHERE user = '$user'")) {
+		    
+		    if (Helpers::UpdateId("login_userdata", $cambio, "user = '$user'")) {
 			    
 		   		$_SESSION['td'] = $td;
 		      	$_SESSION['secret_key'] = md5($_SESSION['td']);
@@ -574,6 +578,125 @@ $return.= ' ?>';
 
 		     
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/// para las tablas a sync
+
+
+	public function VerTablas(){
+		$db = new dbConn();
+
+	$tables = $db->listTables();
+    $arrlength = count($tables);
+
+		echo '<table class="table table-sm table-striped">
+	   <thead>
+	     <tr>
+	       <th>Nombre de la Tabla</th>
+	       <th>Estado</th>
+	       <th>Acci&oacuten</th>
+	     </tr>
+	   </thead>
+	   <tbody>';
+			for($x = 0; $x < $arrlength; $x++) {     
+	
+		echo '<tr>
+		       <td>' . $tables[$x] . '</td>';
+		       if($this->VerificaTabla($tables[$x]) != FALSE){
+		       	if($this->VerificaTabla($tables[$x]) == 1){
+		       		$color = 'fas fa-check blue-text';
+		       	} else {
+		       		$color = 'fas fa-ban red-text';
+		       	}
+		       	echo '<td>Existe</td>
+		       	<td><a id="tablemod" op="15" tabla="'.$tables[$x].'" accion="2" edo="'. $this->VerificaTabla($tables[$x]). '" class="btn-floating btn-sm"><i class="'.$color.'"></i></a></td>';
+		       } else {
+		       	echo '<td>No existe</td>
+		       	<td><a id="tablemod" op="15" tabla="'.$tables[$x].'" accion="1"  class="btn-floating btn-sm"><i class="fas fa-check-circle green-text"></i></a></td>';
+		       }
+		echo '</tr>';
+
+		    } 
+		echo '</tbody>
+		</table>';
+ 
+ }
+
+
+
+	public function VerificaTabla($tabla){
+		$db = new dbConn();
+
+		$a = $db->query("SELECT edo FROM sync_tabla WHERE tabla = '$tabla' and td =  ".$_SESSION["td"]."");
+		if($a->num_rows > 0){
+			    foreach ($a as $b) {
+		        return $b["edo"];
+		    	}
+		} else {
+			return FALSE;
+		} $a->close();
+ }
+
+
+	public function ModTabla($datos){
+		$db = new dbConn();
+
+		if($datos["accion"] == "1"){
+
+			    $inserta = array();
+			    $inserta["tabla"] = $datos["tabla"];
+			    $inserta["edo"] = 1;
+			    $inserta["hash"] = Helpers::HashId();
+			    $inserta["time"] = Helpers::TimeId();
+			    $inserta["td"] = $_SESSION["td"];
+			    if ($db->insert("sync_tabla", $inserta)) {
+			        Alerts::Alerta("success","Agregado Correctamente","Se Agrego esta tabla");
+			    } 
+
+		} else {
+
+			if($datos["edo"] == "1"){
+					    $cambio = array();
+					    $cambio["edo"] = "2";
+					    
+					    if (Helpers::UpdateId("sync_tabla", $cambio, "tabla='".$datos["tabla"]."'and td = ".$_SESSION["td"]."")) {
+					     Alerts::Alerta("error","Cambiado Correctamente","Se Cambio el estado esta tabla a Inactivo");
+					    }
+			} else {
+					    $cambio = array();
+					    $cambio["edo"] = "1";
+					    
+					    if (Helpers::UpdateId("sync_tabla", $cambio, "tabla='".$datos["tabla"]."'and td = ".$_SESSION["td"]."")) {
+					     Alerts::Alerta("info","Cambiado Correctamente","Se Cambio el estado esta tabla a Activo");
+					    }
+
+			}
+		}
+	
+	$this->VerTablas();
+
+	}
+
+
+
+
+
+
+
+
+
+
 
 
 

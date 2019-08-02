@@ -12,42 +12,14 @@ $db = new dbConn();
 
 
 // busca todos los archivos en el directorio
-$archivos = glob("/home/superpol/public_html/pizto.com/admin/sync/db/*.sql");  
+$archivos = glob("/home/superpol/public_html/pizto.com/admin/sync/database/*.sql");  
   foreach($archivos as $data){ 
 
-  	$data = str_replace("/home/superpol/public_html/pizto.com/admin/sync/db/", "", $data);
+  	$data = str_replace("/home/superpol/public_html/pizto.com/admin/sync/database/", "", $data);
   	$hash = str_replace(".sql", "", $data);
 
-    $archx = "/home/superpol/public_html/pizto.com/admin/sync/db/" . $data;            
+    $archx = "/home/superpol/public_html/pizto.com/admin/sync/database/" . $data;            
 
-// obtener el td y type del archivo
-    $fecha = date("d-m-Y");
-  	$numero = strpos($hash, "-"); // extrae caracteres antes de -
-	$td = substr($hash,0,$numero); // extrae el td
-	$countc = strlen($td); // cuenta el numero de caracteres de td
-	$type = substr($hash,$countc+1,1); // el numero de caracteres depues de td -
-
-
-//td-type-hash
-
-
-// primero compruebo si es 1 o 5, respaldo o sincronizcion
-	if($type == 5){
-		// compruebo si ya hay backup tipo 1 del sync del dia y td
-		$a = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha' and tipo = 1 and td = '$td'");
-		if($a->num_rows == 0){ // si no hay un respaldo
-			if (file_exists($archx)) {
-		    $sql = explode(";",file_get_contents($archx));//
-			foreach($sql as $query){
-			@$db->query($query);
-			} @unlink($archx); } 
-
-		} else { // si hay respaldo
-		    @unlink($archx);	
-		}
-
-
-	} else {
 
 		// si no es sincronizacion lo ejecuto siempre
 			if (file_exists($archx)) {
@@ -55,11 +27,6 @@ $archivos = glob("/home/superpol/public_html/pizto.com/admin/sync/db/*.sql");
 			foreach($sql as $query){
 			@$db->query($query);
 			} @unlink($archx); } 
-
-
-	} // termina comprobacion si es sincronizacion o backup
-
-
 
 
 } // termina busqueda de archivos en la carpeta

@@ -20,7 +20,7 @@ class Pantallas{
 	    $db = new dbConn();
 
 		$cambio = array();
-	    $cambio["tkn"] = $edo;
+	    $cambio["tkn"] = $edo;   
 	    $db->update("login_userdata", $cambio, "WHERE tkn != '$edo' and td = ".$_SESSION["td"]."");
 
 	}
@@ -222,6 +222,8 @@ class Pantallas{
 	    $datos["hora"] = date("H:i:s");
 	    $datos["edo"] = 1;
 	    $datos["td"] = $_SESSION["td"];
+	    $datos["hash"] = Helpers::HashId();
+		$datos["time"] = Helpers::TimeId();
 	    $db->insert("control_cocina", $datos);
 
 	}
@@ -232,7 +234,8 @@ class Pantallas{
 
 			$cambio = array();
 		    $cambio["edo"] = 3;
-		    $db->update("control_cocina", $cambio, "WHERE mesa = '$mesa' and td = ".$_SESSION["td"]."");
+		    
+		    Helpers::UpdateId("control_cocina", $cambio, "mesa = '$mesa' and td = ".$_SESSION["td"]."");
 	}
 
 	public function EliminaProducto($iden) {
@@ -240,7 +243,8 @@ class Pantallas{
 
 			$cambio = array();
 		    $cambio["edo"] = 3;
-		    $db->update("control_cocina", $cambio, "WHERE identificador = '$iden' and td = ".$_SESSION["td"]."");
+		    
+		    Helpers::UpdateId("control_cocina", $cambio, "identificador = '$iden' and td = ".$_SESSION["td"]."");
 	}
 
 	public function PasarProducto($iden,$cod,$identificador) {
@@ -249,7 +253,8 @@ class Pantallas{
 			$cambio = array();
 			$cambio["hora_salida"] = date("H:i:s");
 		    $cambio["edo"] = 2;
-			$db->update("control_cocina", $cambio, "WHERE id = '$iden' and cod = '$cod' and identificador = '$identificador' and td = ".$_SESSION["td"]."");
+		    
+			Helpers::UpdateId("control_cocina", $cambio, "id = '$iden' and cod = '$cod' and identificador = '$identificador' and td = ".$_SESSION["td"]."");
 	}
 
 	public function CambiarPanel($option) {

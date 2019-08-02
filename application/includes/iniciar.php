@@ -115,7 +115,7 @@ $user=sha1($_SESSION['username']);
         if($estado == 1){
             include_once '../../system/ventas/Venta.php'; 
                 if(Venta::VerProductosMesa($_SESSION["mesa"]) == NULL){
-                  $db->delete("mesa", "WHERE estado = 1 and mesa = '$mesa' and tx = ". $_SESSION["tx"] ." and td = " . $_SESSION["td"]);
+                  Helpers::DeleteId("mesa", "estado = 1 and mesa = '$mesa' and tx = ". $_SESSION["tx"] ." and td = " . $_SESSION["td"]);
                 }
         }
     }

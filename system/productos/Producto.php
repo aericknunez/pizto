@@ -12,11 +12,14 @@ class Producto{
 		    $datos["unidad"] = $nombre;
 		    $datos["abreviacion"] = $abreviacion;
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("pro_unidades_medida", $datos)) {
 		    		$i = $db->insert_id();
 		    	    $cambio = array();
 				    $cambio["iden"] =  $i;
-		    	$db->update("pro_unidades_medida", $cambio, "WHERE id=" . $i);
+				    
+		    	Helpers::UpdateId("pro_unidades_medida", $cambio, "id=" . $i);
 		       Alerts::Alerta("success","Agregado Correctamente","Unidad de medida Agregado corectamente!");
 		    }else {
 			    	Alerts::Alerta("danger","Error","Error desconocido, no se agrego el registro!");
@@ -130,7 +133,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		public function BorrarUnidad($iden) {
 		$db = new dbConn();
 		    
-		    if ($db->delete("pro_unidades_medida", "WHERE iden='$iden' and td = ".$_SESSION["td"]."")) {
+		    if (Helpers::DeleteId("pro_unidades_medida", "iden='$iden' and td = ".$_SESSION["td"]."")) {
 		        
 		        Alerts::Alerta("warning","Unidad Eliminado","Se ha eliminado el registo correctamente!");
 			    $this->VerUnidad(1);
@@ -148,11 +151,14 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		    $datos["producto"] = $producto;
 		     $datos["cantidad"] = $cantidad;
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("pro_dependiente", $datos)) {
 		    	$i = $db->insert_id();
 		    	    $cambio = array();
 				    $cambio["iden"] =  $i;
-		    	$db->update("pro_dependiente", $cambio, "WHERE id=" . $i);
+				    
+		    	Helpers::UpdateId("pro_dependiente", $cambio, "id=" . $i);
 		       Alerts::Alerta("success","Agregado Correctamente","Porcion de medida Agregado corectamente!");
 		    }else {
 			    	Alerts::Alerta("danger","Error","Error desconocido, no se agrego el registro!");
@@ -277,7 +283,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		public function BorrarPorcion($iden) {
 		$db = new dbConn();
 		    
-		    if ($db->delete("pro_dependiente", "WHERE iden='$iden' and td = ".$_SESSION["td"]."")) {
+		    if (Helpers::DeleteId("pro_dependiente", "iden='$iden' and td = ".$_SESSION["td"]."")) {
 		        
 		        Alerts::Alerta("warning","Porcion Eliminado","Se ha eliminado el registo correctamente!");
 			    $this->VerPorciones(1);
@@ -297,11 +303,14 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		    $datos["cantidad"] = $cantidad;
 		     $datos["um"] = $unidad;
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("pro_bruto", $datos)) {
 		    	$i = $db->insert_id();
 		    	    $cambio = array();
 				    $cambio["iden"] =  $i;
-		    	$db->update("pro_bruto", $cambio, "WHERE id=" . $i);
+				    
+		    	Helpers::UpdateId("pro_bruto", $cambio, "id=" . $i);
 		       Alerts::Alerta("success","Agregado Correctamente","Materia de medida Agregado corectamente!");
 		    }else {
 			    	Alerts::Alerta("danger","Error","Error desconocido, no se agrego el registro!");
@@ -439,8 +448,8 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		public function BorrarMateria($iden) {
 		$db = new dbConn();
 		    
-		    if ($db->delete("pro_bruto", "WHERE iden='$iden' and td = ".$_SESSION["td"]."")) {
-		        $db->delete("alter_materiaprima_reporte", "WHERE producto=" . $iden);
+		    if (Helpers::DeleteId("pro_bruto", "iden='$iden' and td = ".$_SESSION["td"]."")) {
+		        Helpers::DeleteId("alter_materiaprima_reporte", "producto=" . $iden);
 		        Alerts::Alerta("warning","Materia Eliminado","Se ha eliminado el registo correctamente!");
 			    $this->VerMateria(1);
 		    }
@@ -458,6 +467,8 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		    $datos = array();
 		    $datos["producto"] = $id;
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("alter_materiaprima_reporte", $datos)) {
 		      Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido cambiado correctamente");
 		    } else {
@@ -466,7 +477,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 
 		} else {
 
-			    if ( $db->delete("alter_materiaprima_reporte", "WHERE producto=" . $id)) {
+			    if ( Helpers::DeleteId("alter_materiaprima_reporte", "producto=" . $id)) {
 			        Alerts::Alerta("success","Cambiado Correctamente","El producto ha sido eliminado correctamente"); 
 			    } else {
 			        Alerts::Alerta("error","Error","Ha ocurrido un error desconocido"); 
@@ -634,11 +645,14 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		    $datos["cod"] = $cod;		    
 		    $datos["dependiente"] = $dependiente;
 		    $datos["td"] = $_SESSION["td"];
+		    $datos["hash"] = Helpers::HashId();
+			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("pro_asignado", $datos)) {
 		    	$i = $db->insert_id();
 		    	    $cambio = array();
 				    $cambio["iden"] =  $i;
-		    	$db->update("pro_asignado", $cambio, "WHERE id=" . $i);
+				    
+		    	Helpers::UpdateId("pro_asignado", $cambio, "id=" . $i);
 		       Alerts::Alerta("success","Agregado Correctamente","Producto Agregado corectamente!");
 		    }else {
 			    	Alerts::Alerta("warning","Error","Error desconocido, no se agrego el registro!");
@@ -688,7 +702,7 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 		public function BorrarPorcionProducto($iden,$cod) {
 		$db = new dbConn();
 		    
-		    if ($db->delete("pro_asignado", "WHERE iden='$iden' and td = ".$_SESSION["td"]."")) {
+		    if (Helpers::DeleteId("pro_asignado", "iden='$iden' and td = ".$_SESSION["td"]."")) {
 		        
 		        Alerts::Alerta("warning","Materia Eliminado","Se ha eliminado el registo correctamente!");
 			   $this->VerPorcionProducto($cod);
@@ -707,12 +721,13 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 	        			// si el panel es igual al que viene, elimino
 						if($bd["panel"] == $iden){
 							// eliminar
-							$db->delete("control_panel_mostrar", "WHERE producto='$cod' and td = " . $_SESSION['td']);
+							Helpers::DeleteId("control_panel_mostrar", "producto='$cod' and td = " . $_SESSION['td']);
 						} else {
 							// actualizar
 							$cambio = array();
 							$cambio["panel"] = $iden;
-							$db->update("control_panel_mostrar", $cambio, "WHERE producto='$cod' and td = ".$_SESSION["td"]."");	
+							
+							Helpers::UpdateId("control_panel_mostrar", $cambio, "producto='$cod' and td = ".$_SESSION["td"]."");	
 						}
 			    }
 			}  else { // si no existe en la tabla, lo agrego
@@ -720,6 +735,8 @@ $page <= 1 ? $enable = 'disabled' : $enable = '';
 				    $datos["producto"] = $cod;
 				    $datos["panel"] = $iden;
 				    $datos["td"] = $_SESSION["td"];
+				    $datos["hash"] = Helpers::HashId();
+					$datos["time"] = Helpers::TimeId();
 				    $db->insert("control_panel_mostrar", $datos);
 			}
 		  $ad->close();

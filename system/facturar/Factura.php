@@ -115,6 +115,8 @@ printer_draw_text($handle, "RTN: " . $_SESSION["rtn"], 0, $oi);
     $datos["rtn"] =  $_SESSION["rtn"];
     $datos["cliente"] = $_SESSION["cliente"];
     $datos["td"] = $_SESSION["td"];
+    $datos["hash"] = Helpers::HashId();
+     $datos["time"] = Helpers::TimeId();
     $db->insert("facturar_rtn_cliente", $datos); 
 /////////////////////////////////////////
 // @unset($_SESSION["cliente"]);
@@ -570,6 +572,8 @@ printer_draw_text($handle, "RTN: " . $_SESSION["rtn"], 0, $oi);
     $datos["rtn"] =  $_SESSION["rtn"];
     $datos["cliente"] = $_SESSION["cliente"];
     $datos["td"] = $_SESSION["td"];
+    $datos["hash"] = Helpers::HashId();
+    $datos["time"] = Helpers::TimeId();
     $db->insert("facturar_rtn_cliente", $datos); 
 /////////////////////////////////////////
 // @unset($_SESSION["cliente"]);
@@ -878,6 +882,8 @@ printer_draw_text($handle, "RTN: " . $_SESSION["rtn"], 0, $oi);
     $datos["rtn"] =  $_SESSION["rtn"];
     $datos["cliente"] = $_SESSION["cliente"];
     $datos["td"] = $_SESSION["td"];
+    $datos["hash"] = Helpers::HashId();
+    $datos["time"] = Helpers::TimeId();
     $db->insert("facturar_rtn_cliente", $datos); 
 /////////////////////////////////////////
 // @unset($_SESSION["cliente"]);

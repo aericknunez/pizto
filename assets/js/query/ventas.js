@@ -11,7 +11,7 @@ $(document).ready(function()
     	$.post("application/src/routes.php", {op:op, cod:cod, mesa:mesa, panel:panel, cliente:cliente}, 
     	function(htmlexterno){
 		$("#lateral").load('application/src/routes.php?op=22');
-		//$("#lateral").html(htmlexterno);
+		$("#ventana").html(htmlexterno);
    	 	});
 	});
 //}, 1000);
