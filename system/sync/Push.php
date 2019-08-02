@@ -160,7 +160,7 @@ class Push{
 			        $cambio = array();
 				    $cambio["creado"] = "1";
 				    if ($db->update("sync_up", $cambio, "WHERE comprobacion = '".$_SESSION["hash_name"]."'")) {
-				        return $hash;
+				        return $_SESSION["hash_name"];
 				    }
 	
 		   }
