@@ -28,22 +28,8 @@ if($a->num_rows == 0){
 
 	$handle = fopen($sync . ".sql",'w+');
 	$resultado.= 'INSERT INTO login_sync VALUES("", "'.$sync.'", "4", "1",  "'.$fecha.'", "'.$hora.'", "'.$_SESSION["temporal_td"].'");';
-	if(fwrite($handle,$resultado)){
-
-	$datos = array();
-	$datos["tipo"] = "4";
-	$datos["creado"] = "1";
-	$datos["subido"] = "0";
-	$datos["ejecutado"] = "0";
-	$datos["fecha"] = $fecha;
-	$datos["hora"] = $hora;
-	$datos["fechaF"] = strtotime($fecha);
-	$datos["hash"] = $sync;
-	$datos["td"] = $_SESSION["temporal_td"];
-	$datos["hash"] = Helpers::HashId();
-	$datos["time"] = Helpers::TimeId();
-	$db->insert("sync_status", $datos);
-	}
+	
+	fwrite($handle,$resultado);
 	unset($resultado);
 	fclose($handle);
 
@@ -70,12 +56,7 @@ foreach($sql as $query){
 
 	if($sync != NULL){
 		if(SubirFtp($sync) == TRUE){
-			$cambio = array();
-			$cambio["subido"] = 1;
-	    	$cambio["ejecutado"] = 1;
-			if(Helpers::UpdateId("sync_status", $cambio, "hash = '$sync' and td = ".$_SESSION["temporal_td"]."")){
-			 @unlink($sync . ".sql");	
-			}
+			@unlink($sync . ".sql");	
 		}	 
 	} 
 
