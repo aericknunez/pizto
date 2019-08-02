@@ -18,7 +18,6 @@ include_once '../common/Mysqli.php';
        $data = $b;
     }
 
-
     $a->close();
 
 echo json_encode($b, false);
