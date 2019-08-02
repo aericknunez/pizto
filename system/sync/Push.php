@@ -75,7 +75,6 @@ class Push{
 	    foreach ($a as $b) { /// aqui recorro una por una las tablas con obteniendo registros
 	
 	    	$tabla = $b["tabla"];
-	    	echo $tabla . "<br>";
 	//////////////////////        
 		    $s = $db->query("SELECT * FROM $tabla WHERE time BETWEEN '$inicio' AND '$final' and td = ".$_SESSION["temporal_td"]."");
 				foreach ($s as $y){ 
