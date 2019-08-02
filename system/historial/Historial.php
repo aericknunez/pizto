@@ -97,7 +97,7 @@ class Historial{
 					                  from ticket 
 					                  where cod != 8888 and edo = 1 and fecha like '%$fechax' and td = ".$_SESSION['td']." GROUP BY cod order by sum(cant) desc");
 					    
-					echo '<h1>Productos vendidos</h1>
+					echo '<h1 class="h1-responsive">Productos vendidos</h1>
 				    <table class="table table-striped">
 
 						<thead>

@@ -59,7 +59,7 @@ Busqueda::VerProductosFactura($_POST["search"]);
 </div>
 <?php 
 } else {
-	echo '<div align="center"><h2>No se ha encontrado ningun registro con este numero de factura</h2></div>';
+	echo '<div align="center"><h2 class="h2-responsive">No se ha encontrado ningun registro con este numero de factura</h2></div>';
 }
 
 

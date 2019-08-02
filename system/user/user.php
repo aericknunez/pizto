@@ -7,7 +7,7 @@ include_once 'system/user/Usuarios.php';
 
 $db = new dbConn();
 ?>
-<h1>Usuarios
+<h1 class="h1-responsive">Usuarios
 <?php 
 if($_SESSION['tipo_cuenta'] == 1 or $_SESSION['tipo_cuenta'] == 2){
 echo '<a href="?modal=registrar" class="btn-floating btn-sm blue-gradient"><i class="fas fa-user-tie"></i></i></a>';	

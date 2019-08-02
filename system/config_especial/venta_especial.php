@@ -7,7 +7,7 @@ include_once 'application/common/Mysqli.php';
 $db = new dbConn();
 
 ?>
-<h1>Configuraci&oacuten Especial</h1>
+<h1 class="h1-responsive">Configuraci&oacuten Especial</h1>
 <?php 
 echo '<div id="productos">';
 Config::VerProductosEspecial($_REQUEST["page"]);

@@ -38,7 +38,7 @@ $db = new dbConn();
 <div class="row">
   <div class="col-sm-6">
 
- <h2>Nueva Materia Prima</h2>
+ <h2 class="h2-responsive">Nueva Materia Prima</h2>
 Esta secci&oacuten es solamente para agregar el producto por primera vez
 <form name="form-materia" method="post" id="form-materia" class="text-center border border-light p-2">
     
@@ -88,7 +88,7 @@ Esta secci&oacuten es solamente para agregar el producto por primera vez
 <div class="row">
   <div class="col-sm-6">
 
-        <h2>Nuevas Porciones</h2>
+        <h2 class="h2-responsive">Nuevas Porciones</h2>
         <form name="form-porciones" id="form-porciones" class="text-center border border-light p-2">
     
     <input type="text" id="nombre" name="nombre" class="form-control mb-2" placeholder="Nombre" required="yes">
@@ -131,7 +131,7 @@ Esta secci&oacuten es solamente para agregar el producto por primera vez
     <!--Panel 3-->
 <?php if($_REQUEST["x"] == "3"){
  ?>
- <h2>Productos</h2>
+ <h2 class="h2-responsive">Productos</h2>
 
 <?php 
 echo '<div id="productos">';
@@ -147,7 +147,7 @@ echo '</div>';
     ?>
 <div class="row">
   <div class="col-sm-6">
-     <h2>Nueva Unidad de medida</h2>
+     <h2 class="h2-responsive">Nueva Unidad de medida</h2>
      <form name="form-unidades" id="form-unidades" class="text-center border border-light p-2">
      <input type="text" id="nombre" name="nombre" class="form-control mb-2" placeholder="Nombre de la Unidad" required="yes">
      <input type="text" id="abreviacion" name="abreviacion" class="form-control mb-2" placeholder="Abreviacion" required="yes">

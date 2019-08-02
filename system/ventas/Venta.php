@@ -245,8 +245,8 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    if($a->num_rows == 0){
 		    echo '<div align="center"><br><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable"></div>';
 		    } else {
-		    	echo '<br><h3>'.$_SESSION['config_cliente'].'</h3>';
-		    	echo '<table class="table table-striped table-sm">
+		    	echo '<br><h3 class="h3-responsive">'.$_SESSION['config_cliente'].'</h3>';
+		    	echo '<table class="table table-striped table-sm table-responsive">
 					  <thead>
 					    <tr>
 					      <th scope="col">#</th>
@@ -291,13 +291,13 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 						    		if($_SESSION['config_propina'] != 0.00){
 						    		echo '<p>Subtotal: '.$max.' | Propina '.$_SESSION['config_propina'].'% : '. Helpers::Dinero(Helpers::Propina($max)) .'</p>'; }
 
-						    		echo '<a id="cambiar-pantalla-inicio" op="87"><h1>Total: '. Helpers::Dinero(Helpers::PropinaTotal($max)) .'</h1></a>';
+						    		echo '<a id="cambiar-pantalla-inicio" op="87"><h1 class="h1-responsive">Total: '. Helpers::Dinero(Helpers::PropinaTotal($max)) .'</h1></a>';
 							}
 				    } else {
 				    			if($_SESSION['config_propina'] != 0.00){
 				    		echo '<p>Subtotal: '.$max.' | Propina '.$_SESSION['config_propina'].'% : '.Helpers::Dinero( Helpers::Propina($max)) .'</p>'; }
 
-				    		echo '<h1>Total: '. Helpers::Dinero(Helpers::PropinaTotal($max)) .'</h1>';
+				    		echo '<h1 class="h1-responsive">Total: '. Helpers::Dinero(Helpers::PropinaTotal($max)) .'</h1>';
 				    }
 				    	    
 				    
@@ -338,13 +338,13 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 			} else {
 
 				if($this->VerProductosMesa($_SESSION["mesa"]) == 0){
-					echo '<div align="center"><h2><a id="cambiar-pantalla-inicio" op="88">'.$_SESSION["config_cliente"].'</a></h2></div><br>';	
+					echo '<div align="center"><h2 class="h2-responsive"><a id="cambiar-pantalla-inicio" op="88">'.$_SESSION["config_cliente"].'</a></h2></div><br>';	
 				}
 
 				echo '<div align="center"><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable"></div>';
 
 				if($this->VerProductosMesa($_SESSION["mesa"]) == 0 and $_SESSION["tx"] == 0){
-					echo '<div align="center" class="border border-light"><h2>'. Corte::Porcentaje() .'</h2></div>';
+					echo '<div align="center" class="border border-light"><h2 class="h2-responsive">'. Corte::Porcentaje() .'</h2></div>';
 				}
 
 				
@@ -392,7 +392,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 				    if($_SESSION['config_propina'] != 0.00){
 						    		echo '<p>Subtotal: '.$max.' | Propina '.$_SESSION['config_propina'].'% : '. Helpers::Dinero(Helpers::Propina($max)) .'</p>'; }
 
-				    echo "<h1>Total: ". Helpers::Dinero(Helpers::PropinaTotal($max)) ."</h1>";
+				    echo "<h1 class='h1-responsive'>Total: ". Helpers::Dinero(Helpers::PropinaTotal($max)) ."</h1>";
 
 				 //    <div class="switch">
 					//   <label>

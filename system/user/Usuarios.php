@@ -18,7 +18,7 @@ class Usuarios{
 	$datos["time"] = Helpers::TimeId();
     if ($db->insert("login_userdata", $datos)) {
         unset($_SESSION['newuser']);
-        echo '<h2>Usuario agregado con exito!</h2>';
+        echo '<h2 class="h2-responsive">Usuario agregado con exito!</h2>';
         echo '<a href="?user" class="btn btn-cyan">Terminar...</a>';
    		 } 
 		$db->close();

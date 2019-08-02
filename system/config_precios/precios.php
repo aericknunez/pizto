@@ -20,7 +20,7 @@ $iden=$_REQUEST["iden"];
 }
 
 ?>
-<h1>Configuraci&oacuten de precios</h1>
+<h1 class="h1-responsive">Configuraci&oacuten de precios</h1>
     <table class="table table-sm table-striped">
 
    <thead>

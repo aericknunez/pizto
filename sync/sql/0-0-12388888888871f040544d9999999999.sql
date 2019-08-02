@@ -1,8 +1,6 @@
 DROP TABLE sync;
 DROP TABLE sync_status;
 DROP TABLE sync_up;
-DROP TABLE login_sync;
-
 
 ALTER TABLE `alter_materiaprima_reporte` ADD `hash` VARCHAR(12) NOT NULL AFTER `td`, ADD `time` INT(12) NOT NULL AFTER `hash`;
 

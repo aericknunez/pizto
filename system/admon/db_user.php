@@ -7,7 +7,7 @@ include_once 'system/admon/Admin.php';
 $admon = new Admin;
 
 ?>
-<h1>Sync de base de datos</h1>
+<h1 class="h1-responsive">Sync de base de datos</h1>
 
 <?php   
 echo '<div id="contenido">';

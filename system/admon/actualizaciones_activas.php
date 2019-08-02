@@ -8,7 +8,7 @@ include_once 'system/admon/Admin.php';
 $admon = new Admin;
 
 ?>
-<h1>Estado actualizaciones</h1>
+<h1 class="h1-responsive">Estado actualizaciones</h1>
 
 
 

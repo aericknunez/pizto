@@ -8,7 +8,7 @@ include_once 'system/admon/Admin.php';
 $admon = new Admin;
 
 ?>
-<h1>Listado archivos de Sincronizacion</h1>
+<h1 class="h1-responsive">Listado archivos de Sincronizacion</h1>
 
 
 

@@ -37,7 +37,7 @@ class Admin{
 	    echo '</tbody>
 		    </table>';
 		} else {
-			echo '<h1 class="text-danger text-center">No se encuentran archivos que sincronizar</h1>';
+			echo '<h1 class="h1-responsive text-danger text-center">No se encuentran archivos que sincronizar</h1>';
 		}
 		$a->close();
 	}

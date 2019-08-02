@@ -8,7 +8,7 @@ include_once 'application/common/Encrypt.php';
 
 ?>
 
-<h1>Configuraciones Raiz</h1>
+<h1 class="h1-responsive">Configuraciones Raiz</h1>
 Datos Generales del Sistema
     <table class="table table-sm table-striped">
 

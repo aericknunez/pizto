@@ -27,7 +27,7 @@ class Reporte{
 				$a = $db->query("select * from corte_diario where fecha = '$fecha' and td = ".$_SESSION['td']."");
 
 				if($a->num_rows > 0){  
-					echo '<h2>Corte Diario</h2>
+					echo '<h2 class="h2-responsive">Corte Diario</h2>
 				    <table class="table table-striped table-sm">
 
 						<thead>
@@ -83,7 +83,7 @@ class Reporte{
 				$a = $db->query("select * from ticket where fecha = '$fecha' and cod = 8889 and edo = 1 and td = ".$_SESSION['td']."");
 
 				if($a->num_rows > 0){  
-					echo '<h2>Venta Especial</h2>
+					echo '<h2 class="h2-responsive">Venta Especial</h2>
 				    <table class="table table-striped table-sm">
 						<thead>
 					     <tr>
@@ -166,7 +166,7 @@ class Reporte{
 				$a = $db->query("select * from ticket where fecha = '$fecha' and cod = 8888 and edo = 1 and td = ".$_SESSION['td']."");
 
 				if($a->num_rows > 0){  
-					echo '<h2>Otras Ventas</h2>
+					echo '<h2 class="h2-responsive">Otras Ventas</h2>
 				    <table class="table table-striped table-sm">
 						<thead>
 					     <tr>
@@ -229,7 +229,7 @@ class Reporte{
 				$a = $db->query("select * from alter_producto_reporte where td = ".$_SESSION['td']."");
 
 				if($a->num_rows > 0){  
-					echo '<h2>Productos Especiales</h2>
+					echo '<h2 class="h2-responsive">Productos Especiales</h2>
 				    <table class="table table-striped table-sm">
 						<thead>
 					     <tr>
@@ -400,7 +400,7 @@ class Reporte{
 				$ar = $db->query("select * from ticket_num where fecha like '%$fechax' and td = ".$_SESSION['td']." and edo = 2 and tx = 1 order by id asc");
 			if($ar->num_rows > 0){ 
 
-					echo "<h2>Facturas Eliminadas</h2>";
+					echo '<h2 class="h2-responsive">Facturas Eliminadas</h2>';
 
 				echo '<hr>
 					<table class="table table-striped table-sm">
@@ -478,7 +478,7 @@ class Reporte{
 		$db = new dbConn();
 		    $a = $db->query("SELECT * FROM alter_materiaprima_reporte WHERE td = ". $_SESSION["td"]. " order by id desc");
 		    if($a->num_rows > 0){
-		    	echo "<h2>Productos especiales vendidos</h2>";
+		    	echo '<h2 class="h2-responsive">Productos especiales vendidos</h2>';
 		    	 echo '<table class="table table-sm table-striped">
 			  <thead>
 			    <tr>

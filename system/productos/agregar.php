@@ -8,7 +8,7 @@ $db = new dbConn();
 
 <div class="row">
   <div class="col-sm-4">
-     <h2>AGREGAR PRODUCTO</h2>
+     <h2 class="h2-responsive">AGREGAR PRODUCTO</h2>
      <form name="form-addpro" id="form-addpro" class="text-center border border-light p-2">
 
      <select id="producto" name="producto" class="browser-default form-control mb-2" required="yes">

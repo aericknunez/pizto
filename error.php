@@ -19,7 +19,7 @@ if (! $error) {
 		<a href="index.php"><img src="assets/img/imagenes/banner.png" alt="" /></a>
 	</div>
 	<div class="page">
-		<h2>Ha ocurrido un error!</h2>
+		<h2 class="h2-responsive">Ha ocurrido un error!</h2>
 		<p><?php echo $error; ?></p><p><a href="index.php">Regresar</a></p>
 	</div>
 </div>

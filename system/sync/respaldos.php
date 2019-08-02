@@ -9,7 +9,7 @@ include_once 'system/corte/Corte.php';
 include_once 'system/sync/Sync.php';
 $sync = new Sync();
 ?>
-<h1>RESPALDOS PENDIENTES <?php 
+<h1 class="h1-responsive">RESPALDOS PENDIENTES <?php 
 
 echo '<a href="?modal=respaldar&type=2" class="btn-floating btn-sm red"><i class="fas fa-download"></i></a> Configuraciones';
  ?></h1>

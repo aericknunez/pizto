@@ -4,7 +4,7 @@ include_once 'application/common/Mysqli.php';
 $db = new dbConn();
 ?>
 
-<h1>Configuraciones</h1>
+<h1 class="h1-responsive">Configuraciones</h1>
 Datos Generales del Sistema
     <table class="table table-sm table-striped">
 

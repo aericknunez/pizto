@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
-<h1>ACTUALIZACIONES</h1>
+<h1 class="h1-responsive">ACTUALIZACIONES</h1>
 
 
 <div class="row justify-content-md-center" id="loaderx">

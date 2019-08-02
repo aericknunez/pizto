@@ -10,7 +10,7 @@ class Mesas{
 		$db = new dbConn();
 		$a = $db->query("select * from mesa where fecha = '$fecha' and td = ".$_SESSION['td']." order by id desc");
 		    
-		echo ' <h1>Mesas registradas '.$fecha.'</h1>
+		echo ' <h1 class="h1-responsive">Mesas registradas '.$fecha.'</h1>
 		    <table class="table table-striped table-responsive-sm table-sm">
 
 		   <thead>
@@ -165,7 +165,7 @@ class Mesas{
 				    foreach ($s as $t) {
 				        $max=$t["sum(total)"];
 				    } $s->close();
-				    echo "<h1>Total: ". Helpers::Dinero($max) ."</h1>";
+				    echo "<h1 class='h1-responsive'>Total: ". Helpers::Dinero($max) ."</h1>";
 
 		    } $a->close();
 		   

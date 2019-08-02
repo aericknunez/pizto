@@ -345,7 +345,7 @@ if($_SESSION["caduca"] == 3){
 
 		public function SiCorte(){
 			if(Corte::UltimaFecha() == date("d-m-Y")){
-				return 'Diferencia corte:<h1>' . Helpers::Dinero(Corte::GetDiferencia(date("d-m-Y"))) . '</h1>';
+				return 'Diferencia corte:<h1 class="h1-responsive">' . Helpers::Dinero(Corte::GetDiferencia(date("d-m-Y"))) . '</h1>';
 			} else {
 				return '<p class="black-text display-4">Sin Corte</p>';
 			}
