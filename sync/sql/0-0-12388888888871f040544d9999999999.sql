@@ -54,6 +54,8 @@ ALTER TABLE `precios` ADD `hash` VARCHAR(12) NOT NULL AFTER `td`, ADD `time` INT
 
 ALTER TABLE `producto` ADD `hash` VARCHAR(12) NOT NULL AFTER `td`, ADD `time` INT(12) NOT NULL AFTER `hash`;
 
+ALTER TABLE `productos_venta_especial` ADD `hash` VARCHAR(12) NOT NULL AFTER `td`, ADD `time` INT(12) NOT NULL AFTER `hash`;
+
 ALTER TABLE `pro_asignado` ADD `hash` VARCHAR(12) NOT NULL AFTER `td`, ADD `time` INT(12) NOT NULL AFTER `hash`;
 
 ALTER TABLE `pro_bruto` ADD `hash` VARCHAR(12) NOT NULL AFTER `td`, ADD `time` INT(12) NOT NULL AFTER `hash`;
@@ -213,10 +215,6 @@ INSERT INTO `sync_tabla` (`id`, `tabla`, `edo`, `hash`, `time`, `td`) VALUES
 (34, 'pro_unidades_medida', 1, '72bf81b22d', 1564698709, 3),
 (35, 'producto', 1, 'b9218a9cd9', 1564698713, 3),
 (36, 'productos_venta_especial', 1, '8f6f17af02', 1564698717, 3),
-(37, 'sync_tabla', 1, 'd7cf9f18f6', 1564698721, 3),
-(38, 'sync_tables_updates', 1, 'd8135fb073', 1564698725, 3),
-(39, 'sync_up', 1, 'be0d1d63b8', 1564698730, 3),
-(40, 'sync_up_cloud', 1, '78910e10c8', 1564698734, 3),
 (41, 'ticket', 1, '7a9cfb6c6b', 1564698738, 3),
 (42, 'ticket_num', 1, 'd0a02a2ba4', 1564698742, 3),
 (43, 'ticket_propina', 1, '14459b72d6', 1564698746, 3),
