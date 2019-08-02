@@ -22,7 +22,7 @@ class Ftp{
 				    $cambio = array();
 				    $cambio["subido"] = "1";
 				    
-				    if (Helpers::UpdateId("sync_up", $cambio, "creado = 1 and comprobacion = '$archivo' and subido = 0 and td = ".$_SESSION["temporal_td"]." limit 1")) {
+				    if ($db->update("sync_up", $cambio, "WHERE creado = 1 and comprobacion = '$archivo' and subido = 0 and td = ".$_SESSION["temporal_td"]." limit 1")) {
 				       return TRUE;
 				    }
 

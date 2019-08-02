@@ -41,7 +41,7 @@ function SubirFtp($sync){
 						"caca007125-",
 						$sync,
 						"/admin/sync/database/",
-						"C:/AppServ/www/cozto/sync/". $sync .".sql") == TRUE){
+						"C:/AppServ/www/pizto/sync/". $sync .".sql") == TRUE){
 						return TRUE;
 		} else {
 			return FALSE;
