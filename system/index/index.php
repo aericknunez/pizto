@@ -32,7 +32,12 @@ if($_SESSION["muestra_vender"] == NULL){
 					$ventas = new Venta;
 					$ventas->CrearMesa(1); }
 
-				include_once 'application/iconos/iconos_'.$_SESSION["td"].'.php';
+					if(file_exists('application/iconos/iconos_'.$_SESSION["td"].'.php') == TRUE){
+						include_once 'application/iconos/iconos_'.$_SESSION["td"].'.php';
+					} else {
+						echo '<a id="crear-iconos" op="92" class="btn btn-success">Crear Iconos</a>';
+					}
+
 				} else {
 				include_once 'system/mesas/mesas.php';
 				}
@@ -69,7 +74,13 @@ if($_SESSION["muestra_vender"] == NULL){
 					if($_SESSION["mesa"] == NULL){
 					$ventas = new Venta;
 					$ventas->CrearMesa(1); }
-			include_once 'application/iconos/iconos_'.$_SESSION["td"].'.php';
+					
+					if(file_exists('application/iconos/iconos_'.$_SESSION["td"].'.php') == TRUE){
+						include_once 'application/iconos/iconos_'.$_SESSION["td"].'.php';
+					} else {
+						echo '<a id="crear-iconos" op="92" class="btn btn-success">Crear Iconos</a>';
+					}
+
 			} else {
 			include_once 'system/mesas/mesas.php';
 			}
@@ -93,7 +104,13 @@ if($_SESSION["muestra_vender"] == NULL){
 					if($_SESSION["mesa"] == NULL){
 					$ventas = new Venta;
 					$ventas->CrearMesa(1); }
-			include_once 'application/iconos/iconos_'.$_SESSION["td"].'.php';
+
+					if(file_exists('application/iconos/iconos_'.$_SESSION["td"].'.php') == TRUE){
+						include_once 'application/iconos/iconos_'.$_SESSION["td"].'.php';
+					} else {
+						echo '<a id="crear-iconos" op="92" class="btn btn-success">Crear Iconos</a>';
+					}
+			
 			} else {
 			include_once 'system/mesas/mesas.php';
 			}

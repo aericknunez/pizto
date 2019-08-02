@@ -100,4 +100,19 @@ $(document).ready(function()
  //    $("#contenido_paginador").load('application/src/routes.php?op=14&iden=1');
 	// $("#contenido_clientes").html(htmlexterno);
 
+
+//// crear iconos
+
+	$("body").on("click","#crear-iconos",function(){
+	var op = $(this).attr('op');
+    $.post("application/src/routes.php", {op:op}, 
+    	function(htmlexterno){
+	 $("#ventana").html(htmlexterno);
+	 window.location.href="?";
+   	 });
+
+	});
+
+
+
 });
