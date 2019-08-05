@@ -15,5 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="row justify-content-md-center" id="loaderx">
 	<img src="assets/img/loading.gif" alt=""></div>
 
-<div id="contenido">
-</div>
+<?php   
+echo '<div id="contenido">';
+$admon->VerSyncLocal(date("d-m-Y"), $_REQUEST["td"]);
+echo '</div>';
+ ?>

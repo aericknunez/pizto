@@ -147,20 +147,12 @@ class Admin{
 			$a = $db->query("SELECT * FROM corte_diario WHERE fecha = '$fecha' and td = ". $bc["td"] ."");
 				if($a->num_rows > 0){
 					$cortex = '<th scope="col" class="black-text">Con Corte</th>';
+					$edox = '<th scope="col" class="green-text">Correcto!</th>';
 				} else {
 					$cortex = '<th scope="col" class="red-text">Sin Corte</th>';
+					$edox = '<th scope="col" class="red-text">Error!</th>';
 				} 
     		$a->close();
-
-
-			
-    	$x = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha' and tipo = 1 and td = ". $bc["td"] ."");
-				if($x->num_rows > 0){
-				    	$edox = '<th scope="col" class="green-text">Correcto!</th>';
-				} else {
-				    	$edox = '<th scope="col" class="red-text">Error!</th>';
-				} 
-	    		$x->close();
 
 
 			   echo '<tr>
@@ -283,7 +275,7 @@ class Admin{
 	public function CompruebaHashHoy($fecha,$td){// comprueba cual esel hash de ahora
 		$db = new dbConn();
 
-	    	$a = $db->query("SELECT * FROM login_sync WHERE td = '$td' and fecha = '$fecha'"); 
+	    	$a = $db->query("SELECT * FROM sync_up_cloud WHERE td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
 	    		return '<th scope="col" class="text-success font-weight-bold">Ajecutandose</th>';	
 	    	} else {
@@ -296,7 +288,7 @@ class Admin{
 	public function CompruebaHashCorte($fecha,$td){// comprueba corte de ahora
 		$db = new dbConn();
 
-	    	$a = $db->query("SELECT * FROM login_sync WHERE tipo = 1 and td = '$td' and fecha = '$fecha'"); 
+	    	$a = $db->query("SELECT * FROM corte_diario WHERE edo = 1 and td = '$td' and fecha = '$fecha'"); 
 	    	if($a->num_rows > 0){
 	    		return '<th scope="col" class="text-success font-weight-bold">Ejecutado</th>';	
 	    	} else {
@@ -308,7 +300,7 @@ class Admin{
 
 	public function UltimaHoraHash($fecha,$td){ //para reporte nada mas
 		$db = new dbConn();
-	    if ($r = $db->select("hora", "login_sync", "where fecha = '$fecha' and td = '$td' order by id DESC LIMIT 1")) { 
+	   if ($r = $db->select("hora", "sync_up_cloud", "where fecha = '$fecha' and td = '$td' order by id DESC LIMIT 1")) { 
 	        $hora=$r["hora"];
 	    } 
 	    unset($r); 
@@ -323,7 +315,7 @@ class Admin{
 	public function Trafico($fecha){
 		$db = new dbConn();
   		
-   		$a = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha'");
+   		$a = $db->query("SELECT * FROM sync_up_cloud WHERE fecha = '$fecha'");
 		return $a->num_rows;
 		$a->close();
 
@@ -372,7 +364,7 @@ class Admin{
 	public function UltimosHas(){
 		$db = new dbConn();
 
-	 $a = $db->query("SELECT * FROM login_sync order by id desc limit 3");
+	 $a = $db->query("SELECT * FROM sync_up_cloud order by id desc limit 3");
 
 	if($a->num_rows > 0){
 	 echo '<div class="card mb-4">
@@ -385,7 +377,7 @@ class Admin{
             <div class="list-group list-group-flush">';
 	    foreach ($a as $b) {  
 		    echo '<a class="list-group-item list-group-item-action waves-effect">
-					<small>'. substr($b["hash"], 0, 30) .'</small>
+					<small>'. substr($b["comprobacion"], 0, 30) .'</small>
                     </a>';
 	    } 
 	    echo '</div>
