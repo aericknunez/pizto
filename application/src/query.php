@@ -214,7 +214,7 @@ include_once 'system/historial/script.php';
 
 // para el respaldo
 	if($_GET["modal"] == "respaldar"){
-			$url = "sync/push.php";
+			$url = "sync/push.php?corte=1";
 		?>
 			<script>
 				$(document).ready(function(){
