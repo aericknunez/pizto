@@ -83,13 +83,15 @@ function SubirFtp($sync){
 
 
 if(file_exists("desencadenador.php") == TRUE){
-	include_once 'desencadenador.php';
+	
 
 $az = $db->query("SELECT * FROM sync_tabla WHERE td = ".$_SESSION["temporal_td"]."");
 	if($az->num_rows > 0){
 
 		unlink("desencadenador.php");
 
+	} else {
+		include_once 'desencadenador.php';
 	}
 $az->close();
 	

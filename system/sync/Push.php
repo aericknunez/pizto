@@ -111,7 +111,7 @@ class Push{
 		   	 	$fecha = date("d-m-Y");
 		   	 	$hash = $fecha."-".$hora ."-" . $_SESSION["temporal_td"];
 		   	 	$hash = md5($hash);
-		   	 	$_SESSION["hash_name"] = $_SESSION["temporal_td"] . "-" . $hash;
+		   	 	$_SESSION["hash_name"] = $_SESSION["now"] . "-" . $_SESSION["temporal_td"] . "-" . $hash;
 
 
 		   // antes de escribir se le agrega la linea para el registro
