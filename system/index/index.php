@@ -9,9 +9,9 @@ include_once 'system/corte/Corte.php';
 include_once 'system/ventas/Venta.php';
 $db = new dbConn();
 
-if(Helpers::ServerDomain() == TRUE){
-Alerts::Mensaje('<strong>En este momento el Sistema se encuentra en tareas de mantenimiento urgentes. Es necesario que actualice su sistema local, y es muy probable que sus datos no estén disponibles en este momento.</strong>',"danger",NULL,NULL);	
-}
+// if(Helpers::ServerDomain() == TRUE){
+// Alerts::Mensaje('<strong>En este momento el Sistema se encuentra en tareas de mantenimiento urgentes. Es necesario que actualice su sistema local, y es muy probable que sus datos no estén disponibles en este momento.</strong>',"danger",NULL,NULL);	
+// }
 
 
 
