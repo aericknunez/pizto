@@ -82,21 +82,6 @@ function SubirFtp($sync){
 }
 
 
-if(file_exists("desencadenador.php") == TRUE){
-	
-
-$az = $db->query("SELECT * FROM sync_tabla WHERE td = ".$_SESSION["temporal_td"]."");
-	if($az->num_rows > 0){
-
-		unlink("desencadenador.php");
-
-	} else {
-		include_once 'desencadenador.php';
-	}
-$az->close();
-	
-}
-
 
 ///////// actualizar el root
 $data =  file_get_contents('https://pizto.com/admin/application/includes/root_json.php?x=' . $_SESSION["temporal_td"]); 

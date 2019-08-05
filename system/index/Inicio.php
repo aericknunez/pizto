@@ -317,7 +317,7 @@ if($_SESSION["caduca"] == 3){
 	public function LastUpdate(){
 		$db = new dbConn();
 
-		    if ($r = $db->select("*", "login_sync", "WHERE td = ".$_SESSION["td"]." and edo = 1 order by id desc")) {
+		    if ($r = $db->select("*", "sync_up_cloud", "WHERE td = ".$_SESSION["td"]." and ejecutado = 1 order by id desc")) {
 		    	if($r["fecha"] !=NULL){
 		    		return $r["fecha"] . " | " . $r["hora"];
 		    	} else {
