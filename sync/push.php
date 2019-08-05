@@ -67,3 +67,11 @@ function SubirFtp($sync){
 			return FALSE;
 		}
 }
+
+
+if($_REQUEST["corte"] != NULL){
+	echo '<script>
+			window.location.href="?corte";
+	</script>';
+}
+
