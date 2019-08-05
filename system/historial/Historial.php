@@ -504,7 +504,7 @@ class Historial{
 			      
 
 
-  			$a = $db->query("SELECT * FROM login_sync WHERE edo = 1 order by id desc limit 10");
+  			$a = $db->query("SELECT * FROM sync_up_cloud WHERE ejecutado = 1 order by id desc limit 10");
 	        	$total=0;
 	        	if($a->num_rows > 0){
 	        echo '<br><h3>&Uacuteltimos sincronizados</h3>
@@ -513,7 +513,7 @@ class Historial{
 			  <thead>
 			    <tr>
 			      <th>Hash</th>
-			      <th>Tipo</th>
+			      <th>Final</th>
 			      <th>Fecha</th>
 			      <th>Hora</th>
 			      <th>Local</th>
@@ -527,8 +527,8 @@ class Historial{
 		    	}unset($r); 
 		    	
 		    	echo '<tr>
-			      <th>'. $b["hash"] .'</th>
-			      <th>'. Helpers::VerTipoSync($b["tipo"]) .'</th>
+			      <th>'. $b["comprobacion"] .'</th>
+			      <th>'. $b["final"] .'</th>
 			      <td>'. $b["fecha"] .'</td>
 			      <td>'. $b["hora"] .'</td>
 			      <td>'. $cliente .'</td>
