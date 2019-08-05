@@ -1,11 +1,6 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
 
-
-include_once 'system/admon/Admin.php';
-$admon = new Admin;
 
 ?>
   <div class="row justify-content-md-center">
@@ -20,10 +15,5 @@ $admon = new Admin;
 <div class="row justify-content-md-center" id="loaderx">
 	<img src="assets/img/loading.gif" alt=""></div>
 
-
-
- <?php   
-echo '<div id="contenido">';
-$admon->EdoCortes(date("d-m-Y"));
-echo '</div>';
- ?>
+<div id="contenido">
+</div>
