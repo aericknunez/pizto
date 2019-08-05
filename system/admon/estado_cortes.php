@@ -20,8 +20,10 @@ $admon = new Admin;
 <div class="row justify-content-md-center" id="loaderx">
 	<img src="assets/img/loading.gif" alt=""></div>
 
-<?php   
+
+
+ <?php   
 echo '<div id="contenido">';
-$admon->VerSyncLocal(date("d-m-Y"), $_REQUEST["td"]);
+$admon->EdoCortes(date("d-m-Y"));
 echo '</div>';
  ?>

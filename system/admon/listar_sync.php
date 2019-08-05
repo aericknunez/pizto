@@ -17,7 +17,7 @@ $admon = new Admin;
 
 <?php   
 echo '<div id="contenido">';
-$admon->EdoCortes(date("d-m-Y"));
+$admon->VerSyncLocal(date("d-m-Y"), $_REQUEST["td"]);
 echo '</div>';
  ?>
 
