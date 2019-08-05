@@ -6,7 +6,7 @@ $db = new dbConn();
 
 
 include_once 'system/admon/Admin.php';
-$admin = new Admin; 
+$admon = new Admin; 
 ?>
   <div class="row justify-content-md-center">
     <div class="col-12 col-md-auto">
@@ -25,6 +25,6 @@ $admin = new Admin;
  <?php   
 echo '<div id="contenido">';
 $fecha = date("d-m-Y"); 
-$admin->EdoCortes($fecha);
+$admon->EdoCortes($fecha);
 echo '</div>';
  ?>
