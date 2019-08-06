@@ -6,9 +6,9 @@ class Push{
 	}
 
 
-	public function Execute(){
+	public function Execute($corte){
 		
-		if($this->VerificarCorteHoy(date("d-m-Y")) != TRUE){
+		if($this->VerificarCorteHoy(date("d-m-Y")) != TRUE or $corte != NULL){
 			$_SESSION["now"] =  $this->Now();
 			$_SESSION["last_update"] =  $this->LastUpdate();
 

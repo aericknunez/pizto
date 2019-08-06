@@ -39,7 +39,7 @@ $db = new dbConn();
 
 include_once '../system/sync/Push.php';
 $pushed =  new Push;
-$sync = $pushed->Execute();
+$sync = $pushed->Execute($_REQUEST["corte"]);
 
 if($sync != NULL){
 	if(SubirFtp($sync) == TRUE){
