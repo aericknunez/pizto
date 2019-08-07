@@ -91,7 +91,7 @@ class Admin{
 	public function VerSyncLocal($fecha,$td){
 		$db = new dbConn();
 
- $a = $db->query("SELECT * FROM login_sync WHERE fecha = '$fecha' and td = '$td' order by id desc");
+ $a = $db->query("SELECT * FROM sync_up_cloud WHERE fecha = '$fecha' and td = '$td' order by id desc");
 
 	if($a->num_rows > 0){
 	 echo '<table class="table table-sm table-striped">
@@ -106,8 +106,8 @@ class Admin{
 			  <tbody>';
 	    foreach ($a as $b) {  
 		    echo '<tr>
-		    		<th scope="col">'.$b["hash"].'</th>
-		    	  <th scope="col">'.Helpers::VerTipoSync($b["tipo"]).'</th>
+		    		<th scope="col">'.$b["comprobacion"].'</th>
+		    	  <th scope="col">'.$b["final"].'</th>
 			      <th scope="col">'.$b["fecha"].'</th>
 			      <th scope="col">'.$b["hora"].'</th>
 			      </tr>';

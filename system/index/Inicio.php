@@ -80,8 +80,6 @@ class Inicio{
 		    $datos["fechaF"] = Fechas::Format(date("d-m-Y"));
 		    $datos["hora"] = date("H:i:s");
 		    $datos["td"] = $_SESSION["td"];
-		    $datos["hash"] = Helpers::HashId();
-			$datos["time"] = Helpers::TimeId();
 		    $db->insert("login_inout", $datos); 		
 	}
 
