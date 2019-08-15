@@ -46,7 +46,7 @@ $cortes->Contenido(date("d-m-Y"));
 		 
 		 <div class="form-group row justify-content-center align-items-center">
 		  <div class="col-xs-2">
-		    <label for="ex1">Efectivo</label>
+		    <label for="ex1">Clave</label>
 		    <input name="random" type="text" id="random" size="8" maxlength="8" class="form-control" placeholder="HJS4D2" required autofocus />
 		  </div>
 		</div>

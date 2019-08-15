@@ -259,9 +259,6 @@ public function CancelarCorte($ramdom,$fecha){
 	public function Content($fecha){
 		$sync = new Sync;
 
-		echo '<div id="respaldo">';
-		$sync->RespaldoStatus($fecha);	
-		echo '</div>';	
 
 		 echo '<div class="card-deck">
 			    <!--Panel-->

@@ -127,53 +127,6 @@ class Sync{
 			$a->close();
 	}
 
-///////////// para revisar los respaldos
-
-
-	public function GetStatus($fecha){ // revisar si se ha revisado respaldo
-	    $db = new dbConn();
-
-			$a = $db->query("SELECT * FROM sync_status WHERE fecha = '$fecha' and tipo = 1 and td = ".$_SESSION["td"]."");
-			return $a->num_rows;
-			$a->close();
-
-	}
-
-
-	public function RevisarRespaldo($fecha){ // revisar si se ha revisado respaldo
-	    $db = new dbConn();
-
-		if ($r = $db->select("*", "sync_status", "WHERE fecha = '$fecha' and tipo = 1 and td = ".$_SESSION["td"]."")) { 
-	       $creado = $r["creado"]; $subido = $r["subido"]; $ejecutado = $r["ejecutado"];
-	    } unset($r);  
-	    if($creado == 1 and $subido == 0 and $ejecutado == 0){
-	    	return 1;
-	    }
-	    if($creado == 1 and $subido == 1 and $ejecutado == 0){
-	    	return 2;
-	    }
-	    if($creado == 1 and $subido == 1 and $ejecutado == 1){
-	    	return 3;
-	    }
-
-	}
-
-	public function RespaldoStatus($fecha){
-
-			if($this->GetStatus($fecha) >= 1){
-					if($this->RevisarRespaldo($fecha) == 1){
-						Alerts::RealizarRespaldo("Respaldo realizado pero aun no ha subido a la Web. Este proceso se har&aacute automaticamente");
-					}
-					if($this->RevisarRespaldo($fecha) == 2){
-						Alerts::RealizarRespaldo("Respaldo subido exitosamente.  Esperando a ser sincronizado...");
-					}
-					if($this->RevisarRespaldo($fecha) == 3){
-						Alerts::RealizadoRespaldo("Respaldo realizado correctamente");
-					}
-			} else {
-				Alerts::Mensaje("Aun no se ha realizado un respaldo","danger",'<a href="http://localhost/pizto/?modal=respaldar&delete=1"  class="btn btn-danger waves-effect waves-light">Intentar Nuevamente</a>',$boton2);
-			}
-	}
 
 
 	public function ComparaVersiones(){
