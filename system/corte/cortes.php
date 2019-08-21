@@ -42,16 +42,20 @@ $cortes->Contenido(date("d-m-Y"));
       <div class="modal-body">
         
 
-		<form id="form-cancelar" name="form-cancelar">
-		 
-		 <div class="form-group row justify-content-center align-items-center">
-		  <div class="col-xs-2">
-		    <label for="ex1">Clave</label>
-		    <input name="random" type="text" id="random" size="8" maxlength="8" class="form-control" placeholder="HJS4D2" required autofocus />
-		  </div>
-		</div>
-		<button class="btn btn-grey" id="btn-cancelar" name="btn-cancelar"><i class="fas fa-times fa-2x animated jello infinite"></i> Eliminar Corte</button>
-		</form>
+		    <div id="content">
+        
+        <form id="form-cancelar" name="form-cancelar">
+     
+     <div class="form-group row justify-content-center align-items-center">
+      <div class="col-xs-2">
+        <label for="ex1">Clave</label>
+        <input name="random" type="text" id="random" size="8" maxlength="8" class="form-control" placeholder="HJS4D2" required autofocus />
+      </div>
+    </div>
+    <button class="btn btn-grey" id="btn-cancelar" name="btn-cancelar"><i class="fas fa-times fa-2x animated jello infinite"></i> Eliminar Corte</button>
+    </form>
+
+        </div>
 
 
       </div>

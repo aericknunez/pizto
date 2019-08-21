@@ -44,9 +44,11 @@ return false;
             url: "application/src/routes.php",
             data: dataString,
             beforeSend: function () {
+            $("#contenido").hide();
                $("#corte").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
             },
-            success: function(data) {            
+            success: function(data) {  
+            $("#contenido").show();          
                 $("#corte").html(data); 
                 $("#contenido").load('application/src/routes.php?op=67'); 
             }
@@ -63,6 +65,9 @@ return false;
 			url: "application/src/routes.php?op=68",
 			method: "POST",
 			data: $("#form-cancelar").serialize(),
+			beforeSend: function () {
+               $("#content").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
 			success: function(data){
 				$("#corte").html(data);
 				$("#form-cancelar").trigger("reset");
