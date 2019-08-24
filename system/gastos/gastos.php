@@ -2,10 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
-include_once 'application/common/Mysqli.php';
 include_once 'system/gastos/Gasto.php';
 include_once 'system/corte/Corte.php';
-$db = new dbConn();
 
 if(Corte::UltimaFecha() == date("d-m-Y")){
 Alerts::CorteEcho("gastos");

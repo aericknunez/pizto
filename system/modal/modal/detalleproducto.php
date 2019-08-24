@@ -8,8 +8,6 @@
       <div class="modal-body">
 <!-- ./  content -->
 <?php 
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
 
   if ($r = $db->select("nombre", "producto", "WHERE cod = ".$_REQUEST["cod"]." and td = ".$_SESSION["td"]."")) { 
       echo "<h4>" . $r["nombre"]. "</h4> <hr>";

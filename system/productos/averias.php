@@ -1,9 +1,8 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-include_once 'application/common/Mysqli.php';
 include_once 'system/productos/Product.php';
-$db = new dbConn();
+
 ?>
 
 <div class="row">

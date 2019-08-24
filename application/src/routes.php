@@ -1,9 +1,12 @@
 <?php
-include_once '../common/Helpers.php';
+include_once '../common/Helpers.php'; // [Para todo]
 include_once '../includes/variables_db.php';
-include_once '../includes/db_connect.php';
-include_once '../includes/functions.php';
-sec_session_start();
+include_once '../common/Mysqli.php';
+$db = new dbConn();
+include_once '../includes/DataLogin.php';
+$seslog = new Login();
+$seslog->sec_session_start();
+
 
 
 include_once '../common/Alerts.php';
@@ -11,10 +14,15 @@ $alert = new Alerts;
 $helps = new Helpers;
 include_once '../common/Fechas.php';
 include_once '../common/Encrypt.php';
-include_once '../common/Mysqli.php';
-$db = new dbConn();
+
 
 // filtros para cuando no hay session abierta
+if ($seslog->login_check() != TRUE) {
+echo '<script>
+	window.location.href="../includes/logout.php"
+</script>';
+} 
+
 if($_SESSION["user"] == NULL and $_SESSION["td"] == NULL){
 echo '<script>
 	window.location.href="../includes/logout.php"
@@ -22,14 +30,12 @@ echo '<script>
 exit();
 }
 //
-if($_REQUEST["op"]=="0"){ // terminar usuario
-	if($_POST["nombre"] != NULL && $_POST["tipo"] != NULL){
-	include_once '../../system/user/Usuarios.php';
-	$usuarios = new Usuarios;
-	$usuarios->TerminarUsuario(Helpers::Mayusculas($_POST["nombre"]),$_POST["tipo"],sha1($_POST["user"]));	
-	} else {
-	Alerts::Alerta("error","Error!","Faltan Datos!");	
-	}
+
+//
+if($_REQUEST["op"]=="0"){ // redirecciona despues de registrar a llenar datos
+	include_once '../includes/DataLogin.php';
+	$seslog->Register($_POST);
+
 }
 
 if($_REQUEST["op"]=="0x"){ // terminar actualizar

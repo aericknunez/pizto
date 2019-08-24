@@ -19,8 +19,6 @@ action="?modal=selectimg" >
 <select name="popup" id="popup" class="form-control mb-4 browser-default" placeholder="PopUp" >
 <option value="0">Ninguno</option>
 <?php
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
 
 $d = $db->selectGroup("cod, categoria", "categorias", "WHERE td = ".$_SESSION["td"]." order by categoria");
     if ($d->num_rows > 0) {

@@ -1,6 +1,5 @@
 <?php
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
+
 //////////////// este archivo nad mas sirve para imprimir el ticket o factura antes de ser cobrado.
 ?>
 <div class="modal" id="<? echo $_GET["modal"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">

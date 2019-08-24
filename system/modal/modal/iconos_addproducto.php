@@ -7,10 +7,6 @@
       </div>
       <div class="modal-body">
 <!-- ./  content -->
-<?php 
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
- ?>  
 <form id="form1" name="form1"  enctype="multipart/form-data" method="post" action="?modal=selectimg" >
  <input type="hidden" name="op" id="op" value="5" />
 <input type="text" name="nombre" id="nombre" class="form-control mb-4" placeholder="Nombre" autofocus />

@@ -1,7 +1,4 @@
 <?php 
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
-
 $a = $db->query("SELECT * FROM gastos_images WHERE gasto = ".$_REQUEST["gasto"]."");
 ?>
 <div class="modal" id="<? echo $_GET["modal"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">

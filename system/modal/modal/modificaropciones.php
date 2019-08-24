@@ -1,6 +1,4 @@
 <?php 
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
 include_once 'system/ventas/Venta.php';
 $ventas = new Venta;
 

@@ -1,10 +1,6 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-include_once 'application/common/Mysqli.php';
-
-
-$db = new dbConn();
 		if(isset($_GET["tv"])){
 			echo '<div id="lateral-panel"></div>';			
 		} else {

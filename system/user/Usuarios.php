@@ -14,15 +14,14 @@ class Usuarios{
     $datos["tkn"] = 1;
     $datos["avatar"] = "1.png";
     $datos["td"] = $_SESSION['td'];
-    $datos["hash"] = Helpers::HashId();
-	$datos["time"] = Helpers::TimeId();
     if ($db->insert("login_userdata", $datos)) {
         unset($_SESSION['newuser']);
-        echo '<h2 class="h2-responsive">Usuario agregado con exito!</h2>';
+        echo '<h2>Usuario agregado con exito!</h2>';
         echo '<a href="?user" class="btn btn-cyan">Terminar...</a>';
    		 } 
 		$db->close();
 	}
+
 
 	function ActualizarUsuario($nombre,$tipo,$user){
 	    $db = new dbConn();
@@ -30,8 +29,7 @@ class Usuarios{
 	    	    $cambio = array();
 			    $cambio["nombre"] = $nombre;
 			    $cambio["tipo"] = $tipo;
-			    
-			    if (Helpers::UpdateId("login_userdata", $cambio, "user='$user'")) {
+			    if ($db->update("login_userdata", $cambio, "WHERE user='$user'")) {
 			    Alerts::Alerta("success","Actualizado","Usuario Actualizado");
 			    } else {
 			    Alerts::Alerta("error","Error!","Error al actualizar!");
@@ -45,8 +43,7 @@ class Usuarios{
 
 	    	    $cambio = array();
 			    $cambio["avatar"] = $avatar;
-			    
-			    if (Helpers::UpdateId("login_userdata", $cambio, "user='$user'")) {
+			    if ($db->update("login_userdata", $cambio, "WHERE user='$user'")) {
 			    Alerts::Alerta("success","Actualizado","Usuario Actualizado");
 			    echo '<img src="assets/img/avatar/'.$avatar.'" class="img-fluid rounded-circle hoverable mx-auto d-block" alt="alt="avatar mx-auto white">';
 			     
@@ -72,8 +69,7 @@ class Usuarios{
 	        	$cambio = array();
 			    $cambio["password"] = $password;
 			    $cambio["salt"] = $random_salt;
-			    
-			    if (Helpers::UpdateId("login_members", $cambio, "username = '".$_SESSION["username"]."'")) {
+			    if ($db->update("login_members", $cambio, "WHERE username = '".$_SESSION["username"]."'")) {
 
 			    	Alerts::Alerta("success","Password Cambiado","Pasword cambiado correctamente!");
 			    }
@@ -85,8 +81,8 @@ class Usuarios{
         		Alerts::Alerta("error","Error!","Error desconocido!");
         	}
 
-
 	}
+
 
 	public function CompararPass($pass1, $pass2) {
 		if($pass1 == $pass2){
@@ -128,12 +124,12 @@ class Usuarios{
 	public function EliminarUsuario($iden, $username) {
 			$db = new dbConn();
 			
-			if ( Helpers::DeleteId("login_members", "id='$iden'")) {
+			if ( $db->delete("login_members", "WHERE id='$iden'")) {
         	
-        		if ( Helpers::DeleteId("login_userdata", "user='$username'")) {
+        		if ( $db->delete("login_userdata", "WHERE user='$username'")) {
 	        	
 	        	$this->VerUsuarios();
-	     	Alerts::Alerta("success","Usuario Eliminado","Usuario eliminado correctamente!");
+	     		Alerts::Alerta("success","Usuario Eliminado","Usuario eliminado correctamente! Inicie nuevamente");
 	    		} 
     		} 
 	}
@@ -176,21 +172,23 @@ class Usuarios{
 		      <td>'.Helpers::UserName($tipo).'</td>';
 
 			if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
-				echo '<td><a id="deluser" op="2" iden="'.$b["id"].'" username="'.$user.'" class="btn-floating btn-sm"><i class="fas fa-trash-alt red-text"></i></a></td>';
+				echo '<td><a id="deluser" op="2" iden="'.$b["id"].'" username="'.$user.'" ><i class="fa fa-trash red-text fa-lg"></i></a></td>';
 			} else {
-				echo '<td><a class="btn-floating btn-sm"><i class="fas fa-trash-alt grey-text"></i></a></td>';
+				echo '<td><a class="btn-floating btn-sm"><i class="fa fa-trash grey-text"></i></a></td>';
 			}
 
 			if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
-				echo '<td><a href="?modal=register_success&user='.$b["username"].'&op=actualizar" class="btn-floating btn-sm"><i class="fas fa-edit red-text"></i></a></td>';
+				echo '<td><a href="?modal=newpass&user='.$b["username"].'&op=actualizar"><i class="fa fa-edit red-text fa-lg"></i></a>
+				<a href="?modal=userupdate&user='.$b["username"].'&op=actualizar"><i class="fa fa-edit red-text fa-lg"></i></a></td>';
 			} else {
-				echo '<td><a class="btn-floating btn-sm"><i class="fas fa-edit grey-text"></i></a></td>';
+				echo '<td><a ><i class="fa fa-edit grey-text fa-lg"></i></a>
+				<a ><i class="fa fa-edit grey-text fa-lg"></i></a></td>';
 			}
 
 			if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
-				echo '<td><a href="?modal=avatar&user='.$b["username"].'" class="btn-floating btn-sm"><i class="fas fa-user-alt red-text"></i></a></td>';
+				echo '<td><a href="?modal=avatar&user='.$b["username"].'" ><i class="fa fa-user red-text fa-lg"></i></a></td>';
 			} else {
-				echo '<td><a class="btn-floating btn-sm"><i class="fas fa-user-alt grey-text"></i></a></td>';
+				echo '<td><a ><i class="fa fa-user grey-text fa-lg"></i></a></td>';
 			}
 
 		echo '</tr>';  

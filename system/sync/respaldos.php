@@ -3,8 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
 include_once 'application/common/Fechas.php';
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
 include_once 'system/corte/Corte.php';
 include_once 'system/sync/Sync.php';
 $sync = new Sync();

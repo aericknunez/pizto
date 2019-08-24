@@ -1,12 +1,13 @@
 <?php
 include_once '../application/common/Helpers.php'; // [Para todo]
 include_once '../application/includes/variables_db.php';
-include_once '../application/includes/db_connect.php';
-include_once '../application/includes/functions.php';
-sec_session_start();
-include_once '../application/common/Fechas.php';
 include_once '../application/common/Mysqli.php';
+include_once '../application/includes/DataLogin.php';
 $db = new dbConn();
+$seslog = new Login();
+$seslog->sec_session_start();
+include_once '../application/common/Fechas.php';
+
 
 // busco el numero de local
 

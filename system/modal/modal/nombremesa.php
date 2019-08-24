@@ -1,6 +1,4 @@
 <?php 
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
 
 if ($r = $db->select("nombre", "mesa_nombre", "WHERE mesa = ".$_GET["mesa"]." and tx = ".$_SESSION["tx"]." and td =".$_SESSION["td"]."")) { 
             $nmesa = $r["nombre"];

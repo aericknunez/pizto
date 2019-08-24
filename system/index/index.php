@@ -3,11 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
 include_once 'application/common/Fechas.php';
-include_once 'application/common/Mysqli.php';
 include_once 'system/index/Inicio.php';
 include_once 'system/corte/Corte.php';
 include_once 'system/ventas/Venta.php';
-$db = new dbConn();
+
 
 // if(Helpers::ServerDomain() == TRUE){
 // Alerts::Mensaje('<strong>En este momento el Sistema se encuentra en tareas de mantenimiento urgentes. Es necesario que actualice su sistema local, y es muy probable que sus datos no estén disponibles en este momento.</strong>',"danger",NULL,NULL);	

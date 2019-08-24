@@ -1,7 +1,4 @@
 <?php
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
-
 // obtengo el numero de la factura
      $a = $db->query("SELECT num_fac FROM ticket WHERE num_fac != 0 and mesa = ".$_REQUEST["mesa"]." and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." order by id desc limit 1");
     foreach ($a as $b) {

@@ -1,8 +1,7 @@
 <?php 
-include_once 'application/common/Mysqli.php';
+
 include_once 'system/config_iconos/Icono.php';
 $iconos = new Icono;
-$db = new dbConn();
 
 
 $op=$_REQUEST["op"];

@@ -2,9 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
-include_once 'application/common/Mysqli.php';
 include_once 'system/historial/Historial.php';
-$db = new dbConn();
 ?>
 
   <div class="row justify-content-md-center">

@@ -1,8 +1,3 @@
-<?php 
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
- ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +6,12 @@ $db = new dbConn();
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Ingresar al Sistema</title>
 
-    <!-- <link rel="stylesheet" href="assets/css/font-awesome.css"> -->
-    <link rel="stylesheet" href="assets/css/font-awesome-582.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/mdb.min.css" rel="stylesheet">
     <link href="assets/css/galeria.css" rel="stylesheet">
 
     <style>body { overflow-x: hidden; padding-left: 15px; }</style>
-
-    <script type="text/JavaScript" src="assets/login/sha512.js"></script> 
-    <script type="text/JavaScript" src="assets/login/forms.js"></script> 
 </head>
 
 <body class="hidden-sn <?php echo SKIN; ?>">
@@ -99,7 +90,7 @@ if (isset($_GET['error'])) {
 <!--Body-->
 <div class="modal-body text-center mb-1">
 
-  <form action="application/includes/process_login.php" method="post" name="login_form"> 
+  <form name="form-login" id="form-login"> 
    <input type="hidden" name="email"
   <?php if($_REQUEST["user"] != null) echo 'value="'.$_REQUEST["user"].'"'; ?> 
   />
@@ -107,14 +98,15 @@ if (isset($_GET['error'])) {
 <div class="col-xs-2">
   <input type="password" name="password" id="password" class="form-control"/>
   <button id="show_password" class="btn btn-primary" type="button">
-  <span class="fas fa-eye-slash icon"></span>
+  <span class="fa fa-eye-slash icon"></span>
   </button>
 </div>
 
 
- <input type="button" value="Login" class="btn btn-primary" onclick="formhash(this.form, this.form.password);" />
+ <input type="button" id="btn-login" name="btn-login" value="Login" class="btn btn-primary" />
 </form>
 
+<div id="msj"></div>
 
 </div>
 <div class="modal-footer">
@@ -144,23 +136,17 @@ $(document).ready(function()
               $('#show_password').hover(function show() {
                 //Cambiar el atributo a texto
                 $('#password').attr('type', 'text');
-                $('.icon').removeClass('fas fa-eye-slash').addClass('fas fa-eye');
+                $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
             },
             function () {
                 //Cambiar el atributo a contraseña
                 $('#password').attr('type', 'password');
-                $('.icon').removeClass('fas fa-eye').addClass('fas fa-eye-slash');
+                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
             });
             //CheckBox mostrar contraseña
             $('#ShowPassword').click(function () {
                 $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
             });
-
-
-
-
-
-
 
 });
 </script>
@@ -168,6 +154,7 @@ $(document).ready(function()
 }
 ?>
 
+<script type="text/javascript" src="assets/js/query/login.js"></script>
 
 </body>
 </html>

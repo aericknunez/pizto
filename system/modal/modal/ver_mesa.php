@@ -1,7 +1,5 @@
 <?php
 include_once 'system/mesashoy/Mesas.php';
-include_once 'application/common/Mysqli.php';
-$db = new dbConn();
 ?>
 <div class="modal" id="<? echo $_GET["modal"]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
   <div class="modal-dialog" role="document">

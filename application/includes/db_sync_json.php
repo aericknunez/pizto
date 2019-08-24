@@ -1,10 +1,14 @@
 <?
 include_once '../common/Helpers.php';
 include_once 'variables_db.php';
-include_once 'db_connect.php';
-include_once 'functions.php';
 sec_session_start();
 include_once '../common/Mysqli.php';
+$db = new dbConn();
+include_once 'application/includes/DataLogin.php';
+
+$seslog = new Login();
+$seslog->sec_session_start();
+
 
     $db = new dbConn();
 

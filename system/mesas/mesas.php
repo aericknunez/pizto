@@ -1,10 +1,6 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-include_once 'application/common/Mysqli.php';
-
-$db = new dbConn();
-
 unset($_SESSION["mesa"]);
 
     $a = $db->query("SELECT * FROM mesa WHERE estado = 1 and tx = ".$_SESSION["tx"]." and td =".$_SESSION["td"]."");

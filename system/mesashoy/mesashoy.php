@@ -2,9 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
-include_once 'application/common/Mysqli.php';
 include_once 'system/mesashoy/Mesas.php';
-$db = new dbConn();
+
 
 if($_SESSION["mesa"] != NULL){ // para eliminar la masa que viene de index
  include_once 'system/ventas/Venta.php'; 

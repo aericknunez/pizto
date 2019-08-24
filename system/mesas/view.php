@@ -1,10 +1,9 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-include_once 'application/common/Mysqli.php';
 include_once 'system/mesas/Mesa.php';
 $mesas = new Mesa;
-$db = new dbConn();
+
 
 unset($_SESSION['client-asign']);
 $_SESSION["mesa"] = $_REQUEST["mesa"];

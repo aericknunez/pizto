@@ -2,10 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'application/common/Alerts.php';
-include_once 'application/common/Mysqli.php';
 include_once 'system/productos/Producto.php';
 include_once 'application/common/Encrypt.php';
-$db = new dbConn();
+
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark primary-color">
