@@ -179,7 +179,7 @@ class Historial{
 				$a = $db->query("select * from corte_diario where fecha_format BETWEEN '$primero' AND '$segundo' and td = ".$_SESSION['td']." order by fecha_format, id asc");
 
 					    
-					echo '<h1 class="h1-responsive">Productos vendidos</h1>
+					echo '<h1 class="h1-responsive">Historial de Cortes</h1>
 				    <table class="table table-striped">
 
 						<thead>
