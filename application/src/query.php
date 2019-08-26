@@ -122,6 +122,10 @@ echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$nume
 elseif(isset($_GET["gastomensual"])) {
 echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';
 }
+// para graficos
+elseif(isset($_GET["gra_semanal"])) include_once 'assets/js/query/gra_semanal.php';
+elseif(isset($_GET["gra_mensual"])) include_once 'assets/js/query/gra_mensual.php';
+
 elseif(isset($_GET["mesasfecha"])) {
 echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';
 }
@@ -217,10 +221,6 @@ $("body").on("click","#cambiar-pantalla-inicio",function(){
 
 
 <?php  // entre php
-if(isset($_GET["gsemanal"])) {
-include_once 'system/historial/script.php';
-} 
-
 
 // para el respaldo
 	if($_GET["modal"] == "respaldar"){
