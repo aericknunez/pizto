@@ -23,7 +23,7 @@ $seslog->sec_session_start();
         $hash = $row["hash"];
            $ax = $db->query("SELECT * FROM login_db_user WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
            if($ax->num_rows > 0){
-                    $az = $db->query("SELECT * FROM login_sync_status WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
+                    $az = $db->query("SELECT * FROM login_sync WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
                     if($az->num_rows == 0){
                         $data[$i] = $row;
                         $i++;
