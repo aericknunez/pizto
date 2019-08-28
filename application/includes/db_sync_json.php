@@ -9,31 +9,32 @@ include_once 'DataLogin.php';
 $seslog = new Login();
 $seslog->sec_session_start();
 
+echo "QUe raro";
 
-    $db = new dbConn();
+//     $db = new dbConn();
 
-     $a = $db->query("SELECT hash FROM login_db_sync");
-		$data = array();
-		$i=0;
+//      $a = $db->query("SELECT hash FROM login_db_sync");
+// 		$data = array();
+// 		$i=0;
  
 
 
-    while($row = mysqli_fetch_array($a))
-    {      
-        $hash = $row["hash"];
-           $ax = $db->query("SELECT * FROM login_db_user WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
-           if($ax->num_rows > 0){
-                    $az = $db->query("SELECT * FROM login_sync WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
-                    if($az->num_rows == 0){
-                        $data[$i] = $row;
-                        $i++;
-                    } $az->close();
-           } $ax->close();
-    }
+//     while($row = mysqli_fetch_array($a))
+//     {      
+//         $hash = $row["hash"];
+//            $ax = $db->query("SELECT * FROM login_db_user WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
+//            if($ax->num_rows > 0){
+//                     $az = $db->query("SELECT * FROM login_sync WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
+//                     if($az->num_rows == 0){
+//                         $data[$i] = $row;
+//                         $i++;
+//                     } $az->close();
+//            } $ax->close();
+//     }
 
 
- $a->close();
+//  $a->close();
 
-echo json_encode($data);
+// echo json_encode($data);
 
 ?>
