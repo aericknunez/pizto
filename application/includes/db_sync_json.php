@@ -4,7 +4,7 @@ include_once 'variables_db.php';
 sec_session_start();
 include_once '../common/Mysqli.php';
 $db = new dbConn();
-include_once 'application/includes/DataLogin.php';
+include_once 'DataLogin.php';
 
 $seslog = new Login();
 $seslog->sec_session_start();
@@ -23,7 +23,7 @@ $seslog->sec_session_start();
         $hash = $row["hash"];
            $ax = $db->query("SELECT * FROM login_db_user WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
            if($ax->num_rows > 0){
-                    $az = $db->query("SELECT * FROM sync_status WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
+                    $az = $db->query("SELECT * FROM login_sync_status WHERE hash = '$hash' and td = ". $_REQUEST["x"]."");
                     if($az->num_rows == 0){
                         $data[$i] = $row;
                         $i++;

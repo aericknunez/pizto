@@ -87,29 +87,33 @@ class Inicio{
 	public function Validar($fecha,$codigo){
 		$db = new dbConn();
 
-		$codigo = str_replace(' ', '', $codigo); // elimina espacios
+		if($fecha != NULL or $codigo != NULL){
+			$codigo = str_replace(' ', '', $codigo); // elimina espacios
 
-		if(Fechas::Format($fecha) == Encrypt::Decrypt($codigo,$_SESSION['secret_key'])){
-			
-			    $cambio = array();
-			    $cambio["expira"] = Encrypt::Encrypt($fecha,$_SESSION['secret_key']);
-			    $cambio["expiracion"] = $codigo;
-			    
-			    if (Helpers::UpdateId("config_root", $cambio, "td = ".$_SESSION["td"]."")) {
-			        
-			        Alerts::Alerta("success","Cambios realizados","Ha introducido su codigo correctamente");
-			    } else {
-			    	Alerts::Alerta("warning","Ocurrio algo","Ha ocurrido un inconveniente, introduzca su codigo nuevamente");
-			    }
+			if(Fechas::Format($fecha) == Encrypt::Decrypt($codigo,$_SESSION['secret_key'])){
+				
+				    $cambio = array();
+				    $cambio["expira"] = Encrypt::Encrypt($fecha,$_SESSION['secret_key']);
+				    $cambio["expiracion"] = $codigo;
+				    if ($db->update("config_root", $cambio, "WHERE td = ".$_SESSION["td"]."")) {
+				        
+				        Alerts::Alerta("success","Cambios realizados","Ha introducido su codigo correctamente");
+				    } else {
+				    	Alerts::Alerta("warning","Ocurrio algo","Ha ocurrido un inconveniente, introduzca su codigo nuevamente");
+				    }
 
-			
-		} else {
-			Alerts::Alerta("danger","Error","Los codigos introducidos no son correctos, asegurese de tener codigos validos");
-		}
-		
+				
+			} else {
+				Alerts::Alerta("error","Error","Los codigos introducidos no son correctos, asegurese de tener codigos validos");
+			}
+	} else {
+	Alerts::Alerta("error","Error","Ha enviado datos vacios");
+	}	
 		$this->Caduca();
 		$this->NoAcceso();
-		$this->Formulario();
+		echo '<div class="row d-flex justify-content-center text-center">
+		<a href="" class="btn btn-success">Volver a Intentarlo</a></div>';
+
 	}
 
 

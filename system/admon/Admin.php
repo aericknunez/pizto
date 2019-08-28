@@ -179,8 +179,6 @@ class Admin{
 		    $datos = array();
 		    $datos["hash"] = $hash;
 		    $datos["td"] = $td;
-		    $datos["hash"] = Helpers::HashId();
-			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("login_db_user", $datos)) {
 		      Alerts::Alerta("success","Agregado!","Usuario agregado correctamente!");  
 		    }
@@ -224,8 +222,6 @@ class Admin{
 		    $datos["hash"] = $hash;
 		    $datos["fecha"] = date("d-m-Y");
 		    $datos["hora"] = date("H:i:s");
-		    $datos["hash"] = Helpers::HashId();
-			$datos["time"] = Helpers::TimeId();
 		    if ($db->insert("login_db_sync", $datos)) {
 		      Alerts::Alerta("success","Agregado!","Usuario agregado correctamente!");  
 		    }
