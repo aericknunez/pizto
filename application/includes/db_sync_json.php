@@ -1,4 +1,6 @@
 <?
+if(is_numeric($_REQUEST["x"])){
+
 include_once '../common/Helpers.php';
 include_once 'variables_db.php';
 include_once '../common/Mysqli.php';
@@ -31,5 +33,5 @@ $seslog->sec_session_start();
  $a->close();
 
 echo json_encode($data);
-
+}
 ?>
