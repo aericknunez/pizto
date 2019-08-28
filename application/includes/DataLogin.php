@@ -42,17 +42,16 @@ class Login {
 						    $datos["td"] = $_SESSION['td'];
 						    if ($db->insert("login_userdata", $datos)) {
 
-					        echo 'Usuario agregado con exito!';
-
+					        Alerts::Alerta("success","Agregado!","Agregado con Exito!");
 							}
 
 				   	}
 				   } else {
-				   	echo "El Email ya esta vinculado a una cuenta!";
+				   	Alerts::Alerta("error","Error!","Email ya esta vinculado a otra cuenta!");
 				   }
 					 
 			} else {
-				echo "Faltan Datos!";
+				Alerts::Alerta("error","Error!","Faltan Datos");
 			}
 		}
 
@@ -220,7 +219,7 @@ public function VerificarEmail($email){
 	$intentos = $a->num_rows;
 
 	    if ($intentos > 5) {
-            return FLASE; // hay fuerza
+            return FALSE; // hay fuerza
         } else {
             return TRUE; // no hay fuerza
         }
