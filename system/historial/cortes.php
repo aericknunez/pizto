@@ -11,7 +11,13 @@ include_once 'system/historial/Historial.php';
     <input placeholder="Seleccione una fecha" type="text" id="fecha1" name="fecha1" class="form-control datepicker my-2">
     <input placeholder="Seleccione una fecha" type="text" id="fecha2" name="fecha2" class="form-control datepicker my-2">
 
-	<input name="btn-cortes" type="submit" id="btn-cortes" value="Mostrar datos" class="btn btn-outline-info btn-rounded btn-sm btn-block waves-effect">
+    </div>
+  </div>
+
+
+  <div class="row justify-content-md-center">
+    <div class="col-12 col-md-auto">
+    <button class="btn btn-info my-2 btn-rounded btn-sm waves-effect" type="submit" id="btn-cortes" name="btn-cortes">Mostra Datos</button>
       </form> 
     </div>
   </div>

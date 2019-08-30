@@ -6,15 +6,18 @@ include_once 'system/historial/Historial.php';
 
 ?>
 
-  <div class="row justify-content-md-center">
+  <div class="row justify-content-center">
     <div class="col-12 col-md-auto">
-        <form name="form-diario" method="post" id="form-diario">
+     <form name="form-diario" method="post" id="form-diario">
     <input placeholder="Seleccione una fecha" type="text" id="fecha" name="fecha" class="form-control datepicker my-2">
-    <label for="fecha">Fecha a buscar</label>
-	<input name="btn-diario" type="submit" id="btn-diario" value="Mostrar datos" class="btn btn-outline-info btn-rounded btn-sm btn-block waves-effect">
-      </form> 
     </div>
   </div>
+
+<div class="row justify-content-center">
+  <button class="btn btn-info my-2 btn-rounded btn-sm waves-effect" type="submit" id="btn-diario" name="btn-diario">Mostra Datos</button>
+  </form> 
+</div>
+  
 <div class="row justify-content-md-center" id="loaderx">
 	<img src="assets/img/loading.gif" alt=""></div>
 

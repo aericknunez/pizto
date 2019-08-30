@@ -6,10 +6,10 @@ include_once 'system/historial/Historial.php';
 ?>
 
   <div class="row justify-content-md-center">
-    <div class="col-12 col-md-auto">
+    <div class="col-md-4 col-md-auto">
         <form name="form-gmensual" method="post" id="form-gmensual">
 
-        	<select name="mes" id="mes" class="browser-default form-control my-2">
+            <select name="mes" id="mes" class="browser-default form-control my-2">
     <option value="01" <? if ($fecha=date("m")=="01") echo "selected='selected'"; ?>>Enero</option>
     <option value="02" <? if ($fecha=date("m")=="02") echo "selected='selected'"; ?>>Febrero</option>
     <option value="03" <? if ($fecha=date("m")=="03") echo "selected='selected'"; ?>>Marzo</option>
@@ -34,13 +34,18 @@ include_once 'system/historial/Historial.php';
     <option value="2025" <? if ($fecha=date("Y")=="2025") echo "selected='selected'"; ?>>2025</option>
   </select>
 
-	<input name="btn-gmensual" type="submit" id="btn-gmensual" value="Mostrar datos" class="btn btn-outline-info btn-rounded btn-sm btn-block waves-effect">
-      </form> 
     </div>
   </div>
 
-<div id="contenido">
 
-<div class="row justify-content-md-center"><img src="assets/img/loading.gif" alt=""></div>
+  <div class="row justify-content-center">
+    <button class="btn btn-info my-2 btn-rounded btn-sm waves-effect" type="submit" id="btn-gmensual" name="btn-gmensual">Mostra Datos</button>
 
+      </form> 
+  </div>
+
+<div id="contenido" class="mt-5">
+<?php 
+Alerts::Mensajex("Seleccione un mes con registros de gastos","info",$boton,$boton2);
+ ?>
 </div>
