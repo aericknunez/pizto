@@ -488,6 +488,7 @@ class Historial{
 			      foreach($archivos as $data){  
 			      	$data = str_replace($url, "", $data);
 			      	$data = str_replace(".sql", "", $data);
+			      	$data = substr($data, 0, 15);
 				    $output .= '<li class="list-group-item">' . $data . '</li>';
 			      }
 
