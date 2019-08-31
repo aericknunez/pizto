@@ -525,9 +525,10 @@ class Historial{
 		    	if ($r = $db->select("cliente", "config_master", "WHERE td = ". $b["td"] ."")) { 
 		        $cliente = $r["cliente"];
 		    	}unset($r); 
+
 		    	$compro = substr($b["comprobacion"], 0, 15);
 		    	echo '<tr>
-			      <th>'. $compro; .'</th>
+			      <th>'. $compro .'</th>
 			      <th>'. $b["final"] .'</th>
 			      <td>'. $b["fecha"] .'</td>
 			      <td>'. $b["hora"] .'</td>
