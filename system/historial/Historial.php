@@ -527,7 +527,7 @@ class Historial{
 		    	}unset($r); 
 		    	
 		    	echo '<tr>
-			      <th>'. $b["comprobacion"] .'</th>
+			      <th>'. substr($b["comprobacion"], 0, 15); .'</th>
 			      <th>'. $b["final"] .'</th>
 			      <td>'. $b["fecha"] .'</td>
 			      <td>'. $b["hora"] .'</td>
