@@ -527,7 +527,7 @@ class Historial{
 		        $cliente = $r["cliente"];
 		    	}unset($r); 
 
-		    	$compro = substr($b["comprobacion"], 11, 15);
+		    	$compro = substr($b["comprobacion"], 11, 12);
 		    	echo '<tr>
 			      <th>'. $compro .'</th>
 			      <th>'. $b["final"] .'</th>
