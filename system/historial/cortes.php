@@ -16,14 +16,12 @@ include_once 'system/historial/Historial.php';
 
 
   <div class="row justify-content-md-center">
-    <div class="col-12 col-md-auto">
+    <div class="col-12 col-md-auto text-center">
     <button class="btn btn-info my-2 btn-rounded btn-sm waves-effect" type="submit" id="btn-cortes" name="btn-cortes">Mostra Datos</button>
       </form> 
     </div>
   </div>
 
-<div id="contenido">
-
-<div class="row justify-content-md-center"><img src="assets/img/loading.gif" alt=""></div>
-
+<div id="contenido" class="mt-5">
+<?php Alerts::Mensajex("Seleccione un rango de fechas a buscar", "info"); ?>
 </div>

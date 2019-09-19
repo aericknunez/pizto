@@ -44,6 +44,9 @@ include_once 'system/historial/Historial.php';
       </form> 
   </div>
 
+<div class="row justify-content-md-center" id="loaderx">
+  <img src="assets/img/loading.gif" alt=""></div>
+  
 <div id="contenido" class="mt-5">
 <?php 
 Alerts::Mensajex("Seleccione un mes con registros de gastos","info",$boton,$boton2);
