@@ -25,3 +25,6 @@ include_once 'system/historial/Historial.php';
 <div id="contenido" class="mt-5">
 <?php Alerts::Mensajex("Seleccione un rango de fechas a buscar", "info"); ?>
 </div>
+
+<div class="row justify-content-md-center" id="loaderx">
+  <img src="assets/img/loading.gif" alt=""></div>
