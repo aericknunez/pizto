@@ -180,6 +180,7 @@ class Historial{
 
 					    
 					echo '<h1 class="h1-responsive">Historial de Cortes</h1>
+					<div class="table-responsive">
 				    <table class="table table-striped">
 
 						<thead>
@@ -250,7 +251,7 @@ class Historial{
 			     </tr>';
 
 			echo '</tbody>
-				</table>';
+				</table> </div>';
 			echo "Fechas afectadas desde el: ". $inicio ." hasta el ". $fin ." <br>";
 
 	}
