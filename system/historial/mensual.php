@@ -50,3 +50,6 @@ include_once 'system/historial/Historial.php';
 Alerts::Mensajex("Seleccione un mes con registros de ventas","info",$boton,$boton2);
  ?>
 </div>
+
+<div class="row justify-content-md-center" id="loaderx">
+  <img src="assets/img/loading.gif" alt=""></div>
