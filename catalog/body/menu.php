@@ -4,13 +4,13 @@
 <div class="collapsible-body">
 <ul class="list-unstyled">
 
-<li><a href="?syncstatus" class="waves-effect"><i class="fas fa-upload"></i> Estado Sincronizaci&oacuten</a></li>
-<li><a href="?inout" class="waves-effect"><i class="far fa-play-circle"></i> Entradas y Salidas</a></li>
-<li><a href="?db_sync" class="waves-effect"><i class="fas fa-database"></i> Gestionar Sync DB</a></li>
-<li><a href="?actualizacionesup" class="waves-effect"><i class="fas fa-server"></i> Ver Sucursales Up</a></li>
-<li><a href="?edocortes" class="collapsible-header waves-effect arrow-r"><i class="fas fa-money-bill"></i></i> Estado Cortes</a></li>
-<li><a href="?ctc" class="collapsible-header waves-effect arrow-r"><i class="fab fa-gg-circle"></i> Cambiar Cuenta</a></li>
-<li><a href="?user" class="collapsible-header waves-effect arrow-r"><i class="fas fa-user-alt"></i> Usuarios </a></li>
+<li><a href="?syncstatus" class="waves-effect"> Estado Sincronizaci&oacuten</a></li>
+<li><a href="?inout" class="waves-effect"> Entradas y Salidas</a></li>
+<li><a href="?db_sync" class="waves-effect"> Gestionar Sync DB</a></li>
+<li><a href="?actualizacionesup" class="waves-effect"> Ver Sucursales Up</a></li>
+<li><a href="?edocortes" class="collapsible-header waves-effect arrow-r"> Estado Cortes</a></li>
+<li><a href="?ctc" class="collapsible-header waves-effect arrow-r"> Cambiar Cuenta</a></li>
+<li><a href="?user" class="collapsible-header waves-effect arrow-r"> Usuarios </a></li>
 
 
 <!-- <li><a href="?propinas" class="waves-effect"> Calcular Propinas</a></li> -->
@@ -138,7 +138,7 @@ if(Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) {
 <?php 
 if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (Helpers::ServerDomain() == TRUE and $_SESSION["root_plataforma"] == 1)) {
  ?>
-<li><a href="?addpro" class="waves-effect">Nuevo Producto</a></li>
+<li><a href="?addpro" class="waves-effect">Agregar Producto</a></li>
 <li><a href="?averias" class="waves-effect">Agregar Averias</a></li>
 <li><a href="?producto&x=3" class="waves-effect">Gestionar Producto</a></li>
 <?php } ?>

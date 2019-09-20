@@ -63,8 +63,8 @@ class Product{
         $pro_bruto = $s["producto"]; $cant_dependiente = $s["cantidad"]; } unset($s); 
 
         // conocer cuanto es la cantidad que tiene ese bruto
-        if ($z = $db->select("cantidad", "pro_bruto", "WHERE iden = '$pro_bruto' and td = ". $_SESSION["td"] ."")) { 
-        $cant_bruto = $z["cantidad"]; } unset($z); 
+        if ($z = $db->select("cantidad, iden", "pro_bruto", "WHERE iden = '$pro_bruto' and td = ". $_SESSION["td"] ."")) { $cant_bruto = $z["cantidad"]; } unset($z); 
+
         $cantidad = $cant_dependiente * $cantidad;
         $descontar = $cant_bruto + $cantidad;
 
@@ -73,7 +73,7 @@ class Product{
 	  	    $cambio = array();
 		    $cambio["cantidad"] = $descontar;
 		    
-		    Helpers::UpdateId("pro_bruto", $cambio, "iden=".$pro_bruto." and td = ". $_SESSION["td"] ."");
+		    Helpers::UpdateId("pro_bruto", $cambio, "iden='".$pro_bruto."' and td = ". $_SESSION["td"] ."");
 		        
 		   Alerts::Alerta("success","Agregado Correctamente","Averia agregada y desconta del inventario correctamente!");
 		    }
@@ -130,11 +130,17 @@ class Product{
 			       <td>'. $b["comentarios"] .'</td>
 			      <td>'. $b["fecha"] .'</td>
 			      <td>'. $b["hora"] .'</td>
-			      <td>'. $b["usuario"] .'</td>
-			      <td><a id="borrar-averia" op="111" iden="'. $b["id"] .'">
+			      <td>'. $b["usuario"] .'</td>';
+
+
+                  if($b["fecha"] == date("d-m-Y")){
+                      echo '<td><a id="borrar-averia" op="111" iden="'. $b["id"] .'">
 				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
-				      </a></td>
-			    </tr>';
+				      </a></td>';
+                    } else {
+                      echo '<td><span class="badge green"><i class="fas fa-ban" aria-hidden="true"></i></span></td>';
+                    }
+			    echo '</tr>';
 		    }
 		    echo '</tbody>
 		    </table>';
@@ -330,11 +336,16 @@ public function AgregarProducto($producto, $cantidad,$comentarios){
 			       <td>'. $b["comentarios"] .'</td>
 			      <td>'. $b["fecha"] .'</td>
 			      <td>'. $b["hora"] .'</td>
-			      <td>'. $b["usuario"] .'</td>
-			      <td><a id="borrar-averia" op="116" iden="'. $b["id"] .'">
+			      <td>'. $b["usuario"] .'</td>';
+			       if($b["fecha"] == date("d-m-Y")){
+			      echo '<td><a id="borrar-averia" op="116" iden="'. $b["id"] .'">
 				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
-				      </a></td>
-			    </tr>';
+				      </a></td>';
+				     } else {
+				   echo '<td>
+				      <span class="badge green"><i class="fas fa-ban" aria-hidden="true"></i></span></td>';
+				     }
+			    echo '</tr>';
 		    }
 		    echo '</tbody>
 		    </table>';

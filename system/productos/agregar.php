@@ -7,7 +7,7 @@ include_once 'system/productos/Product.php';
 
 <div class="row">
   <div class="col-sm-4">
-     <h2 class="h2-responsive">AGREGAR PRODUCTO</h2>
+     <h3 class="h3-responsive">AGREGAR PRODUCTO</h3>
      <form name="form-addpro" id="form-addpro" class="text-center border border-light p-2">
 
      <select id="producto" name="producto" class="browser-default form-control mb-2" required="yes">

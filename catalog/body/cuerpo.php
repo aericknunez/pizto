@@ -9,7 +9,7 @@
 		?>
 			</div>
 
-			<div id="lateral" class="col-xs-4 col-sm-12 col-md-4">
+			<div id="lateral" class="col-xs-4 col-sm-12 col-md-4 mt-4">
 		<?php 
 			if(Helpers::IsAdmin() == TRUE) {
 				include_once 'system/admon/lateral.php';

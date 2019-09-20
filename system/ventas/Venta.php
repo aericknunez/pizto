@@ -286,7 +286,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 
 				    if($_SESSION["tx"] == 0){
 				    		if($_SESSION["noimprimir"] != NULL){
-				    		echo '<a id="cambiar-pantalla-inicio" op="87"><h1 class="text-danger">Total: '. Helpers::Format($max) .'</h1></a>';
+				    		echo '<a id="cambiar-pantalla-inicio" op="87"><h1 class="text-danger">Total: '. Helpers::Dinero(Helpers::PropinaTotal($max)).'</h1></a>';
 						    } else {
 						    		if($_SESSION['config_propina'] != 0.00){
 						    		echo '<p>Subtotal: '.$max.' | Propina '.$_SESSION['config_propina'].'% : '. Helpers::Dinero(Helpers::Propina($max)) .'</p>'; }
@@ -660,18 +660,17 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 	public function BorrarFactura($mesa) {
 		$db = new dbConn();
 		    
-		     if ( Helpers::DeleteId("ticket_temp", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
-		        
-		        Helpers::DeleteId("mesa", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
+Helpers::DeleteId("ticket_temp", "mesa='".$mesa."' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 
-		        Helpers::DeleteId("mesa_nombre", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+Helpers::DeleteId("mesa", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]." and estado = 1");
 
-		        unset($_SESSION["mesa"]);
-		        echo '<script>
-						window.location.href="?"
-		        	</script>';
-	        
-		    }
+Helpers::DeleteId("mesa_nombre", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+
+unset($_SESSION["mesa"]);
+echo '<script>
+		window.location.href="?"
+	</script>';
+
 
    	}
 
