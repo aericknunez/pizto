@@ -44,7 +44,7 @@ class Corte{
 		   //	Alerts::Alerta("success","Exito!","Se ha ejecutado el corte correctamente!");
 		   	$this->CalcularGastoProductos($fecha);
 
-		   	  	if(Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0){
+		   	  	if(Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0 and $_SESSION["root_tipo_sistema"] != 0){
 			   		echo '<script>
 						window.location.href="?modal=respaldar"
 					</script>';

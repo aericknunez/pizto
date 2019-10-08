@@ -82,6 +82,26 @@ echo '
 	if($_GET["modal"] == "img_gasto"){
 	echo '<script type="text/javascript" src="assets/js/query/imageup.js?v='.$numero.'"></script>';
 	}
+	if($_GET["modal"] == "respaldar"){
+			$url = "sync/push.php?corte=1";
+			echo '<script>
+				$(document).ready(function(){
+
+				function Respaldar(){
+		                      $.ajax({
+		                          type: "POST",
+		                          url: "<?php echo $url; ?>",
+		                          success: function(data) {
+		                            $("#respaldo").html(data);
+		                          }
+		                      });
+		                  }
+
+		        Respaldar();
+		});
+		</script>';
+	}
+
 
 }
 
@@ -219,32 +239,3 @@ $("body").on("click","#cambiar-pantalla-inicio",function(){
 
 </script>
 
-
-<?php  // entre php
-
-// para el respaldo
-	if($_GET["modal"] == "respaldar"){
-			$url = "sync/push.php?corte=1";
-		?>
-			<script>
-				$(document).ready(function(){
-
-				function Respaldar(){
-		                      $.ajax({
-		                          type: "POST",
-		                          url: "<?php echo $url; ?>",
-		                          success: function(data) {
-		                            $("#respaldo").html(data);
-		                          }
-		                      });
-		                  }
-
-
-		        Respaldar();
-
-		});
-		</script>
-		<?
-	}
-// termina respaldo	
-?>
