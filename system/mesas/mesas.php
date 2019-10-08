@@ -30,7 +30,6 @@ echo '</div>';
 <!-- aqui comienza para agregar mesa -->
 <div class="d-flex justify-content-center">
 <a href="?modal=addmesa">
-<i class="fas fa-plus fa-5x" aria-hidden="true"></i><br>
-Agregar
+<img src="assets/img/imagenes/nuevo.png" alt="" class="figure-img img-fluid">
 </a>
 </div>  

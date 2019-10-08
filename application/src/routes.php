@@ -1548,22 +1548,31 @@ if($_REQUEST["op"]=="162"){ // Imprimir contadora
 
 
 
-if($_REQUEST["op"]=="163"){ // Subir Avatar
+if($_REQUEST["op"]=="163"){ // Subir imagen negocio
 		
-	if($_FILES['archivo']['name'] != NULL){
+include("../common/Imagenes.php");
+	$imagen = new upload($_FILES['archivo']);
+include("../common/ImagenesSuccess.php");
+$imgs = new Success();
 
-		require_once '../common/Imagenes.php';
-		$resizer = new Imagenes();
-		$n_width = ( $_POST['ancho'] <= 0 ) ? 700 : $_POST['ancho'];
-		$n_height = ( $_POST['alto'] <= 0 ) ? 700 : $_POST['alto'];
-
-		$imagen = $resizer->Resize( $_FILES['archivo']['name'], $_FILES['archivo']['tmp_name'], "../../assets/img/logo", $n_width, $n_height);
-		if($imagen != FALSE){
-			include_once '../../system/upimages/Upimages.php';
-			$Up = new Upimages;
-			$Up->SaveImgNegocio($imagen);
-			echo '<img src="assets/img/logo/'.$imagen.'" alt="">';
+	if($imagen->uploaded) {
+		if($imagen->image_src_y > 800 or $imagen->image_src_x > 800){ // si ancho o alto es mayir a 800
+			$imagen->image_resize         		= true; // default is true
+			$imagen->image_ratio        		= true; // para que se ajuste dependiendo del ancho definido
+			$imagen->image_x              		= 700; // para el ancho a cortar
+			$imagen->image_y              		= 700; // para el alto a cortar
 		}
+		$imagen->file_new_name_body   		= Helpers::TimeId(); // agregamos un nuevo nombre
+		// $imagen->image_watermark      		= 'watermark.png'; // marcado de agua
+		// $imagen->image_watermark_position 	= 'BR'; // donde se ub icara el marcado de agua. Bottom Right		
+		$imagen->process('../../assets/img/logo/');	
+
+		$imgs->SaveImagen($imagen->file_dst_name, $imagen->image_dst_x, $imagen->image_dst_y);
+		$_SESSION['config_imagen'] = $imagen->file_dst_name; // cambio el logo de la variable
+	} // [file_dst_name] nombre de la imagen
+	else {
+		Alerts::Alerta("error","Error!","Error: " . $imagen->error);
+	  $imgs->VerImgNegocio("assets/img/logo/");
 	}
 
 }

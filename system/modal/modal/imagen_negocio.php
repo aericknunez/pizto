@@ -12,7 +12,7 @@
 
     <div class="file-field">
         <a class="btn-floating blue-gradient mt-0 float-left">
-            <i class="fas fa-paperclip" aria-hidden="true"></i>
+            <i class="fa fa-paperclip" aria-hidden="true"></i>
             <input type="file" id="archivo" name="archivo">
         </a>
         <div class="file-path-wrapper">
@@ -29,13 +29,12 @@
     </form>
 <!--div para visualizar mensajes-->
     
-    <div  id="result">
+    <div id="result" class="text-center">
       
       <?php 
-      include_once 'system/upimages/Upimages.php';
-      $Up = new Upimages;
-      $img = $Up->VerImgNegocio();
-      echo '<img src="assets/img/logo/'.$img.'" alt="">';
+      include_once 'application/common/ImagenesSuccess.php';
+      $Up = new Success;
+      $Up->VerImgNegocio("assets/img/logo/");
        ?>
     </div>
 <!-- ./  content -->
