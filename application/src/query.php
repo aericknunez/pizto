@@ -90,7 +90,7 @@ echo '
 				function Respaldar(){
 		                      $.ajax({
 		                          type: "POST",
-		                          url: "<?php echo $url; ?>",
+		                          url: "'.$url.'",
 		                          success: function(data) {
 		                            $("#respaldo").html(data);
 		                          }
