@@ -3,7 +3,7 @@
 <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-table"></i> Reportes Root<i class="fas fa-angle-down rotate-icon"></i></a>
 <div class="collapsible-body">
 <ul class="list-unstyled">
-
+<li><a href="?admon" class="waves-effect"> Ver Administración</a></li>
 <li><a href="?syncstatus" class="waves-effect"> Estado Sincronizaci&oacuten</a></li>
 <li><a href="?inout" class="waves-effect"> Entradas y Salidas</a></li>
 <li><a href="?db_sync" class="waves-effect"> Gestionar Sync DB</a></li>
@@ -18,8 +18,6 @@
 </div>
 </li>
 <?php } 
-else { /// aqui comienza el menu normal 
-
 ?>
 
 
@@ -243,7 +241,7 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 
 <?php }
 
-} // llave del admin ?>
+ ?>
 
 
 <li><a href="application/includes/logout.php" class="collapsible-header waves-effect arrow-r"><i class="fas fa-power-off"></i> Salir </a></li>

@@ -208,17 +208,12 @@ echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'
 elseif(isset($_GET["edocortes"])) {
 echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
 }
-else{
-/// lo que llevara index
-		if(Helpers::IsAdmin() == TRUE) {
+elseif(isset($_GET["admon"])) {
 		echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
-				if($inicio_entrada == 1){ // se declara en inicio de admin
-					include_once 'system/admon/script.php';
-				}
-		} else {
-		echo '<script type="text/javascript" src="assets/js/query/ventas.js?v='.$numero.'"></script>';	
-		}
-
+		include_once 'system/admon/script.php';
+}
+else{
+echo '<script type="text/javascript" src="assets/js/query/ventas.js?v='.$numero.'"></script>';	
 }
 	
 ?>

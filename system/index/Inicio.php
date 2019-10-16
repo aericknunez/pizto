@@ -320,7 +320,7 @@ if($_SESSION["caduca"] == 3){
 		$db = new dbConn();
 
 		    if ($r = $db->select("*", "sync_up_cloud", "WHERE td = ".$_SESSION["td"]." and ejecutado = 1 order by id desc")) {
-		    	if($r["fecha"] !=NULL){
+		    	if($r["fecha"] != NULL){
 		    		return $r["fecha"] . " | " . $r["hora"];
 		    	} else {
 		    		return "Corte";
@@ -347,111 +347,82 @@ if($_SESSION["caduca"] == 3){
 
 		public function SiCorte(){
 			if(Corte::UltimaFecha() == date("d-m-Y")){
-				return 'Diferencia corte:<h1 class="h1-responsive">' . Helpers::Dinero(Corte::GetDiferencia(date("d-m-Y"))) . '</h1>';
+				return Helpers::Dinero(Corte::GetDiferencia(date("d-m-Y")));
 			} else {
-				return '<p class="black-text display-4">Sin Corte</p>';
+				return 'Sin Corte';
 			}
 	}
 
 
 	public function Root(){
 
-		echo '<div class="card-deck">
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Clave: '.$_SESSION['config_cliente'].'</h4>
-			            <p class="black-text display-3">'.Inicio::Clave().'</p>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
+	echo '<div class="row mb-3">';
 
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title red-text">'.Inicio::LastUpdate().'</h4>
-			            '.Inicio::SiCorte().'
-			        </div>
-			    </div>
-			    <!--/.Panel-->
+	echo '<div class="col-xl-3 col-md-6 mb-4">
+		  <div class="card">
+		    <div class="row mt-3">
+		      <div class="col-md-3 col-3 text-left pl-1">
+		        <a type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="fas fa-barcode" aria-hidden="true"></i></a>
+		      </div>
+		      <div class="col-md-9 col-9 text-right pr-4">
+		        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">'.Inicio::LastUpdate().'</h5>
+		        <p class="font-small grey-text">'.Inicio::SiCorte().'</p>
+		      </div>
+		    </div>
 
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Datos Hoy</h4>
-			            <h2 class="black-text">Venta: '. Helpers::Dinero(Corte::VentaHoy(date("d-m-Y"))) .'<br>Gastos: '. Helpers::Dinero(Corte::GastoHoy(date("d-m-Y"))) .'</h2>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
+		  </div>
+		</div>';
 
-			</div>';
+	echo '<div class="col-xl-3 col-md-6 mb-4">
+		  <div class="card">
+		    <div class="row mt-3">
+		      <div class="col-md-3 col-3 text-left pl-1">
+		        <a type="button" class="btn-floating btn-lg info-color ml-4 waves-effect waves-light"><i class="fas fa-credit-card" aria-hidden="true"></i></a>
+		      </div>
+		      <div class="col-md-9 col-9 text-right pr-4">
+		        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">'.Helpers::Dinero(Corte::VentaHoy(date("d-m-Y"))).'</h5>
+		        <p class="font-small grey-text">Venta Hoy</p>
+		      </div>
+		    </div>
 
-			echo '<hr>';
+		  </div>
+		</div>';
 
-		 echo '<div class="card-deck">
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Total de venta</h4>
-			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Ventas()) .'</h1>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
+	echo '<div class="col-xl-3 col-md-6 mb-4">
+		  <div class="card">
+		    <div class="row mt-3">
+		      <div class="col-md-3 col-3 text-left pl-1">
+		        <a type="button" class="btn-floating btn-lg success-color lighten-1 ml-4 waves-effect waves-light"><i class="fas fa-dollar-sign" aria-hidden="true"></i></a>
+		      </div>
+		      <div class="col-md-9 col-9 text-right pr-4">
+		        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">'. Helpers::Dinero(Corte::GastoHoy(date("d-m-Y"))) .'</h5>
+		        <p class="font-small grey-text">Gasto Hoy</p>
+		      </div>
+		    </div>
 
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Gastos</h4>
-			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Gastos()) .'</h1>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
+		  </div>
+		</div>';
 
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Efectivo</h4>
-			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Efectivo()) .'</h1>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
+	echo '<div class="col-xl-3 col-md-6 mb-4">
+		  <div class="card">
+		    <div class="row mt-3">
+		      <div class="col-md-3 col-3 text-left pl-1">
+		        <a type="button" class="btn-floating btn-lg red accent-2 ml-4 waves-effect waves-light"><i class="fas fa-money-bill" aria-hidden="true"></i></a>
+		      </div>
+		      <div class="col-md-9 col-9 text-right pr-4">
+		        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">'. Helpers::Dinero(Inicio::Efectivo()) .'</h5>
+		        <p class="font-small grey-text">Efectivo</p>
+		      </div>
+		    </div>
 
-			</div>';
+		  </div>
+		</div>';
+
+	echo '</div>';
 
 
-			echo '<hr>';
-			// para la segunda parte
-				 echo '<div class="card-deck">
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Remesas</h4>
-			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Remesas()) .'</h1>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
 
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Cheques</h4>
-			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Cheques()) .'</h1>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
-
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Diferencia</h4>
-			            <h1 class="black-text">'. Helpers::Dinero(Inicio::Diferencia()) .'</h1>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
-
-			</div>';
-
-			echo '<hr>';
+echo '<hr>';
 		
 	}
 
@@ -466,35 +437,71 @@ if($_SESSION["caduca"] == 3){
 
 
 		public function Admin(){
-		 echo '<div class="card-deck">
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Total Tx</h4>
-			            <h1 class="black-text">'. Helpers::Dinero(Corte::TotalTx(date("d-m-Y"))) .'</h1>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
 
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			            <h4 class="card-title">Total no Tx</h4>
-			            <h1 class="black-text">'. Helpers::Dinero(Corte::TotalNoTx(date("d-m-Y"))) .'</h1>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
+echo '<div class="row mt-3">';
 
-			    <!--Panel-->
-			    <div class="card">
-			        <div class="card-body">
-			        	<h4 class="card-title">Clientes</h4>
-			            <h1 class="black-text">'.Helpers::Entero(Corte::ClientesHoy(date("d-m-Y"))).'</h1>
-			        </div>
-			    </div>
-			    <!--/.Panel-->
+	echo '<div class="col-xl-3 col-md-6 mb-4">
+		  <div class="card">
+		    <div class="row mt-3">
+		      <div class="col-md-3 col-3 text-left pl-1">
+		        <a type="button" class="btn-floating btn-lg secondary-color ml-4 waves-effect waves-light"><i class="far fa-chart-bar" aria-hidden="true"></i></a>
+		      </div>
+		      <div class="col-md-9 col-9 text-right pr-4">
+		        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">'.Inicio::Clave().'</h5>
+		        <p class="font-small grey-text">Codigo</p>
+		      </div>
+		    </div>
 
-			</div>';
+		  </div>
+		</div>';
+
+	echo '<div class="col-xl-3 col-md-6 mb-4">
+		  <div class="card">
+		    <div class="row mt-3">
+		      <div class="col-md-3 col-3 text-left pl-1">
+		        <a type="button" class="btn-floating btn-lg success-color ml-4 waves-effect waves-light"><i class="fas fa-chart-line" aria-hidden="true"></i></a>
+		      </div>
+		      <div class="col-md-9 col-9 text-right pr-4">
+		        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">'. Helpers::Dinero(Corte::TotalTx(date("d-m-Y"))) .'</h5>
+		        <p class="font-small grey-text">Total Tx</p>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>';
+
+	echo '<div class="col-xl-3 col-md-6 mb-4">
+		  <div class="card">
+		    <div class="row mt-3">
+		      <div class="col-md-3 col-3 text-left pl-1">
+		        <a type="button" class="btn-floating btn-lg light-blue lighten-1 ml-4 waves-effect waves-light"><i class="fas fa-grin-beam" aria-hidden="true"></i></a>
+		      </div>
+		      <div class="col-md-9 col-9 text-right pr-4">
+		        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">'. Helpers::Dinero(Corte::TotalNoTx(date("d-m-Y"))) .'</h5>
+		        <p class="font-small grey-text">Total No Tx</p>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>';
+
+	echo '<div class="col-xl-3 col-md-6 mb-4">
+		  <div class="card">
+		    <div class="row mt-3">
+		      <div class="col-md-3 col-3 text-left pl-1">
+		        <a type="button" class="btn-floating btn-lg red accent-2 ml-4 waves-effect waves-light"><i class="fas fa-sliders-h" aria-hidden="true"></i></a>
+		      </div>
+		      <div class="col-md-9 col-9 text-right pr-4">
+		        <h5 class="ml-4 mt-4 mb-2 font-weight-bold">'.Helpers::Entero(Corte::ClientesHoy(date("d-m-Y"))).'</h5>
+		        <p class="font-small grey-text">Clientes</p>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>';
+
+	echo '</div>';
+
 
 		}
 
