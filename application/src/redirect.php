@@ -19,7 +19,9 @@ elseif(isset($_GET["venta_especial"])) include_once 'system/config_especial/vent
 
 elseif(isset($_GET["root"]) and $_SESSION['tipo_cuenta'] == "1") include_once 'system/config_configuraciones/root.php';
 
-elseif(isset($_GET["gastos"])) include_once 'system/gastos/gastos.php';
+// Gastos y compras
+elseif(isset($_GET["gastos"])) include_once 'system/gastos/gastos.php'; 
+elseif(isset($_GET["entradas"])) include_once 'system/gastos/entradas.php'; 
 
 elseif(isset($_GET["producto"])) include_once 'system/productos/productos.php';
 

@@ -203,10 +203,20 @@ public function Porcentaje(){
 	}
 
 
+	public function EntradasEfectivo($fecha){
+		$db = new dbConn();
+	        $a = $db->query("SELECT sum(cantidad) FROM entradas_efectivo WHERE edo = 1 and td = ".$_SESSION["td"]." and fecha = '$fecha'");
+		    foreach ($a as $b) {
+		        $efectivo=$b["sum(cantidad)"];
+		    } $a->close();
+		    return  $efectivo;
+
+	}
+
 
 	public function DiferenciaDinero($caja_chica, $efectivo, $fecha){
 		/// conversiones para el dinero
-				$total_cc = $this->VentaHoy($fecha)+$caja_chica+$this->PropinaHoy($fecha); //total ventas  mas caja chica de ayer
+			$total_cc = $this->VentaHoy($fecha)+$caja_chica+$this->PropinaHoy($fecha)+$this->EntradasEfectivo($fecha); //total ventas  mas caja chica de ayer
 				$total_debido = $total_cc-$this->GastoHoy($fecha); //dinero que deberia haber ()
 				$diferencia = $efectivo - $total_debido;
 				return $diferencia;

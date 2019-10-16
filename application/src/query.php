@@ -73,15 +73,9 @@ echo '
 	if($_GET["modal"] == "venta_especial"){
 	echo '<script type="text/javascript" src="assets/js/query/venta-especial.js?v='.$numero.'"></script>';
 	}
-	if($_GET["modal"] == "imageup"){
-	echo '<script type="text/javascript" src="assets/js/query/imageup.js?v='.$numero.'"></script>';
-	}
 	if($_GET["modal"] == "img_negocio"){
 	echo '<script type="text/javascript" src="assets/js/query/img_negocio.js?v='.$numero.'"></script>';
 	}  
-	if($_GET["modal"] == "img_gasto"){
-	echo '<script type="text/javascript" src="assets/js/query/imageup.js?v='.$numero.'"></script>';
-	}
 	if($_GET["modal"] == "respaldar"){
 			$url = "sync/push.php?corte=1";
 			echo '<script>
@@ -118,9 +112,14 @@ echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"
 elseif(isset($_GET["iconos"])) {
 echo '<script type="text/javascript" src="assets/js/query/iconos.js?v='.$numero.'"></script>';
 } 
+//// gastos
 elseif(isset($_GET["gastos"])) {
 echo '<script type="text/javascript" src="assets/js/query/gastos.js?v='.$numero.'"></script>';
-}
+} 
+elseif(isset($_GET["entradas"])) {
+echo '<script type="text/javascript" src="assets/js/query/gastos.js?v='.$numero.'"></script>';
+} 
+///
 elseif(isset($_GET["producto"])) {
 echo '<script type="text/javascript" src="assets/js/query/productos.js?v='.$numero.'"></script>';
 }

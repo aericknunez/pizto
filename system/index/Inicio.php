@@ -277,7 +277,7 @@ if($_SESSION["caduca"] == 3){
     		$total = $efectivo;
 		    return $total;	
 		} else {
-			$total = $efectivo + Corte::VentaHoy(date("d-m-Y")) - Corte::GastoHoy(date("d-m-Y")) + Corte::PropinaHoy(date("d-m-Y"));
+			$total = $efectivo + Corte::VentaHoy(date("d-m-Y")) - Corte::GastoHoy(date("d-m-Y")) + Corte::PropinaHoy(date("d-m-Y")) + Corte::EntradasEfectivo(date("d-m-Y"));
 		    return $total;
 		}
 

@@ -58,10 +58,6 @@ if($_REQUEST["modal"]=="otras_ventas") include_once 'system/modal/modal/otras_ve
 if($_REQUEST["modal"]=="venta_especial") include_once 'system/modal/modal/venta_especial.php';
 if($_REQUEST["modal"]=="nombremesa") include_once 'system/modal/modal/nombremesa.php';
 
-if($_REQUEST["modal"]=="imageup") include_once 'system/modal/modal/subir_gastos_imagen.php';
-
-if($_REQUEST["modal"]=="img_gasto") include_once 'system/modal/modal/imagenes_gastos.php';
-
 if($_REQUEST["modal"]=="img_negocio") include_once 'system/modal/modal/imagen_negocio.php';
 
 if($_REQUEST["modal"]=="respaldar") include_once 'system/modal/modal/respaldar.php';
