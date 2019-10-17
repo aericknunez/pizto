@@ -319,11 +319,11 @@ if($_SESSION["caduca"] == 3){
 	public function LastUpdate(){
 		$db = new dbConn();
 
-		    if ($r = $db->select("*", "sync_up_cloud", "WHERE td = ".$_SESSION["td"]." and ejecutado = 1 order by id desc")) {
-		    	if($r["fecha"] != NULL){
-		    		return $r["fecha"] . " | " . $r["hora"];
+		 if ($r = $db->select("*", "sync_up_cloud", "WHERE td = ".$_SESSION["td"]." and ejecutado = 1 order by id desc")) {
+		    	if($r["fecha"] == date("d-m-Y")){
+		    		return $r["hora"];
 		    	} else {
-		    		return "Corte";
+		    		return $r["fecha"] . " | " . $r["hora"];
 		    	}
 		        
 		    } unset($r);  
@@ -347,7 +347,7 @@ if($_SESSION["caduca"] == 3){
 
 		public function SiCorte(){
 			if(Corte::UltimaFecha() == date("d-m-Y")){
-				return Helpers::Dinero(Corte::GetDiferencia(date("d-m-Y")));
+				return "Corte: " . Helpers::Dinero(Corte::GetDiferencia(date("d-m-Y")));
 			} else {
 				return 'Sin Corte';
 			}
