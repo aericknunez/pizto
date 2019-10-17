@@ -17,9 +17,9 @@ $hora = date("H:i:s");
     } unset($r);  
 
 
-
 $data =  file_get_contents('https://pizto.com/admin/application/includes/db_sync_json.php?x=' . $_SESSION["temporal_td"]); 
 $datos = json_decode($data, true);
+
 
 foreach ($datos as $valores) { // vamos hacer un archivo por cada hash
 	$sync = $valores["hash"];
@@ -42,9 +42,8 @@ if($a->num_rows == 0){
 	$datos["time"] = Helpers::TimeId();
 	$db->insert("login_db_sync", $dato);
 
-// aqui ejecuto el sql que deberia estar en el directorio descargado de git
+// // aqui ejecuto el sql que deberia estar en el directorio descargado de git
 $archx = "sql/" . $sync . ".sql";            
-
 if (file_exists($archx)) {
 $sql = explode(";",file_get_contents($archx));//
 foreach($sql as $query){
@@ -66,14 +65,13 @@ foreach($sql as $query){
 
 
 
-
 function SubirFtp($sync){
 	include_once '../system/sync/Ftp.php';
 		$subir =  new Ftp;
 		if($subir->Servidor("ftp.pizto.com",
 						"erick@pizto.com",
 						"caca007125-",
-						$sync . ".sql",
+						$sync,
 						"/admin/sync/database/",
 						"C:/AppServ/www/pizto/sync/". $sync .".sql") == TRUE){
 						return TRUE;
@@ -81,7 +79,6 @@ function SubirFtp($sync){
 			return FALSE;
 		}
 }
-
 
 
 ///////// actualizar el root
