@@ -7,44 +7,6 @@ class Sync{
 
 
 
-	public function ListaRespaldos(){
-		//
-		$dia=10;
-		echo '<table class="table table-sm table-striped">
-			  <thead>
-			    <tr>
-			      <th scope="col">No</th>
-			      <th scope="col">Fecha</th>
-			      <th scope="col">Estado</th>
-			      <th scope="col">Datos</th>
-			    </tr>
-			  </thead>
-			  <tbody>';
-		    for ($x = 1; $x <= $dia; $x++) {
-		    	$dias = Fechas::DiaResta(date("d-m-Y"),$x);
-		    	
-		    	echo '<tr>
-		    	  <td>'. $x .'</td>
-			      <td>'. $dias .'</td>
-			      <td>';
-			      if($this->VerificarDatos($dias) == "No"){
-			      	echo "Sin Datos";
-			      } else {
-			      if($this->BuscaRespaldo($dias) == 1){ $this-> UrlRespaldo($dias, TRUE); 
-					} else { $this-> UrlRespaldo($dias, FALSE); }
-				  }	
-			      echo '</td>
-			      <td>'. $this->VerificarDatos($dias) .'</td>
-			      </tr>';		    	
-		    }	
-
-
-		    echo '</tbody>
-		    </table>';
-
-	}
-
-
 
 	public function ListaCortes(){
 		//
@@ -84,18 +46,6 @@ class Sync{
 	}
 
 
-	public function UrlRespaldo($fecha, $url){
-		if($url == FALSE){
-			echo '<a href="?modal=respaldar&fecha='.$fecha.'&type=1" class="btn btn-danger waves-effect waves-light">
-			    Sin Respaldo
-			</a>';
-		} else {
-			echo '<a class="btn btn-success waves-effect waves-light">
-			    Existe Respaldo
-			</a>';
-		}
-		echo '<a href="?modal=respaldar&fecha='.$fecha.'&type=1&delete=1"><span class="badge badge-pill pink"><i class="fas fa-upload" aria-hidden="true"></i></span></a>';
-	}
 
 
 	public function UrlCorte($fecha, $url){

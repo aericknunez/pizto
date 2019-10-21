@@ -7,10 +7,7 @@ include_once 'system/corte/Corte.php';
 include_once 'system/sync/Sync.php';
 $sync = new Sync();
 ?>
-<h1 class="h1-responsive">RESPALDOS PENDIENTES <?php 
-
-echo '<a href="?modal=respaldar&type=2" class="btn-floating btn-sm red"><i class="fas fa-download"></i></a> Configuraciones';
- ?></h1>
+<h1 class="h1-responsive">CORTES PENDIENTES</h1>
 
 <?php if(isset($_REQUEST["msj"])){
     echo '<div class="alert alert-danger">
@@ -21,18 +18,12 @@ echo '<a href="?modal=respaldar&type=2" class="btn-floating btn-sm red"><i class
 
 
 <div class="row">
-    <div class="col-md-6 btn-outline-info z-depth-2" id="origen">
+    <div class="col-md-12 btn-outline-info z-depth-2" id="origen">
     <h4>Estado de corte de los ultimos 7 dias</h4>
     <?php 
     $sync->ListaCortes();
      ?>
     </div>
     
-    <div class="col-md-6 btn-outline-danger z-depth-2" id="destino">
-	<h4>Estado de respaldos de los ultimos 7 dias</h4>
-    <?php 
-    $sync->ListaRespaldos();
-     ?>
-    </div>
-   
+  
 </div>

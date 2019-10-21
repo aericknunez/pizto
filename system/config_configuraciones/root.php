@@ -32,17 +32,17 @@ $r = $db->select("*", "config_root", "where td = ".$_SESSION['td']."");
        
      </tr>
      <tr>
-       <td>FTP Path</td>
+       <td>FTP Ruta destino</td>
        <td><? echo Encrypt::Decrypt($r["ftp_path"],$_SESSION['secret_key']); ?></td>
        
      </tr>
      <tr>
-       <td>FTP Ruta</td>
+       <td>Archivo local Ruta</td>
        <td><? echo Encrypt::Decrypt($r["ftp_ruta"],$_SESSION['secret_key']); ?></td>
        
      </tr>
      <tr>
-       <td>FTP User</td>
+       <td>FTP Usuario</td>
        <td><? echo Encrypt::Decrypt($r["ftp_user"],$_SESSION['secret_key']); ?></td>
        
      </tr>
