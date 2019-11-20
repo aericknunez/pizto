@@ -76,6 +76,13 @@ echo '
 	if($_GET["modal"] == "img_negocio"){
 	echo '<script type="text/javascript" src="assets/js/query/img_negocio.js?v='.$numero.'"></script>';
 	}  
+
+		/// Planilla
+	if($_GET["modal"] == "editempleado"){
+	echo '<script type="text/javascript" src="assets/js/query/planilla.js?v='.$numero.'"></script>';
+	}
+
+
 	if($_GET["modal"] == "respaldar"){
 			$url = "sync/push.php?corte=1";
 			echo '<script>
@@ -211,6 +218,28 @@ elseif(isset($_GET["admon"])) {
 		echo '<script type="text/javascript" src="assets/js/query/admin.js?v='.$numero.'"></script>';
 		include_once 'system/admon/script.php';
 }
+
+
+//////////////// Planilla
+elseif(isset($_GET["addempleado"])) {
+echo '<script type="text/javascript" src="assets/js/query/planilla.js?v='.$numero.'"></script>';
+} 
+elseif(isset($_GET["verempleado"])) {
+echo '<script type="text/javascript" src="assets/js/printThis.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="assets/js/query/planilla.js?v='.$numero.'"></script>';
+} 
+elseif(isset($_GET["descuentos"])) {
+echo '<script type="text/javascript" src="assets/js/query/planilla.js?v='.$numero.'"></script>';
+} 
+elseif(isset($_GET["planillasver"])) {
+echo '<script type="text/javascript" src="assets/js/printThis.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="assets/js/query/paginador.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="assets/js/query/planilla.js?v='.$numero.'"></script>';
+} 
+
+
+
 else{
 echo '<script type="text/javascript" src="assets/js/query/ventas.js?v='.$numero.'"></script>';	
 }

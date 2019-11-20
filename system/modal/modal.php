@@ -63,3 +63,8 @@ if($_REQUEST["modal"]=="img_negocio") include_once 'system/modal/modal/imagen_ne
 if($_REQUEST["modal"]=="respaldar") include_once 'system/modal/modal/respaldar.php';
 
 if($_REQUEST["modal"]=="newcut") include_once 'system/modal/modal/newcut.php';
+
+
+
+/// planilla
+if($_REQUEST["modal"]=="editempleado") include_once 'system/modal/modal/editar-empleado.php';

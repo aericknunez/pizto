@@ -90,6 +90,14 @@ elseif($_SESSION['sinuso'] != NULL) include_once 'system/index/mensajes.php';
 
 
 
+// planilla
+elseif(isset($_GET["addempleado"])) include_once 'system/planilla/empleados.php'; // agregar planilla
+elseif(isset($_GET["verempleado"])) include_once 'system/planilla/empleadover.php'; // ver empleados
+elseif(isset($_GET["descuentos"])) include_once 'system/planilla/descuentos.php'; // ver descuentos
+elseif(isset($_GET["planillasver"])) include_once 'system/planilla/planillasver.php'; // ver planilla
+
+
+
 // admin
 elseif(isset($_GET["syncstatus"])) include_once 'system/historial/syncstatus.php';
 elseif(isset($_GET["db_sync"])) include_once 'system/admon/db_user.php';
