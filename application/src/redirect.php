@@ -42,6 +42,7 @@ elseif(isset($_GET["mensual"])) include_once 'system/historial/mensual.php';
 // graficos;
 elseif(isset($_GET["gra_semanal"])) include_once 'system/historial/gra_semanal.php';
 elseif(isset($_GET["gra_mensual"])) include_once 'system/historial/gra_mensual.php';
+elseif(isset($_GET["gra_semestre"])) include_once 'system/historial/gra_semestre.php';
 
 
 elseif(isset($_GET["gastodiario"])) include_once 'system/historial/gasto_diario.php';

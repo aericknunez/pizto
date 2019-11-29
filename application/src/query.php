@@ -151,6 +151,8 @@ echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$nume
 // para graficos
 elseif(isset($_GET["gra_semanal"])) include_once 'assets/js/query/gra_semanal.php';
 elseif(isset($_GET["gra_mensual"])) include_once 'assets/js/query/gra_mensual.php';
+elseif(isset($_GET["gra_semestre"])) include_once 'assets/js/query/gra_semestre.php';
+
 
 elseif(isset($_GET["mesasfecha"])) {
 echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';

@@ -423,7 +423,7 @@ if($_SESSION["caduca"] == 3){
 
 
 echo '<hr>';
-		
+	
 	}
 
 
@@ -501,6 +501,10 @@ echo '<div class="row mt-3">';
 		</div>';
 
 	echo '</div>';
+
+if(Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0){
+echo '<div class="text-center"><a id="cambiar-pantalla-inicio" op="27x" class="btn btn-success">Ir a Facturar</a></div>';
+}
 
 
 		}

@@ -144,6 +144,15 @@ class Corte{
 	}
 
 
+	public function VentaMes($fecha){ /// solo para reporte de semestre
+		$db = new dbConn();
+	    $a = $db->query("SELECT sum(total) FROM ticket WHERE edo = 1 and td = ".$_SESSION["td"]." and fecha like '%-$fecha'");
+		    foreach ($a as $b) {
+		     $total=$b["sum(total)"];
+		    } $a->close();
+		    return $total;
+	}
+
 	public function PropinaHoy($fecha){
 		$db = new dbConn();
 	    $a = $db->query("SELECT sum(total) FROM ticket_propina WHERE td = ".$_SESSION["td"]." and fecha = '$fecha'");
@@ -201,6 +210,18 @@ public function Porcentaje(){
 		    } $a->close();
 		    return $total;
 	}
+
+
+
+	public function GastoMes($fecha){
+		$db = new dbConn();
+	    $a = $db->query("SELECT sum(cantidad) FROM gastos WHERE edo = 1 and tipo != 5 and td = ".$_SESSION["td"]." and fecha like '%-$fecha'");
+		    foreach ($a as $b) {
+		     $total=$b["sum(cantidad)"];
+		    } $a->close();
+		    return $total;
+	}
+
 
 
 	public function EntradasEfectivo($fecha){
