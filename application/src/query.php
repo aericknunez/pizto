@@ -200,9 +200,6 @@ echo '<script type="text/javascript" src="assets/js/query/facturar.js?v='.$numer
 elseif(isset($_GET["syncstatus"])) {
 echo '<script type="text/javascript" src="assets/js/query/respaldo.js?v='.$numero.'"></script>';
 }
-elseif(isset($_GET["update"])) {
-echo '<script type="text/javascript" src="assets/js/query/sync.js?v='.$numero.'"></script>';
-}
 
 elseif(isset($_GET["tablas"])) {
 echo '<script type="text/javascript" src="assets/js/query/conf_config.js?v='.$numero.'"></script>';

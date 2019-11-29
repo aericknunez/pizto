@@ -14,6 +14,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     
     if ($seslog->LogOn($email, $password) == true) {
         // Login success 
+        echo "Redireccionando...";
         echo '<script>
             window.location.href="application/includes/iniciar.php"
         </script>';

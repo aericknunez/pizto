@@ -455,7 +455,7 @@ class Facturar{
 
 
 
-/////////////eliminar facturas
+/////////////eliminar facturas - -  muestra las facturas generadas
 	public function EliminarFacturas(){
 			$db = new dbConn();
 
@@ -490,7 +490,7 @@ class Facturar{
 
 
 
-	public function BorrarFactura($mesa, $ticket) {
+	public function BorrarFactura($mesa, $ticket) {  // elimina la factura de raiz
 		$db = new dbConn();
 		    
 		    // temp

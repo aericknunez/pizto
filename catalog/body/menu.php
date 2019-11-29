@@ -177,10 +177,6 @@ if((Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) or (
 <?php if($_SESSION["tipo_cuenta"] == 1) { ?>
 <li><a href="?root" class="waves-effect">Configuracion Root</a></li>
 <li><a href="?codigos" class="waves-effect">C&oacutedigos de validaci&oacuten</a></li>
-<?php } 
-if(Helpers::ServerDomain() == FALSE and $_SESSION["root_plataforma"] == 0) {
- ?>
-<li><a href="?update" class="waves-effect">Actualizar Sistema</a></li>
 <?php } ?>
 </ul>
 </div>

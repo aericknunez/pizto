@@ -91,7 +91,7 @@ class Mesa{
 			echo '<a href="?modal=modificar&mesa='.$mesa.'&view=1" class="btn btn-brown">Modificar Opciones</a>';
 				}
 
-			if ($r = $db->select("clientes", "mesa", "WHERE mesa = '$mesa' and td = ".$_SESSION["td"]."")) { 
+			if ($r = $db->select("clientes", "mesa", "WHERE mesa = '$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) { 
 			    if($r["clientes"] > 1) echo '<a href="?modal=dividir&mesa='.$mesa.'" class="btn btn-primary">Dividir Cuentas</a>';
 			    } unset($r);
 			}
