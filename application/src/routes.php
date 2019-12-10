@@ -1487,7 +1487,7 @@ $imgs = new Success();
 			$imagen->image_x              		= 700; // para el ancho a cortar
 			$imagen->image_y              		= 700; // para el alto a cortar
 		}
-		$imagen->file_new_name_body   		= "logo_negocio"; // agregamos un nuevo nombre
+		$imagen->file_new_name_body   		= Helpers::TimeId(); // agregamos un nuevo nombre
 		// $imagen->image_watermark      		= 'watermark.png'; // marcado de agua
 		// $imagen->image_watermark_position 	= 'BR'; // donde se ub icara el marcado de agua. Bottom Right		
 		$imagen->process('../../assets/img/logo/');	
