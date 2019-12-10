@@ -13,24 +13,24 @@ if ($seslog->login_check() == TRUE) {
     include_once 'catalog/index.php';
 } else {
 	
-	if(isset($_REQUEST["change"])){
-		if($_SESSION["inicio"] == NULL){
-			$_SESSION["inicio"] = 1;
-		} else {
-			unset($_SESSION["inicio"]);
-		}
-	 header("location: ./");
+if(isset($_REQUEST["change"])){
+	if($_SESSION["inicio"] == NULL){
+		$_SESSION["inicio"] = 1;
+	} else {
+		unset($_SESSION["inicio"]);
 	}
-    //include_once 'catalog/login.php';
-    	if(Helpers::ServerDomain() == FALSE){
-		  		if($_SESSION["inicio"] == NULL){
-					include_once 'catalog/login_user.php';
-				} else {
-					include_once 'catalog/login.php';
-				}
-		} else {
-			include_once 'catalog/login.php';
-		}   
+ header("location: ./");
+}
+	//include_once 'catalog/login.php';
+	if(Helpers::ServerDomain() == FALSE){
+	  		if($_SESSION["inicio"] == NULL){
+				include_once 'catalog/login_user.php';
+			} else {
+				include_once 'catalog/login.php';
+			}
+	} else {
+		include_once 'catalog/login.php';
+	}   
 
 }
 ?>
