@@ -489,11 +489,11 @@ class Reporte{
 			  <tbody>';
 			    foreach ($a as $b) {
 			    	// obtengo el nombre del producto
-			    	    if ($r = $db->select("nombre", "pro_bruto", "WHERE iden = ". $b["producto"] ." and td = ". $_SESSION["td"]. "")) { $nombre = $r["nombre"]; } unset($r); 
+			    	    if ($r = $db->select("nombre", "pro_bruto", "WHERE iden = '". $b["producto"] ."' and td = ". $_SESSION["td"]. "")) { $nombre = $r["nombre"]; } unset($r); 
 			    	// calculo cuanto producto se vendio
 			    	    	$cantidadx = 0;
 			    	   // * cuales son los dependientes y cuanto ocupan del materia prima
-			    	        $adep = $db->query("SELECT * FROM pro_dependiente WHERE producto = ". $b["producto"] ." and td = ". $_SESSION["td"]. "");
+			    	        $adep = $db->query("SELECT * FROM pro_dependiente WHERE producto = '". $b["producto"] ."' and td = ". $_SESSION["td"]. "");
 							    foreach ($adep as $bdep) {
 							        $idend = $bdep["iden"]; $cantd = $bdep["cantidad"];
 					    // * busco los productos que tienen asignado esa dependiente y multiplico cantidad por productos
