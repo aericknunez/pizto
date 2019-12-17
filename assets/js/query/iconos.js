@@ -60,7 +60,8 @@ return false;
 	$("body").on("click","#delopciones",function(){
 	var op = $(this).attr('op');
 	var cod = $(this).attr('cod');
-    $.post("application/src/routes.php", {op:op, cod:cod}, 
+	var opciones = $(this).attr('opciones');
+    $.post("application/src/routes.php", {op:op, cod:cod, opciones:opciones}, 
     	function(htmlexterno){
 	$("#veropcion").html(htmlexterno);
 	 });

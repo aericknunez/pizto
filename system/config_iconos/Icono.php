@@ -331,7 +331,7 @@ class Icono{
       echo '<tr>
       <th scope="row">'.$n.'</th>
       <td>'.$b["nombre"].'</td>
-      <td><a id="delopciones" op="13" cod="'.$b["cod"].'" class="btn-floating btn-sm red"><i class="fas fa-trash-alt"></i></a></td>
+      <td><a id="delopciones" op="13" cod="'.$b["cod"].'" opciones="'.$cod.'" class="btn-floating btn-sm red"><i class="fas fa-trash-alt"></i></a></td>
       </tr>';
     }
     echo '</tbody>
@@ -355,12 +355,12 @@ class Icono{
     	}
 
 
-	public function DelOpcionesName($cod){
+	public function DelOpcionesName($cod, $opcion){
     	$db = new dbConn();
 			Helpers::DeleteId("opciones_name", "cod='$cod' and td = ".$_SESSION["td"]."");
 			Helpers::DeleteId("opciones_asig", "opcion='$cod' and td = ".$_SESSION["td"]."");
 			$db->close();
-			$this->VerOpcionesName();
+			$this->VerOpcionesName($opcion);
     	}
 
 

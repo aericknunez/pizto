@@ -93,8 +93,6 @@ $iconos->AddCategoria($_REQUEST["nombre"], $_REQUEST["imagen"]);
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
-	
-	Helpers::ActivaActualizar();
 }
 
 if($_REQUEST["op"]=="5"){
@@ -106,7 +104,6 @@ include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -118,8 +115,6 @@ $iconos->ModProducto($_REQUEST["cod"],$_REQUEST["nombre"],$_REQUEST["popup"],$_R
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
-	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -131,8 +126,6 @@ $iconos->ModCategoria($_REQUEST["cod"],$_REQUEST["nombre"],$_REQUEST["imagen"]);
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
-	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -145,7 +138,6 @@ include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -158,7 +150,6 @@ include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -176,7 +167,6 @@ include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -189,8 +179,7 @@ $iconos->AddOpcionName($_REQUEST["cod"],$_REQUEST["nombre"],$_REQUEST["imagen"])
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
-	
-	Helpers::ActivaActualizar();
+
 }
 
 
@@ -203,20 +192,18 @@ include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
 	
-	Helpers::ActivaActualizar();
 }
 
 
 if($_REQUEST["op"]=="13"){
 include_once '../../system/config_iconos/Icono.php';
 $iconos = new Icono;
-$iconos->DelOpcionesName($_REQUEST["cod"]);
+$iconos->DelOpcionesName($_REQUEST["cod"], $_REQUEST["opciones"]);
 
 include_once '../../system/config_configuraciones/Config.php';
 	$configuracion = new Config;
 	$configuracion->CrearIconos("../iconos/", 1);
 	
-	Helpers::ActivaActualizar();
 } 
 
 
@@ -472,7 +459,6 @@ if($_REQUEST["op"]=="30"){ // Agregar Unidad
 	$productos = new Producto;
 	$productos->AddUnidad($_POST["nombre"],$_POST["abreviacion"]);
 	
-	Helpers::ActivaActualizar();
 } 
 
 
@@ -480,8 +466,7 @@ if($_REQUEST["op"]=="31"){ // Borrar gasto
 	include_once '../../system/productos/Producto.php';
 	$productos = new Producto;
 	$productos->BorrarUnidad($_POST["iden"]);
-	
-	Helpers::ActivaActualizar();
+
 } 
 
 
@@ -490,7 +475,6 @@ if($_REQUEST["op"]=="32"){ // Agregar Porciones
 	$productos = new Producto;
 	$productos->AddPorciones($_POST["nombre"],$_POST["producto"],$_POST["cantidad"]);
 	
-	Helpers::ActivaActualizar();
 } 
 
 
@@ -500,7 +484,6 @@ if($_REQUEST["op"]=="33"){ // Borrar porcion
 	$productos = new Producto;
 	$productos->BorrarPorcion($_POST["iden"]);
 	
-	Helpers::ActivaActualizar();
 } 
 
 
@@ -510,7 +493,6 @@ if($_REQUEST["op"]=="34"){ // agrega materia prima
 	$productos = new Producto;
 	$productos->AddMateria($_POST["nombre"],$_POST["cantidad"],$_POST["unidad"]);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -519,7 +501,6 @@ if($_REQUEST["op"]=="35"){ // Borrar gasto
 	$productos = new Producto;
 	$productos->BorrarMateria($_POST["iden"]);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -530,7 +511,6 @@ if($_REQUEST["op"]=="36"){ // Agregar Porciones a un producto
 		$productos->AddPorcionProducto($_POST["iden"],$_POST["producto"]);
 	}
 	
-	Helpers::ActivaActualizar();
 } 
  
 
@@ -539,7 +519,6 @@ include_once '../../system/productos/Producto.php';
 $productos = new Producto;
 $productos->BorrarPorcionProducto($_POST["iden"],$_POST["cod"]);
 	
-	Helpers::ActivaActualizar();
 } 
 
 
@@ -1079,7 +1058,6 @@ if($_REQUEST["op"]=="90"){
 									$_POST["venta_especial"],
 									$_POST["imprimir_antes"],
 									$_POST["cambio_tx"]);
-	Helpers::ActivaActualizar();
 }
 
 if($_REQUEST["op"]=="91"){ 
@@ -1097,7 +1075,6 @@ include_once '../../system/config_configuraciones/Config.php';
 						Encrypt::Encrypt($_POST["ftp_password"],$_SESSION['secret_key']),
 						Encrypt::Encrypt($_POST["tipo_sistema"],$_SESSION['secret_key']),
 						Encrypt::Encrypt($_POST["plataforma"],$_SESSION['secret_key']));
-	Helpers::ActivaActualizar();
 }
 
 
@@ -1171,7 +1148,6 @@ include_once '../../system/productos/Product.php';
 $producto = new Product;
 $producto->AgregarAveria($_POST["producto"],$_POST["cantidad"],$_POST["comentarios"]);
 	
-	Helpers::ActivaActualizar();
 } 
 
 
@@ -1180,7 +1156,6 @@ include_once '../../system/productos/Product.php';
 $producto = new Product;
 $producto->EliminarAveria($_REQUEST["iden"]);
 	
-	Helpers::ActivaActualizar();
 } 
 
 if($_REQUEST["op"]=="112"){ // paginador averias
@@ -1195,7 +1170,6 @@ include_once '../../system/productos/Product.php';
 $producto = new Product;
 $producto->AgregarProducto($_POST["producto"],$_POST["cantidad"],$_POST["comentarios"]);
 	
-	Helpers::ActivaActualizar();
 } 
 
 if($_REQUEST["op"]=="116"){ // borrar averias
@@ -1203,7 +1177,6 @@ include_once '../../system/productos/Product.php';
 $producto = new Product;
 $producto->EliminarProducto($_REQUEST["iden"]);
 	
-	Helpers::ActivaActualizar();
 } 
 
 if($_REQUEST["op"]=="117"){ // paginador averias
@@ -1242,7 +1215,6 @@ include_once '../../system/index/Inicio.php';
 $inicio = new Inicio;
 $inicio->Validar($_POST["fecha_submit"], $_POST["codigo"]);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -1325,7 +1297,6 @@ include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->AgregarCai($_POST["inicial"],$_POST["final"],$_POST["fechalimite_submit"],$_POST["cai"]);
 	
-	Helpers::ActivaActualizar();
 
 }
 
@@ -1335,7 +1306,6 @@ include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->EliminarCai($_REQUEST["iden"]);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -1354,7 +1324,6 @@ include_once '../../system/facturar/Facturar.php';
 							$_POST["n3"],
 							$_POST["n4"]);
 	
-	Helpers::ActivaActualizar();
 
 }
 
@@ -1364,7 +1333,6 @@ include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->AgregarImpresora($_POST["impresora"],$_POST["comentarios"]);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -1373,7 +1341,6 @@ include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->AgregarUsuarios($_POST["tipo"],$_POST["ticket"],$_POST["impresora"],$_POST["clase"]);
 	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -1383,7 +1350,6 @@ include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->EliminarFact($_REQUEST["iden"]);
 	
-	Helpers::ActivaActualizar();
 }
 /// eliminar impresora
 if($_REQUEST["op"]=="144"){ 
@@ -1391,15 +1357,12 @@ include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->EliminarPrint($_REQUEST["iden"]);
 	
-	Helpers::ActivaActualizar();
 }
 /// Usuarios
 if($_REQUEST["op"]=="145"){ 
 include_once '../../system/facturar/Facturar.php';
 	$facturar = new Facturar; 
 	$facturar->EliminarUser($_REQUEST["iden"]);
-	
-	Helpers::ActivaActualizar();
 }
 
 
@@ -1567,7 +1530,6 @@ if($_REQUEST["op"]=="167"){ // dar seguimiento a materia prima
 	$productos = new Producto;
 	$productos-> SeguirMateria($_REQUEST["cod"], $_REQUEST["iden"]);
 	
-	Helpers::ActivaActualizar();
 }
 
 
