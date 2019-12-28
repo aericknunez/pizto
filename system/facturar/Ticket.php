@@ -4,8 +4,6 @@ class Ticket{
 		public function __construct() { 
      } 
 
-if($_SESSION["td"] != 3){
-
  public function Imprimir($tipo,$numero,$efectivo,$imp,$dato,$ticket){
   $db = new dbConn();
 
@@ -167,7 +165,6 @@ printer_end_page($handle);
 printer_end_doc($handle);
 printer_close($handle);
 
-}
 
   }
 
