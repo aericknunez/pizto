@@ -7,6 +7,7 @@ class Ticket{
  public function Imprimir($tipo,$numero,$efectivo,$imp,$dato,$ticket){
   $db = new dbConn();
 
+
 if ($r = $db->select("*", "facturar_ticket", "WHERE id = '$ticket' and td = ".$_SESSION["td"]."")) { 
 $img = $r["img"];
 $txt1=$r["txt1"]; 
@@ -32,6 +33,9 @@ $print = $r["impresora"];
 
 printer_start_doc($handle, "Mi Documento");
 printer_start_page($handle);
+
+if($_SESSION["td"] != 3){
+
 
 printer_draw_bmp($handle, $logo_imagen, 100, 1, 300, 120);
 
@@ -158,12 +162,16 @@ printer_draw_text($handle, "GRACIAS POR SU COMPRA...", 60, $oi);
 printer_delete_font($font);
 $oi=$oi+$n2;
 printer_draw_text($handle, "REF: ". $numero, NULL, $oi);
+
+
+}
 printer_write($handle, chr(27).chr(112).chr(48).chr(55).chr(121)); //enviar pulso
 
 
 printer_end_page($handle);
 printer_end_doc($handle);
 printer_close($handle);
+
 
 
   }
