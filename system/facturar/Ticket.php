@@ -34,8 +34,6 @@ $print = $r["impresora"];
 printer_start_doc($handle, "Mi Documento");
 printer_start_page($handle);
 
-if($_SESSION["td"] != 3){
-
 
 printer_draw_bmp($handle, $logo_imagen, 100, 1, 300, 120);
 
@@ -163,8 +161,11 @@ printer_delete_font($font);
 $oi=$oi+$n2;
 printer_draw_text($handle, "REF: ". $numero, NULL, $oi);
 
-
+if($_SESSION["td"] != 3){
+$oi=$oi+$n1;
+printer_draw_text($handle, ".", NULL, $oi);
 }
+
 printer_write($handle, chr(27).chr(112).chr(48).chr(55).chr(121)); //enviar pulso
 
 
