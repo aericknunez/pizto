@@ -6,7 +6,7 @@
 	font-size:0.6em; /* tama;o de las letras */
 }
 .gallery li {
-	border: solid 1px #fff;  /* borde de la imagen quitar si se ve feo*/
+	/*border: solid 1px #fff;   borde de la imagen quitar si se ve feo*/
 	padding: 10px;
 	margin: 10;
 	float: left;
@@ -15,20 +15,20 @@
 	height: 110px;
 }
 .gallery li:hover input {
-	border-color: #000;
+	border-color: #fff;
 }
 .gallery li:active input {
      position: relative;
 	 opacity: 0.5;
      top: 10px;
 }
-}
+
 .gallery input {
-	border: solid 1px #fff;
+	/*border: solid 1px #fff;*/
 	padding: 5px;
 }
 .gallery em {
-	background: #fff url(../img/grey-gradient.gif) repeat-y;
+	background: #fff;
 	color: #000;
 	font-style: normal;
 	padding: 1px 5px;
@@ -44,6 +44,6 @@
 	text-decoration: none;
 }
 .gallery a:hover em {
-	background: #ffdb01 url(../img/orange-gradient.gif) repeat-y;
+	background: #ffdb01;
 	border-color: #c25b08;
 }
