@@ -165,6 +165,26 @@ $(document).ready(function()
 
 
 
+	$('#btn-ticket').click(function(e){ /// para el formulario
+		$("#form-ticket").hide();
+		MuestraLoader();
+		e.preventDefault();
+		$.ajax({
+			url: "application/src/routes.php?op=77",
+			method: "POST",
+			data: $("#form-ticket").serialize(),
+			success: function(data){
+				$("#contenido").html(data);
+				$("#form-ticket").trigger("reset");
+				$("#form-ticket").show();
+				EscondeLoader();
+			}
+		})
+	})
+
+
+
+
 
 
 });

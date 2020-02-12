@@ -551,6 +551,74 @@ class Historial{
 
 
 
+
+
+/////////ticket eliminados
+///
+
+	public function HistorialTickets($inicio, $fin) {
+		$db = new dbConn();
+		$primero = Fechas::Format($inicio);
+		$segundo = Fechas::Format($fin);
+		
+		//busqueda de usuarios
+
+	    $d = $db->selectGroup("num_fac, fecha, hora, cajero", "ticket", "WHERE fechaF BETWEEN '$primero' AND '$segundo' and td = ".$_SESSION['td']." and tx = 0 and edo = 2 GROUP BY num_fac");
+	    if ($d->num_rows > 0) {
+
+        echo '<table class="table table-striped table-sm">
+
+			<thead>
+		     <tr>
+		       <th>Fecha</th>
+		       <th>No. Ticket</th>
+		       <th>Cajero</th>
+		     </tr>
+		   </thead>
+
+		   <tbody>';
+
+	        while($r = $d->fetch_assoc() ) {
+	            $factura = $r["num_fac"];
+
+	        echo '<tr>
+				       <th scope="row">'. $r["fecha"]. ' | '.$r["hora"]. '</th>
+				       <td>'.$factura.'</td>
+				       <td>'. $r["cajero"]. '</td>
+				  </tr>';
+
+		    $a = $db->query("SELECT cant, producto, total FROM ticket WHERE num_fac = '$factura' and tx = 0  and edo = 2 and td = ".$_SESSION['td']."");
+		    foreach ($a as $b) {
+		    	echo '<tr class="text-danger">
+				       <th scope="row">'.$b["cant"].'</th>
+				       <td>'. $b["producto"]. '</td>
+				       <td>'. Helpers::Dinero($b["total"]). '</td>
+				  </tr>';
+		    } $a->close();
+
+
+	        }
+	    echo '</tbody>
+				</table>';
+
+	    } else {
+	        echo "- No Records Found!<br />";
+	    } 
+	   
+	   $d->close();
+
+
+
+	}
+
+
+
+
+
+
+
+
+
 // termina la clase
  }
 

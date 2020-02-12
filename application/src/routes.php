@@ -914,6 +914,17 @@ if($_REQUEST["op"]=="76"){ // historial In Out
 }
 
 
+if($_REQUEST["op"]=="77"){ // historial ticket borrados
+	include_once '../../system/historial/Historial.php';
+	$historial = new Historial;
+	if($_POST["fecha1_submit"]){
+		$inicio = $_POST["fecha1_submit"]; $fin=$_POST["fecha2_submit"];
+	} else {
+		$inicio = date("01-m-Y"); $fin=date("31-m-Y");
+	}
+	$historial->HistorialTickets($inicio, $fin);
+
+}
 
 
 if($_REQUEST["op"]=="80"){ // search -> Eliminar Orden tx =0
