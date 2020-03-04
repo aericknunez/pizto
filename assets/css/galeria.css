@@ -14,14 +14,13 @@
 	width: 120px;
 	height: 110px;
 }
-.gallery li:hover input {
+/*.gallery li:hover input {
 	border-color: #000;
-}
+}*/
 .gallery li:active input {
      position: relative;
 	 opacity: 0.5;
      top: 10px;
-}
 }
 .gallery input {
 	border: solid 1px #fff;
