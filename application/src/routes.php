@@ -33,6 +33,15 @@ exit();
 
 //
 
+/// precios
+if($_REQUEST["op"]=="3"){
+	include_once '../../system/config_configuraciones/Config.php';
+	$configuracion = new Config;
+	$configuracion->CambiarPrecio($_POST);
+}
+
+
+
 //////////iconos
 if($_REQUEST["op"]=="4"){
 include_once '../../system/config_iconos/Icono.php';
