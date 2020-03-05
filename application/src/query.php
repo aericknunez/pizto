@@ -20,18 +20,6 @@ echo '
 	</script>
 	';
 
-	if($_GET["modal"] == "registrar"){
-	echo '<script type="text/javascript" src="assets/js/query/login.js?v='.$numero.'"></script>';
-	}
-	if($_GET["modal"] == "newpass"){
-	echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"></script>';
-	}
-	if($_GET["modal"] == "userupdate"){
-	echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"></script>';
-	}
-	if($_GET["modal"] == "avatar"){
-	echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"></script>';
-	}
 	if($_GET["modal"] == "selectimg"){
 	echo '<script type="text/javascript" src="assets/js/query/iconos.js?v='.$numero.'"></script>';
 	}
@@ -116,7 +104,7 @@ elseif(isset($_GET["codigos"])) {
 echo '<script type="text/javascript" src="assets/js/query/noacceso.js?v='.$numero.'"></script>';
 }  
 elseif(isset($_GET["user"])) {
-echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="system/user/login.js?v='.$numero.'"></script>';
 } 
 elseif(isset($_GET["iconos"])) {
 echo '<script type="text/javascript" src="assets/js/query/iconos.js?v='.$numero.'"></script>';

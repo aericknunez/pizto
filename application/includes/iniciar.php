@@ -140,5 +140,8 @@ $user=sha1($_SESSION['username']);
 
 UserInicio($user);
 
+} else {
+   header("location: logout.php");
+    exit(); 
 }
 ?>

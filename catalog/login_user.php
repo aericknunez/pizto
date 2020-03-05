@@ -45,7 +45,8 @@
   <div class="row d-flex justify-content-center">
 
 <?php 
-    $a = $db->query("SELECT * FROM login_members WHERE username != 'Erick'");
+    $a = $db->query("SELECT * FROM login_members WHERE id != '1' and id != '2'");
+    if($a->num_rows > 0){
     foreach ($a as $b) {
     	$user=sha1($b['username']);
     if ($r = $db->select("nombre, avatar", "login_userdata", "WHERE user = '$user'")) { 
@@ -71,6 +72,16 @@
   <?php
 if (isset($_GET['error'])) {
     echo '<p class="text-danger">Error al Ingresar!</p>';
+}
+} else {
+  echo '<div class="row col-md-4 col-lg-4 d-flex justify-content-center">
+  <blockquote class="blockquote bq-success">
+  <p class="bq-title">Aviso!</p>
+  <p>Aún no se encuentran usuarios registrados. Favor Inicie Sesión como administardor y agregue usuarios del sistema
+  </p>
+</blockquote>
+
+  <a class="btn btn-secondary" href="?change">Iniciar</a></div>';
 }
 ?>
 
@@ -195,7 +206,7 @@ $(document).ready(function(){
     });
 </script>
 
-<script type="text/javascript" src="assets/js/query/login.js"></script>
+<script type="text/javascript" src="system/user/login.js"></script>
 
 </body>
 </html>

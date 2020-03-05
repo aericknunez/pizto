@@ -7,12 +7,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if($_REQUEST["modal"]=="registrar") include_once 'system/modal/modal/registrar.php';
-
-if($_REQUEST["modal"]=="newpass") include_once 'system/modal/modal/user_cambiar_pass.php';
-
-if($_REQUEST["modal"]=="userupdate") include_once 'system/modal/modal/user_update.php';
-
 if($_REQUEST["modal"]=="modcategoria") include_once 'system/modal/modal/iconos_modcategoria.php';
 
 if($_REQUEST["modal"]=="modproducto") include_once 'system/modal/modal/iconos_modproducto.php';
@@ -48,8 +42,6 @@ if($_REQUEST["modal"]=="reordenar") include_once 'system/modal/modal/iconos_reor
 if($_REQUEST["modal"]=="conf_config") include_once 'system/modal/modal/conf_config.php';
 
 if($_REQUEST["modal"]=="conf_root") include_once 'system/modal/modal/conf_root.php';
-
-if($_REQUEST["modal"]=="avatar") include_once 'system/modal/modal/avatar.php';
 
 if($_REQUEST["modal"]=="otras_ventas") include_once 'system/modal/modal/otras_ventas.php';
 

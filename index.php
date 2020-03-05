@@ -13,24 +13,30 @@ if ($seslog->login_check() == TRUE) {
     include_once 'catalog/index.php';
 } else {
 	
-if(isset($_REQUEST["change"])){
-	if($_SESSION["inicio"] == NULL){
-		$_SESSION["inicio"] = 1;
-	} else {
-		unset($_SESSION["inicio"]);
-	}
- header("location: ./");
-}
-	//include_once 'catalog/login.php';
-	if(Helpers::ServerDomain() == FALSE){
-	  		if($_SESSION["inicio"] == NULL){
-				include_once 'catalog/login_user.php';
-			} else {
+	if ($seslog->DataCheckUp() == TRUE) {
+
+			if(isset($_REQUEST["change"])){ // cambio de pantalla
+				if($_SESSION["inicio"] == NULL){
+					$_SESSION["inicio"] = 1;
+				} else {
+					unset($_SESSION["inicio"]);
+				} header("location: ./");
+			} // termina cambio de pantalla
+				
+			//include_once 'catalog/login.php';
+			if(Helpers::ServerDomain() == FALSE){ // si esta local
+			  		if($_SESSION["inicio"] == NULL){
+						include_once 'catalog/login_user.php';
+					} else {
+						include_once 'catalog/login.php';
+					}
+			} else { // si esta en la web
 				include_once 'catalog/login.php';
-			}
+			}   
+
 	} else {
-		include_once 'catalog/login.php';
-	}   
+		include_once 'system/setup/activar.php';
+	}
 
 }
 ?>
