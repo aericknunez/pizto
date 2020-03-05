@@ -49,8 +49,6 @@ if($_REQUEST["modal"]=="conf_config") include_once 'system/modal/modal/conf_conf
 
 if($_REQUEST["modal"]=="conf_root") include_once 'system/modal/modal/conf_root.php';
 
-if($_REQUEST["modal"]=="ver_mesa") include_once 'system/modal/modal/ver_mesa.php';
-
 if($_REQUEST["modal"]=="avatar") include_once 'system/modal/modal/avatar.php';
 
 if($_REQUEST["modal"]=="otras_ventas") include_once 'system/modal/modal/otras_ventas.php';

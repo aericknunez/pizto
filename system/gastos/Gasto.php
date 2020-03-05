@@ -150,12 +150,17 @@ class Gastos {
 
 //////// entradas
 
-	public function VerEntradas() {
+	public function VerEntradas($fecha = NULL) {
 		$db = new dbConn();
-	        $a = $db->query("SELECT * FROM entradas_efectivo WHERE td = ". $_SESSION["td"] ." order by id desc limit 10");
+		if($fecha != NULL){
+		$a = $db->query("SELECT * FROM entradas_efectivo WHERE fecha='$fecha' and  td = ". $_SESSION["td"] ." order by id desc limit 10");
+		} else {
+		$a = $db->query("SELECT * FROM entradas_efectivo WHERE td = ". $_SESSION["td"] ." order by id desc limit 10");
+		}
+	    
 	        	$total=0;
 	        	if($a->num_rows > 0){
-	        echo ' <h3>Ultimas entradas</h3>
+	        echo '<h2 class="mt-3">Ultimas entradas de efectivo</h2>
 
 				<table class="table table-sm table-striped">
 			  <thead>
@@ -163,9 +168,11 @@ class Gastos {
 			      <th scope="col">#</th>
 			      <th scope="col">Descripci&oacuten</th>
 			      <th scope="col">Fecha</th>
-			      <th scope="col">Cantidad</th>
-			      <th>Eliminar</th>
-			    </tr>
+			      <th scope="col">Cantidad</th>';
+			      if($fecha == NULL){
+			      echo '<th>Eliminar</th>';
+			  	}
+			   echo '</tr>
 			  </thead>
 			  <tbody>';
 			  $n = 0;
@@ -182,8 +189,9 @@ class Gastos {
 		    	  <td>'. $n .'</td>
 			      <td>'. $b["descripcion"] .'</td>
 			      <td>'. $b["fecha"] .' | '. $b["hora"] .'</td>
-			      <td>'. Helpers::Dinero($b["cantidad"]) .'</td>
-			      <td>';
+			      <td>'. Helpers::Dinero($b["cantidad"]) .'</td>';
+			      if($fecha == NULL){
+			      echo '<td>';
 			      if($b["edo"] == 1 and $b["fecha"] == date("d-m-Y")){
 			      	echo '<a id="xdelete" op="173" iden="'. $b["id"] .'">
 				      <span class="badge red"><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
@@ -191,8 +199,9 @@ class Gastos {
 			      } else {
 			      	echo '<span class="badge black"><i class="fas fa-ban" aria-hidden="true"></i></span>';
 			      }
-			      echo '</td>
-			    </tr>';
+			      echo '</td>';
+			  }
+			    echo '</tr>';
 			    
 		    }
 
@@ -201,9 +210,11 @@ class Gastos {
 			      <th scope="col"></th>
 			      <th scope="col"></th>
 			      <th scope="col">Total</th>
-			      <th scope="col">'. Helpers::Dinero($total) .'</th>
-			      <td></td>
-			    </tr>';
+			      <th scope="col">'. Helpers::Dinero($total) .'</th>';
+			      if($fecha == NULL){
+			      echo '<td></td>';
+			 		 }
+			    echo '</tr>';
 			    }
 			
 			echo '</tbody>

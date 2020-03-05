@@ -187,4 +187,70 @@ $(document).ready(function()
 
 
 
+
+///////////ver modal de ber mesas
+    $("body").on("click","#xvermesa",function(){ 
+        
+        $('#ModalVer').modal('show');
+        
+        var mesa = $(this).attr('mesa');
+        var tx = $(this).attr('tx');
+        var op = $(this).attr('op');
+        var tbl = $(this).attr('tbl');
+        var dataString = 'op='+op+'&mesa='+mesa+'&tx='+tx+'&tbl='+tbl;
+
+        $.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#vista").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#vista").html(data); // lo que regresa de la busquea         
+            }
+        });       
+    });
+
+
+
+////ver imagenes de gastos
+    $("body").on("click","#xver",function(){ 
+        
+        $('#ModalImagenes').modal('show');
+        var gasto = $(this).attr('gasto');
+    
+            $.ajax({
+                url: "application/src/routes.php?op=175&gasto="+gasto,
+                method: "POST",
+                beforeSend: function () {
+               		$("#vista").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            	},
+                success: function(data){
+                    $("#vista").html(data);         
+                }
+            });
+
+    });
+
+    $("body").on("click","#verimagen",function(){ 
+         var iden = $(this).attr('iden');
+         var gasto = $(this).attr('gasto');
+         $.ajax({
+                url: "application/src/routes.php?op=176&iden="+iden+"&gasto="+gasto,
+                method: "POST",
+                beforeSend: function () {
+               		$("#vista").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            	},
+                success: function(data){
+                    $("#vista").html(data);         
+                }
+            });
+    });
+
+
+
+
+
+
 });

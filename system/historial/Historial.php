@@ -20,7 +20,6 @@ class Historial{
 					     <tr>
 					       <th>Cant</th>
 					       <th>Producto</th>
-					       <th>Precio</th>
 					       <th>Total</th>
 					     </tr>
 					   </thead>
@@ -34,16 +33,19 @@ class Historial{
 			        $nombre_producto=$by["nombre"];
 			    } $ay->close();
 
-			    if($nombre_producto == NULL){
-			    	$nombre_producto = $nombre_producto;
-			    } else {
-			    	$nombre_producto = $b["producto"];
-			    }
+			    // if($nombre_producto == NULL){
+			    // 	$nombre_producto = $nombre_producto;
+			    // } else {
+			    // 	$nombre_producto = $b["producto"];
+			    // }
+
+		if($b["cod"] == "8889"){
+			$nombre_producto = "(Productos Especiales) ";		
+		} 
 			    
 			   echo '<tr>
 			       <th scope="row">'. $b["sum(cant)"] . '</th>
 			       <td>'. $nombre_producto . '</td>
-			       <td>'. Helpers::Dinero($b["pv"]) . '</td>
 			       <td>'. Helpers::Dinero($b["sum(total)"]) . '</td>
 			     </tr>';
 			    } 
@@ -58,8 +60,7 @@ class Historial{
 
 			    echo '<tr>
 			       <th scope="row">'. $bx["cant"] . '</th>
-			       <td>'. $bx["producto"] . '</td>
-			       <td>'. Helpers::Dinero($bx["pv"]) . '</td>
+			       <td>'. $bx["producto"] . ' (Otr)</td>
 			       <td>'. Helpers::Dinero($bx["total"]) . '</td>
 			     </tr>';
 			    
@@ -86,6 +87,7 @@ class Historial{
 		    } $ap->close();
 		     echo "Total Agrupado: ". Helpers::Dinero($prop + $tot) . "<br>";
 
+		     Alerts::Mensajex("Es posible que la cantidad de productos con el total difiera con el precio de venta, ya que hay productos vendidos con precio especial","info");
 	}
 
 
@@ -104,7 +106,6 @@ class Historial{
 					     <tr>
 					       <th>Cant</th>
 					       <th>Producto</th>
-					       <th>Precio</th>
 					       <th>Total</th>
 					     </tr>
 					   </thead>
@@ -118,16 +119,19 @@ class Historial{
 			        $nombre_producto=$by["nombre"];
 			    } $ay->close();
 
-			    if($nombre_producto == NULL){
-			    	$nombre_producto = $nombre_producto;
-			    } else {
-			    	$nombre_producto = $b["producto"];
-			    }
+			    // if($nombre_producto == NULL){
+			    // 	$nombre_producto = $nombre_producto;
+			    // } else {
+			    // 	$nombre_producto = $b["producto"];
+			    // }
+			    // 
+				if($b["cod"] == "8889"){
+					$nombre_producto = "(Productos Especiales) ";		
+				} 
 
 			   echo '<tr>
 			       <th scope="row">'. $b["sum(cant)"] . '</th>
 			       <td>'. $nombre_producto . '</td>
-			       <td>'. Helpers::Dinero($b["pv"]) . '</td>
 			       <td>'. Helpers::Dinero($b["sum(total)"]) . '</td>
 			     </tr>';
 			    } $a->close();
@@ -140,8 +144,7 @@ class Historial{
 
 			    echo '<tr>
 			       <th scope="row">'. $bx["cant"] . '</th>
-			       <td>'. $bx["producto"] . '</td>
-			       <td>'. Helpers::Dinero($bx["pv"]) . '</td>
+			       <td>'. $bx["producto"] . ' . (Otr)</td>
 			       <td>'. Helpers::Dinero($bx["total"]) . '</td>
 			     </tr>';
 			    
@@ -165,6 +168,8 @@ class Historial{
 		        echo "Total Propina: ". Helpers::Dinero($bp["sum(total)"]) . "<br>";
 		    } $ap->close();
 		    echo "Total Agrupado: ". Helpers::Dinero($prop + $tot) . "<br>";
+
+		     Alerts::Mensajex("Es posible que la cantidad de productos con el total difiera con el precio de venta, ya que hay productos vendidos con precio especial","info");
 
 	}
 
@@ -311,13 +316,11 @@ class Historial{
 
 			    $aw = $db->query("SELECT imagen FROM gastos_images WHERE gasto = ". $b["id"] ." and td = ".$_SESSION["td"]."");
 				if($aw->num_rows > 0){
-				echo '<a href="?modal=img_gasto&gasto='. $b["id"] .'">
+				echo '<a id="xver" gasto="'. $b["id"] .'">
 					<span class="badge green"><i class="fas fa-image" aria-hidden="true"></i></span>
-					</a>';	
+					</a>';		
 				} else {
-				echo '<a href="?modal=imageup&gasto='. $b["id"] .'">
-					<span class="badge red"><i class="fas fa-ban" aria-hidden="true"></i></span>
-					</a>';	
+				echo '<span class="badge red"><i class="fas fa-ban" aria-hidden="true"></i></span>';	
 				}
 				$aw->close();
   
@@ -393,13 +396,11 @@ class Historial{
 
 			    $aw = $db->query("SELECT imagen FROM gastos_images WHERE gasto = ". $b["id"] ." and td = ".$_SESSION["td"]."");
 				if($aw->num_rows > 0){
-				echo '<a href="?modal=img_gasto&gasto='. $b["id"] .'">
+				echo '<a id="xver" gasto="'. $b["id"] .'">
 					<span class="badge green"><i class="fas fa-image" aria-hidden="true"></i></span>
-					</a>';	
+					</a>';		
 				} else {
-				echo '<a href="?modal=imageup&gasto='. $b["id"] .'">
-					<span class="badge red"><i class="fas fa-ban" aria-hidden="true"></i></span>
-					</a>';	
+				echo '<span class="badge red"><i class="fas fa-ban" aria-hidden="true"></i></span>';	
 				}
 				$aw->close();
 					  
@@ -563,16 +564,20 @@ class Historial{
 		
 		//busqueda de usuarios
 
-	    $d = $db->selectGroup("num_fac, fecha, hora, cajero", "ticket", "WHERE fechaF BETWEEN '$primero' AND '$segundo' and td = ".$_SESSION['td']." and tx = 0 and edo = 2 GROUP BY num_fac");
+	    $d = $db->selectGroup("*", "ticket", "WHERE fechaF BETWEEN '$primero' AND '$segundo' and td = ".$_SESSION['td']." and tx = 0 and edo = 2 GROUP BY num_fac");
 	    if ($d->num_rows > 0) {
 
-        echo '<table class="table table-striped table-sm">
+        echo '<h2>TICKETS ELIMINADOS</h2>
+        <table class="table table-striped table-sm">
 
 			<thead>
 		     <tr>
 		       <th>Fecha</th>
-		       <th>No. Ticket</th>
+		       <th>Hora</th>
+		       <th>Ticket</th>
 		       <th>Cajero</th>
+		       <th>Total</th>
+		       <th>Detalles</th>
 		     </tr>
 		   </thead>
 
@@ -581,28 +586,25 @@ class Historial{
 	        while($r = $d->fetch_assoc() ) {
 	            $factura = $r["num_fac"];
 
+	            $s = $db->query("SELECT sum(total) FROM ticket WHERE num_fac = '$factura' and edo = 2 and tx = 0 and td = ".$_SESSION["td"]."");
+				    foreach ($s as $t) {
+				        $max=$t["sum(total)"];
+				    } $s->close();
+
 	        echo '<tr>
-				       <th scope="row">'. $r["fecha"]. ' | '.$r["hora"]. '</th>
+				       <th scope="row">'. $r["fecha"]. '</th>
+				       <td>'.$r["hora"]. '</td>
 				       <td>'.$factura.'</td>
 				       <td>'. $r["cajero"]. '</td>
+				       <td>'. Helpers::Dinero($max). '</td>
+				       <td><a id="xvermesa" mesa="'. $r["mesa"] . '" tx="'. $r["tx"] . '" op="78" tbl="ticket" class="btn-floating btn-sm"><i class="fas fa-eye red-text"></i></a></td>
 				  </tr>';
-
-		    $a = $db->query("SELECT cant, producto, total FROM ticket WHERE num_fac = '$factura' and tx = 0  and edo = 2 and td = ".$_SESSION['td']."");
-		    foreach ($a as $b) {
-		    	echo '<tr class="text-danger">
-				       <th scope="row">'.$b["cant"].'</th>
-				       <td>'. $b["producto"]. '</td>
-				       <td>'. Helpers::Dinero($b["total"]). '</td>
-				  </tr>';
-		    } $a->close();
-
-
 	        }
 	    echo '</tbody>
 				</table>';
 
 	    } else {
-	        echo "- No Records Found!<br />";
+	        Alerts::Mensajex("No se encotraron registros","danger");
 	    } 
 	   
 	   $d->close();

@@ -105,4 +105,70 @@ $(document).ready(function()
 
 
 
+
+
+///////////ver modal de ber mesas
+    $("body").on("click","#verespecial",function(){ 
+        
+        $('#ModalVerEspecial').modal('show');
+        
+        var factura = $(this).attr('factura');
+        var tx = $(this).attr('tx');
+        var op = $(this).attr('op');
+        var dataString = 'op='+op+'&factura='+factura+'&tx='+tx;
+
+        $.ajax({
+            type: "POST",
+            url: "application/src/routes.php",
+            data: dataString,
+            beforeSend: function () {
+               $("#vista_especial").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            },
+            success: function(data) {            
+                $("#vista_especial").html(data); // lo que regresa de la busquea         
+            }
+        });       
+    });
+
+
+
+
+////ver imagenes de gastos
+    $("body").on("click","#xver",function(){ 
+        
+        $('#ModalImagenes').modal('show');
+        var gasto = $(this).attr('gasto');
+    
+            $.ajax({
+                url: "application/src/routes.php?op=175&gasto="+gasto,
+                method: "POST",
+                beforeSend: function () {
+               		$("#vista").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            	},
+                success: function(data){
+                    $("#vista").html(data);         
+                }
+            });
+
+    });
+
+    $("body").on("click","#verimagen",function(){ 
+         var iden = $(this).attr('iden');
+         var gasto = $(this).attr('gasto');
+         $.ajax({
+                url: "application/src/routes.php?op=176&iden="+iden+"&gasto="+gasto,
+                method: "POST",
+                beforeSend: function () {
+               		$("#vista").html('<div class="row justify-content-md-center" ><img src="assets/img/load.gif" alt=""></div>');
+            	},
+                success: function(data){
+                    $("#vista").html(data);         
+                }
+            });
+    });
+
+
+
+
+
 });

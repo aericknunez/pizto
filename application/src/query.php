@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if($_SESSION["td"] != 0){
-$numero = rand(1,9999999999);	
-} else {
-$numero = 1;	
-}
+// if($_SESSION["td"] != 0){
+// $numero = rand(1,9999999999);	
+// } else {
+// $numero = 1;	
+// }
+// $numero = 1;
 
+$numero = rand(1,9999999999);
 
 if(isset($_GET["modal"])) { 
 echo '

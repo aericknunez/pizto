@@ -926,6 +926,14 @@ if($_REQUEST["op"]=="77"){ // historial ticket borrados
 
 }
 
+///////////modal ver mesas
+if($_REQUEST["op"]=="78"){ 
+	include_once '../../system/mesashoy/Mesas.php';
+	$mesas = new Mesas;
+	$mesas->ModalVerMesa($_POST["mesa"],$_POST["tx"],$_POST["tbl"]);
+}
+
+
 
 if($_REQUEST["op"]=="80"){ // search -> Eliminar Orden tx =0
 Alerts::AlertaCambios("eliminar-orden","81",$_REQUEST["iden"],"Esta seguro que desea eliminar esta orden? El cambio no se puede revertir");
@@ -1406,9 +1414,11 @@ $user = $_SESSION["user"];
 
 
 
-
-
-
+if($_REQUEST["op"]=="159"){ 
+include_once '../../system/reportes/Reporte.php';
+$reporte = new Reporte;
+	$reporte->ModalEspecial($_POST);
+}
 
 
 if($_REQUEST["op"]=="160"){ // agragarUsuarios

@@ -8,10 +8,9 @@ class Mesas{
 
 	public function VerMesas($fecha,$dir) {
 		$db = new dbConn();
-		$a = $db->query("select * from mesa where estado = 2 and fecha = '$fecha' and td = ".$_SESSION['td']." order by id desc");
+		$a = $db->query("select * from mesa where fecha = '$fecha' and td = ".$_SESSION['td']." order by id desc");
 		    
-		echo ' <h1 class="h1-responsive">Mesas registradas '.$fecha.'</h1>
-		    <table class="table table-striped table-responsive-sm table-sm">
+		echo '<table class="table table-striped table-responsive-sm table-sm">
 
 		   <thead>
 		     <tr>
@@ -31,16 +30,21 @@ class Mesas{
 
 		   <tbody>';
 		    foreach ($a as $b) {
+
+		    	if($b["estado"] == 1){ $tbl_ticket = "ticket_temp"; }
+		    	if($b["estado"] == 2){ $tbl_ticket = "ticket"; }
 		    
-		    if($_SESSION["tipo_cuenta"] == 1){
-		       	if ($r = $db->select("nombre", "mesa_nombre", "WHERE mesa = ".$b["mesa"]." and tx = ".$_SESSION['tx']." and td = ".$_SESSION['td']."")) { 
-		        $nombre = $r["nombre"];
-		    	} unset($r); 
+		    if($_SESSION["tipo_cuenta"] == 1){	
+		    	if($r = $db->select("nombre", "mesa_nombre", "WHERE mesa = ".$b["mesa"]." and tx = ".$b["tx"]." and 
+		    		td = ".$_SESSION["td"]."")) { 
+			        $nombre = $r["nombre"];
+			    } unset($r);  
 		    }
+		    if($nombre == NULL){ $nombre = "Unknow"; }
 		     
 		   
 		    
-		   $ax = $db->query("SELECT cod, sum(total) FROM ticket WHERE edo = 1 and fecha = '$fecha' and mesa = ".$b["mesa"]." and td = ".$_SESSION['td']."");
+		   $ax = $db->query("SELECT cod, sum(total) FROM ".$tbl_ticket." WHERE edo = 1 and fecha = '$fecha' and mesa = ".$b["mesa"]." and td = ".$_SESSION['td']."");
 		    foreach ($ax as $bx) {
 		      $total=$bx["sum(total)"];
 		      $totalz = Helpers::Dinero($total);
@@ -56,7 +60,7 @@ class Mesas{
 		    } $ax->close();
 
 
-		    $ar = $db->query("SELECT sum(total) FROM ticket WHERE edo = 1 and fecha = '$fecha' and td = ".$_SESSION['td']."");
+		    $ar = $db->query("SELECT sum(total) FROM ".$tbl_ticket." WHERE edo = 1 and fecha = '$fecha' and td = ".$_SESSION['td']."");
 		    foreach ($ar as $br) {
 
 		      $totalr = $br["sum(total)"];
@@ -64,7 +68,7 @@ class Mesas{
 
 
 
-		    $az = $db->query("SELECT sum(total) FROM ticket WHERE edo = 1 and cod != '989898' and fecha = '$fecha' and td = ".$_SESSION['td']."");
+		    $az = $db->query("SELECT sum(total) FROM ".$tbl_ticket." WHERE edo = 1 and cod != '989898' and fecha = '$fecha' and td = ".$_SESSION['td']."");
 		    foreach ($az as $bz) {
 		      $xtotal=$bz["sum(total)"];
 
@@ -94,7 +98,7 @@ class Mesas{
 		       <td>'.$totalz.'</td>
 		       <td>'.$propz.'</td>
 		       <td>'.$totalesz.'</td>
-		       <td><a href="?modal=ver_mesa&m='. $b["mesa"] . '&t='. $b["tx"] . '&dir='. $dir . '" class="btn-floating btn-sm"><i class="fas fa-utensils red-text"></i></a></td>
+		       <td><a id="xvermesa" mesa="'. $b["mesa"] . '" tx="'. $b["tx"] . '" op="78" tbl="'.$tbl_ticket.'" class="btn-floating btn-sm"><i class="fas fa-utensils red-text"></i></a></td>
 		     </tr>';
 		    }
 		   $a->close();
@@ -120,10 +124,17 @@ class Mesas{
 
 
 
-	public function VerProductoMesas($mesa,$tx) {
+
+
+
+
+
+
+
+	public function VerProductoMesas($mesa,$tx,$tbl) {
 		$db = new dbConn();
 
-		   $a = $db->query("SELECT * FROM ticket WHERE mesa = '$mesa' and tx = '$tx' and td = ".$_SESSION["td"]."");
+		   $a = $db->query("SELECT * FROM ".$tbl." WHERE mesa = '$mesa' and tx = '$tx' and td = ".$_SESSION["td"]."");
 		    if($a->num_rows > 0){
 		    
 		      	echo '<table class="table table-striped table-sm">
@@ -134,25 +145,35 @@ class Mesas{
 					      <th scope="col">Precio</th>
 					      <th scope="col">Total</th>
 					      <th scope="col">Cliente</th>
-					      <th scope="col">No</th>
+					      <th scope="col">Ticket</th>
 					      <th scope="col">Estado</th>
 					      </tr>
 					  </thead>
 					  <tbody>';
-
+					  $total_eliminado = 0;
 		    	 foreach ($a as $b) {
+		    	 	
 		    	 	if($b["num_fac"] == 0) $edo="Pendiente"; else $edo="Cancelado";
 		    	     
 		    	     
 				     if($b["edo"] != 1){
 				     	echo '<tr class="text-danger">';
+				     	$total_eliminado = $total_eliminado + $b["total"];
 				     } else {
 				     	echo '<tr>';
 				     }
+
+		if($b["producto"] == "Producto-Especial"){
+			if ($r = $db->select("nombre", "producto", "WHERE cod = ".$b["cod"]." and td = ".$_SESSION['td']."")) { 
+			$nombre = "(Esp.) " . $r["nombre"];
+			} unset($r);
+		} else {
+			$nombre = $b["producto"];
+		}
 				     echo '<th scope="row">'. $b["cant"] .'</th>
-				      <td>'. $b["producto"] .'</td>
-				      <td>'. $b["pv"] .'</td>
-				      <td>'. $b["total"] .'</td>
+				      <td>'. $nombre .'</td>
+				      <td>'. Helpers::Dinero($b["pv"]) .'</td>
+				      <td>'. Helpers::Dinero($b["total"]) .'</td>
 				      <td>'. $b["cliente"] .'</td>
 				      <td>'. $b["num_fac"] .'</td>
 				      <td>'. $edo .'</td>
@@ -161,11 +182,16 @@ class Mesas{
 		    	echo '</tbody>
 					</table>';
 
-				    $s = $db->query("SELECT sum(total) FROM ticket WHERE mesa = '$mesa' and edo = 1 and tx = '$tx' and td = ".$_SESSION["td"]."");
+				    $s = $db->query("SELECT sum(total) FROM ".$tbl." WHERE mesa = '$mesa' and edo = 1 and tx = '$tx' and td = ".$_SESSION["td"]."");
 				    foreach ($s as $t) {
 				        $max=$t["sum(total)"];
 				    } $s->close();
-				    echo "<h1 class='h1-responsive'>Total: ". Helpers::Dinero($max) ."</h1>";
+				    if($max > 0){
+				    	echo "<h1 class='h1-responsive'>Total: ". Helpers::Dinero($max) ."</h1>";
+				    }
+				    if($total_eliminado > 0){
+				    	echo '<h2 class="text-danger">Total Eliminado: '. Helpers::Dinero($total_eliminado) .'</h2>';
+				    }		    
 
 		    } $a->close();
 		   
@@ -173,6 +199,18 @@ class Mesas{
 	}
 
 
+
+
+
+ 	public function ModalVerMesa($mesa,$tx,$tbl) {
+		$db = new dbConn();
+
+		$a = $db->query("SELECT * FROM ".$tbl." WHERE edo != 1 and mesa = '".$mesa."' and tx = '".$tx."' and td = ".$_SESSION["td"]."");
+		if($a->num_rows > 0) echo '<p class="text-danger">Esta mesa contiene facturas eliminadas!</p>';
+		$a->close();
+
+		$this->VerProductoMesas($mesa,$tx,$tbl);
+	}
 
 
 

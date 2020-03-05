@@ -136,8 +136,8 @@ $return.= "\n";
         }
     } else { // aqui van los que no tienenopcion activada
         
-$return.= '<li><em>'; $return.= $x['nombre']; $return.= '</em>';
-$return.= '<input type='; $return.= '"'; $return.= 'image'; $return.= '" ';
+$return.= '<li>';
+$return.= '<a ';
 $return.= 'id='; $return.= '"'; $return.= 'venta'; $return.= '" ';
 $return.= 'op='; $return.= '"'; $return.= '20'; $return.= '" ';
 $return.= 'cod='; $return.= '"'; $return.= $b["cod"]; $return.= '" ';
@@ -165,13 +165,13 @@ $return.= '<? ';
 $return.= 'echo ';
 $return.= '$_SESSION["view"]'; 
 $return.= ' ?>'; 
-$return.= '" ';
 
-$return.= 'src='; $return.= '"'; $return.= $b['img_name']; $return.= '" ';
-$return.= 'alt='; $return.= '"'; $return.= 'image'; $return.= '"';
-$return.= ' class='; $return.= '"'; $return.= 'img-fluid img-responsive wow fadeIn';
-$return.= '" />';
-$return.= '</li>'; $return.= "\n";
+$return.= '"><em>';
+$return.= $x['nombre'];
+$return.= '</em><img src="';
+$return.= $b['img_name'];
+$return.= '" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>';
+$return.= "\n";
 
    } 
 
@@ -310,13 +310,13 @@ $return.= $x['nombre'];
 $return.= '</em><img src="';
 $return.= $b['img_name'];
 $return.= '" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>';
-
+$return.= "\n";
 
         }
     } else { // aqui van los que no tienenopcion activada
         
-$return.= '<li><em>'; $return.= $x['nombre']; $return.= '</em>';
-$return.= '<input type='; $return.= '"'; $return.= 'image'; $return.= '" ';
+$return.= '<li>';
+$return.= '<a ';
 $return.= 'id='; $return.= '"'; $return.= 'venta'; $return.= '" ';
 $return.= 'op='; $return.= '"'; $return.= '20'; $return.= '" ';
 $return.= 'cod='; $return.= '"'; $return.= $b["cod"]; $return.= '" ';
@@ -344,14 +344,13 @@ $return.= '<? ';
 $return.= 'echo ';
 $return.= '$_SESSION["view"]'; 
 $return.= ' ?>'; 
-$return.= '" ';
 
-
-$return.= 'src='; $return.= '"'; $return.= $b['img_name']; $return.= '" ';
-$return.= 'alt='; $return.= '"'; $return.= 'image'; $return.= '"';
-$return.= ' class='; $return.= '"'; $return.= 'img-fluid img-responsive wow fadeIn';
-$return.= '" />';
-$return.= '</li>'; $return.= "\n";
+$return.= '"><em>';
+$return.= $x['nombre'];
+$return.= '</em><img src="';
+$return.= $b['img_name'];
+$return.= '" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>';
+$return.= "\n";
 
     } 
     
