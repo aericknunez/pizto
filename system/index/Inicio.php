@@ -358,7 +358,7 @@ if($_SESSION["caduca"] == 3){
 
 	echo '<div class="row mb-3">';
 
-	echo '<div class="col-xl-3 col-md-6 mb-4">
+	echo '<div class="col-xl-3 col-md-6 mb-4 col-sm-6 col-6">
 		  <div class="card">
 		    <div class="row mt-3">
 		      <div class="col-md-3 col-3 text-left pl-1">
@@ -373,7 +373,7 @@ if($_SESSION["caduca"] == 3){
 		  </div>
 		</div>';
 
-	echo '<div class="col-xl-3 col-md-6 mb-4">
+	echo '<div class="col-xl-3 col-md-6 mb-4 col-sm-6 col-6">
 		  <div class="card">
 		    <div class="row mt-3">
 		      <div class="col-md-3 col-3 text-left pl-1">
@@ -388,7 +388,7 @@ if($_SESSION["caduca"] == 3){
 		  </div>
 		</div>';
 
-	echo '<div class="col-xl-3 col-md-6 mb-4">
+	echo '<div class="col-xl-3 col-md-6 mb-4 col-sm-6 col-6">
 		  <div class="card">
 		    <div class="row mt-3">
 		      <div class="col-md-3 col-3 text-left pl-1">
@@ -403,7 +403,7 @@ if($_SESSION["caduca"] == 3){
 		  </div>
 		</div>';
 
-	echo '<div class="col-xl-3 col-md-6 mb-4">
+	echo '<div class="col-xl-3 col-md-6 mb-4 col-sm-6 col-6">
 		  <div class="card">
 		    <div class="row mt-3">
 		      <div class="col-md-3 col-3 text-left pl-1">
@@ -440,7 +440,7 @@ echo '<hr>';
 
 echo '<div class="row mt-3">';
 
-	echo '<div class="col-xl-3 col-md-6 mb-4">
+	echo '<div class="col-xl-3 col-md-6 mb-4 col-sm-6 col-6">
 		  <div class="card">
 		    <div class="row mt-3">
 		      <div class="col-md-3 col-3 text-left pl-1">
@@ -455,7 +455,7 @@ echo '<div class="row mt-3">';
 		  </div>
 		</div>';
 
-	echo '<div class="col-xl-3 col-md-6 mb-4">
+	echo '<div class="col-xl-3 col-md-6 mb-4 col-sm-6 col-6">
 		  <div class="card">
 		    <div class="row mt-3">
 		      <div class="col-md-3 col-3 text-left pl-1">
@@ -470,7 +470,7 @@ echo '<div class="row mt-3">';
 		  </div>
 		</div>';
 
-	echo '<div class="col-xl-3 col-md-6 mb-4">
+	echo '<div class="col-xl-3 col-md-6 mb-4 col-sm-6 col-6">
 		  <div class="card">
 		    <div class="row mt-3">
 		      <div class="col-md-3 col-3 text-left pl-1">
@@ -485,7 +485,7 @@ echo '<div class="row mt-3">';
 		  </div>
 		</div>';
 
-	echo '<div class="col-xl-3 col-md-6 mb-4">
+	echo '<div class="col-xl-3 col-md-6 mb-4 col-sm-6 col-6">
 		  <div class="card">
 		    <div class="row mt-3">
 		      <div class="col-md-3 col-3 text-left pl-1">
