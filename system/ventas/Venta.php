@@ -245,7 +245,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    if($a->num_rows == 0){
 		    echo '<div align="center"><br><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable"></div>';
 		    } else {
-		    	echo '<br><h3 class="h3-responsive">'.$_SESSION['config_cliente'].'</h3>';
+		    	//echo '<br><h3 class="h3-responsive">'.$_SESSION['config_cliente'].'</h3>';
 		    	echo '<table class="table table-striped table-sm table-condensed">
 					  <thead>
 					    <tr>
@@ -361,7 +361,7 @@ public function OtrasVentas($cod,$mesa,$cliente,$imp,$nombre,$pv) {
 		    if($a->num_rows == 0){
 		    echo '<br><img src="assets/img/logo/'. $_SESSION['config_imagen'] .'" alt="" class="img-fluid hoverable">';
 		    } else {
-		    	echo '<br><h3>'.$_SESSION['config_cliente'].'</h3>';
+		    	// echo '<br><h3>'.$_SESSION['config_cliente'].'</h3>';
 		    	echo '<table class="table table-striped table-sm">
 					  <thead>
 					    <tr>

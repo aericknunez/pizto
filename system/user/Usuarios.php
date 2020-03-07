@@ -213,7 +213,7 @@ echo '<label>Tipo de Cuenta</label>
 	}
 
 
-	public function VerUsuarios(){
+	public function VerUsuarios($avatar = NULL){
 	$db = new dbConn();
 
 	$a = $db->query("SELECT * FROM login_members WHERE id != 1");
@@ -225,9 +225,12 @@ echo '<label>Tipo de Cuenta</label>
 			      <th scope="col" class="d-none d-md-block">Email</th>
 			      <th scope="col">Cuenta</th>
 			      <th scope="col">Eliminar</th>
-			      <th scope="col">Editar</th>
-			      <th scope="col">Avatar</th>
-			    </tr>
+			      <th scope="col">Editar</th>';
+			      if($avatar != NULL){
+			 echo '<th scope="col">Avatar</th>';     	
+			      }
+			      
+			 echo '</tr>
 			  </thead>
 			  <tbody>';
 	}
@@ -263,12 +266,14 @@ echo '<label>Tipo de Cuenta</label>
 				<a ><i class="fa fa-edit grey-text fa-lg"></i></a></td>';
 			}
 
+		if($avatar != NULL){
+			
 			if($_SESSION["user"] == $user or $_SESSION["tipo_cuenta"] == 1  or $_SESSION["tipo_cuenta"] == 2){
 				echo '<td><a id="ver_avatar" op="6" username = "'.$b["username"].'"><i class="fa fa-user red-text fa-lg"></i></a></td>';
 			} else {
 				echo '<td><a ><i class="fa fa-user grey-text fa-lg"></i></a></td>';
 			}
-
+		}
 		echo '</tr>';  
 	}
 
