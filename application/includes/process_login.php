@@ -14,8 +14,8 @@ if (isset($_POST['email'], $_POST['password'])) {
     
     if ($seslog->LogOn($email, $password) == true) {
         // Login success 
-        echo "Redireccionando...";
-        echo '<script>
+         echo '<div class="inline-ul text-center d-flex justify-content-center"><img src="assets/img/loading (1).gif"></div>';
+         echo '<script>
             window.location.href="application/includes/iniciar.php"
         </script>';
         exit();

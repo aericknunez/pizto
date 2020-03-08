@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if($_SESSION["td"] != 0){
-$numero = rand(1,9999999999);	
-} else {
-$numero = 1;	
-}
+// if($_SESSION["td"] != 0){
+// $numero = rand(1,9999999999);	
+// } else {
+// $numero = 1;	
+// }
+// $numero = 1;
 
+$numero = rand(1,9999999999);
 
 if(isset($_GET["modal"])) { 
 echo '
@@ -18,18 +20,6 @@ echo '
 	</script>
 	';
 
-	if($_GET["modal"] == "registrar"){
-	echo '<script type="text/javascript" src="assets/js/query/login.js?v='.$numero.'"></script>';
-	}
-	if($_GET["modal"] == "newpass"){
-	echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"></script>';
-	}
-	if($_GET["modal"] == "userupdate"){
-	echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"></script>';
-	}
-	if($_GET["modal"] == "avatar"){
-	echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"></script>';
-	}
 	if($_GET["modal"] == "selectimg"){
 	echo '<script type="text/javascript" src="assets/js/query/iconos.js?v='.$numero.'"></script>';
 	}
@@ -109,12 +99,15 @@ echo '
 
 elseif($_SESSION["caduca"] != 0) {
 echo '<script type="text/javascript" src="assets/js/query/noacceso.js?v='.$numero.'"></script>';
-}  
+} 
+elseif(isset($_GET["precios"])) {
+echo '<script type="text/javascript" src="assets/js/query/conf_config.js?v='.$numero.'"></script>';
+}   
 elseif(isset($_GET["codigos"])) {
 echo '<script type="text/javascript" src="assets/js/query/noacceso.js?v='.$numero.'"></script>';
 }  
 elseif(isset($_GET["user"])) {
-echo '<script type="text/javascript" src="assets/js/query/user.js?v='.$numero.'"></script>';
+echo '<script type="text/javascript" src="system/user/login.js?v='.$numero.'"></script>';
 } 
 elseif(isset($_GET["iconos"])) {
 echo '<script type="text/javascript" src="assets/js/query/iconos.js?v='.$numero.'"></script>';
@@ -140,6 +133,9 @@ elseif(isset($_GET["mensual"])) {
 echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';
 }
 elseif(isset($_GET["cortes"])) {
+echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';
+}
+elseif(isset($_GET["ticket_eliminados"])) {
 echo '<script type="text/javascript" src="assets/js/query/historial.js?v='.$numero.'"></script>';
 }
 elseif(isset($_GET["gastodiario"])) {

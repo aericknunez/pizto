@@ -136,8 +136,8 @@ $return.= "\n";
         }
     } else { // aqui van los que no tienenopcion activada
         
-$return.= '<li><em>'; $return.= $x['nombre']; $return.= '</em>';
-$return.= '<input type='; $return.= '"'; $return.= 'image'; $return.= '" ';
+$return.= '<li>';
+$return.= '<a ';
 $return.= 'id='; $return.= '"'; $return.= 'venta'; $return.= '" ';
 $return.= 'op='; $return.= '"'; $return.= '20'; $return.= '" ';
 $return.= 'cod='; $return.= '"'; $return.= $b["cod"]; $return.= '" ';
@@ -165,13 +165,13 @@ $return.= '<? ';
 $return.= 'echo ';
 $return.= '$_SESSION["view"]'; 
 $return.= ' ?>'; 
-$return.= '" ';
 
-$return.= 'src='; $return.= '"'; $return.= $b['img_name']; $return.= '" ';
-$return.= 'alt='; $return.= '"'; $return.= 'image'; $return.= '"';
-$return.= ' class='; $return.= '"'; $return.= 'img-fluid img-responsive wow fadeIn';
-$return.= '" />';
-$return.= '</li>'; $return.= "\n";
+$return.= '"><em>';
+$return.= $x['nombre'];
+$return.= '</em><img src="';
+$return.= $b['img_name'];
+$return.= '" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>';
+$return.= "\n";
 
    } 
 
@@ -310,13 +310,13 @@ $return.= $x['nombre'];
 $return.= '</em><img src="';
 $return.= $b['img_name'];
 $return.= '" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>';
-
+$return.= "\n";
 
         }
     } else { // aqui van los que no tienenopcion activada
         
-$return.= '<li><em>'; $return.= $x['nombre']; $return.= '</em>';
-$return.= '<input type='; $return.= '"'; $return.= 'image'; $return.= '" ';
+$return.= '<li>';
+$return.= '<a ';
 $return.= 'id='; $return.= '"'; $return.= 'venta'; $return.= '" ';
 $return.= 'op='; $return.= '"'; $return.= '20'; $return.= '" ';
 $return.= 'cod='; $return.= '"'; $return.= $b["cod"]; $return.= '" ';
@@ -344,14 +344,13 @@ $return.= '<? ';
 $return.= 'echo ';
 $return.= '$_SESSION["view"]'; 
 $return.= ' ?>'; 
-$return.= '" ';
 
-
-$return.= 'src='; $return.= '"'; $return.= $b['img_name']; $return.= '" ';
-$return.= 'alt='; $return.= '"'; $return.= 'image'; $return.= '"';
-$return.= ' class='; $return.= '"'; $return.= 'img-fluid img-responsive wow fadeIn';
-$return.= '" />';
-$return.= '</li>'; $return.= "\n";
+$return.= '"><em>';
+$return.= $x['nombre'];
+$return.= '</em><img src="';
+$return.= $b['img_name'];
+$return.= '" alt="image" class="img-fluid img-responsive wow fadeIn" /></a></li>';
+$return.= "\n";
 
     } 
     
@@ -691,6 +690,70 @@ $return.= ' ?>';
 
 
 
+
+
+///////////////cambiar precios
+	public function VerTodosPrecio(){
+		$db = new dbConn();
+
+	$a = $db->query("SELECT id, cod, nombre, cat, precio FROM precios WHERE td = ".$_SESSION['td']."");
+
+	if($a->num_rows > 0){
+	echo '<h1 class="h1-responsive">Configuraci&oacuten de precios</h1>
+	    <table class="table table-sm table-striped">
+
+	   <thead>
+	     <tr>
+	       <th scope="col">Codigo</th>
+	       <th scope="col">Producto</th>
+	       <th scope="col">Categoria</th>
+	       <th scope="col">Precio</th>
+	      <th scope="col">Editar</th>
+	     </tr>
+	   </thead>
+
+	   <tbody>';
+
+		   foreach ($a as $b) {
+
+		// BUSCO LA CATEGORIA
+		if($b["cat"] != 0){
+		$r = $db->select("categoria", "categorias", "where cod = ". $b["cat"] ." and td = ".$_SESSION['td'].""); $cate=$r["categoria"]; unset($r); /////
+		} else { $cate = "Ninguna"; }
+
+
+			echo '<tr>
+		       <th scope="row">'. $b["cod"] . '</th>
+		       <td>'. $b["nombre"] . '</td>
+		       <td>'. $cate . '</td>
+		       <td>'. $b["precio"] . '</td>
+		       <td><a id="c_precio" cod="'.$b["cod"].'" pre="'.$b["precio"].'" pro="'.$b["nombre"].'"><i class="fa fa-cogs red-text fa-lg"></i></a></td>
+		     </tr>';
+		 
+
+		    }
+		   $a->close();
+
+		echo '</tbody>
+		</table>';
+		} else {
+			Alerts::Mensajex("No se encontraron registros","danger");
+		}
+	}
+
+		public function CambiarPrecio($data){
+		$db = new dbConn();
+
+		$cambio = array();
+	    $cambio["precio"] = $data["precio"];	    
+	    if (Helpers::UpdateId("precios", $cambio, "cod = '".$data["cod"]."' and td = ".$_SESSION["td"]."")) {
+	        Alerts::Alerta("success","Echo!","Registros actualizados correctamente");
+	    } else {
+	       Alerts::Alerta("error","Error!","Ocurrio un error desconocido!");   
+	    }
+	    $this->VerTodosPrecio();
+
+	}
 
 
 

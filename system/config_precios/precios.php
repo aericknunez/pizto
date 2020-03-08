@@ -1,62 +1,53 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+include_once 'system/config_configuraciones/Config.php';
+include_once 'application/common/Alerts.php';
 
-
-if($_REQUEST["op"] == "1" and $_POST["precio"] != null){
-
-$iden=$_REQUEST["iden"];
-
-    $cambio = array();
-    $cambio["precio"] = $_POST["precio"];
-    
-    if (Helpers::UpdateId("precios", $cambio, "id='$iden'")) {
-        
-    } 
-
-}
-
+$precios = new Config();
 ?>
-<h1 class="h1-responsive">Configuraci&oacuten de precios</h1>
-    <table class="table table-sm table-striped">
-
-   <thead>
-     <tr>
-       <th scope="col">Codigo</th>
-       <th scope="col">Producto</th>
-       <th scope="col">Categoria</th>
-       <th scope="col">Precio</th>
-      <th scope="col">Editar</th>
-     </tr>
-   </thead>
-
-   <tbody>
-<?
-//busqueda de usuarios
-$a = $db->query("SELECT id, cod, nombre, cat, precio FROM precios WHERE td = ".$_SESSION['td']."");
-    foreach ($a as $b) {
-
-// BUSCO LA CATEGORIA
-if($b["cat"] != 0){
-$r = $db->select("categoria", "categorias", "where cod = ". $b["cat"] ." and td = ".$_SESSION['td'].""); $cate=$r["categoria"]; unset($r); /////
-} else { $cate = "Ninguna"; }
 
 
-echo '<form id="'. $b["id"] . '" method="post" action="index.php?precios&op=1&iden='. $b["id"] . '"';
-	echo '<tr>
-       <th scope="row">'. $b["cod"] . '</th>
-       <td>'. $b["nombre"] . '</td>
-       <td>'. $cate . '</td>
-       <td>'. $b["precio"] . '</td>
-       <td><input name="precio" type="number" id="precio" step="any" size="10" maxlength="8" class="form-control" placeholder="0.00"></td>
-     </tr>';
-echo '</form>';
- 
+<div id="precio_ver">
+  <?php $precios->VerTodosPrecio(); ?>
+</div>
 
-    }
-   $a->close();
 
-    ?>
-   </tbody>
 
-</table>
+<!-- Ver AGREGAR -->
+<div class="modal" id="ModalCambiarPrecio" tabindex="-1" role="dialog" aria-labelledby="ModalCambiarPrecio" aria-hidden="true"  data-backdrop="false">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+         CAMBIAR PRECIO</h5>
+      </div>
+      <div class="modal-body">
+<!-- ./  content -->
+
+<div id="pro"></div>
+<hr>
+<div id="vista_precio">
+       
+<form id="form-precio" name="form-precio">
+<input type="hidden" name="cod" id="cod" />
+<input type="number" step="any" name="precio" id="precio" class="my-2 form-control" placeholder="Precio"/>
+
+<div align="center"><button class="btn btn-outline-info btn-rounded z-depth-0 my-4 waves-effect" type="submit" id="btn-precio" name="btn-precio">Registrar</button> </div>
+</form>
+
+
+</div>
+
+<!-- ./  content -->
+      </div>
+      <div class="modal-footer">
+
+<a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
+         
+    
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./  Modal -->

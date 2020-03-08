@@ -84,6 +84,6 @@ function SubirFtp($sync){
 ///////// actualizar el root
 $data =  file_get_contents('https://pizto.com/admin/application/includes/root_json.php?x=' . $_SESSION["temporal_td"]); 
 $cambio = json_decode($data, true);
-Helpers::UpdateId("config_root", $cambio, "td=" . $_SESSION["temporal_td"]);
+$db->update("config_root", $cambio, "WHERE td=".$_SESSION["temporal_td"]."");
 
 unset($_SESSION["temporal_td"]);

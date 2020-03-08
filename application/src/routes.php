@@ -32,57 +32,15 @@ exit();
 //
 
 //
-if($_REQUEST["op"]=="0"){ // redirecciona despues de registrar a llenar datos
-	include_once '../includes/DataLogin.php';
-	$seslog->Register($_POST);
 
-}
-
-if($_REQUEST["op"]=="0x"){ // terminar actualizar
-	if($_POST["nombre"] != NULL && $_POST["tipo"] != NULL){
-	include_once '../../system/user/Usuarios.php';
-	$usuarios = new Usuarios;
-	$usuarios->ActualizarUsuario(Helpers::Mayusculas($_POST["nombre"]),$_POST["tipo"],sha1($_POST["user"]));	
-	} else {
-	Alerts::Alerta("error","Error!","Faltan Datos!");	
-	}
-}
-
-if($_REQUEST["op"]=="0y"){ // cambiar avatar
-include_once '../../system/user/Usuarios.php';
-	$usuarios = new Usuarios;
-	$usuarios->CambiarAvatar($_REQUEST["iden"],$_REQUEST["user"]);
-}
-
-
-if($_REQUEST["op"]=="0z"){ // redirecciona despues de registrar a llenar datos
-echo '<script>
-    window.location.href="../../?modal=register_success&user=' . $_REQUEST["user"] . '";
-</script>';
-}
-
-/// usuarios
-if($_REQUEST["op"]=="1"){
-include_once '../../system/user/Usuarios.php';
-$usuarios = new Usuarios;
-$passw1 = filter_input(INPUT_POST, 'pass1', FILTER_SANITIZE_STRING);
-$passw2 = filter_input(INPUT_POST, 'pass2', FILTER_SANITIZE_STRING);
-$usuarios->CompararPass($passw1, $passw2); 
-//Alerts::Alerta("success","Agregado Correctamente","No se puede hacer la accion solicitada, consulte el manual");
-}
-
-
-if($_REQUEST["op"]=="2"){
-include_once '../../system/user/Usuarios.php';
-$usuarios = new Usuarios;
-$alert->EliminarUsuario($_REQUEST["iden"], $_REQUEST["username"]);
-}
-
+/// precios
 if($_REQUEST["op"]=="3"){
-include_once '../../system/user/Usuarios.php';
-$usuarios = new Usuarios;
-$usuarios->EliminarUsuario($_REQUEST["iden"], $_REQUEST["username"]);
+	include_once '../../system/config_configuraciones/Config.php';
+	$configuracion = new Config;
+	$configuracion->CambiarPrecio($_POST);
 }
+
+
 
 //////////iconos
 if($_REQUEST["op"]=="4"){
@@ -914,6 +872,25 @@ if($_REQUEST["op"]=="76"){ // historial In Out
 }
 
 
+if($_REQUEST["op"]=="77"){ // historial ticket borrados
+	include_once '../../system/historial/Historial.php';
+	$historial = new Historial;
+	if($_POST["fecha1_submit"]){
+		$inicio = $_POST["fecha1_submit"]; $fin=$_POST["fecha2_submit"];
+	} else {
+		$inicio = date("01-m-Y"); $fin=date("31-m-Y");
+	}
+	$historial->HistorialTickets($inicio, $fin);
+
+}
+
+///////////modal ver mesas
+if($_REQUEST["op"]=="78"){ 
+	include_once '../../system/mesashoy/Mesas.php';
+	$mesas = new Mesas;
+	$mesas->ModalVerMesa($_POST["mesa"],$_POST["tx"],$_POST["tbl"]);
+}
+
 
 
 if($_REQUEST["op"]=="80"){ // search -> Eliminar Orden tx =0
@@ -1395,9 +1372,11 @@ $user = $_SESSION["user"];
 
 
 
-
-
-
+if($_REQUEST["op"]=="159"){ 
+include_once '../../system/reportes/Reporte.php';
+$reporte = new Reporte;
+	$reporte->ModalEspecial($_POST);
+}
 
 
 if($_REQUEST["op"]=="160"){ // agragarUsuarios

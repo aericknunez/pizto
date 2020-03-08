@@ -55,28 +55,41 @@ class Busqueda{
 	public function BorrarOrden($factura) {
 		$db = new dbConn();
 				// busco la mesa a la que pertenece
-				    if ($r = $db->select("mesa", "ticket", "WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) { 
-				        $mesa = $r["mesa"];
-				    } unset($r);
+				 //    if ($r = $db->select("mesa", "ticket", "WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) { 
+				 //        $mesa = $r["mesa"];
+				 //    } unset($r);
 		    
-		     if ( Helpers::DeleteId("ticket", "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		   //   if ( Helpers::DeleteId("ticket", "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
 		        
-		        Helpers::DeleteId("ticket_num", "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+		   //      Helpers::DeleteId("ticket_num", "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 
-			        $a = $db->query("SELECT * FROM ticket WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
-					if($a->num_rows == 0){
-						Helpers::DeleteId("mesa", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
-					}
-					$a->close();
+			  //       $a = $db->query("SELECT * FROM ticket WHERE num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+					// if($a->num_rows == 0){
+					// 	Helpers::DeleteId("mesa", "mesa='$mesa' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
+					// }
+					// $a->close();
 		        
+		   //      echo '<script>
+					// 	window.location.href="?"
+		   //      	</script>';
+	        
+		   //  } else {
+		   //  	Alerts::Alerta("error","Error!","Ha ocurrido un error!");
+		   //  }
+
+
+		    $cambio = array();
+		    $cambio["edo"] = "2";
+		    
+		    if (Helpers::UpdateId("ticket", $cambio, "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."")) {
+		        Helpers::UpdateId("ticket_num", $cambio, "num_fac='$factura' and tx = ".$_SESSION["tx"]." and td = ".$_SESSION["td"]."");
 		        echo '<script>
 						window.location.href="?"
 		        	</script>';
-	        
 		    } else {
 		    	Alerts::Alerta("error","Error!","Ha ocurrido un error!");
 		    }
-
+		    
 	
    	}
 

@@ -55,6 +55,9 @@ elseif(isset($_GET["cortes"])) include_once 'system/historial/cortes.php';
 
 elseif(isset($_GET["mesasfecha"])) include_once 'system/historial/mesasfecha.php';
 
+
+elseif(isset($_GET["ticket_eliminados"])) include_once 'system/historial/ticket_eliminados.php';
+
 elseif(isset($_GET["mesashoy"])) include_once 'system/mesashoy/mesashoy.php';
 
 elseif(isset($_GET["search"])) include_once 'system/search/search.php';

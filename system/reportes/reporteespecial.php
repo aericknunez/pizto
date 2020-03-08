@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 include_once 'application/common/Alerts.php';
 include_once 'system/reportes/Reporte.php';
 include_once 'system/historial/Historial.php';
+include_once 'system/gastos/Gasto.php';
 
 
 $reporte = new Reporte;
@@ -36,3 +37,65 @@ $fecha = date("d-m-Y");
  ?>
 
 </div>
+
+
+
+
+
+
+
+
+<!-- Ver producto -->
+<div class="modal" id="ModalVerEspecial" tabindex="-1" role="dialog" aria-labelledby="ModalVerEspecial" aria-hidden="true"  data-backdrop="false">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+         DETALLES VENTA ESPECIAL</h5>
+      </div>
+      <div class="modal-body">
+<!-- ./  content -->
+
+<div id="vista_especial"></div>
+
+<!-- ./  content -->
+      </div>
+      <div class="modal-footer">
+
+<a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Regresar</a>
+         
+    
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./  Modal -->
+
+
+
+
+<!-- Ver imagenes -->
+<div class="modal" id="ModalImagenes" tabindex="-1" role="dialog" aria-labelledby="ModalImagenes" aria-hidden="true"  data-backdrop="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+         IMAGENES GASTOS</h5>
+      </div>
+      <div class="modal-body">
+<!-- ./  content -->
+
+
+
+<div id="vista"></div>
+
+<!-- ./  content -->
+      </div>
+      <div class="modal-footer">
+   <a id="cerrarmodal" class="btn btn-primary btn-rounded" data-dismiss="modal">Cerrar</a>
+   
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./  Modal -->

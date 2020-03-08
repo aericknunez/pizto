@@ -13,6 +13,7 @@ class Reporte{
 		$this->CalculaMateriaPrima($fecha);
 		$this->ProductosEspeciales($fecha);
 		Historial::HistorialGDiario($fecha);
+		Gastos::VerEntradas($fecha);
 		$this->VentaEspecial($fecha);
 		$this->OtrasVentas($fecha);
 
@@ -88,12 +89,11 @@ class Reporte{
 						<thead>
 					     <tr>
 					       <th>Producto</th>
-					       <th>Sub Total</th>
-					       <th>Imp</th>
 					       <th>Total</th>
 					        <th>Factura</th>
 					        <th>Hora</th>
 					        <th>Cajero</th>
+					        <th>Detalles</th>
 					     </tr>
 					   </thead>
 
@@ -102,56 +102,76 @@ class Reporte{
 			    foreach ($a as $b) {
 				  echo '<tr class="text-black">
 				       <th scope="row">'. $b["producto"] . '</th>
-				       <td>'. $b["stotal"] . '</td>
-				       <td>'. $b["imp"] . '</td>
-				       <td>'. $b["total"] . '</td>
+				       <td>'. Helpers::Dinero($b["total"]) . '</td>
 				       <td>'. $b["num_fac"] . '</td>
 				       <td>'. $b["hora"] . '</td>
 				       <td>'. $b["cajero"] . '</td>
+				       <td><a id="verespecial" factura="'. $b["num_fac"] . '" tx="'. $b["tx"] . '" op="159"  class="btn-floating btn-sm"><i class="fas fa-eye red-text"></i></a></td>
 				     </tr>';
 
-// aqui busco los productos que lleva ese bolado
-				$ax = $db->query("select * from ticket where fecha = '$fecha' and cod != 8889 and num_fac = ".$b["num_fac"]." and edo = 1 and tx = ".$b["tx"]." and td = ".$_SESSION['td']."");
-				 foreach ($ax as $bx) {
-				 	    
-				 	    if ($r = $db->select("nombre", "producto", "WHERE cod = ".$bx["cod"]." and td = ".$_SESSION['td']."")) { 
-					        $nombre = $r["nombre"];
-					    } unset($r);  
-
-				 	echo '<tr class="text-danger">
-				       <th scope="row">'. $nombre . '</th>
-				       <td>'. $bx["stotal"] . '</td>
-				       <td>'. $bx["imp"] . '</td>
-				       <td>'. $bx["total"] . '</td>
-				       <td>'. $bx["num_fac"] . '</td>
-				       <td>'. $bx["hora"] . '</td>
-				       <td>'. $bx["cajero"] . '</td>
-				     </tr>';
-
-				 }
 
 				} $a->close();
 
-					    $a = $db->query("SELECT sum(stotal), sum(imp), sum(total) FROM ticket where fecha = '$fecha' and cod = 8889 and edo = 1 and td = ".$_SESSION['td']."");
+					    $a = $db->query("SELECT sum(total) FROM ticket where fecha = '$fecha' and cod = 8889 and edo = 1 and td = ".$_SESSION['td']."");
 					    foreach ($a as $b) {
-					        $stotal=$b["sum(stotal)"];
-					        $imp=$b["sum(imp)"];
 					        $total=$b["sum(total)"];
 					    } $a->close();
 
 					echo '<tr class="text-black">
 				       <th scope="row">TOTALES</th>
-				       <td>'. $stotal . '</td>
-				       <td>'. $imp . '</td>
-				       <td>'. $total . '</td>
-				       <td></td>
-				       <td></td>
-				       <td></td>
+				       <td>'. Helpers::Dinero($total) . '</td>
+				       <td colspan="4" ></td>
 				     </tr>';
 
 			echo '</tbody>
 				</table>';
 			} // num rows
+	}
+
+
+
+	public function ModalEspecial($data){
+			$db = new dbConn();
+
+			$ax = $db->query("select * from ticket where num_fac = ".$data["factura"]." and edo = 1 and tx = ".$data["tx"]." and td = ".$_SESSION['td']." order by id desc");
+
+		if($ax->num_rows > 0){
+		echo '
+		    <table class="table table-striped table-sm">
+				<thead>
+			     <tr>
+			       <th>Producto</th>
+			       <th>Total</th>
+			        <th>Factura</th>
+			        <th>Hora</th>
+			        <th>Cajero</th>
+			     </tr>
+			   </thead>
+
+			   <tbody>';
+			foreach ($ax as $bx) {
+
+		if($bx["cod"] != "8889"){
+			if ($r = $db->select("nombre", "producto", "WHERE cod = ".$bx["cod"]." and td = ".$_SESSION['td']."")) { 
+			$nombre = $r["nombre"];
+			} unset($r);  			
+		} else {
+			$nombre = $bx["producto"];
+		}
+
+
+				echo '<tr>
+				<th scope="row">'. $nombre . '</th>
+				<td>'. Helpers::Dinero($bx["total"]) . '</td>
+				<td>'. $data["factura"] . '</td>
+				<td>'. $bx["hora"] . '</td>
+				<td>'. $bx["cajero"] . '</td>
+				</tr>';
+
+			}
+			echo '</tbody>
+			</table>';
+		}
 	}
 
 
