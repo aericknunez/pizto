@@ -17,6 +17,16 @@
 	border-radius: 10px;
 }
 
+.gallery li:hover input {
+	border-color: #fff;
+}
+.gallery li:active input {
+     position: relative;
+	 opacity: 0.5;
+     top: 10px;
+}
+
+
 
 .gallery img { 
 	display: block;
@@ -28,7 +38,7 @@
 }
 
 .gallery em {
-	background: #fff url(../img/grey-gradient.gif) repeat-y;
+	background: #fff;
 	color: #000;
 	font-style: normal;
 	padding: 1px 5px;
@@ -46,6 +56,6 @@
 	text-decoration: none;
 }
 .gallery a:hover em {
-	background: #ffdb01 url(../img/orange-gradient.gif) repeat-y;
+	background: #ffdb01;
 	border-color: #c25b08;
 }
