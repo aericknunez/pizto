@@ -21,7 +21,7 @@ class Register {
 
 	}
 
-	function ObtenerCodigo($clave){
+	function ObtenerCodigo($clave){ // (clave sananda)
 		$cod = Encrypt::Encrypt($clave,"6d1a7c5b57cf56553ae79e3ae826ff0a" . Fechas::Format(date("d-m-Y")));
 		$codigo = substr($cod,0,4);
 		return strtoupper($codigo);

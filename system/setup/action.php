@@ -37,6 +37,7 @@ if($_SESSION["tiposistemanew"] == NULL){ // selecciono vatiable tipo sistema
 }
 
 		     if($reg->ValidarCodigo($_POST["clave"], $_POST["codigo"]) == TRUE){
+			 
 			 $_SESSION['secret_key'] = md5($td);
 
 		     	// inserta datos en root
@@ -53,7 +54,7 @@ if($_SESSION["tiposistemanew"] == NULL){ // selecciono vatiable tipo sistema
 		     	// inserta datos en config
 		     	$datom = array();
 			    $datom["sistema"] = "Sistema de control " . $_POST["nombre"];
-			    $datom["propietario"] = $_POST["nombre"];
+			    $datom["cliente"] = $_POST["nombre"];
 			    $datom["imp"] = 0;
 			    $datom["propina"] = 0;
 			    $datom["imagen"] = "default.png";
@@ -108,7 +109,7 @@ if($_SESSION["tiposistemanew"] == NULL){ // selecciono vatiable tipo sistema
 				    if ($db->update("login_userdata", $cambio, "WHERE td != '$td'")) {
 				    	unset($_SESSION["tiposistemanew"]); // elimino la variable tipo sistema
 				        echo '<script>
-							window.location.href="../../"
+							window.location.href="index.php"
 						</script>';
 				    } else {
 						$alert->Alerta("warning","Error!","Ocurrio un error desconocido!");
