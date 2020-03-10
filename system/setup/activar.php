@@ -51,7 +51,7 @@ include_once 'application/common/Fechas.php';
 // $reg = new Register();
 // $clavex = "R001-SV-546551";
 // $clave = $reg->SanarClave($clavex);
-// $codigo = $reg->ObtenerCodigo($clave);
+// $codigo = $reg->ObtenerCodigo($clave, md5($clave));
 // echo $clavex . "<br>";
 // echo $codigo;
 // echo "<br>Codigos";
