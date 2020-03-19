@@ -938,14 +938,14 @@ if($_REQUEST["op"]=="86"){ // imprimir factura
     $clase = $b["clase"];
     
 	    if($_REQUEST["tipo"] == 1){ // para ticket
-	    include_once '../../system/facturar/Ticket.php';
+	    include_once '../../system/facturar/facturas/'.$_SESSION["td"].'/Ticket.php';
 	    $imprimir = new Ticket; 
 	        $imprimir->$clase(2,$_REQUEST["iden"],$_REQUEST["efectivo"],$b["impresora"],$_REQUEST["mesa"],$b["ticket"]);
 	    Alerts::Alerta("success","Imprimiendo","Imprimiendo Factura");
 	    }
 
 	    if($_REQUEST["tipo"] == 2 and $_SESSION["tx"] == 1){ // para factura
-	    include_once '../../system/facturar/Factura.php';
+	    include_once '../../system/facturar/facturas/'.$_SESSION["td"].'/Factura.php';
 	    $imprimir = new Factura;  // la mesa aqui es solo si es op 3 en el 1er para
 	        $imprimir->$clase(2,$_REQUEST["iden"],$_REQUEST["efectivo"],$b["impresora"],$_REQUEST["mesa"],$b["ticket"]);
 	    Alerts::Alerta("success","Imprimiendo","Imprimiendo Factura");
@@ -977,7 +977,7 @@ if($_REQUEST["op"]=="88"){ // Abrir Caja
 		$impresora = $r["impresora"];
 	} unset($r);  
 
-		include_once '../../system/facturar/Ticket.php';
+		include_once '../../system/facturar/facturas/'.$_SESSION["td"].'/Ticket.php';
 		$imprimir = new Ticket; 
 		$imprimir->AbrirCaja($impresora);//(tipo,numero,cambio,impresor,mesa)	
 }
@@ -991,7 +991,7 @@ if($_REQUEST["op"]=="89"){ // Reporte Diario
 		$impresora = $r["impresora"]; $ticket = $r["ticket"];
 	} unset($r);  
 
-		include_once '../../system/facturar/Factura.php';
+		include_once '../../system/facturar/facturas/'.$_SESSION["td"].'/Factura.php';
 		$imprimir = new Factura; 
 		$imprimir->ReporteDiario($_REQUEST["iden"],$impresora,$ticket);	
 		Alerts::Alerta("success","Imprimiendo","Imprimiendo Factura");
@@ -1357,12 +1357,12 @@ $user = $_SESSION["user"];
 	} unset($r);  
 
 	if($_REQUEST['tipo'] == 1){ // para ticket
-		include_once '../../system/facturar/Ticket.php';
+		include_once '../../system/facturar/facturas/'.$_SESSION["td"].'/Ticket.php';
 		$imprimir = new Ticket; 
 		$imprimir->$clase(3,1,NULL,$impresora,6);//(tipo,numero,cambio,impresor,mesa)
 	} // el tipo es 1 =  mesa, 2 = factura, 3 = cancela
 		if($_REQUEST['tipo'] == 2){ // para factura
-		include_once '../../system/facturar/Factura.php';
+		include_once '../../system/facturar/facturas/'.$_SESSION["td"].'/Factura.php';
 		$imprimir = new Factura;  // la mesa aqui es solo si es op 3 en el 1er para
 		$imprimir->$clase(2,47,NULL,$impresora,null);//(tipo,numero,cambio,imp)
 	}
@@ -1409,7 +1409,7 @@ if($_SESSION["tx"] == 1){
 		} unset($r);  
 
 
-			include_once '../../system/facturar/Factura.php';
+			include_once '../../system/facturar/facturas/'.$_SESSION["td"].'/Factura.php';
 			$imprimir = new Factura;  // la mesa aqui es solo si es op 3 en el 1er para
 
 		$counter = 0;
