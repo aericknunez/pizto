@@ -30,3 +30,5 @@ $archivo = "pizto_ventas.sql";
 	} 
 
 sleep(5);
+
+?>

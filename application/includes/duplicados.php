@@ -74,3 +74,4 @@ Delete("corte_diario", "user", $fecha);
  echo '<script>
     window.location.href="?fecha='. $next.'"
 </script>';
+?>

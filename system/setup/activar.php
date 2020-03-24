@@ -49,16 +49,24 @@ include_once 'application/common/Fechas.php';
 <section class="team-section text-center">
 <?php 
 // $reg = new Register();
-// $clavex = "R000-SV-546551";
+// $clavex = "P350-SV-210621";
 // $clave = $reg->SanarClave($clavex);
-// $codigo = $reg->ObtenerCodigo($clave, md5($clave));
+// $codigo = $reg->ObtenerCodigo($clavex, $clave, md5($clave));
 // echo $clavex . "<br>";
 // echo $codigo;
-// echo "<br>Codigos";
+// echo "<br>Codigos<br>";
 
-// echo  $reg->ObtenerTipoCuenta($clavex);
+// echo  $reg->ObtenerTipoCuenta($clavex) . "<br>";
 
+
+// echo  $reg->ObtenerRand($clavex) . "<br>";
+
+// if($reg->ValidarCodigo($clavex, $codigo, md5($clave), $reg->ObtenerRand($clavex)) == TRUE){
+//   echo "Estamos bien";
+// }
  ?>
+
+
 <h1>ACTIVACIÓN DEL SISTEMA</h1>
 
 

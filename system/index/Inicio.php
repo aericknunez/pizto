@@ -520,3 +520,5 @@ echo '<div class="text-center"><a id="cambiar-pantalla-inicio" op="27x" class="b
 
 
 } // clase
+
+?>

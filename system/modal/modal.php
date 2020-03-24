@@ -58,3 +58,4 @@ if($_REQUEST["modal"]=="newcut") include_once 'system/modal/modal/newcut.php';
 
 /// planilla
 if($_REQUEST["modal"]=="editempleado") include_once 'system/modal/modal/editar-empleado.php';
+?>

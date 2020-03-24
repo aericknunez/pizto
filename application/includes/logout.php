@@ -42,3 +42,5 @@ header("Location: ../../");
 }
 	
 exit();
+
+?>

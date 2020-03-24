@@ -362,4 +362,4 @@ public function ListarOpciones($cod,$identificador,$cliente){
 
 
 } // clase
-  		
+?>

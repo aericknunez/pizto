@@ -32,3 +32,5 @@ if (isset($_POST['email'], $_POST['password'])) {
     // The correct POST variables were not sent to this page. 
     exit();
 }
+
+?>

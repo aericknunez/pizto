@@ -87,3 +87,5 @@ $cambio = json_decode($data, true);
 $db->update("config_root", $cambio, "WHERE td=".$_SESSION["temporal_td"]."");
 
 unset($_SESSION["temporal_td"]);
+
+?>

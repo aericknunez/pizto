@@ -278,3 +278,4 @@ class Gastos {
 
 
 } // termina la clase
+?>
