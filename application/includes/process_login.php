@@ -18,7 +18,7 @@ $seslog->sec_session_start(); // Our custom secure way of starting a PHP session
             $cambio = array();
             $cambio["user"] = $b["username"];
             $db->update("login_userdata", $cambio, "WHERE user='$userx'");
-    
+            unset($userx);
     } $a->close();
 
 
@@ -28,7 +28,7 @@ $seslog->sec_session_start(); // Our custom secure way of starting a PHP session
             
             $userx = sha1($b["username"]);
             $db->update("login_sucursales", $cambio, "WHERE user='$userx'");
-    
+            unset($userx);
     } $a->close();
 
     $a = $db->query("SELECT username FROM login_members");
@@ -36,7 +36,7 @@ $seslog->sec_session_start(); // Our custom secure way of starting a PHP session
             
             $userx = sha1($b["username"]);
             $db->update("facturar_users", $cambio, "WHERE user='$userx'");
-    
+            unset($userx);
     } $a->close();
 ////////////////////////////////////////////////////
 
